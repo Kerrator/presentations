@@ -1,0 +1,167 @@
+/* custom.css — your house style.
+   Loaded AFTER the base theme in index.html, so these rules win. */
+
+/* Your handwriting font, created on the iPad (see ../../fonts/README.md).
+   Files live in css/fonts/ inside each talk; run ./setup.sh to copy them in. */
+@font-face {
+  font-family: 'MyHand';
+  src: url('fonts/myhand.woff2') format('woff2'),
+       url('fonts/myhand.ttf')   format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink:     #1a1a1a;
+  --accent:  #11335d;   /* deep blue */
+  --accent2: #b08d2b;   /* gold */
+}
+
+/* Body text falls back to a clean system font until your font is added. */
+.reveal {
+  font-family: 'MyHand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.reveal .slides section { text-align: left; }
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'MyHand', system-ui, sans-serif;
+  color: var(--accent);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.reveal a { color: var(--accent2); }
+.reveal section img { border: none; box-shadow: none; }
+
+/* Code stays in a monospace font regardless of the handwriting face. */
+.reveal pre, .reveal code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* OPTIONAL — push rendered equations toward your handwriting font.
+   Affects letters/numbers; accents and operators can shift, so test your
+   real equations first. Legibility usually beats novelty for scientific math.
+.reveal .katex { font-family: 'MyHand', KaTeX_Main, serif; }
+*/
+
+/* ============================================================
+   Talk-specific styles — "Coding with Claude Code"
+   (self-contained; safe to edit without touching the template)
+   ============================================================ */
+
+/* Dense reference tables (terminology, seven-phase one-liners) */
+.reveal table.kv {
+  font-size: 0.46em;
+  line-height: 1.25;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+}
+.reveal table.kv th,
+.reveal table.kv td {
+  border: 1px solid var(--accent2);
+  padding: 0.18em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+.reveal table.kv thead th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.reveal table.kv tbody tr:nth-child(even) { background: #f3f1ea; }
+.reveal table.kv td:first-child {
+  color: var(--accent);
+  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+.reveal table.kv td.num { width: 1.4em; text-align: center; font-weight: 700; color: var(--accent2); }
+
+/* Inline figures sit centred and bounded so they never overflow the slide */
+.reveal .fig {
+  display: block;
+  margin: 0.2em auto 0;
+  max-width: 100%;
+}
+.reveal .fig.tall  { max-height: 64vh; }
+.reveal .fig.wide  { max-height: 58vh; }
+
+/* The recurring "anchor" callout — the pyKMC example grounding an abstract point */
+.reveal .anchor {
+  border-left: 4px solid var(--accent2);
+  background: #faf8f1;
+  padding: 0.35em 0.7em;
+  margin: 0.5em 0 0;
+  font-size: 0.72em;
+}
+.reveal .anchor::before {
+  content: "⌖ anchor — ";
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+/* Code blocks a touch smaller so 6–10 lines fit comfortably */
+.reveal pre code { font-size: 0.74em; line-height: 1.3; max-height: 62vh; }
+
+/* Tighten spine bullet lists on dense slides */
+.reveal .spine ul { margin-top: 0.3em; }
+.reveal .spine li { margin: 0.18em 0; }
+
+/* Section eyebrow / kicker above a heading */
+.reveal .kicker {
+  font-size: 0.5em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin: 0 0 0.1em;
+}
+
+/* Title slide */
+.reveal .titleslide h1 { font-size: 2.0em; line-height: 1.05; margin-bottom: 0.1em; }
+.reveal .titleslide .subtitle { font-size: 0.78em; color: var(--ink); opacity: 0.85; max-width: 46rem; }
+.reveal .titleslide .byline { margin-top: 0.8em; font-size: 0.8em; color: var(--accent); }
+
+/* ---- density overrides (loaded last; these win) ----
+   reveal.js does not auto-shrink slides, so headings and bullet lists are
+   sized to fit ~5 short bullets or a heading + one media element per slide. */
+.reveal h2 { font-size: 1.30em; line-height: 1.08; margin: 0 0 0.28em; }
+.reveal h3 { font-size: 1.06em; line-height: 1.12; margin: 0 0 0.28em; }
+.reveal .slides section ul { font-size: 0.82em; line-height: 1.22; margin-top: 0.3em; }
+.reveal .slides section li { margin: 0.12em 0; }
+.reveal .slides section ul ul { font-size: 0.92em; }   /* nested lists relative */
+/* media slides: figure/code/math centred with breathing room under the heading */
+.reveal .fig.tall { max-height: 66vh; }
+.reveal .fig.wide { max-height: 60vh; }
+.reveal pre code { font-size: 0.78em; line-height: 1.32; max-height: 64vh; }
+
+/* ---- second-pass density tuning (audit-driven; these win) ---- */
+.reveal h3 { font-size: 1.00em; }
+.reveal .slides section ul { font-size: 0.76em; line-height: 1.18; }
+.reveal .slides section li { margin: 0.08em 0; }
+.reveal table.kv { font-size: 0.40em; }
+.reveal table.kv th, .reveal table.kv td { padding: 0.12em 0.4em; }
+.reveal .twocol { display: flex; gap: 0.7em; align-items: flex-start; }
+.reveal .twocol > table { flex: 1 1 0; min-width: 0; }
+
+/* ---- third-pass: terminology two-column legibility + last bullet nudge ---- */
+.reveal .twocol table.kv { font-size: 0.36em; }
+.reveal .twocol table.kv td:first-child { white-space: normal; }
+.reveal .slides section ul { font-size: 0.75em; line-height: 1.16; }
+
+/* ---- KaTeX display guard: keep any standalone equation bounded ---- */
+.reveal .katex-display { font-size: 0.62em; margin: 0.4em 0; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+
+/* ---- code: shrink + allow wrap so long comment lines never clip ---- */
+.reveal pre { width: 92%; max-width: 92%; }
+.reveal pre code { font-size: 0.66em; line-height: 1.34; white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+
+/* ---- PDF export: landscape pages for the 16:9 slides ----
+   (screen view unaffected; only applies to ?print-pdf / Save-as-PDF).
+   Use the `landscape` keyword — reveal computes per-slide page breaks itself,
+   and an explicit px @page size collapses that pagination. */
+@media print {
+  @page { size: landscape; margin: 0; }
+}

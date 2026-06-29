@@ -1,0 +1,152 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+  <title>Seven-phase loop: Idea to QA with conditional Research and Prototype phases and a QA to Kanban convergence loop</title>
+  <desc>Horizontal flow of seven phases from Idea to QA. Research and Prototype are conditional yellow-tinted nodes with gate diamonds above them. Kanban, Execution and QA sit inside a green dashed loop with a return arrow from QA back to Kanban labelled failures become new tickets. A bracket over phases two through four reads stop fooling yourself before you spend compute. A parallel band below annotates each phase with its materials meaning.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#11335d"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a7d56"/>
+    </marker>
+    <marker id="arrowGate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b08d2b"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+
+  <!-- ===== Title ===== -->
+  <text x="40" y="48" font-size="30" font-weight="800" fill="#11335d">The seven-phase loop</text>
+  <text x="40" y="78" font-size="20" fill="#1a1a1a">Linear front half, two conditional phases, and a QA convergence loop</text>
+
+  <!-- ===== Bracket over phases 2-4 ===== -->
+  <path d="M236,150 L236,138 L744,138 L744,150" fill="none" stroke="#b08d2b" stroke-width="2.5"/>
+  <path d="M490,138 L490,128" fill="none" stroke="#b08d2b" stroke-width="2.5"/>
+  <text x="490" y="120" text-anchor="middle" font-size="22" font-weight="700" fill="#11335d">stop fooling yourself before you spend compute</text>
+
+  <!-- ===== Conditional gate diamonds (above Research and Prototype) ===== -->
+  <!-- Gate for Research, node center x=305 -->
+  <g>
+    <path d="M305,168 L337,196 L305,224 L273,196 Z" fill="#f4eccb" stroke="#b08d2b" stroke-width="2"/>
+    <text x="305" y="202" text-anchor="middle" font-size="17" font-weight="700" fill="#b08d2b">?</text>
+    <text x="305" y="248" text-anchor="middle" font-size="16" font-weight="600" font-style="italic" fill="#1a1a1a">unfamiliar method?</text>
+    <line x1="305" y1="224" x2="305" y2="264" stroke="#b08d2b" stroke-width="2" marker-end="url(#arrowGate)"/>
+  </g>
+  <!-- Gate for Prototype, node center x=505 -->
+  <g>
+    <path d="M505,168 L537,196 L505,224 L473,196 Z" fill="#f4eccb" stroke="#b08d2b" stroke-width="2"/>
+    <text x="505" y="202" text-anchor="middle" font-size="17" font-weight="700" fill="#b08d2b">?</text>
+    <text x="505" y="248" text-anchor="middle" font-size="16" font-weight="600" font-style="italic" fill="#1a1a1a">impose taste / de-risk?</text>
+    <line x1="505" y1="224" x2="505" y2="264" stroke="#b08d2b" stroke-width="2" marker-end="url(#arrowGate)"/>
+  </g>
+
+  <!-- ===== Green loop enclosure (phases 5-6-7) ===== -->
+  <rect x="784" y="262" width="456" height="192" rx="14" fill="#e7efe6" stroke="#5a7d56" stroke-width="2.5" stroke-dasharray="9 5"/>
+  <text x="1012" y="284" text-anchor="middle" font-size="20" font-weight="700" fill="#5a7d56">QA convergence loop</text>
+
+  <!-- ===== Phase nodes ===== -->
+  <!-- centers: Idea 100, Research 305, Prototype 505, PRD 700 (top row y=296); Kanban 860, Execution 1012, QA 1164 (loop row y=332) -->
+
+  <!-- 1 Idea -->
+  <g>
+    <rect x="40" y="266" width="120" height="60" rx="10" fill="#11335d"/>
+    <circle cx="58" cy="284" r="11" fill="#ffffff"/>
+    <text x="58" y="289" text-anchor="middle" font-size="15" font-weight="700" fill="#11335d">1</text>
+    <text x="106" y="305" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Idea</text>
+  </g>
+
+  <!-- 2 Research (conditional) -->
+  <g>
+    <rect x="245" y="266" width="120" height="60" rx="10" fill="#f4eccb" stroke="#b08d2b" stroke-width="2.5"/>
+    <circle cx="263" cy="284" r="11" fill="#b08d2b"/>
+    <text x="263" y="289" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2</text>
+    <text x="312" y="300" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">Research</text>
+    <text x="312" y="318" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#b08d2b">conditional</text>
+  </g>
+
+  <!-- 3 Prototype (conditional) -->
+  <g>
+    <rect x="445" y="266" width="120" height="60" rx="10" fill="#f4eccb" stroke="#b08d2b" stroke-width="2.5"/>
+    <circle cx="463" cy="284" r="11" fill="#b08d2b"/>
+    <text x="463" y="289" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3</text>
+    <text x="512" y="300" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">Prototype</text>
+    <text x="512" y="318" text-anchor="middle" font-size="13" font-weight="600" font-style="italic" fill="#b08d2b">conditional</text>
+  </g>
+
+  <!-- 4 PRD -->
+  <g>
+    <rect x="640" y="266" width="120" height="60" rx="10" fill="#11335d"/>
+    <circle cx="658" cy="284" r="11" fill="#ffffff"/>
+    <text x="658" y="289" text-anchor="middle" font-size="15" font-weight="700" fill="#11335d">4</text>
+    <text x="706" y="305" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">PRD</text>
+  </g>
+
+  <!-- 5 Kanban (loop) -->
+  <g>
+    <rect x="800" y="302" width="120" height="60" rx="10" fill="#11335d"/>
+    <circle cx="818" cy="320" r="11" fill="#ffffff"/>
+    <text x="818" y="325" text-anchor="middle" font-size="15" font-weight="700" fill="#11335d">5</text>
+    <text x="866" y="341" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Kanban</text>
+  </g>
+
+  <!-- 6 Execution (loop) -->
+  <g>
+    <rect x="952" y="302" width="120" height="60" rx="10" fill="#11335d"/>
+    <circle cx="970" cy="320" r="11" fill="#ffffff"/>
+    <text x="970" y="325" text-anchor="middle" font-size="15" font-weight="700" fill="#11335d">6</text>
+    <text x="1015" y="339" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">Execution</text>
+  </g>
+
+  <!-- 7 QA (loop) -->
+  <g>
+    <rect x="1104" y="302" width="120" height="60" rx="10" fill="#11335d"/>
+    <circle cx="1122" cy="320" r="11" fill="#ffffff"/>
+    <text x="1122" y="325" text-anchor="middle" font-size="15" font-weight="700" fill="#11335d">7</text>
+    <text x="1170" y="341" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">QA</text>
+  </g>
+
+  <!-- ===== Forward flow arrows (spine) ===== -->
+  <line x1="160" y1="296" x2="243" y2="296" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="365" y1="296" x2="443" y2="296" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="565" y1="296" x2="638" y2="296" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- PRD -> Kanban (steps down into loop) -->
+  <path d="M760,296 L780,296 L780,332 L798,332" fill="none" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- Kanban -> Execution -->
+  <line x1="920" y1="332" x2="950" y2="332" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- Execution -> QA -->
+  <line x1="1072" y1="332" x2="1102" y2="332" stroke="#11335d" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== Return arrow QA -> Kanban (failures become new tickets) ===== -->
+  <path d="M1164,362 L1164,426 L860,426 L860,364" fill="none" stroke="#5a7d56" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <rect x="892" y="411" width="240" height="28" rx="6" fill="#e7efe6"/>
+  <text x="1012" y="431" text-anchor="middle" font-size="19" font-weight="600" font-style="italic" fill="#5a7d56">failures become new tickets</text>
+
+  <!-- ===== Parallel materials-meaning band ===== -->
+  <rect x="40" y="486" width="1200" height="206" rx="12" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="1.5"/>
+  <text x="60" y="513" font-size="16" font-weight="700" fill="#b08d2b" letter-spacing="1.5">MATERIALS MEANING</text>
+  <line x1="60" y1="524" x2="1220" y2="524" stroke="#c9c2ad" stroke-width="1.5"/>
+
+  <!-- tick connectors from each node down to band -->
+  <line x1="100"  y1="486" x2="100"  y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="305"  y1="486" x2="305"  y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="505"  y1="486" x2="505"  y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="700"  y1="486" x2="700"  y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="860"  y1="486" x2="860"  y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="1012" y1="486" x2="1012" y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="1164" y1="486" x2="1164" y2="470" stroke="#c9c2ad" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- Left column -->
+  <text x="60" y="554" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#11335d">1 Idea</tspan><tspan dx="14">sharp dissatisfaction or a target number</tspan></text>
+  <text x="60" y="588" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#b08d2b">2 Research</tspan><tspan dx="14">cache method details; stamp build / date</tspan></text>
+  <text x="60" y="622" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#b08d2b">3 Prototype</tspan><tspan dx="14">sweep knobs till the catalog stabilizes</tspan></text>
+  <text x="60" y="656" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#11335d">4 PRD</tspan><tspan dx="14" font-weight="600" fill="#11335d">RateConstantConfig</tspan><tspan dx="8">+</tspan><tspan dx="8" font-weight="600" fill="#11335d">DO NOT MIX</tspan><tspan dx="8">units header</tspan></text>
+
+  <!-- Right column -->
+  <text x="662" y="554" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#11335d">5 Kanban</tspan><tspan dx="14">dependency graph; cut vertically</tspan></text>
+  <text x="662" y="588" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#11335d">6 Execution</tspan><tspan dx="14">build launches real compute (mpirun / srun)</tspan></text>
+  <text x="662" y="622" font-size="20" fill="#1a1a1a"><tspan font-weight="700" fill="#11335d">7 QA</tspan><tspan dx="14">a human reads units &amp; magnitudes</tspan></text>
+  <text x="662" y="656" font-size="20" font-style="italic" fill="#5a7d56">green tests are not validated physics</text>
+
+</svg>

@@ -1,0 +1,212 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ttl desc" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+  <title id="ttl">LLM encode/compute/decode pipeline laid over the pyKMC main loop</title>
+  <desc id="desc">Two vertically aligned three-stage pipelines. The top LLM pipeline (text to encode to compute to decode) is twinned with the bottom pyKMC pipeline (configuration to encode to compute to decode). The DECODE column is outlined in a warning colour: a Hz token joined into a per-picosecond slot makes every rate ten-to-the-twelfth too large and nothing crashes.</desc>
+  <defs>
+    <style>
+      svg{
+        --blue:#11335d; --gold:#b08d2b; --ink:#1a1a1a;
+        --paper:#f3f1ea; --white:#ffffff; --stroke:#c9c2ad;
+        --warn:#c0392b; --warnfill:#fbeceb; --muted:#5a6472;
+      }
+      .stage-sub{font-size:22px;font-weight:700;letter-spacing:.04em;}
+      .body{font-size:18px;} .small{font-size:15px;}
+      .lane-label{font-size:21px;font-weight:800;letter-spacing:.06em;}
+      .head{font-size:34px;font-weight:800;}
+      .sub{font-size:18px;font-weight:500;}
+      .mono{font-family:"SFMono-Regular",Menlo,Consolas,monospace;}
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#11335d"/>
+    </marker>
+    <marker id="ahL" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#11335d" opacity="0.6"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b08d2b"/>
+    </marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+
+  <!-- ===================== HEADER ===================== -->
+  <text x="56" y="56" class="head" fill="#11335d">Same machine, twice over</text>
+  <text x="56" y="85" class="sub" fill="#5a6472">An LLM token pipeline laid directly on the pyKMC main loop &#8212; the units bug lives in <tspan font-weight="800" fill="#c0392b">DECODE</tspan></text>
+
+  <!-- column header strip -->
+  <g fill="#5a6472" font-size="14" font-weight="700" letter-spacing=".12em">
+    <text x="400" y="120" text-anchor="middle">ENCODE</text>
+    <text x="640" y="120" text-anchor="middle">COMPUTE</text>
+    <text x="920" y="120" text-anchor="middle">DECODE</text>
+  </g>
+
+  <!-- DECODE warning column (behind boxes) -->
+  <rect x="802" y="132" width="236" height="456" rx="14" fill="#fbeceb" stroke="#c0392b" stroke-width="2.5"/>
+  <rect x="802" y="132" width="236" height="456" rx="14" fill="none" stroke="#c0392b" stroke-width="7" opacity="0.16"/>
+
+  <!-- ===================== TOP LANE : LLM ===================== -->
+  <rect x="44" y="150" width="148" height="120" rx="14" fill="#11335d"/>
+  <text x="118" y="200" text-anchor="middle" class="lane-label" fill="#ffffff">LLM</text>
+  <text x="118" y="225" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">tokens</text>
+  <text x="118" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">in &#8594; out</text>
+
+  <!-- input: text -->
+  <rect x="206" y="172" width="74" height="76" rx="10" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="1.5"/>
+  <text x="243" y="206" text-anchor="middle" class="small mono" fill="#1a1a1a">&#8220;rate&#8221;</text>
+  <text x="243" y="226" text-anchor="middle" fill="#5a6472" font-size="12">text</text>
+
+  <!-- LLM ENCODE -->
+  <rect x="300" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
+  <path d="M300 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <text x="400" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">ENCODE</text>
+  <text x="400" y="208" text-anchor="middle" class="body" fill="#1a1a1a">largest known tokens</text>
+  <text x="400" y="233" text-anchor="middle" class="small" fill="#5a6472">greedy merge</text>
+  <text x="400" y="258" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#b08d2b">&#8594; integer ids</text>
+
+  <!-- LLM COMPUTE -->
+  <rect x="540" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
+  <path d="M540 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <text x="640" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">COMPUTE</text>
+  <text x="640" y="212" text-anchor="middle" class="body" fill="#1a1a1a">the model thinks</text>
+  <text x="640" y="240" text-anchor="middle" class="small" fill="#5a6472">on pure numbers</text>
+
+  <!-- LLM DECODE -->
+  <rect x="820" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
+  <path d="M820 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <text x="920" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">DECODE</text>
+  <text x="920" y="208" text-anchor="middle" class="body" fill="#1a1a1a">ids &#8594; vocab lookup</text>
+  <text x="920" y="233" text-anchor="middle" class="small" fill="#5a6472">table read</text>
+  <text x="920" y="258" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#b08d2b">&#8594; text</text>
+
+  <!-- top-lane horizontal arrows -->
+  <g stroke="#11335d" stroke-width="2.5" fill="none">
+    <path d="M282 210 H297" marker-end="url(#ah)"/>
+    <path d="M502 210 H537" marker-end="url(#ah)"/>
+    <path d="M742 210 H817" marker-end="url(#ah)"/>
+  </g>
+
+  <!-- ===================== ALIGNING ARROWS (top twin -> bottom twin) ===================== -->
+  <g stroke="#b08d2b" stroke-width="2.5" stroke-dasharray="6 5" fill="none" opacity="0.9">
+    <path d="M400 270 V448" marker-end="url(#ag)"/>
+    <path d="M640 270 V448" marker-end="url(#ag)"/>
+    <path d="M920 270 V448" marker-end="url(#ag)"/>
+  </g>
+  <g fill="#b08d2b" font-size="12.5" font-weight="700" text-anchor="middle" letter-spacing=".06em">
+    <text x="388" y="363" transform="rotate(-90 388 363)">same map</text>
+    <text x="628" y="363" transform="rotate(-90 628 363)">same map</text>
+    <text x="908" y="363" transform="rotate(-90 908 363)">same map</text>
+  </g>
+
+  <!-- ===================== BOTTOM LANE : pyKMC ===================== -->
+  <rect x="44" y="450" width="148" height="120" rx="14" fill="#b08d2b"/>
+  <text x="118" y="500" text-anchor="middle" class="lane-label" fill="#ffffff">pyKMC</text>
+  <text x="118" y="525" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">main</text>
+  <text x="118" y="544" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">loop</text>
+
+  <!-- input: configuration -->
+  <rect x="206" y="472" width="74" height="76" rx="10" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="1.5"/>
+  <line x1="227" y1="500" x2="249" y2="494" stroke="#c9c2ad" stroke-width="1.5"/>
+  <line x1="227" y1="500" x2="243" y2="514" stroke="#c9c2ad" stroke-width="1.5"/>
+  <line x1="249" y1="494" x2="263" y2="508" stroke="#c9c2ad" stroke-width="1.5"/>
+  <circle cx="227" cy="500" r="5" fill="#11335d"/>
+  <circle cx="249" cy="494" r="5" fill="#b08d2b"/>
+  <circle cx="243" cy="514" r="5" fill="#11335d"/>
+  <circle cx="263" cy="508" r="5" fill="#b08d2b"/>
+  <text x="243" y="540" text-anchor="middle" fill="#5a6472" font-size="12">config</text>
+
+  <!-- pyKMC ENCODE -->
+  <rect x="300" y="450" width="200" height="120" rx="12" fill="#ffffff" stroke="#b08d2b" stroke-width="2"/>
+  <path d="M300 462 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#b08d2b"/>
+  <text x="400" y="472" text-anchor="middle" class="stage-sub" fill="#ffffff">ENCODE</text>
+  <text x="400" y="507" text-anchor="middle" class="body" fill="#1a1a1a">atomic-env graphs</text>
+  <text x="400" y="532" text-anchor="middle" class="small" fill="#5a6472">match catalog</text>
+  <text x="400" y="557" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#11335d">&#8594; Ref Event idx</text>
+
+  <!-- pyKMC COMPUTE -->
+  <rect x="540" y="450" width="200" height="120" rx="12" fill="#ffffff" stroke="#b08d2b" stroke-width="2"/>
+  <path d="M540 462 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#b08d2b"/>
+  <text x="640" y="472" text-anchor="middle" class="stage-sub" fill="#ffffff">COMPUTE</text>
+  <!-- rate equation, native SVG (KaTeX-style layout) -->
+  <g transform="translate(640 512)" text-anchor="middle" fill="#1a1a1a">
+    <text font-size="21">
+      <tspan font-style="italic">k</tspan><tspan dx="4">=</tspan><tspan dx="5" font-style="italic">&#957;</tspan><tspan dy="6" font-size="13">0</tspan><tspan dy="-6" dx="2">&#183;</tspan><tspan dx="2" font-style="italic">e</tspan><tspan dy="-9" font-size="15" font-style="italic">&#8722;&#916;E / k</tspan><tspan dy="3" font-size="11" font-style="italic">B</tspan><tspan dy="-3" font-size="15" font-style="italic">T</tspan>
+    </text>
+  </g>
+  <text x="640" y="546" text-anchor="middle" class="small" fill="#5a6472">&#916;<tspan font-style="italic">E</tspan> in eV &#160;&#8594;&#160; <tspan class="mono" font-weight="700" fill="#b08d2b">k in ps&#8315;&#185;</tspan></text>
+
+  <!-- pyKMC DECODE -->
+  <rect x="820" y="450" width="200" height="120" rx="12" fill="#ffffff" stroke="#b08d2b" stroke-width="2"/>
+  <path d="M820 462 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#b08d2b"/>
+  <text x="920" y="472" text-anchor="middle" class="stage-sub" fill="#ffffff">DECODE</text>
+  <text x="920" y="505" text-anchor="middle" class="body" fill="#1a1a1a">idx &#8594; displacement</text>
+  <text x="920" y="530" text-anchor="middle" class="small" fill="#5a6472">apply move</text>
+  <text x="920" y="557" text-anchor="middle" class="mono" font-size="14" font-weight="700" fill="#11335d">&#8594; trajkmc.xyz frame</text>
+
+  <!-- bottom-lane horizontal arrows -->
+  <g stroke="#b08d2b" stroke-width="2.5" fill="none">
+    <path d="M282 510 H297" marker-end="url(#ag)"/>
+    <path d="M502 510 H537" marker-end="url(#ag)"/>
+    <path d="M742 510 H817" marker-end="url(#ag)"/>
+  </g>
+  <!-- loop-back arrow -->
+  <path d="M920 572 V598 H400 V574" fill="none" stroke="#b08d2b" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#ag)"/>
+  <text x="660" y="593" text-anchor="middle" class="small" fill="#5a6472" font-style="italic">advance clock, repeat</text>
+
+  <!-- warning badge on decode column -->
+  <circle cx="819" cy="146" r="13" fill="#c0392b"/>
+  <text x="819" y="152" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="900">!</text>
+
+  <!-- ===================== SIDE GAUGE: hit / miss counter ===================== -->
+  <g transform="translate(1098 150)">
+    <rect x="0" y="0" width="158" height="438" rx="12" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="1.5"/>
+    <text x="79" y="28" text-anchor="middle" fill="#11335d" font-size="15" font-weight="800" letter-spacing=".04em">CATALOG</text>
+    <text x="79" y="46" text-anchor="middle" fill="#5a6472" font-size="12">hit / miss counter</text>
+    <line x1="16" y1="58" x2="142" y2="58" stroke="#c9c2ad" stroke-width="1.5"/>
+
+    <!-- hit -->
+    <circle cx="24" cy="90" r="7" fill="#11335d"/>
+    <text x="40" y="87" fill="#1a1a1a" font-size="14" font-weight="800">n_current</text>
+    <text x="40" y="106" fill="#5a6472" font-size="11.5">free lookup &#8212; hit</text>
+    <rect x="16" y="118" width="126" height="14" rx="7" fill="#ffffff" stroke="#c9c2ad"/>
+    <rect x="16" y="118" width="106" height="14" rx="7" fill="#11335d"/>
+
+    <line x1="16" y1="150" x2="142" y2="150" stroke="#c9c2ad" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- miss -->
+    <circle cx="24" cy="178" r="7" fill="#b08d2b"/>
+    <text x="40" y="175" fill="#1a1a1a" font-size="14" font-weight="800">n_new</text>
+    <text x="40" y="194" fill="#5a6472" font-size="11.5">miss &#8212; ARTn search</text>
+    <rect x="16" y="206" width="126" height="14" rx="7" fill="#ffffff" stroke="#c9c2ad"/>
+    <rect x="16" y="206" width="28" height="14" rx="7" fill="#b08d2b"/>
+    <text x="79" y="246" text-anchor="middle" class="mono" font-size="13" font-weight="700" fill="#b08d2b">nsearch = 20</text>
+
+    <line x1="16" y1="266" x2="142" y2="266" stroke="#c9c2ad" stroke-width="1.5"/>
+    <text x="79" y="290" text-anchor="middle" fill="#5a6472" font-size="11.5">a miss spawns a new</text>
+    <text x="79" y="307" text-anchor="middle" fill="#5a6472" font-size="11.5">Ref Event, growing</text>
+    <text x="79" y="326" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#11335d">reference_table</text>
+    <text x="79" y="343" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#11335d">.pickle</text>
+
+    <line x1="16" y1="360" x2="142" y2="360" stroke="#c9c2ad" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="79" y="382" text-anchor="middle" fill="#5a6472" font-size="11">known token = hit;</text>
+    <text x="79" y="399" text-anchor="middle" fill="#5a6472" font-size="11">unknown = new search.</text>
+    <text x="79" y="420" text-anchor="middle" fill="#5a6472" font-size="11" font-style="italic">ENCODE feeds this gauge</text>
+  </g>
+
+  <!-- aligning-arrow ENCODE -> gauge -->
+  <path d="M500 168 C 700 112, 1010 112, 1130 240" fill="none" stroke="#11335d" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.4" marker-end="url(#ahL)"/>
+
+  <!-- ===================== BOTTOM WARNING BANNER ===================== -->
+  <g transform="translate(56 626)">
+    <rect x="0" y="0" width="986" height="74" rx="12" fill="#fbeceb" stroke="#c0392b" stroke-width="2"/>
+    <circle cx="38" cy="37" r="16" fill="#c0392b"/>
+    <text x="38" y="44" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="900">!</text>
+    <text x="70" y="31" fill="#c0392b" font-size="16" font-weight="800">DECODE is where the units bug lives</text>
+    <text x="70" y="56" fill="#1a1a1a" font-size="15.5">A <tspan class="mono" font-weight="700">Hz</tspan> token joined into a <tspan class="mono" font-weight="700">ps&#8315;&#185;</tspan> slot makes every rate <tspan font-weight="800">10&#185;&#178; too large</tspan> &#8212; <tspan fill="#c0392b" font-weight="800">nothing crashes.</tspan></text>
+  </g>
+
+  <!-- connector decode column -> banner -->
+  <path d="M920 588 V598 H1042 V626" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#aw)"/>
+</svg>
