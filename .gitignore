@@ -1,0 +1,12 @@
+# build / vendoring temp
+node_modules/
+.vendor-tmp/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# By default the vendored libraries in template/lib are COMMITTED, so a fresh
+# clone runs offline immediately. If you'd rather keep the repo lean and have
+# people run ./setup.sh after cloning, uncomment the next line:
+# template/lib/

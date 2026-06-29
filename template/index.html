@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Talk title — your name</title>
+
+    <!-- reveal core (vendored, offline) -->
+    <link rel="stylesheet" href="lib/reveal/reset.css" />
+    <link rel="stylesheet" href="lib/reveal/reveal.css" />
+    <!-- pick any base theme; custom.css below overrides it -->
+    <link rel="stylesheet" href="lib/reveal/theme/white.css" id="theme" />
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="lib/reveal/plugin/highlight/monokai.css" />
+    <!-- plugin styles -->
+    <link rel="stylesheet" href="lib/plugins/chalkboard/style.css" />
+    <link rel="stylesheet" href="lib/plugins/menu/menu.css" />
+    <!-- your house style + handwriting font (loaded LAST so it wins) -->
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- ===================================================================
+             SPIDER-WEB STRUCTURE
+             Horizontal slides (left/right)  = top-level sections / the "spine"
+             Vertical slides   (up/down)     = drill-downs that hang under a section
+             Press ESC or the menu (top-left) for the overview map.
+        ==================================================================== -->
+
+        <!-- TITLE (horizontal 1) -->
+        <section>
+          <h1>Talk title</h1>
+          <h3>Your Name</h3>
+          <p>Computational Materials Science · Queen's University</p>
+          <aside class="notes">
+            Speaker notes go here. Press S to open the presenter view (notes + timer + next-slide preview).
+          </aside>
+        </section>
+
+        <!-- MOTIVATION (horizontal 2) with vertical drill-downs -->
+        <section>
+          <section>
+            <h2>Motivation</h2>
+            <p class="fragment">Why this system matters.</p>
+            <p class="fragment">Press <strong>down</strong> to drill into detail, or <strong>right</strong> to skip ahead.</p>
+          </section>
+          <section>
+            <h3>Context: nuclear alloys</h3>
+            <p>Ni–Fe–Cr–Al and Zr alloys under irradiation.</p>
+          </section>
+          <section>
+            <h3>Context: CO<sub>2</sub> catalysis</h3>
+            <p>A chemistry example rendered with mhchem:</p>
+            <p>$$\ce{CO2 + 3 H2 -> CH3OH + H2O}$$</p>
+          </section>
+        </section>
+
+        <!-- METHODS (horizontal 3) with vertical drill-downs -->
+        <section>
+          <section>
+            <h2>Methods</h2>
+            <ul>
+              <li class="fragment">DFT — Quantum ESPRESSO</li>
+              <li class="fragment">MD — LAMMPS</li>
+              <li class="fragment">Long-timescale kinetics — k-ART</li>
+            </ul>
+          </section>
+          <section>
+            <h3>DFT formation energy</h3>
+            <p>Inline math like $E_\mathrm{f}$ and display math both work:</p>
+            <p>$$E_\mathrm{f} = E_\mathrm{defect} - E_\mathrm{bulk} + \sum_i n_i \mu_i$$</p>
+          </section>
+          <section>
+            <h3>A code block</h3>
+            <pre><code class="language-python" data-trim data-line-numbers>
+from ase.io import read
+from ase.calculators.espresso import Espresso
+
+atoms = read("POSCAR")
+calc = Espresso(pseudopotentials=pp, kpts=(6, 6, 6), ecutwfc=60)
+atoms.calc = calc
+print(atoms.get_potential_energy())
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- RESULTS (horizontal 4) -->
+        <section>
+          <h2>Results</h2>
+          <p class="fragment">Drop a figure here:</p>
+          <!-- <img src="assets/figure.svg" alt="result" /> -->
+          <p class="fragment">Reveal fragments let you build a point step by step.</p>
+        </section>
+
+        <!-- A Blender animation as a full-bleed background.
+             Keep the .mp4 in assets/ so the talk stays offline.
+             Uncomment to use:
+        <section
+          data-background-video="assets/animation.mp4"
+          data-background-video-loop
+          data-background-video-muted>
+          <h2 style="background:rgba(0,0,0,.45);padding:.3em;color:#fff;">Animation</h2>
+        </section>
+        -->
+
+        <!-- An inline Blender clip:
+        <section>
+          <h2>Mechanism</h2>
+          <video data-autoplay controls src="assets/clip.mp4" style="max-height:70vh;"></video>
+        </section>
+        -->
+
+        <!-- OUTLOOK / THANKS (horizontal 5) -->
+        <section>
+          <h2>Outlook</h2>
+          <ul>
+            <li>Next steps.</li>
+            <li>Open questions.</li>
+          </ul>
+          <p style="margin-top:1em;">Thank you — questions?</p>
+          <aside class="notes">Keep the chalkboard ready (press B) for sketching answers during Q&amp;A.</aside>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- reveal core + plugins (vendored, offline) -->
+    <script src="lib/reveal/reveal.js"></script>
+    <script src="lib/reveal/plugin/markdown.js"></script>
+    <script src="lib/reveal/plugin/highlight.js"></script>
+    <script src="lib/reveal/plugin/notes.js"></script>
+    <script src="lib/reveal/plugin/math.js"></script>
+    <script src="lib/reveal/plugin/search.js"></script>
+    <script src="lib/reveal/plugin/zoom.js"></script>
+    <script src="lib/plugins/chalkboard/plugin.js"></script>
+    <script src="lib/plugins/menu/menu.js"></script>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: false,          // top-aligned reads better for dense technical slides
+        slideNumber: 'c/t',
+        transition: 'slide',
+
+        // --- KaTeX, fully offline (mhchem extension enables \ce{...}) ---
+        katex: {
+          local: 'lib/katex',
+          extensions: ['mhchem'],   // load contrib/mhchem.min.js so \ce{} renders
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$',  right: '$',  display: false },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '\\[', right: '\\]', display: true }
+          ]
+        },
+
+        // --- live inking (Apple Pencil / mouse) ---
+        // c = annotate current slide   b = chalkboard   d = download drawings (.json)
+        chalkboard: { boardmarkerWidth: 3 },
+
+        // --- jump-anywhere menu (top-left), good for non-linear navigation ---
+        menu: { themes: false, openButton: true, openSlideNumber: true },
+
+        plugins: [
+          RevealMarkdown, RevealHighlight, RevealNotes,
+          RevealMath.KaTeX, RevealSearch, RevealZoom,
+          RevealChalkboard, RevealMenu
+        ]
+      });
+    </script>
+  </body>
+</html>

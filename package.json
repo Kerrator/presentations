@@ -1,0 +1,17 @@
+{
+  "name": "presentations",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline-first reveal.js presentation system, authored with Claude Code.",
+  "scripts": {
+    "setup": "bash setup.sh",
+    "new": "bash new-talk.sh",
+    "serve": "python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "reveal.js": "6.0.1",
+    "katex": "0.17.0",
+    "reveal.js-plugins": "4.6.0",
+    "reveal.js-menu": "2.1.0"
+  }
+}

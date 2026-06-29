@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stephen Kerr — Talks</title>
+    <meta name="description" content="Conference and seminar slides — offline-first reveal.js decks." />
+    <style>
+      :root { --ink:#1a1a1a; --accent:#11335d; --accent2:#b08d2b; --muted:#5b6470; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; color: var(--ink); background: #fff;
+        font-family: system-ui, -apple-system, "Segoe UI", Palatino, Georgia, serif;
+        line-height: 1.55;
+      }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+      h1 { color: var(--accent); font-size: 2rem; margin: 0 0 .25rem; letter-spacing: -.01em; }
+      .lede { color: var(--muted); margin: 0 0 2.5rem; font-size: 1.05rem; }
+      h2 { color: var(--accent); font-size: .8rem; text-transform: uppercase;
+           letter-spacing: .08em; margin: 2.5rem 0 .75rem; }
+      ul.talks { list-style: none; padding: 0; margin: 0; }
+      ul.talks li { padding: .85rem 0; border-top: 1px solid #ececf0; }
+      ul.talks li:last-child { border-bottom: 1px solid #ececf0; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { color: var(--accent2); text-decoration: underline; }
+      .title { font-weight: 600; }
+      .meta { color: var(--muted); font-size: .9rem; }
+      .empty { color: var(--muted); font-style: italic; }
+      footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid #ececf0;
+               color: var(--muted); font-size: .9rem; }
+      footer a { color: var(--accent2); }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Stephen Kerr — Talks</h1>
+      <p class="lede">Conference and seminar slides. Each deck is a self-contained,
+        offline-first reveal.js folder — it runs the same on this site or from a USB stick
+        with the Wi-Fi off.</p>
+
+      <h2>Talks</h2>
+      <ul class="talks">
+        <!-- Add a talk: copy a line below, point href at talks/<slug>/ -->
+        <!-- <li><a href="talks/2026-mrs-fall-zr-alloys/"><span class="title">Defect mechanisms in Zr alloys</span></a> <span class="meta">— MRS Fall 2026</span></li> -->
+        <li class="empty">No talks published yet — they’ll appear here as they’re added.</li>
+      </ul>
+
+      <h2>Deck style</h2>
+      <ul class="talks">
+        <li>
+          <a href="template/"><span class="title">Live demo — the house deck style</span></a>
+          <span class="meta">— math, code, chemistry, and the spider-web layout</span>
+        </li>
+      </ul>
+
+      <footer>
+        Built with the offline reveal.js system in this repository ·
+        <a href="https://www.winteratomics.ca/">winteratomics.ca</a>
+      </footer>
+    </main>
+  </body>
+</html>

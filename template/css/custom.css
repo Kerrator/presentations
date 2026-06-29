@@ -1,0 +1,47 @@
+/* custom.css — your house style.
+   Loaded AFTER the base theme in index.html, so these rules win. */
+
+/* Your handwriting font, created on the iPad (see ../../fonts/README.md).
+   Files live in css/fonts/ inside each talk; run ./setup.sh to copy them in. */
+@font-face {
+  font-family: 'MyHand';
+  src: url('fonts/myhand.woff2') format('woff2'),
+       url('fonts/myhand.ttf')   format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink:     #1a1a1a;
+  --accent:  #11335d;   /* deep blue */
+  --accent2: #b08d2b;   /* gold */
+}
+
+/* Body text falls back to a clean system font until your font is added. */
+.reveal {
+  font-family: 'MyHand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.reveal .slides section { text-align: left; }
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'MyHand', system-ui, sans-serif;
+  color: var(--accent);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.reveal a { color: var(--accent2); }
+.reveal section img { border: none; box-shadow: none; }
+
+/* Code stays in a monospace font regardless of the handwriting face. */
+.reveal pre, .reveal code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* OPTIONAL — push rendered equations toward your handwriting font.
+   Affects letters/numbers; accents and operators can shift, so test your
+   real equations first. Legibility usually beats novelty for scientific math.
+.reveal .katex { font-family: 'MyHand', KaTeX_Main, serif; }
+*/
