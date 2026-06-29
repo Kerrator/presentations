@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Coding with Claude Code — Stephen Kerr</title>
+    <title>Coding with Claude Code · Stephen Kerr</title>
 
     <!-- reveal core (vendored, offline) -->
     <link rel="stylesheet" href="lib/reveal/reset.css" />
@@ -21,68 +21,74 @@
 
         <!-- ================= TITLE ================= -->
         <section class="titleslide">
-          <h1>Coding with Claude Code</h1>
-          <p class="subtitle">The disciplined engineering loop for computational-materials research — seven phases, the constraint theory underneath them, and one units bug that only a human caught</p>
-          <p class="byline">Stephen Kerr · Computational Materials Science · Ontario Tech University</p>
-            <aside class="notes">Most "AI for coding" material is written for web-app product teams: PRDs, tickets, Kanban, QA. The underlying workflow transfers almost perfectly to computational-materials research — but the vocabulary misleads until you translate it, because our deliverable is not behaviour a user sees, it is a physical claim that survives scrutiny. This talk teaches the general seven-phase AI-assisted engineering loop and the constraint theory that forces its shape, anchored throughout in real pyKMC + slab-generation work: Ni/Ni-Fe/Ni-Cr surface KMC and the harmonic-TST prefactor campaign whose nu0 Hz→ps⁻¹ units bug ran green through the whole test suite and was caught only by a human reading the physics.</aside>
+          <div class="titletop">
+            <span class="tricolour" aria-hidden="true"></span>
+            <img class="titlelogo" src="assets/queens_full_colour.png" alt="Queen's University" />
+          </div>
+          <div class="titlemid">
+            <h1>Coding with Claude Code</h1>
+            <p class="subtitle">The disciplined engineering loop for computational-materials research: seven phases, the constraint theory underneath them, and one units bug that only a human caught.</p>
+          </div>
+          <p class="byline">Stephen Kerr · Computational Materials Science · Queen's University</p>
+            <aside class="notes">Most "AI for coding" material is written for web-app product teams: PRDs, tickets, Kanban, QA. The underlying workflow transfers almost perfectly to computational-materials research, but the vocabulary misleads until you translate it, because our deliverable is not behaviour a user sees, it is a physical claim that survives scrutiny. This talk teaches the general seven-phase AI-assisted engineering loop and the constraint theory that forces its shape, anchored throughout in real pyKMC + slab-generation work: Ni/Ni-Fe/Ni-Cr surface KMC and the harmonic-TST prefactor campaign whose nu0 Hz to ps⁻¹ units bug ran green through the whole test suite and was caught only by a human reading the physics.</aside>
         </section>
 
-        <!-- ================= Title & Hook — not vibe-coding ================= -->
+        <!-- ================= Title & Hook · not vibe-coding ================= -->
         <section>
           <section>
-            <p class="kicker">Title &amp; Hook — not vibe-coding · ~5 min</p>
+            <p class="kicker">Title &amp; Hook · not vibe-coding · ~5 min</p>
             <h2>Coding with Claude Code, for people who validate the physics</h2>
             <div class="spine">
             <ul>
-              <li class="fragment">Not vibe-coding — the disciplined loop that produces code you can trust</li>
+              <li class="fragment">Not vibe-coding: the disciplined loop that produces code you can trust</li>
               <li class="fragment">Most 'AI for coding' is written for web apps</li>
               <li class="fragment">Workflow transfers cleanly; vocabulary doesn't</li>
-              <li class="fragment">You're fluent in the science — the new layer is the engineering workflow</li>
+              <li class="fragment">You're fluent in the science; the new layer is the engineering workflow</li>
               <li class="fragment">One running example, two threads, meeting at one number</li>
             </ul>
             </div>
-            <aside class="notes">Welcome. This talk is not about vibe-coding — it's about the disciplined engineering loop that produces simulation studies, and simulation code, you can trust. Here's the problem I hit. Almost everything written about coding with AI agents is written for web-app product teams: PRDs, tickets, Kanban boards, QA. The core workflow underneath it transfers cleanly to research computing — I'll show you that it does — but the vocabulary actively misleads. A PRD is not a product spec, a ticket is not a Jira card, and QA is not click-testing a UI: for us it's validating the physics. I'm assuming you're already fluent in the science — kinetic Monte Carlo, MD, DFT, you write or extend the code that does it. The new material today is the AI-assisted engineering workflow layered on top. And I'm going to anchor every abstract point in one real body of work from my own pyKMC: building Ni, Ni-Fe and Ni-Cr surface slabs, and adding harmonic-TST rate prefactors. Those two threads converge on a single number — the Ni(100) surface-hop barrier — and that convergence is why this is the example. A note on provenance up front: the seven-phase spine and the foundational ideas come from five Matt Pocock talks, which I've reframed for our world; full attribution at the end.</aside>
+            <aside class="notes">Welcome. This talk is not about vibe-coding. It's about the disciplined engineering loop that produces simulation studies, and simulation code, you can trust. Here's the problem I hit. Almost everything written about coding with AI agents is written for web-app product teams: PRDs, tickets, Kanban boards, QA. The core workflow underneath it transfers cleanly to research computing (I'll show you that it does), but the vocabulary actively misleads. A PRD is not a product spec, a ticket is not a Jira card, and QA is not click-testing a UI: for us it's validating the physics. I'm assuming you're already fluent in the science: kinetic Monte Carlo, MD, DFT, you write or extend the code that does it. The new material today is the AI-assisted engineering workflow layered on top. And I'm going to anchor every abstract point in one real body of work from my own pyKMC: building Ni, Ni-Fe and Ni-Cr surface slabs, and adding harmonic-TST rate prefactors. Those two threads converge on a single number, the Ni(100) surface-hop barrier, and that convergence is why this is the example. A note on provenance up front: the seven-phase spine and the foundational ideas come from five Matt Pocock talks, which I've reframed for our world; full attribution at the end.</aside>
           </section>
           <section>
             <h3>Who this is for</h3>
             <ul>
               <li class="fragment">Comp-materials scientists &amp; grad students who run atomistic/multiscale sims</li>
-              <li class="fragment">KMC, MD/statics, DFT — and write the code that does it</li>
+              <li class="fragment">KMC, MD/statics, DFT, and write the code that does it</li>
               <li class="fragment">Given: fluency in the science</li>
               <li class="fragment">New: the AI-assisted engineering workflow on top</li>
               <li class="fragment">Explicitly not for vibe coders</li>
             </ul>
-            <aside class="notes">To be concrete about the audience: this is for people who run kinetic Monte Carlo, molecular dynamics or statics, DFT — and who write or extend the simulation code itself. The science is assumed. What's new is treating the agent as part of an engineering loop with named phases, rather than a chat window you paste into. Pocock's line, which I'll keep: this is not for vibe coders. We are people serious about building things that last — and for us 'lasts' means 'the physics is still right when someone reruns it next year.'</aside>
+            <aside class="notes">To be concrete about the audience: this is for people who run kinetic Monte Carlo, molecular dynamics or statics, DFT, and who write or extend the simulation code itself. The science is assumed. What's new is treating the agent as part of an engineering loop with named phases, rather than a chat window you paste into. Pocock's line, which I'll keep: this is not for vibe coders. We are people serious about building things that last, and for us 'lasts' means 'the physics is still right when someone reruns it next year.'</aside>
           </section>
           <section>
             <h3>The two threads that converge</h3>
             <ul>
-              <li class="fragment">Thread 1 — substrate: periodic_system_generator → Ni/Ni-Fe/Ni-Cr FCC(001) slabs, vacancies, step edges → LAMMPS+EAM minimize → pyKMC</li>
-              <li class="fragment">Thread 2 — correctness: ~23-commit harmonic-TST (Vineyard) prefactor campaign in pyKMC</li>
+              <li class="fragment">Thread 1, substrate: periodic_system_generator → Ni/Ni-Fe/Ni-Cr FCC(001) slabs, vacancies, step edges → LAMMPS+EAM minimize → pyKMC</li>
+              <li class="fragment">Thread 2, correctness: ~23-commit harmonic-TST (Vineyard) prefactor campaign in pyKMC</li>
               <li class="fragment">They meet at the Ni(100) surface-hop barrier dE</li>
               <li class="fragment">Same dE the slabs study = same dE that pins the units regression test</li>
               <li class="fragment">That convergence is why this is THE example</li>
             </ul>
             <p class="anchor">Thread 1 slab generation (Ni/Ni-Fe 95/5/Ni-Cr 95/5 FCC(001)) + Thread 2 HTST prefactor work, meeting at the Ni(100) surface-hop barrier dE.</p>
-            <aside class="notes">Here are the two threads. Thread one is the substrate: a toolkit, periodic_system_generator, builds reproducible Ni, Ni-Fe at 95/5, and Ni-Cr at 95/5 FCC(001) slabs — with vacuum gaps, optional step edges, surface vacancies — then LAMMPS-minimizes them under an EAM potential and hands them to pyKMC. Thread two is making the code physically correct: roughly a 23-commit campaign adding harmonic transition-state-theory, Vineyard, rate prefactors to pyKMC. A pluggable rate backend, batched Hessians over the MPI pool, prefactor recycling. The reason these are one example and not two: the Ni(100) surface-hop barrier — the quantity the slabs exist to measure — is the exact dE I later use to pin the HTST rate-units regression test. The substrate produces the number; the rate code consumes it. They are the same number. Keep that convergence in mind; the whole talk lands on it.</aside>
+            <aside class="notes">Here are the two threads. Thread one is the substrate: a toolkit, periodic_system_generator, builds reproducible Ni, Ni-Fe at 95/5, and Ni-Cr at 95/5 FCC(001) slabs, with vacuum gaps, optional step edges, surface vacancies, then LAMMPS-minimizes them under an EAM potential and hands them to pyKMC. Thread two is making the code physically correct: roughly a 23-commit campaign adding harmonic transition-state-theory, Vineyard, rate prefactors to pyKMC. A pluggable rate backend, batched Hessians over the MPI pool, prefactor recycling. The reason these are one example and not two: the Ni(100) surface-hop barrier, the quantity the slabs exist to measure, is the exact dE I later use to pin the HTST rate-units regression test. The substrate produces the number; the rate code consumes it. They are the same number. Keep that convergence in mind; the whole talk lands on it.</aside>
           </section>
         </section>
 
-        <!-- ================= The Reframe — dev-speak ⇄ research ================= -->
+        <!-- ================= The Reframe · dev-speak ⇄ research ================= -->
         <section>
           <section>
-            <p class="kicker">The Reframe — dev-speak ⇄ research · ~7 min</p>
+            <p class="kicker">The Reframe · dev-speak ⇄ research · ~7 min</p>
             <h2>The Rosetta stone: one substitution drives everything</h2>
             <div class="spine">
             <ul>
               <li class="fragment">Deliverable: behaviour a user sees → a physical claim that survives scrutiny</li>
               <li class="fragment">Every translation is a consequence of that one substitution</li>
               <li class="fragment">PRD = study/method spec (a mini pre-registration)</li>
-              <li class="fragment">Bug = wrong PHYSICS — no crash, green suite</li>
+              <li class="fragment">Bug = wrong PHYSICS: no crash, green suite</li>
               <li class="fragment">QA = validating the physics, not click-testing a UI</li>
             </ul>
             </div>
-            <aside class="notes">Before the workflow, the dictionary — because if you read the dev words literally you'll build the wrong thing. There is exactly one substitution that drives every translation. In a product team the deliverable is behaviour a user sees. In our world the deliverable is a physical claim, or a reusable capability, that survives scrutiny. Every row of the translation table falls out of that. A PRD stops being a product spec and becomes a study or method spec — the closest analogue is a pre-registration: system, conditions, the observable with its target precision and acceptance bands, the validation checks, the output files. A bug stops being a crash or a wrong pixel and becomes wrong physics — often with no crash at all and a green test suite. And QA stops being click-testing and becomes validating the physics: does the barrier match NEB, is MSD linear, are the units right. That last one is the sharpest translation in the whole talk, and I'll spend real time on it. The terminology table is the load-bearing piece of this material — if you take one artifact home, take the dictionary.</aside>
+            <aside class="notes">Before the workflow, the dictionary, because if you read the dev words literally you'll build the wrong thing. There is exactly one substitution that drives every translation. In a product team the deliverable is behaviour a user sees. In our world the deliverable is a physical claim, or a reusable capability, that survives scrutiny. Every row of the translation table falls out of that. A PRD stops being a product spec and becomes a study or method spec; the closest analogue is a pre-registration: system, conditions, the observable with its target precision and acceptance bands, the validation checks, the output files. A bug stops being a crash or a wrong pixel and becomes wrong physics, often with no crash at all and a green test suite. And QA stops being click-testing and becomes validating the physics: does the barrier match NEB, is MSD linear, are the units right. That last one is the sharpest translation in the whole talk, and I'll spend real time on it. The terminology table is the load-bearing piece of this material: if you take one artifact home, take the dictionary.</aside>
           </section>
           <section>
             <h3>The unit of work, translated</h3>
@@ -94,7 +100,7 @@
               <li class="fragment">Sprint → a simulation campaign (the ~23-commit HTST push)</li>
             </ul>
             <p class="anchor">Idea: 'give pyKMC physically-correct per-event rate prefactors instead of one fixed constant.' Feature: pykmc/rate_constant/backends/htst.py. Bug: nu0 Hz vs ps⁻¹, every rate 10¹² too large, silently.</p>
-            <aside class="notes">Walk the first section of the table. The unit of work. An Idea, for us, isn't a feature for a user — it's a scientific question, an artifact to produce, or a capability to add to the code. My real idea was one sentence: give pyKMC physically-correct per-event rate prefactors instead of one fixed constant. A Feature is a new physical capability — the HTST/Vineyard backend, a real file in the repo. A Bug is the one that matters most: wrong physics, frequently with no crash and a green suite. The canonical instance — nu0 passed in Hz where the KMC clock expects per-picosecond — made every rate ten-to-the-twelfth too large, silently. A Refactor restructures a solver without changing the numbers it produces. And a Sprint is a simulation campaign — the 23-commit harmonic-TST push, April to June. Same words you've heard in every AI-coding video; completely different referents.</aside>
+            <aside class="notes">Walk the first section of the table. The unit of work. An Idea, for us, isn't a feature for a user, it's a scientific question, an artifact to produce, or a capability to add to the code. My real idea was one sentence: give pyKMC physically-correct per-event rate prefactors instead of one fixed constant. A Feature is a new physical capability, the HTST/Vineyard backend, a real file in the repo. A Bug is the one that matters most: wrong physics, frequently with no crash and a green suite. The canonical instance, nu0 passed in Hz where the KMC clock expects per-picosecond, made every rate ten-to-the-twelfth too large, silently. A Refactor restructures a solver without changing the numbers it produces. And a Sprint is a simulation campaign, the 23-commit harmonic-TST push, April to June. Same words you've heard in every AI-coding video; completely different referents.</aside>
           </section>
           <section>
             <h3>Artifacts, agents, and what NOT to carry over</h3>
@@ -102,23 +108,23 @@
               <li class="fragment">PRD: spec the END STATE, let implementation move underneath</li>
               <li class="fragment">research.md asset: a sprint-lived cache allowed to rot</li>
               <li class="fragment">Memory-less agent: why knowledge lives in contracts, not your head</li>
-              <li class="fragment">Trigger surface: the always-on cost of a skill — minimize it</li>
-              <li class="fragment">Don't import: 'ship fast, user won't notice' — our failure mode is silently-wrong</li>
+              <li class="fragment">Trigger surface: the always-on cost of a skill, minimize it</li>
+              <li class="fragment">Don't import: 'ship fast, user won't notice' (our failure mode is silently-wrong)</li>
             </ul>
             <p class="anchor">PRD example: 'Deliver D_vac(Ni,500K) with an Arrhenius barrier validated against an EAM-NEB value; archive trajkmc.xyz + reference_table.pickle.' RateConstantConfig is the typed end-state contract.</p>
-            <aside class="notes">Two more sections, fast. Artifacts: a research PRD specs the end state — 'deliver the vacancy diffusivity for Ni at 500 K with a barrier validated against an EAM-NEB value, archive these output files' — and crucially does NOT pin the implementation, because over-specified code rots against your fast-moving scripts. A research.md asset is a throwaway cache of method details, scoped to one campaign, allowed to go stale. Agents are memory-less between tasks — which is precisely why your method knowledge must be written into contracts and docs, not held in your head; the next agent starts blank by design. And a skill has a cost: its always-on description, carried every session — the trigger surface — so you minimize it, preferring a dispatched sub-agent or a one-paragraph rule. Finally, two pieces of product framing you must actively reject: 'ship fast, the user won't notice' — our failure mode is the exact opposite, code that runs and is silently wrong — and 'the PRD pins the implementation' — for us that rots; spec the end state and let the code move.</aside>
+            <aside class="notes">Two more sections, fast. Artifacts: a research PRD specs the end state ('deliver the vacancy diffusivity for Ni at 500 K with a barrier validated against an EAM-NEB value, archive these output files') and crucially does NOT pin the implementation, because over-specified code rots against your fast-moving scripts. A research.md asset is a throwaway cache of method details, scoped to one campaign, allowed to go stale. Agents are memory-less between tasks, which is precisely why your method knowledge must be written into contracts and docs, not held in your head; the next agent starts blank by design. And a skill has a cost: its always-on description, carried every session, the trigger surface, so you minimize it, preferring a dispatched sub-agent or a one-paragraph rule. Finally, two pieces of product framing you must actively reject: 'ship fast, the user won't notice' (our failure mode is the exact opposite, code that runs and is silently wrong) and 'the PRD pins the implementation' (for us that rots; spec the end state and let the code move).</aside>
           </section>
           <section>
             <p class="kicker">reference · descend or skip</p>
-            <h3>The dictionary — dev-speak ⇄ research</h3>
+            <h3>The dictionary: dev-speak ⇄ research</h3>
             <div class="twocol">
               <table class="kv">
                 <thead><tr><th>software dev…</th><th>…materials research</th></tr></thead>
                 <tbody>
                   <tr><td>Deliverable = behaviour a user sees</td><td>A physical claim, or a reusable capability, that…</td></tr>
-                  <tr><td>PRD (product requirements document)</td><td>A study/method spec — a mini pre-registration…</td></tr>
-                  <tr><td>Ticket / Jira card</td><td>One scoped sub-task of a study or code change — for…</td></tr>
-                  <tr><td>Bug (wrong output / crash)</td><td>Wrong PHYSICS — often with no crash and a green…</td></tr>
+                  <tr><td>PRD (product requirements document)</td><td>A study/method spec, a mini pre-registration…</td></tr>
+                  <tr><td>Ticket / Jira card</td><td>One scoped sub-task of a study or code change, for…</td></tr>
+                  <tr><td>Bug (wrong output / crash)</td><td>Wrong PHYSICS, often with no crash and a green…</td></tr>
                   <tr><td>Feature (new user-visible behaviour)</td><td>A new physical capability or a measured quantity…</td></tr>
                   <tr><td>Refactor</td><td>Restructure a solver/driver without changing the…</td></tr>
                   <tr><td>Sprint</td><td>A simulation campaign or a focused push to land one…</td></tr>
@@ -130,70 +136,70 @@
               <table class="kv">
                 <thead><tr><th>software dev…</th><th>…materials research</th></tr></thead>
                 <tbody>
-                  <tr><td>Kanban board</td><td>The dependency graph of a study — stages in series…</td></tr>
+                  <tr><td>Kanban board</td><td>The dependency graph of a study, stages in series…</td></tr>
                   <tr><td>Ralph loop / coding-agent execution…</td><td>An unattended execution loop over independent…</td></tr>
                   <tr><td>Token</td><td>A metered second compute budget; structurally, one…</td></tr>
                   <tr><td>Context budget / smart zone / dumb…</td><td>Finite (~100K usable), degrading attention; the…</td></tr>
                   <tr><td>Compaction vs handoff</td><td>Compaction buys continuity (lossy by omission you…</td></tr>
                   <tr><td>Skill / trigger surface</td><td>A reusable auto-triggering capability whose…</td></tr>
-                  <tr><td>Memory-less agent</td><td>A fresh agent with no memory between tasks — which…</td></tr>
+                  <tr><td>Memory-less agent</td><td>A fresh agent with no memory between tasks, which…</td></tr>
                   <tr><td>research.md asset</td><td>A throwaway cache of method details scoped to one…</td></tr>
-                  <tr><td>Deep module / thin interface</td><td>The same design taste applied to solvers — the…</td></tr>
+                  <tr><td>Deep module / thin interface</td><td>The same design taste applied to solvers, the…</td></tr>
                   <tr><td>Green and wrong</td><td>A passing suite that has encoded the physics error…</td></tr>
                 </tbody>
               </table>
             </div>
-            <aside class="notes">This is the load-bearing artifact — the full translation table, split across two columns so it all fits. Every row is a consequence of the single substitution: the deliverable is a physical claim that survives scrutiny, not behaviour a user sees. You don't read this aloud; it's the backup/Q&amp;A reference and it prints into the PDF. Point at the rows that bite: Bug = wrong physics behind a green suite; PRD = pre-registration; QA = validating the physics. The fuller wording of each row is in my notes.</aside>
+            <aside class="notes">This is the load-bearing artifact, the full translation table, split across two columns so it all fits. Every row is a consequence of the single substitution: the deliverable is a physical claim that survives scrutiny, not behaviour a user sees. You don't read this aloud; it's the backup/Q&amp;A reference and it prints into the PDF. Point at the rows that bite: Bug = wrong physics behind a green suite; PRD = pre-registration; QA = validating the physics. The fuller wording of each row is in my notes.</aside>
           </section>
         </section>
 
-        <!-- ================= Foundations — why the workflow has this shape ================= -->
+        <!-- ================= Foundations · why the workflow has this shape ================= -->
         <section>
           <section>
-            <p class="kicker">Foundations — why the workflow has this shape · ~9 min</p>
+            <p class="kicker">Foundations · why the workflow has this shape · ~9 min</p>
             <h2>The constraints that force the procedure</h2>
             <div class="spine">
             <ul>
-              <li class="fragment">Smart zone / dumb zone — usable attention ends ~100K tokens</li>
-              <li class="fragment">Bigger window doesn't move the line — just ships more dumb zone</li>
-              <li class="fragment">Feedback loops are the ceiling — not the model, not the prompt</li>
-              <li class="fragment">Tokens are a metered second compute budget — and mirror the KMC engine</li>
+              <li class="fragment">Smart zone / dumb zone: usable attention ends ~100K tokens</li>
+              <li class="fragment">Bigger window doesn't move the line, just ships more dumb zone</li>
+              <li class="fragment">Feedback loops are the ceiling, not the model, not the prompt</li>
+              <li class="fragment">Tokens are a metered second compute budget, and mirror the KMC engine</li>
               <li class="fragment">A procedure you don't understand is one you'll abandon when rushed</li>
             </ul>
             </div>
-            <aside class="notes">The seven phases are the what. This section is the why — the handful of facts about LLMs, feedback, and code that force the workflow into its shape. I'm doing this because a procedure you don't understand is a procedure you'll abandon the first time it's inconvenient: you'll skip the grilling when you're in a hurry, let the agent QA its own physics because reading numbers is boring, keep one giant context window open all day because clearing feels wasteful. Four constraints. First: the model has a smart zone and a dumb zone, and the boundary — empirically around 100K tokens — is not the advertised context limit. A 200K or a million-token window doesn't move that line; it just ships you more dumb zone. Second, and this is the load-bearing claim of the whole workshop: the quality of your feedback loops is the ceiling on how well an AI can work in your code. Not the model. Not the prompt. The feedback. Third: tokens are a metered second compute budget on top of your wall-clock — and, beautifully, the token machinery is structurally isomorphic to the pyKMC engine itself. Let me take each in a drill-down.</aside>
+            <aside class="notes">The seven phases are the what. This section is the why, the handful of facts about LLMs, feedback, and code that force the workflow into its shape. I'm doing this because a procedure you don't understand is a procedure you'll abandon the first time it's inconvenient: you'll skip the grilling when you're in a hurry, let the agent QA its own physics because reading numbers is boring, keep one giant context window open all day because clearing feels wasteful. Four constraints. First: the model has a smart zone and a dumb zone, and the boundary, empirically around 100K tokens, is not the advertised context limit. A 200K or a million-token window doesn't move that line; it just ships you more dumb zone. Second, and this is the load-bearing claim of the whole workshop: the quality of your feedback loops is the ceiling on how well an AI can work in your code. Not the model. Not the prompt. The feedback. Third: tokens are a metered second compute budget on top of your wall-clock, and, beautifully, the token machinery is structurally isomorphic to the pyKMC engine itself. Let me take each in a drill-down.</aside>
           </section>
           <section>
-            <h3>Smart zone / dumb zone — a correctness control</h3>
+            <h3>Smart zone / dumb zone: a correctness control</h3>
             <ul>
               <li class="fragment">Attention is quadratic: each token adds a row AND a column</li>
               <li class="fragment">Past ~100K tokens the model makes measurably worse decisions</li>
               <li class="fragment">For us the dumb zone is where silently-wrong physics is manufactured</li>
               <li class="fragment">Sizing a task to fit the smart zone is a correctness control, not productivity advice</li>
-              <li class="fragment">Clear, don't compact — the Memento reset is reproducible; compaction carries sediment</li>
+              <li class="fragment">Clear, don't compact: the Memento reset is reproducible; compaction carries sediment</li>
             </ul>
-            <p class="anchor">pykmc/htst/constants.py: omega_eV_to_hz() and hz_to_per_ps() are two functions because they are two facts — the fine-grained correctness the agent holds in the smart zone and drops in the dumb zone.</p>
-            <aside class="notes">Why is there a dumb zone? Attention is quadratic — every token relates to every other token, so adding a token adds a row and a column to the relationship matrix; the cost of keeping it all in mind grows like fixtures in a round-robin league, not linearly. Past roughly 100K tokens — empirical, not the advertised ceiling — decisions get measurably worse. A web app degrading there forgets a prop and ships a visible glitch. A simulation degrading there produces a trajectory full of plausible hops with a barrier quietly off by a factor you won't notice until someone reruns it. The dumb zone, for us, is where silently-wrong physics is manufactured. So sizing a task to fit the smart zone is not productivity advice; it's a correctness control. Concretely: in my constants file there are two functions, omega_eV_to_hz and hz_to_per_ps, kept separate because they are two different facts — that's exactly the fine-grained distinction a sharp agent holds and a saturated one drops. And the corollary: clear, don't compact. A cleared context is the Memento reset — amnesia, but the same amnesia every time, which is reproducible. A compacted context carries forward the model's own summary of its own wrong turn at token 60K, sediment you can't inspect. Durable knowledge therefore lives in contracts and docs, not in conversation.</aside>
+            <p class="anchor">pykmc/htst/constants.py: omega_eV_to_hz() and hz_to_per_ps() are two functions because they are two facts, the fine-grained correctness the agent holds in the smart zone and drops in the dumb zone.</p>
+            <aside class="notes">Why is there a dumb zone? Attention is quadratic: every token relates to every other token, so adding a token adds a row and a column to the relationship matrix; the cost of keeping it all in mind grows like fixtures in a round-robin league, not linearly. Past roughly 100K tokens, empirical, not the advertised ceiling, decisions get measurably worse. A web app degrading there forgets a prop and ships a visible glitch. A simulation degrading there produces a trajectory full of plausible hops with a barrier quietly off by a factor you won't notice until someone reruns it. The dumb zone, for us, is where silently-wrong physics is manufactured. So sizing a task to fit the smart zone is not productivity advice; it's a correctness control. Concretely: in my constants file there are two functions, omega_eV_to_hz and hz_to_per_ps, kept separate because they are two different facts, that's exactly the fine-grained distinction a sharp agent holds and a saturated one drops. And the corollary: clear, don't compact. A cleared context is the Memento reset, amnesia, but the same amnesia every time, which is reproducible. A compacted context carries forward the model's own summary of its own wrong turn at token 60K, sediment you can't inspect. Durable knowledge therefore lives in contracts and docs, not in conversation.</aside>
           </section>
           <section>
             <p class="kicker">the picture</p>
-            <h3>Smart zone / dumb zone — a correctness control</h3>
+            <h3>Smart zone / dumb zone: a correctness control</h3>
             <img class="fig tall" src="assets/smart_vs_dumb_zone.svg" alt="Usable attention degrades well before the advertised context window; the dumb zone is where silently-wrong physics is manufactured." />
           </section>
           <section>
-            <h3>Feedback loops are the ceiling — and ours can be green-and-wrong</h3>
+            <h3>Feedback loops are the ceiling, and ours can be green-and-wrong</h3>
             <ul>
               <li class="fragment">Web feedback: types, unit tests, lint, a screenshot</li>
-              <li class="fragment">Ours adds a second tier — the physics: detailed balance, NEB match, MSD linearity, one imaginary mode, ~THz prefactor</li>
+              <li class="fragment">Ours adds a second tier, the physics: detailed balance, NEB match, MSD linearity, one imaginary mode, ~THz prefactor</li>
               <li class="fragment">'Green and wrong': a passing suite that has ENCODED the error and defends it</li>
               <li class="fragment">Deep modules → testable → strong feedback loops → AI does good work</li>
-              <li class="fragment">Bad codebase makes a bad agent — the 'in' of garbage-in is your architecture</li>
+              <li class="fragment">Bad codebase makes a bad agent: the 'in' of garbage-in is your architecture</li>
             </ul>
-            <p class="anchor">HTST_Test_Report/run_htst_ab.py: paired constant-vs-htst runs on matched seeds, built to fail if HTST yields no finite nu0 — a physics-tier feedback loop. RateConstantConfig.require_one_negative_mode encodes physics in the type.</p>
-            <aside class="notes">The ceiling claim, unpacked. A web app's feedback loops are types, unit tests, lint, a screenshot. We have all of those plus a second tier the software world doesn't have: the physics itself, as automatable checks that fail loudly — detailed balance must hold, a barrier must match an independent NEB, MSD must be linear after the transient, a first-order saddle must have exactly one imaginary mode, a prefactor must be roughly terahertz, not hertz, not petahertz. And here is the most dangerous failure mode in our field: green and wrong. In the units bug, several pre-existing tests asserted rates built from the raw Hz value — so the suite stayed green while every HTST rate was ten-to-the-twelfth too large. The tests had encoded the error and were faithfully defending it. So a human reading the numbers is part of the loop, not a courtesy after it. Two consequences for code shape: deep modules — small interface over large implementation — give you one clean seam to wrap a test around, so deep modules lead to testability lead to strong feedback loops lead to good agent work; and the contrapositive, a bad codebase makes a bad agent, where the 'in' of garbage-in-garbage-out is your architecture. My A/B harness is a physics-tier loop: paired constant-versus-htst runs on matched seeds, built to fail if HTST produces no finite nu0. Building loops like that raises the ceiling instead of nudging the agent under a fixed one.</aside>
+            <p class="anchor">HTST_Test_Report/run_htst_ab.py: paired constant-vs-htst runs on matched seeds, built to fail if HTST yields no finite nu0, a physics-tier feedback loop. RateConstantConfig.require_one_negative_mode encodes physics in the type.</p>
+            <aside class="notes">The ceiling claim, unpacked. A web app's feedback loops are types, unit tests, lint, a screenshot. We have all of those plus a second tier the software world doesn't have: the physics itself, as automatable checks that fail loudly. Detailed balance must hold, a barrier must match an independent NEB, MSD must be linear after the transient, a first-order saddle must have exactly one imaginary mode, a prefactor must be roughly terahertz, not hertz, not petahertz. And here is the most dangerous failure mode in our field: green and wrong. In the units bug, several pre-existing tests asserted rates built from the raw Hz value, so the suite stayed green while every HTST rate was ten-to-the-twelfth too large. The tests had encoded the error and were faithfully defending it. So a human reading the numbers is part of the loop, not a courtesy after it. Two consequences for code shape: deep modules, small interface over large implementation, give you one clean seam to wrap a test around, so deep modules lead to testability lead to strong feedback loops lead to good agent work; and the contrapositive, a bad codebase makes a bad agent, where the 'in' of garbage-in-garbage-out is your architecture. My A/B harness is a physics-tier loop: paired constant-versus-htst runs on matched seeds, built to fail if HTST produces no finite nu0. Building loops like that raises the ceiling instead of nudging the agent under a fixed one.</aside>
           </section>
           <section>
-            <h3>Tokens are the currency — and the KMC engine in miniature</h3>
+            <h3>Tokens are the currency, and the KMC engine in miniature</h3>
             <ul>
               <li class="fragment">Tokens: a metered second budget, billed per call, input priced apart from output</li>
               <li class="fragment">Feed a summary contract plus a file path, never the multi-MB dump</li>
@@ -202,36 +208,36 @@
               <li class="fragment">Decode silently corrupts when the number carries a different unit than the consumer assumes</li>
             </ul>
             <p class="anchor">validation_basin: trajkmc.xyz &gt;1MB, reference_table.pickle ~5.7MB, lammps.log.0 ~11MB. The Ref Event is a token id; the Hz→ps⁻¹ bug is a decode failure.</p>
-            <aside class="notes">Tokens. Two payloads. First a cost model: tokens are a second metered budget, billed per call, input priced separately from output — 'hello world' cost 11 tokens on one provider, 4 on another, for identical meaning; cost tracks encoding, not content. The discipline that follows: feed the agent a summary contract plus a file path, never the dump. In one validation run my trajectory is over a megabyte, the reference table is 5.7 megabytes, a single LAMMPS log is 11 — pasting any of those pays, by the token, to re-encode a structure the engine already holds on disk. Second payload, and the more important one: pyKMC already does, on atomic environments, exactly what a tokenizer does on text. reference_table.pickle IS a learned vocabulary; the KMC main loop IS an encode-compute-decode pipeline. The per-step bookkeeping is literally a hit/miss counter — n_current is a vocabulary hit, a free lookup; n_new is a miss that triggers twenty ARTn saddle searches, the expensive case, just like an unfamiliar word splitting into four tokens. The Ref Event index is a token id, not the physics. And here's the punchline that connects to the bug: decode is the step that 'just joins the numbers back,' and it silently corrupts when the number you join carries a different unit than the consumer assumes. The Hz-to-per-picosecond bug is, precisely, a decode failure — the engine thought fluently in the wrong currency.</aside>
+            <aside class="notes">Tokens. Two payloads. First a cost model: tokens are a second metered budget, billed per call, input priced separately from output. 'hello world' cost 11 tokens on one provider, 4 on another, for identical meaning; cost tracks encoding, not content. The discipline that follows: feed the agent a summary contract plus a file path, never the dump. In one validation run my trajectory is over a megabyte, the reference table is 5.7 megabytes, a single LAMMPS log is 11, pasting any of those pays, by the token, to re-encode a structure the engine already holds on disk. Second payload, and the more important one: pyKMC already does, on atomic environments, exactly what a tokenizer does on text. reference_table.pickle IS a learned vocabulary; the KMC main loop IS an encode-compute-decode pipeline. The per-step bookkeeping is literally a hit/miss counter: n_current is a vocabulary hit, a free lookup; n_new is a miss that triggers twenty ARTn saddle searches, the expensive case, just like an unfamiliar word splitting into four tokens. The Ref Event index is a token id, not the physics. And here's the punchline that connects to the bug: decode is the step that 'just joins the numbers back,' and it silently corrupts when the number you join carries a different unit than the consumer assumes. The Hz-to-per-picosecond bug is, precisely, a decode failure: the engine thought fluently in the wrong currency.</aside>
           </section>
           <section>
             <p class="kicker">the picture</p>
-            <h3>Tokens are the currency — and the KMC engine in miniature</h3>
+            <h3>Tokens are the currency, and the KMC engine in miniature</h3>
             <img class="fig wide" src="assets/tokens_kmc_isomorphism.svg" alt="The LLM encode/compute/decode pipeline laid over the pyKMC main loop; decode is where the Hz-&gt;ps^-1 units bug lives." />
           </section>
         </section>
 
-        <!-- ================= The Seven Phases — the spine of the method ================= -->
+        <!-- ================= The Seven Phases · the spine of the method ================= -->
         <section>
           <section>
-            <p class="kicker">The Seven Phases — the spine of the method · ~11 min</p>
+            <p class="kicker">The Seven Phases · the spine of the method · ~11 min</p>
             <h2>Idea → Research → Prototype → PRD → Kanban → Execution → QA</h2>
             <div class="spine">
             <ul>
-              <li class="fragment">Two conditional phases: Research (2) and Prototype (3) — skipped when small/familiar</li>
+              <li class="fragment">Two conditional phases: Research (2) and Prototype (3), skipped when small/familiar</li>
               <li class="fragment">Last three (Kanban→Execution→QA) form a loop until the science converges</li>
               <li class="fragment">QA failures become new tickets → back to Kanban</li>
-              <li class="fragment">A map, not a gate — tiny work skips 2, 3, most of 4</li>
+              <li class="fragment">A map, not a gate: tiny work skips 2, 3, most of 4</li>
               <li class="fragment">Value: names for the steps, so nobody silently drops QA</li>
             </ul>
             </div>
-            <aside class="notes">Now the spine. Serious AI-assisted work — whether a web app or a one-line fix — moves through seven phases, and naming them keeps you and the agent honest. In order: Idea, Research, Prototype, PRD, Kanban, Execution, QA. Two of them are conditional — Research and Prototype — and you skip them when the work is small or familiar. The last three — Kanban, Execution, QA — form a loop you traverse until the science converges; QA failures become new tickets and send you back to Kanban. The thing to hold onto: this is a map, not a gate. For a one-flag tweak you skip straight to a tiny execution and a QA glance. The payoff of having the map is that neither you nor the agent ever silently drops QA — and QA, for us, is where the science is made or lost. Phases two through four are where you stop fooling yourself before you spend compute. Let me walk the conditional front half and the PRD, then I'll give Execution and QA their own sections because that's where research diverges hardest from product work.</aside>
+            <aside class="notes">Now the spine. Serious AI-assisted work, whether a web app or a one-line fix, moves through seven phases, and naming them keeps you and the agent honest. In order: Idea, Research, Prototype, PRD, Kanban, Execution, QA. Two of them are conditional, Research and Prototype, and you skip them when the work is small or familiar. The last three, Kanban, Execution, QA, form a loop you traverse until the science converges; QA failures become new tickets and send you back to Kanban. The thing to hold onto: this is a map, not a gate. For a one-flag tweak you skip straight to a tiny execution and a QA glance. The payoff of having the map is that neither you nor the agent ever silently drops QA, and QA, for us, is where the science is made or lost. Phases two through four are where you stop fooling yourself before you spend compute. Let me walk the conditional front half and the PRD, then I'll give Execution and QA their own sections because that's where research diverges hardest from product work.</aside>
           </section>
           <section>
             <p class="kicker">the picture</p>
             <h3>The shape: a linear front half, a converging back-half loop</h3>
             <img class="fig tall" src="assets/seven_phase_loop.svg" alt="The seven phases: linear front half, two conditional phases (Research, Prototype), and the QA-&gt;Kanban convergence loop." />
-            <aside class="notes">Read it left to right. 1 Idea always. 2 Research and 3 Prototype are conditional — the diamonds — you skip them for small or familiar work. 4 PRD, then 5 Kanban, 6 Execution, 7 QA. The back three are a loop: QA failures become new Kanban tickets, and you ride 5-6-7 until the science converges. The front half is linear and you traverse it once; the back half cycles.</aside>
+            <aside class="notes">Read it left to right. 1 Idea always. 2 Research and 3 Prototype are conditional, the diamonds, you skip them for small or familiar work. 4 PRD, then 5 Kanban, 6 Execution, 7 QA. The back three are a loop: QA failures become new Kanban tickets, and you ride 5-6-7 until the science converges. The front half is linear and you traverse it once; the back half cycles.</aside>
           </section>
           <section>
             <p class="kicker">one line per phase</p>
@@ -240,43 +246,43 @@
               <thead><tr><th>#</th><th>Phase</th><th>What it means for a study</th></tr></thead>
               <tbody>
                 <tr><td class="num">1</td><td>Idea</td><td>A physics question, an artifact, or a code capability. State a sharp dissatisfaction or a…</td></tr>
-                <tr><td class="num">2</td><td>Research (conditional)</td><td>Cache method details you'll forget — parameter semantics, the units convention, failure…</td></tr>
+                <tr><td class="num">2</td><td>Research (conditional)</td><td>Cache method details you'll forget: parameter semantics, the units convention, failure…</td></tr>
                 <tr><td class="num">3</td><td>Prototype (conditional)</td><td>A throwaway convergence or recipe shakedown: sweep knobs on a tiny cell until the catalog…</td></tr>
-                <tr><td class="num">4</td><td>PRD</td><td>A study/method spec — a mini pre-registration: system, conditions, observable + acceptance…</td></tr>
+                <tr><td class="num">4</td><td>PRD</td><td>A study/method spec, a mini pre-registration: system, conditions, observable + acceptance…</td></tr>
                 <tr><td class="num">5</td><td>Kanban</td><td>The dependency graph of the study: stages in series (build→minimize→search→select→analyze)…</td></tr>
-                <tr><td class="num">6</td><td>Execution</td><td>Same loop, but 'build' launches real compute (mpirun/srun) — genuinely asynchronous. One…</td></tr>
+                <tr><td class="num">6</td><td>Execution</td><td>Same loop, but 'build' launches real compute (mpirun/srun), genuinely asynchronous. One…</td></tr>
                 <tr><td class="num">7</td><td>QA</td><td>Validating the physics. The agent-producible half is real (unit tests, type-check, lint…</td></tr>
               </tbody>
             </table>
-            <aside class="notes">The bird's-eye table. Two phases (2 Research, 3 Prototype) are conditional — you skip them for small/familiar work. The last three (5 Kanban, 6 Execution, 7 QA) form the loop you ride until the science converges. This is a map, not a gate: tiny work skips straight to a small execution plus a QA glance. The value is having names for the steps you are taking, so neither you nor the agent silently drops QA.</aside>
+            <aside class="notes">The bird's-eye table. Two phases (2 Research, 3 Prototype) are conditional, you skip them for small/familiar work. The last three (5 Kanban, 6 Execution, 7 QA) form the loop you ride until the science converges. This is a map, not a gate: tiny work skips straight to a small execution plus a QA glance. The value is having names for the steps you are taking, so neither you nor the agent silently drops QA.</aside>
           </section>
           <section>
             <h3>Phase 1–3: Idea, Research, Prototype</h3>
             <ul>
               <li class="fragment">Idea: state a sharp dissatisfaction or a target number, not a solution</li>
-              <li class="fragment">'Rates use a constant prefactor and that's wrong' — not 'add a function vineyard()'</li>
-              <li class="fragment">Research (conditional): cache method details into a sprint-lived research.md — stamp with conditions</li>
+              <li class="fragment">'Rates use a constant prefactor and that's wrong', not 'add a function vineyard()'</li>
+              <li class="fragment">Research (conditional): cache method details into a sprint-lived research.md, stamp with conditions</li>
               <li class="fragment">Profiling harness, not a notebook: eskm ~2.5–6× faster than Python-FD, agreement 0.014%</li>
               <li class="fragment">Prototype (conditional): sweep knobs on a tiny cell, commit the winner, delete the losers</li>
             </ul>
             <p class="anchor">Phase 2: commit d52f541 profiling harness (eskm dynamical_matrix vs Python-FD) → benchmarks/htst_prefactor/RESULTS.md. Phase 3: in.minimize_slab_Ni_*.lmp variants; the NiAlH_jea default failed for Ni-Cr, FeNiCrCoAl-heaweight.setfl won.</p>
-            <aside class="notes">Phase 1, Idea. State it as a sharp dissatisfaction or a target number, not a solution. 'Rates use a constant prefactor and that's wrong' gives the agent and your later PRD room; 'add a function called vineyard' pre-commits the design — the idea is the what and why, the how is phases three and four. Phase 2, Research, conditional: when you depend on an unfamiliar method, cache the details you'll forget — parameter semantics, the units convention, failure modes, tier-1 and tier-2 citations — into a research.md you let rot. For us the primary method literature is a tier-1 prompt input: an ARTn, IRA, or Vineyard TST paper is the spec, not background reading. In my case the research crystallized as a profiling harness, not a notebook — commit d52f541 measured two ways to get a Hessian and found the LAMMPS eskm path 2.5 to 6 times faster than a Python finite-difference loop with agreement to 0.014%. But I stamped that result with the machine and build it was measured on — a research asset is rot-prone. Phase 3, Prototype, conditional: throwaway convergence or recipe shakedowns to impose taste, then commit the winner and delete the losers. My slab_outputs directory held a spread of LAMMPS inputs exploring potentials and step-edge geometries; the documented default potential actually failed to open for the Ni-Cr run and the winning artifacts came from hand-written inputs using a different setfl file. The documented default was a prototype; the winner was committed by hand. Deleting the loser is part of the phase, not cleanup for later — so the agent sees one ground-truth recipe, not five half-converged ones.</aside>
+            <aside class="notes">Phase 1, Idea. State it as a sharp dissatisfaction or a target number, not a solution. 'Rates use a constant prefactor and that's wrong' gives the agent and your later PRD room; 'add a function called vineyard' pre-commits the design. The idea is the what and why, the how is phases three and four. Phase 2, Research, conditional: when you depend on an unfamiliar method, cache the details you'll forget, parameter semantics, the units convention, failure modes, tier-1 and tier-2 citations, into a research.md you let rot. For us the primary method literature is a tier-1 prompt input: an ARTn, IRA, or Vineyard TST paper is the spec, not background reading. In my case the research crystallized as a profiling harness, not a notebook. Commit d52f541 measured two ways to get a Hessian and found the LAMMPS eskm path 2.5 to 6 times faster than a Python finite-difference loop with agreement to 0.014%. But I stamped that result with the machine and build it was measured on; a research asset is rot-prone. Phase 3, Prototype, conditional: throwaway convergence or recipe shakedowns to impose taste, then commit the winner and delete the losers. My slab_outputs directory held a spread of LAMMPS inputs exploring potentials and step-edge geometries; the documented default potential actually failed to open for the Ni-Cr run and the winning artifacts came from hand-written inputs using a different setfl file. The documented default was a prototype; the winner was committed by hand. Deleting the loser is part of the phase, not cleanup for later, so the agent sees one ground-truth recipe, not five half-converged ones.</aside>
           </section>
           <section>
-            <h3>Phase 4: PRD — spec the end state, grill the design</h3>
+            <h3>Phase 4: PRD, spec the end state, grill the design</h3>
             <ul>
               <li class="fragment">PRD = study/method spec: system, conditions, observable + acceptance bands, output files</li>
-              <li class="fragment">NOT the implementation — over-pinned code rots against fast-moving scripts</li>
+              <li class="fragment">NOT the implementation: over-pinned code rots against fast-moving scripts</li>
               <li class="fragment">Grill the design: which potential? which seeds? what defines convergence? what's the null result?</li>
               <li class="fragment">require_one_negative_mode encodes the physics in the type</li>
-              <li class="fragment">Record deferred scope: RpaBackend bare-Vineyard until the Sharia–Henkelman κ lands — deferred, not broken</li>
+              <li class="fragment">Record deferred scope: RpaBackend bare-Vineyard until the Sharia–Henkelman κ lands (deferred, not broken)</li>
             </ul>
             <p class="anchor">RateConstantConfig(style: constant|htst|rpa, free_radius, fd_step, nu0_min/max_THz, require_one_negative_mode). vineyard.py header: 'Units convention (DO NOT MIX) … nu0 output: Hz (linear, NOT angular)'. Review commit a752002 (Hugo Moison).</p>
-            <aside class="notes">Phase 4, the PRD. For us it's a study or method spec — the research analogue of a pre-registration: the system, the conditions, the observable with its target precision and acceptance bands, the validation checks, the output files a reader inspects. State what counts as done and correct, not the loop internals — because a research PRD that hard-codes the solver rots against fast-moving scripts; spec the observable and let the code move underneath. You build the PRD by having the agent grill you — walk down every branch of the decision tree before any code exists. This is the grilling skill, and Brooks tells you what it's for: when two participants build something together, what they share is a design concept, and misalignment is when that concept silently differs. The grill converges your design concept and the agent's before you spend compute. For us the divergence is almost never in the code — it's in the method: which potential, which ensemble of seeds, what defines convergence, what's the null result that would say the effect is absent. In my work the end state lives as a typed config — RateConstantConfig — plus an enforced units convention. Look at require_one_negative_mode: that flag encodes physics in the type — a true first-order saddle has exactly one imaginary mode — a correctness invariant living at the interface where both a caller and a test can see it. And the vineyard header literally says 'units convention, do not mix, nu0 output in Hz, linear not angular' — a spec written precisely to prevent the bug that nonetheless slipped through at a different boundary. The grilling was real and attributed: commit a752002 addresses a reviewer's comments. And I recorded deferred scope explicitly — the RPA backend is intentionally bare-Vineyard until a recrossing factor lands, documented as deferred, not missing — so 'not implemented yet' never reads as 'broken.'</aside>
+            <aside class="notes">Phase 4, the PRD. For us it's a study or method spec, the research analogue of a pre-registration: the system, the conditions, the observable with its target precision and acceptance bands, the validation checks, the output files a reader inspects. State what counts as done and correct, not the loop internals, because a research PRD that hard-codes the solver rots against fast-moving scripts; spec the observable and let the code move underneath. You build the PRD by having the agent grill you, walk down every branch of the decision tree before any code exists. This is the grilling skill, and Brooks tells you what it's for: when two participants build something together, what they share is a design concept, and misalignment is when that concept silently differs. The grill converges your design concept and the agent's before you spend compute. For us the divergence is almost never in the code, it's in the method: which potential, which ensemble of seeds, what defines convergence, what's the null result that would say the effect is absent. In my work the end state lives as a typed config, RateConstantConfig, plus an enforced units convention. Look at require_one_negative_mode: that flag encodes physics in the type, a true first-order saddle has exactly one imaginary mode, a correctness invariant living at the interface where both a caller and a test can see it. And the vineyard header literally says 'units convention, do not mix, nu0 output in Hz, linear not angular', a spec written precisely to prevent the bug that nonetheless slipped through at a different boundary. The grilling was real and attributed: commit a752002 addresses a reviewer's comments. And I recorded deferred scope explicitly: the RPA backend is intentionally bare-Vineyard until a recrossing factor lands, documented as deferred, not missing, so 'not implemented yet' never reads as 'broken.'</aside>
           </section>
           <section>
             <p class="kicker">the code</p>
-            <h3>Phase 4: PRD — spec the end state, grill the design</h3>
+            <h3>Phase 4: PRD, spec the end state, grill the design</h3>
             <pre><code class="language-python" data-trim data-line-numbers="6">
 RateConstantConfig(
     style = "constant" | "htst" | "rpa",  # thin interface literal
@@ -289,52 +295,52 @@ RateConstantConfig(
             </code></pre>
           </section>
           <section>
-            <h3>Phase 5: Kanban — vertical slices, tickets are worktrees</h3>
+            <h3>Phase 5: Kanban, vertical slices, tickets are worktrees</h3>
             <ul>
               <li class="fragment">Board = dependency graph: stages in series, seeds/temps/compositions in parallel</li>
-              <li class="fragment">First ticket is a tracer bullet — one thin slice through every stage</li>
+              <li class="fragment">First ticket is a tracer bullet: one thin slice through every stage</li>
               <li class="fragment">Cut vertically (build→minimize→search→select→analyze), never horizontally</li>
               <li class="fragment">Tickets are literally worktree + branch names</li>
               <li class="fragment">Independent fixes (freeze-core, units) ride parallel branches</li>
             </ul>
             <p class="anchor">HTST chain: 9327519 base → Vineyard+config+PHONON install → manager-ops → batched compute → reference backfill → active/refined backfill → recycling skip. Worktrees: pyKMC-htst-work, pyKMC-freezecore-work (fix/freeze-core-pbc), pyKMC-htst-units-work (fix/htst-rate-units).</p>
-            <aside class="notes">Phase 5, Kanban. The board is the dependency graph of the study: pipeline stages in series — build, minimize, search, select, analyze — and independent seeds, temperatures, compositions as embarrassingly parallel siblings. The non-negotiable rule, straight from the foundations: the first ticket is a tracer bullet — one thin vertical slice through every stage. Left alone an agent codes horizontally — all the schema, then all the solver, then all the analysis — which feels orderly and is a trap, because you get no feedback until the last layer, where the integration bugs have been waiting. A vertical first slice — one 100-to-300-atom Ni(001) slab taken all the way from generation through minimization, a few saddle searches, a handful of KMC steps, to an MSD you can look at — flushes the unknown-unknowns at the seams between stages in an afternoon. The agent's instinct to 'build the whole rate backend first' is a horizontal slice wearing a vertical costume. In my repo the tickets are literally the worktree and branch names. The HTST feature decomposed into an ordered chain — backend base, then Vineyard plus config plus the PHONON install, then manager-ops plumbing, then batched compute, then reference backfill, then active backfill, then recycling — each step needing the previous. And independent tickets — the freeze-core fix, the units fix — got spun into their own worktrees on their own branches, parallel and non-blocking. Roughly eighteen worktrees in all.</aside>
+            <aside class="notes">Phase 5, Kanban. The board is the dependency graph of the study: pipeline stages in series, build, minimize, search, select, analyze, and independent seeds, temperatures, compositions as embarrassingly parallel siblings. The non-negotiable rule, straight from the foundations: the first ticket is a tracer bullet, one thin vertical slice through every stage. Left alone an agent codes horizontally, all the schema, then all the solver, then all the analysis, which feels orderly and is a trap, because you get no feedback until the last layer, where the integration bugs have been waiting. A vertical first slice, one 100-to-300-atom Ni(001) slab taken all the way from generation through minimization, a few saddle searches, a handful of KMC steps, to an MSD you can look at, flushes the unknown-unknowns at the seams between stages in an afternoon. The agent's instinct to 'build the whole rate backend first' is a horizontal slice wearing a vertical costume. In my repo the tickets are literally the worktree and branch names. The HTST feature decomposed into an ordered chain: backend base, then Vineyard plus config plus the PHONON install, then manager-ops plumbing, then batched compute, then reference backfill, then active backfill, then recycling, each step needing the previous. And independent tickets, the freeze-core fix, the units fix, got spun into their own worktrees on their own branches, parallel and non-blocking. Roughly eighteen worktrees in all.</aside>
           </section>
         </section>
 
-        <!-- ================= Phase 6 Zoomed In — the execution loop ================= -->
+        <!-- ================= Phase 6 Zoomed In · the execution loop ================= -->
         <section>
           <section>
-            <p class="kicker">Phase 6 Zoomed In — the execution loop · ~7 min</p>
-            <h2>Ralph: a dumb bash loop that beats orchestration — and you already own one</h2>
+            <p class="kicker">Phase 6 Zoomed In · the execution loop · ~7 min</p>
+            <h2>Ralph: a dumb bash loop that beats orchestration, and you already own one</h2>
             <div class="spine">
             <ul>
               <li class="fragment">Backstop, one feature per iteration, append-only memory, per-iteration commit</li>
               <li class="fragment">You already run it: run_overnight.sh under nohup</li>
-              <li class="fragment">'done' must be runnable physics — not a green test suite</li>
+              <li class="fragment">'done' must be runnable physics, not a green test suite</li>
               <li class="fragment">Backstop is wall-clock + queue depth, not just iterations</li>
               <li class="fragment">set -e vs set -uo pipefail IS the AFK-vs-attended decision</li>
             </ul>
             </div>
-            <aside class="notes">Phase 6, Execution, zoomed in — the coding-agent execution loop, which the source calls the Ralph loop. The claim: a dumb for-loop in bash beats every agent-swarm and orchestrator you've tried, because the model is now good enough that the orchestration was the weak part. Give one agent a queue, a memory file, and a stop condition, and run it again and again. And here's the thing — you already run Ralph loops; you just call them run_overnight.sh and launch them under nohup. The structure maps one-to-one: iterate over tickets or over strategy-times-worker-count cells, one agent or one pyKMC run per iteration, grep the output for a completion sentinel, with a backstop so it can't run forever. Four disciplines carry over: a backstop, exactly one feature per iteration, append-only progress memory, and a per-iteration commit. But the one claim this loop owns that nothing else in the talk does is about the 'done' predicate — and that's the most important slide in this section, so it gets its own drill-down.</aside>
+            <aside class="notes">Phase 6, Execution, zoomed in, the coding-agent execution loop, which the source calls the Ralph loop. The claim: a dumb for-loop in bash beats every agent-swarm and orchestrator you've tried, because the model is now good enough that the orchestration was the weak part. Give one agent a queue, a memory file, and a stop condition, and run it again and again. And here's the thing, you already run Ralph loops; you just call them run_overnight.sh and launch them under nohup. The structure maps one-to-one: iterate over tickets or over strategy-times-worker-count cells, one agent or one pyKMC run per iteration, grep the output for a completion sentinel, with a backstop so it can't run forever. Four disciplines carry over: a backstop, exactly one feature per iteration, append-only progress memory, and a per-iteration commit. But the one claim this loop owns that nothing else in the talk does is about the 'done' predicate, and that's the most important slide in this section, so it gets its own drill-down.</aside>
           </section>
           <section>
             <h3>The 'done' predicate must be runnable physics</h3>
             <ul>
-              <li class="fragment">Web: agent flips passes:true on green type-check + tests — defensible there</li>
+              <li class="fragment">Web: agent flips passes:true on green type-check + tests (defensible there)</li>
               <li class="fragment">Physics: a green suite tells you the code RAN, never that the physics is RIGHT</li>
               <li class="fragment">passes = a machine-checkable acceptance band in eV/Å/ps, run by the real solver</li>
               <li class="fragment">Predicate 1: require_one_negative_mode read off the actual dynamical matrix</li>
               <li class="fragment">Predicate 2: finite-nu0 A/B gate; coverage&lt;1.0 is a logged WARNING, not a pass</li>
             </ul>
-            <p class="anchor">run_htst_ab.py: status='passed' only if the failures list (built from physics observables) is empty. A 511-atom Si smoke run hit 33.3% nu0 coverage — logged as partial, not a benchmark.</p>
-            <aside class="notes">In the video, each PRD item carries a boolean passes flag, and the agent sets it itself: implements the feature, runs type-check and tests, sees green, flips passes to true. For a web app that's defensible — the tests are the behaviour the user sees. For physics it is a trap, for the reason we already met: a green suite tells you the code ran, it never tells you the physics is right, and our worst bug lived comfortably inside a green suite. So in a research Ralph the passes predicate is not 'tests pass.' It is a machine-checkable acceptance band on a physical quantity, in electron-volts, angstroms, picoseconds, evaluated by running the real solver. Two concrete examples from my code. First, require_one_negative_mode: it reads the actual dynamical matrix and demands exactly one imaginary mode at the saddle; the agent cannot fake that with a passing unit test. Second, the finite-nu0 A/B gate in run_htst_ab.py — its overall status is 'passed' only if a failures list is empty, and that list is built from physics observables: no reference events, no nu0 column, no finite nu0 values. Notice coverage below 1.0 is a logged warning, not a failure — a smoke run that hit only 33% coverage was recorded honestly as partial, not a benchmark, not silently passed off as done. The rule to hand an agent: every passes flag points at a runnable predicate over a physical quantity in physical units. The agent may write and run it; it may not substitute 'the tests are green' for 'the physics is in band.' A research Ralph that ships on green tests alone is a machine for producing confidently-wrong physics at scale.</aside>
+            <p class="anchor">run_htst_ab.py: status='passed' only if the failures list (built from physics observables) is empty. A 511-atom Si smoke run hit 33.3% nu0 coverage, logged as partial, not a benchmark.</p>
+            <aside class="notes">In the video, each PRD item carries a boolean passes flag, and the agent sets it itself: implements the feature, runs type-check and tests, sees green, flips passes to true. For a web app that's defensible, the tests are the behaviour the user sees. For physics it is a trap, for the reason we already met: a green suite tells you the code ran, it never tells you the physics is right, and our worst bug lived comfortably inside a green suite. So in a research Ralph the passes predicate is not 'tests pass.' It is a machine-checkable acceptance band on a physical quantity, in electron-volts, angstroms, picoseconds, evaluated by running the real solver. Two concrete examples from my code. First, require_one_negative_mode: it reads the actual dynamical matrix and demands exactly one imaginary mode at the saddle; the agent cannot fake that with a passing unit test. Second, the finite-nu0 A/B gate in run_htst_ab.py: its overall status is 'passed' only if a failures list is empty, and that list is built from physics observables: no reference events, no nu0 column, no finite nu0 values. Notice coverage below 1.0 is a logged warning, not a failure, a smoke run that hit only 33% coverage was recorded honestly as partial, not a benchmark, not silently passed off as done. The rule to hand an agent: every passes flag points at a runnable predicate over a physical quantity in physical units. The agent may write and run it; it may not substitute 'the tests are green' for 'the physics is in band.' A research Ralph that ships on green tests alone is a machine for producing confidently-wrong physics at scale.</aside>
           </section>
           <section>
             <p class="kicker">the code</p>
             <h3>The 'done' predicate must be runnable physics</h3>
             <pre><code class="language-python" data-trim data-line-numbers="7">
-# run_htst_ab.py — status == "passed" only if failures is empty
+# run_htst_ab.py: status == "passed" only if failures is empty
 if n_events &lt;= 0:
     failures.append("no reference events")
 if "nu0" not in htst_table.columns:
@@ -355,37 +361,37 @@ if nu0_coverage &lt; 1.0:
               <li class="fragment">Ralph demotes you from anal-retentive planner to requirements-gatherer</li>
             </ul>
             <p class="anchor">Commit 82e7793 compute_prefactors_batch (batch size chosen by the d52f541 profiling harness); c9a74ad never-recompute-recycled = idempotency; chain ec6aa5f→…→c9a74ad bisectable.</p>
-            <aside class="notes">The other three disciplines, quickly. Memory: a Ralph agent is memory-less — every iteration starts blank and reconstructs what happened from the queue and a progress file — so the instruction must be append, never update; tell it to 'update progress' and it rewrites the whole file and destroys history. And for us the progress note should record the physics state, not just the code state: 'backfilled nu0 for the reference events, coverage 0.71, three events fell back to k0 because one negative mode failed' — that's the thing the next blank-slate iteration can't cheaply re-derive. Sizing: exactly one feature per iteration, small and roughly equal, because the model gets dumber as its window fills and a small task leaves budget to actually verify the change. This is literal, not metaphor — computing a Vineyard prefactor means diagonalizing a Hessian at each event; doing it as one monolithic 'compute all prefactors' step is the oversized item, so commit 82e7793 shards it into bounded per-event batches, with the batch size chosen empirically by that earlier profiling harness. Commits: one per iteration makes the history bisectable — which is exactly why, when the units bug surfaced, I could bisect straight to the boundary where nu0 entered the rate path and land the fix as its own one-line commit in its own worktree. And the role shift, which is the human payoff: the old multi-phase-plan workflow made you an anal-retentive planner routing every task by hand. Ralph demotes you into the requirements-gatherer seat — you stop specifying how the work is done and specify what must be true at the end, then read whether the numbers landed in band. The science is made in what you choose to require.</aside>
+            <aside class="notes">The other three disciplines, quickly. Memory: a Ralph agent is memory-less, every iteration starts blank and reconstructs what happened from the queue and a progress file, so the instruction must be append, never update; tell it to 'update progress' and it rewrites the whole file and destroys history. And for us the progress note should record the physics state, not just the code state: 'backfilled nu0 for the reference events, coverage 0.71, three events fell back to k0 because one negative mode failed', that's the thing the next blank-slate iteration can't cheaply re-derive. Sizing: exactly one feature per iteration, small and roughly equal, because the model gets dumber as its window fills and a small task leaves budget to actually verify the change. This is literal, not metaphor: computing a Vineyard prefactor means diagonalizing a Hessian at each event; doing it as one monolithic 'compute all prefactors' step is the oversized item, so commit 82e7793 shards it into bounded per-event batches, with the batch size chosen empirically by that earlier profiling harness. Commits: one per iteration makes the history bisectable, which is exactly why, when the units bug surfaced, I could bisect straight to the boundary where nu0 entered the rate path and land the fix as its own one-line commit in its own worktree. And the role shift, which is the human payoff: the old multi-phase-plan workflow made you an anal-retentive planner routing every task by hand. Ralph demotes you into the requirements-gatherer seat: you stop specifying how the work is done and specify what must be true at the end, then read whether the numbers landed in band. The science is made in what you choose to require.</aside>
           </section>
         </section>
 
-        <!-- ================= Context & Handoff — surviving many fresh agents ================= -->
+        <!-- ================= Context & Handoff · surviving many fresh agents ================= -->
         <section>
           <section>
-            <p class="kicker">Context &amp; Handoff — surviving many fresh agents · ~4 min</p>
+            <p class="kicker">Context &amp; Handoff · surviving many fresh agents · ~4 min</p>
             <h2>Compaction buys continuity; handoff buys purity</h2>
             <div class="spine">
             <ul>
-              <li class="fragment">Grep the convergence line, not the log — 30 tokens vs 30,000</li>
-              <li class="fragment">Compaction is lossy by omission you don't control — drops the load-bearing caveat</li>
+              <li class="fragment">Grep the convergence line, not the log: 30 tokens vs 30,000</li>
+              <li class="fragment">Compaction is lossy by omission you don't control: drops the load-bearing caveat</li>
               <li class="fragment">Handoff: a disposable temp-dir pointer doc carrying one task's slice</li>
-              <li class="fragment">Point, not copy — references stay correct as targets evolve</li>
+              <li class="fragment">Point, not copy: references stay correct as targets evolve</li>
               <li class="fragment">Portable markdown → adversarial physics review by a different agent</li>
             </ul>
             </div>
-            <aside class="notes">Briefly, the primitive that lets a multi-phase campaign survive a finite, degrading window. First habit: grep the convergence line, not the log — a grep returning three lines costs about 30 tokens; reading the file costs 30,000. So watch lammps.log and artn.out, don't read them; pull the header of a structure file, not the coordinate block. When you approach the dumb zone you have two moves. Compaction summarizes the conversation and continues — fine for one long single-threaded debug, but lossy by omission you don't control: it keeps what looks salient and silently drops what looks like a footnote, and in our world the footnote is the load-bearing physics — 'nu0 here is in Hz, not per-picosecond.' Treat a compaction summary the way you treat a green suite: it is not validated context. The alternative is a handoff: a small disposable markdown doc, written to a temp directory, carrying only the slice a fresh agent needs for one task. Compaction buys continuity; handoff buys purity — and for a campaign that fans out into eighteen worktrees, purity is the property that scales. Two rules: point, don't copy — reference the issue, the committed input, the RESULTS file, so the pointer stays correct as the target evolves; and because it's plain markdown it crosses agent boundaries, which buys you the highest-value research use — hand the same doc to a different agent and tell it to disbelieve the numbers. An independent agent that doesn't share your assumptions is the closest automated analogue to the human who finally catches that THz, per-picosecond, and Hz are not interchangeable.</aside>
+            <aside class="notes">Briefly, the primitive that lets a multi-phase campaign survive a finite, degrading window. First habit: grep the convergence line, not the log, a grep returning three lines costs about 30 tokens; reading the file costs 30,000. So watch lammps.log and artn.out, don't read them; pull the header of a structure file, not the coordinate block. When you approach the dumb zone you have two moves. Compaction summarizes the conversation and continues, fine for one long single-threaded debug, but lossy by omission you don't control: it keeps what looks salient and silently drops what looks like a footnote, and in our world the footnote is the load-bearing physics, 'nu0 here is in Hz, not per-picosecond.' Treat a compaction summary the way you treat a green suite: it is not validated context. The alternative is a handoff: a small disposable markdown doc, written to a temp directory, carrying only the slice a fresh agent needs for one task. Compaction buys continuity; handoff buys purity, and for a campaign that fans out into eighteen worktrees, purity is the property that scales. Two rules: point, don't copy, reference the issue, the committed input, the RESULTS file, so the pointer stays correct as the target evolves; and because it's plain markdown it crosses agent boundaries, which buys you the highest-value research use, hand the same doc to a different agent and tell it to disbelieve the numbers. An independent agent that doesn't share your assumptions is the closest automated analogue to the human who finally catches that THz, per-picosecond, and Hz are not interchangeable.</aside>
           </section>
           <section>
             <h3>The DIY sub-agent round trip</h3>
             <ul>
-              <li class="fragment">Hand off a hard-to-judge bit to a prototype session — separate budget</li>
+              <li class="fragment">Hand off a hard-to-judge bit to a prototype session (separate budget)</li>
               <li class="fragment">It does the disposable work, returns a compressed verdict</li>
-              <li class="fragment">RESULTS.md IS the handoff-back doc — stamped with its conditions</li>
+              <li class="fragment">RESULTS.md IS the handoff-back doc, stamped with its conditions</li>
               <li class="fragment">Same shape as a dispatched sub-agent, zero machinery</li>
               <li class="fragment">Promote durable facts to CONTEXT.md; the handoff is the courier, not the archive</li>
             </ul>
             <p class="anchor">Commit d52f541 round trip: the eskm-vs-Python-FD question needed a measurement; benchmarks/htst_prefactor/RESULTS.md returned the verdict (eskm faster, conditions attached) and the planner chose the eskm path.</p>
-            <aside class="notes">One pattern worth naming because it maps onto the Prototype phase: the round trip. When you grill a method, some questions you can answer from the armchair and some you can't — you have to see it in numbers first. The move: from the planning session, hand off the hard-to-judge bit to a prototype session, which can balloon past what would fit in the grill because it's a separate budget; it does the disposable work, learns the verdict, and hands a fresh document back. That's a DIY sub-agent — a dedicated context window whose learnings are compressed and returned to the parent, same shape as a real dispatched sub-agent but with zero machinery. My RESULTS file from the eskm-versus-finite-difference benchmark is exactly that handoff-back document: a compressed, pointer-bearing verdict the planner consumed to choose the eskm path, with the benchmark scaffolding left behind. Two things to carry: the verdict came back stamped with its conditions — machine, build, cluster size — because a handoff that drops the conditions is just compaction's wrong-by-omission in a nicer coat; and when something proves durably true, you promote it into CONTEXT.md and discard the doc. The handoff is the courier, not the archive.</aside>
+            <aside class="notes">One pattern worth naming because it maps onto the Prototype phase: the round trip. When you grill a method, some questions you can answer from the armchair and some you can't, you have to see it in numbers first. The move: from the planning session, hand off the hard-to-judge bit to a prototype session, which can balloon past what would fit in the grill because it's a separate budget; it does the disposable work, learns the verdict, and hands a fresh document back. That's a DIY sub-agent, a dedicated context window whose learnings are compressed and returned to the parent, same shape as a real dispatched sub-agent but with zero machinery. My RESULTS file from the eskm-versus-finite-difference benchmark is exactly that handoff-back document: a compressed, pointer-bearing verdict the planner consumed to choose the eskm path, with the benchmark scaffolding left behind. Two things to carry: the verdict came back stamped with its conditions, machine, build, cluster size, because a handoff that drops the conditions is just compaction's wrong-by-omission in a nicer coat; and when something proves durably true, you promote it into CONTEXT.md and discard the doc. The handoff is the courier, not the archive.</aside>
           </section>
         </section>
 
@@ -393,17 +399,17 @@ if nu0_coverage &lt; 1.0:
         <section>
           <section>
             <p class="kicker">QA, Takeaways &amp; Attribution · ~2 min</p>
-            <h2>Phase 7: the units bug — and the one thing to remember</h2>
+            <h2>Phase 7: the units bug, and the one thing to remember</h2>
             <div class="spine">
             <ul>
               <li class="fragment">nu0 emitted in Hz (~1–10 THz), consumed as ps⁻¹ → every rate 10¹² too large</li>
               <li class="fragment">Nothing crashed; the suite was green; the tests had pinned the error</li>
               <li class="fragment">Fix d705932: one-line hz_to_per_ps() at the backend boundary</li>
-              <li class="fragment">Regression d6b921f: red by 10¹² before, green after — at the Ni(100) dE where both threads meet</li>
+              <li class="fragment">Regression d6b921f: red by 10¹² before, green after, at the Ni(100) dE where both threads meet</li>
               <li class="fragment">QA = validating the physics. Green tests are not validated physics.</li>
             </ul>
             </div>
-            <aside class="notes">Phase 7, QA, and the landing. The units bug is the whole talk in one line of code. The Vineyard formula emits nu0 as a linear frequency in hertz — roughly 1 to 10 terahertz for FCC nickel — but pyKMC's rate layer and its KMC clock both consume the prefactor in per-picosecond, and the backends passed nu0 straight through, unconverted. Because the prefactor multiplies directly into k equals nu0 times the Boltzmann factor, treating one hertz as one per-picosecond made every HTST rate ten-to-the-twelfth too large and every residence time ten-to-the-twelfth too small. Nothing crashed. The simulation ran, produced numbers, and the numbers were silently, totally wrong — and worse, several pre-existing tests had asserted rates built from the raw Hz value, so the suite was green while the physics was wrong; the tests had encoded and pinned the error. No test, type-checker, or linter could have caught this. Only a human who understood the physics did. The fix was one line — convert from Hz to per-picosecond at the backend boundary. And the regression test, commit d6b921f, drives a known nu0 at the committed Ni(100) surface-hop dE — exactly where my two threads meet, the slabs measuring that barrier and the rate code consuming it — through the real backend and the real clock: red by ten-to-the-twelfth before the fix, green after. So the one thing to take home: QA, for us, is validating the physics, and green tests are not validated physics. The defense is a human who treats THz, per-picosecond, and Hz as not interchangeable — and the entire workflow exists to put that human, in the smart zone, on the most dangerous question: are these numbers right? Provenance and thanks on the next slide.</aside>
+            <aside class="notes">Phase 7, QA, and the landing. The units bug is the whole talk in one line of code. The Vineyard formula emits nu0 as a linear frequency in hertz, roughly 1 to 10 terahertz for FCC nickel, but pyKMC's rate layer and its KMC clock both consume the prefactor in per-picosecond, and the backends passed nu0 straight through, unconverted. Because the prefactor multiplies directly into k equals nu0 times the Boltzmann factor, treating one hertz as one per-picosecond made every HTST rate ten-to-the-twelfth too large and every residence time ten-to-the-twelfth too small. Nothing crashed. The simulation ran, produced numbers, and the numbers were silently, totally wrong, and worse, several pre-existing tests had asserted rates built from the raw Hz value, so the suite was green while the physics was wrong; the tests had encoded and pinned the error. No test, type-checker, or linter could have caught this. Only a human who understood the physics did. The fix was one line: convert from Hz to per-picosecond at the backend boundary. And the regression test, commit d6b921f, drives a known nu0 at the committed Ni(100) surface-hop dE, exactly where my two threads meet, the slabs measuring that barrier and the rate code consuming it, through the real backend and the real clock: red by ten-to-the-twelfth before the fix, green after. So the one thing to take home: QA, for us, is validating the physics, and green tests are not validated physics. The defense is a human who treats THz, per-picosecond, and Hz as not interchangeable, and the entire workflow exists to put that human, in the smart zone, on the most dangerous question: are these numbers right? Provenance and thanks on the next slide.</aside>
           </section>
           <section>
             <h3>Attribution &amp; the open questions</h3>
@@ -412,11 +418,11 @@ if nu0_coverage &lt; 1.0:
               <li class="fragment">Documents skills you may already run: grilling, to-prd, to-issues, tdd</li>
               <li class="fragment">Open: merge Research + Prototype into one 'de-risk the method' phase?</li>
               <li class="fragment">Open: keep the name 'Ralph' or 'coding-agent execution loop'?</li>
-              <li class="fragment">First cut — the seven-phase mapping is a proposal for discussion, not a settled standard</li>
+              <li class="fragment">First cut: the seven-phase mapping is a proposal for discussion, not a settled standard</li>
             </ul>
-            <aside class="notes">Credits. The seven-phase structure and the foundational ideas are Matt Pocock's, across five talks — the 7-phases video, the full walkthrough, the tokens video, the handoff video, and the Ralph Wiggum video. The materials-science mapping, the examples, and the commentary are original to this collection; if you cite the originals, quote the videos, not my reframing. This material also doubles as the documented rationale for a pipeline some of you already run — the grilling, to-prd, to-issues, and tdd skills. And I'll be honest that this is a first cut, with real open questions: should Research and Prototype merge into one 'de-risk the method' phase for simulation work, since for us they often happen in the same afternoon? Do we keep the cute name Ralph or stick with 'coding-agent execution loop'? The seven-phase mapping is a proposal for discussion, not a settled standard. I'd genuinely like to know what I got wrong and what I'm missing. Thank you.
+            <aside class="notes">Credits. The seven-phase structure and the foundational ideas are Matt Pocock's, across five talks: the 7-phases video, the full walkthrough, the tokens video, the handoff video, and the Ralph Wiggum video. The materials-science mapping, the examples, and the commentary are original to this collection; if you cite the originals, quote the videos, not my reframing. This material also doubles as the documented rationale for a pipeline some of you already run: the grilling, to-prd, to-issues, and tdd skills. And I'll be honest that this is a first cut, with real open questions: should Research and Prototype merge into one 'de-risk the method' phase for simulation work, since for us they often happen in the same afternoon? Do we keep the cute name Ralph or stick with 'coding-agent execution loop'? The seven-phase mapping is a proposal for discussion, not a settled standard. I'd genuinely like to know what I got wrong and what I'm missing. Thank you.
 
-Full credit — Structure and the foundational ideas: five Matt Pocock talks, reframed here for computational materials — "7 phases of development with AI" (the seven-phase spine), "Full Walkthrough: Workflow for AI Coding" (the constraint theory — smart/dumb zone, feedback-loops-as-ceiling, QA-as-taste), "Most devs don't understand how LLM tokens work" (tokens as currency and the encode/compute/decode mirror), "/handoff is my new favourite skill" (context budget, compaction vs handoff), and "Ship working code while you sleep (Ralph Wiggum technique)" (the execution loop; the 'Ralph' pattern is Jeffrey Huntley's). The materials-science mapping, the pyKMC/slab/HTST examples, and all commentary are original to this collection — if citing the originals, quote the videos, not these slides. This material also documents the rationale behind skills already in use: grilling/grill-me, to-prd, to-issues, and tdd. Video provenance: raw English auto-caption transcripts for all five videos were pulled via a local youtube-transcript skill and preserved under sources/transcripts/; module placement is recorded in sources/analyses/processing-notes.md. First cut (2026-06-22) — the seven-phase mapping is a proposal for discussion, not a settled standard.</aside>
+Full credit. Structure and the foundational ideas: five Matt Pocock talks, reframed here for computational materials. "7 phases of development with AI" (the seven-phase spine), "Full Walkthrough: Workflow for AI Coding" (the constraint theory: smart/dumb zone, feedback-loops-as-ceiling, QA-as-taste), "Most devs don't understand how LLM tokens work" (tokens as currency and the encode/compute/decode mirror), "/handoff is my new favourite skill" (context budget, compaction vs handoff), and "Ship working code while you sleep (Ralph Wiggum technique)" (the execution loop; the 'Ralph' pattern is Jeffrey Huntley's). The materials-science mapping, the pyKMC/slab/HTST examples, and all commentary are original to this collection; if citing the originals, quote the videos, not these slides. This material also documents the rationale behind skills already in use: grilling/grill-me, to-prd, to-issues, and tdd. Video provenance: raw English auto-caption transcripts for all five videos were pulled via a local youtube-transcript skill and preserved under sources/transcripts/; module placement is recorded in sources/analyses/processing-notes.md. First cut (2026-06-22): the seven-phase mapping is a proposal for discussion, not a settled standard.</aside>
           </section>
         </section>
 
@@ -459,6 +465,14 @@ Full credit — Structure and the foundational ideas: five Matt Pocock talks, re
           RevealMath.KaTeX, RevealSearch, RevealZoom,
           RevealChalkboard, RevealMenu
         ]
+      }).then(() => {
+        // Stamp each leaf slide with its horizontal-group number so the
+        // index rail can show it (CSS draws the rail; this fills the numeral).
+        document.querySelectorAll('.reveal .slides > section').forEach((stack, h) => {
+          const leaves = stack.querySelector(':scope > section')
+            ? stack.querySelectorAll(':scope > section') : [stack];
+          leaves.forEach((leaf) => leaf.setAttribute('data-rail', String(h).padStart(2, '0')));
+        });
       });
     </script>
   </body>

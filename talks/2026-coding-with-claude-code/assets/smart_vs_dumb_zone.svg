@@ -1,10 +1,10 @@
 <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"
      font-family="system-ui, -apple-system, Segoe UI, sans-serif"
-     style="--primary:#11335d; --accent:#b08d2b; --ink:#1a1a1a; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --smart:#3f7a4c; --smart-fill:#dfeede; --dumb:#8c8478; --dumb-fill:#e8e6df; --muted:#5a5650; --alert:#9a342a; --alert-fill:#fbeaea; --alert-stroke:#c2604f;">
+     style="--primary:#002452; --accent:#b08d2b; --ink:#1a1a1a; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --smart:#3f7a4c; --smart-fill:#dfeede; --dumb:#8c8478; --dumb-fill:#e8e6df; --muted:#5a5650; --alert:#9a342a; --alert-fill:#fbeaea; --alert-stroke:#c2604f;">
 
   <!-- ===== TITLE ===== -->
   <text x="64" y="56" fill="var(--primary,#11335d)" font-weight="700" font-size="33">Usable attention degrades before the advertised window</text>
-  <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="21">Decision quality vs. context size — the smart zone is a correctness control, not a capacity number</text>
+  <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="21">Decision quality vs. context size: the smart zone is a correctness control, not a capacity number</text>
 
   <!-- ===== PLOT FRAME (plot area x 120..940, y 130..480) ===== -->
 
@@ -54,13 +54,13 @@
   <!-- cliff callout -->
   <line x1="560" y1="135" x2="606" y2="118" stroke="var(--accent,#b08d2b)" stroke-width="2"/>
   <rect x="600" y="92" width="316" height="50" rx="8" fill="var(--paper,#ffffff)" stroke="var(--accent,#b08d2b)" stroke-width="1.5"/>
-  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#b08d2b)">The cliff is empirical —</text>
+  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#b08d2b)">The cliff is empirical,</text>
   <text x="616" y="134" font-size="18" fill="var(--ink,#1a1a1a)">not the advertised limit.</text>
 
   <!-- ===== ZONE LABELS ===== -->
   <rect x="150" y="200" width="158" height="36" rx="18" fill="var(--smart,#3f7a4c)"/>
   <text x="229" y="225" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">SMART ZONE</text>
-  <text x="150" y="266" font-size="17" fill="var(--smart,#3f7a4c)" font-weight="600">flat-high — it can actually think</text>
+  <text x="150" y="266" font-size="17" fill="var(--smart,#3f7a4c)" font-weight="600">flat-high: it can actually think</text>
 
   <rect x="690" y="150" width="148" height="36" rx="18" fill="var(--dumb,#8c8478)"/>
   <text x="764" y="175" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">DUMB ZONE</text>
@@ -70,7 +70,7 @@
   <circle cx="772" cy="446" r="4.5" fill="var(--dumb,#8c8478)"/>
   <rect x="610" y="250" width="324" height="70" rx="10" fill="var(--paper,#ffffff)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
   <text x="626" y="276" font-size="17" fill="var(--ink,#1a1a1a)">A 200K / 1M window just ships you</text>
-  <text x="626" y="298" font-size="17" fill="var(--ink,#1a1a1a)"><tspan font-weight="700" fill="var(--dumb,#8c8478)">more dumb zone</tspan> — good for retrieval,</text>
+  <text x="626" y="298" font-size="17" fill="var(--ink,#1a1a1a)"><tspan font-weight="700" fill="var(--dumb,#8c8478)">more dumb zone</tspan>, good for retrieval,</text>
   <text x="626" y="314" font-size="17" fill="var(--ink,#1a1a1a)">not for thinking.</text>
 
   <!-- our-stakes flag inside dumb zone -->
@@ -128,7 +128,7 @@
   <text x="1090" y="406" font-size="14" font-weight="700" fill="var(--accent,#b08d2b)" text-anchor="middle">+1 row</text>
 
   <text x="1115" y="438" font-size="15" fill="var(--ink,#1a1a1a)" text-anchor="middle">each token adds a row <tspan font-weight="700">and</tspan> a</text>
-  <text x="1115" y="458" font-size="15" fill="var(--ink,#1a1a1a)" text-anchor="middle">column — pairs grow as</text>
+  <text x="1115" y="458" font-size="15" fill="var(--ink,#1a1a1a)" text-anchor="middle">column, pairs grow as</text>
 
   <!-- binom(n,2) expression: proper vertical (n over 2) stack -->
   <g fill="var(--primary,#11335d)" font-weight="700">
@@ -146,5 +146,5 @@
   <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#11335d)"/>
   <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#b08d2b)"/>
   <text x="92" y="660" font-size="22" font-weight="700" fill="#ffffff">Sizing a task to fit the smart zone is a correctness control.</text>
-  <text x="92" y="683" font-size="20" fill="var(--neutral,#f3f1ea)">Clear, don't compact — start each unit of work from a fresh, small context.</text>
+  <text x="92" y="683" font-size="20" fill="var(--neutral,#f3f1ea)">Clear, don't compact: start each unit of work from a fresh, small context.</text>
 </svg>
