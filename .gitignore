@@ -6,6 +6,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# personal docs folder — kept out of this public repo (folder + all contents)
+DOCS/
+
 # By default the vendored libraries in template/lib are COMMITTED, so a fresh
 # clone runs offline immediately. If you'd rather keep the repo lean and have
 # people run ./setup.sh after cloning, uncomment the next line:
