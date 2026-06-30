@@ -1,0 +1,75 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"
+     font-family="system-ui, -apple-system, Segoe UI, sans-serif"
+     style="--primary:#002452; --accent:#B90E31; --ink:#1a1a1a; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --muted:#5a5650; --blue:#0072B2; --green:#009E73; --vermillion:#D55E00;">
+
+  <!-- ===== TITLE ===== -->
+  <text x="64" y="56" fill="var(--primary,#002452)" font-weight="700" font-size="32">The two threads meet at one number: the Ni(100) barrier dE</text>
+  <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="20">Thread 1 measures dE; Thread 2 consumes it; the regression test pins it, red by 10¹² before the fix, green after</text>
+
+  <!-- ===== THREAD 1 box (top-left) ===== -->
+  <rect x="64" y="150" width="324" height="128" rx="12" fill="var(--paper,#ffffff)" stroke="var(--primary,#002452)" stroke-width="2"/>
+  <text x="86" y="182" font-size="18" font-weight="700" fill="var(--primary,#002452)">THREAD 1 · substrate</text>
+  <text x="86" y="210" font-size="16" fill="var(--ink,#1a1a1a)">periodic_system_generator → Ni(100)</text>
+  <text x="86" y="232" font-size="16" fill="var(--ink,#1a1a1a)">FCC slab → LAMMPS + EAM minimize</text>
+  <text x="86" y="262" font-size="18" font-weight="700" fill="var(--accent,#B90E31)">measures  dE = 0.63 eV  (Mehl 1999)</text>
+
+  <!-- ===== THREAD 2 box (bottom-left) ===== -->
+  <rect x="64" y="442" width="324" height="128" rx="12" fill="var(--paper,#ffffff)" stroke="var(--primary,#002452)" stroke-width="2"/>
+  <text x="86" y="474" font-size="18" font-weight="700" fill="var(--primary,#002452)">THREAD 2 · correctness</text>
+  <text x="86" y="502" font-size="16" fill="var(--ink,#1a1a1a)">Vineyard HTST prefactor backend</text>
+  <text x="86" y="524" font-size="16" fill="var(--ink,#1a1a1a)">harmonic TST, batched Hessians</text>
+  <text x="86" y="554" font-size="18" font-weight="700" fill="var(--accent,#B90E31)">supplies  ν₀ ≈ 1–10 THz</text>
+
+  <!-- ===== converging arrows into the test ===== -->
+  <path d="M 388 222 C 420 232, 440 300, 468 322" fill="none" stroke="var(--primary,#002452)" stroke-width="3"/>
+  <polygon points="468,322 456,314 458,328" fill="var(--primary,#002452)"/>
+  <path d="M 388 498 C 420 488, 440 420, 468 398" fill="none" stroke="var(--primary,#002452)" stroke-width="3"/>
+  <polygon points="468,398 458,392 456,406" fill="var(--primary,#002452)"/>
+  <text x="404" y="360" font-size="14" font-weight="700" fill="var(--muted,#5a5650)" transform="rotate(-90 404 360)" text-anchor="middle">converge</text>
+
+  <!-- ===== CENTRE: the regression test ===== -->
+  <rect x="470" y="252" width="332" height="216" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--primary,#002452)" stroke-width="2"/>
+  <text x="636" y="286" font-size="19" font-weight="700" fill="var(--primary,#002452)" text-anchor="middle">REGRESSION TEST · d6b921f</text>
+  <line x1="494" y1="300" x2="778" y2="300" stroke="var(--stroke,#c9c2ad)" stroke-width="1"/>
+  <text x="636" y="330" font-size="18" fill="var(--ink,#1a1a1a)" text-anchor="middle">k = ν₀ · exp(−dE / k_B T)</text>
+  <text x="636" y="356" font-size="14.5" fill="var(--muted,#5a5650)" text-anchor="middle">at the committed Ni(100) dE, through the</text>
+  <text x="636" y="375" font-size="14.5" fill="var(--muted,#5a5650)" text-anchor="middle">real backend and the real KMC clock</text>
+  <!-- one-line fix chip -->
+  <rect x="494" y="396" width="284" height="52" rx="6" fill="var(--paper,#ffffff)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <text x="508" y="418" font-size="13" fill="var(--muted,#5a5650)">the one-line fix (d705932):</text>
+  <text x="508" y="438" font-size="14" font-weight="700" fill="var(--ink,#1a1a1a)" font-family="IBM Plex Mono, ui-monospace, monospace">nu0_ps = hz_to_per_ps(nu0_hz)</text>
+
+  <!-- ===== arrows to the two outcomes ===== -->
+  <path d="M 802 300 C 850 280, 870 262, 898 256" fill="none" stroke="var(--vermillion,#D55E00)" stroke-width="3"/>
+  <polygon points="898,256 884,253 889,267" fill="var(--vermillion,#D55E00)"/>
+  <path d="M 802 420 C 850 440, 870 458, 898 464" fill="none" stroke="var(--green,#009E73)" stroke-width="3"/>
+  <polygon points="898,464 889,453 884,467" fill="var(--green,#009E73)"/>
+  <text x="846" y="372" font-size="13" fill="var(--muted,#5a5650)" text-anchor="middle">same test,</text>
+  <text x="846" y="389" font-size="13" fill="var(--muted,#5a5650)" text-anchor="middle">only the unit changed</text>
+
+  <!-- ===== BEFORE outcome (top-right) ===== -->
+  <rect x="900" y="178" width="316" height="150" rx="12" fill="var(--paper,#ffffff)" stroke="var(--vermillion,#D55E00)" stroke-width="2"/>
+  <text x="922" y="210" font-size="18" font-weight="700" fill="var(--vermillion,#D55E00)">BEFORE the fix</text>
+  <rect x="1118" y="190" width="78" height="30" rx="15" fill="var(--vermillion,#D55E00)"/>
+  <text x="1157" y="211" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">FAIL</text>
+  <text x="922" y="242" font-size="15" fill="var(--ink,#1a1a1a)">ν₀ in Hz consumed as ps⁻¹</text>
+  <text x="922" y="266" font-size="15" fill="var(--ink,#1a1a1a)">every rate ×10¹² too large</text>
+  <text x="922" y="300" font-size="17" font-weight="700" fill="var(--vermillion,#D55E00)">suite RED, off by 10¹²</text>
+  <text x="922" y="320" font-size="13" fill="var(--muted,#5a5650)">(the CI "red"; tests had pinned the error)</text>
+
+  <!-- ===== AFTER outcome (bottom-right) ===== -->
+  <rect x="900" y="392" width="316" height="150" rx="12" fill="var(--paper,#ffffff)" stroke="var(--green,#009E73)" stroke-width="2"/>
+  <text x="922" y="424" font-size="18" font-weight="700" fill="var(--green,#009E73)">AFTER the fix</text>
+  <rect x="1118" y="404" width="78" height="30" rx="15" fill="var(--green,#009E73)"/>
+  <text x="1157" y="425" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">PASS</text>
+  <text x="922" y="456" font-size="15" fill="var(--ink,#1a1a1a)">hz_to_per_ps() at the boundary</text>
+  <text x="922" y="480" font-size="15" fill="var(--ink,#1a1a1a)">rate now in physical ps⁻¹</text>
+  <text x="922" y="514" font-size="17" font-weight="700" fill="var(--green,#009E73)">suite GREEN, physics right</text>
+  <text x="922" y="534" font-size="13" fill="var(--muted,#5a5650)">(the CI "green"; and now actually correct)</text>
+
+  <!-- ===== CAPTION STRIP ===== -->
+  <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#002452)"/>
+  <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#B90E31)"/>
+  <text x="92" y="660" font-size="22" font-weight="700" fill="#ffffff">The dE the slabs measure is the dE that pins the units regression.</text>
+  <text x="92" y="683" font-size="19" fill="var(--neutral,#f3f1ea)">Red by 10¹² before the one-line fix, green after. The physics never changed; only the unit at the boundary did, and only a human knew which was right.</text>
+</svg>
