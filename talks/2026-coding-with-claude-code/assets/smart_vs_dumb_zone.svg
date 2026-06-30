@@ -28,6 +28,9 @@
   <!-- X axis label -->
   <text x="530" y="560" fill="var(--ink,#1a1a1a)" font-size="21" font-weight="600" text-anchor="middle">context size (tokens)</text>
 
+  <!-- source / framing note: the degradation is positional bias, not the quadratic cost -->
+  <text x="120" y="600" fill="var(--muted,#5a5650)" font-size="15" opacity="0.9">Quality dip = positional bias (Liu et al., "Lost in the Middle", TACL 2024; RULER), a separate phenomenon from the O(n²) cost.</text>
+
   <!-- ===== THE CURVE ===== -->
   <!-- smart-zone segment: flat-high plateau (drawn in primary blue) -->
   <path d="M 120 178 L 360 176 C 460 175, 520 178, 555 188"
@@ -54,8 +57,8 @@
   <!-- cliff callout -->
   <line x1="560" y1="135" x2="606" y2="118" stroke="var(--accent,#b08d2b)" stroke-width="2"/>
   <rect x="600" y="92" width="316" height="50" rx="8" fill="var(--paper,#ffffff)" stroke="var(--accent,#b08d2b)" stroke-width="1.5"/>
-  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#b08d2b)">The cliff is empirical,</text>
-  <text x="616" y="134" font-size="18" fill="var(--ink,#1a1a1a)">not the advertised limit.</text>
+  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#b08d2b)">A model-specific heuristic,</text>
+  <text x="616" y="134" font-size="18" fill="var(--ink,#1a1a1a)">not a measured constant.</text>
 
   <!-- ===== ZONE LABELS ===== -->
   <rect x="150" y="200" width="158" height="36" rx="18" fill="var(--smart,#3f7a4c)"/>
@@ -80,8 +83,8 @@
 
   <!-- ===== INSET: quadratic-attention motif ===== -->
   <rect x="982" y="130" width="266" height="370" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
-  <text x="1115" y="158" font-size="18" font-weight="700" fill="var(--primary,#11335d)" text-anchor="middle">why it degrades</text>
-  <text x="1115" y="180" font-size="15" fill="var(--muted,#5a5650)" text-anchor="middle">attention is quadratic</text>
+  <text x="1115" y="158" font-size="18" font-weight="700" fill="var(--primary,#11335d)" text-anchor="middle">a separate axis: cost</text>
+  <text x="1115" y="180" font-size="15" fill="var(--muted,#5a5650)" text-anchor="middle">attention is O(n²), not the cause</text>
 
   <!-- token relationship matrix: 4x4 existing block + new row + new column -->
   <g fill="var(--primary,#11335d)">
