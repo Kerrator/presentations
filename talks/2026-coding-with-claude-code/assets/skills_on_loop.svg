@@ -1,0 +1,131 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+  <title>The skills mapped onto the seven-phase loop, with the hidden layers underneath</title>
+  <desc>The seven-phase loop with the skill that runs each phase shown as a pill inside each node: grilling at Idea, to-prd at PRD, to-issues and triage at Kanban, tdd and Ralph at Execution, a physics gate at QA; Research and Prototype are conditional. A green return arrow from QA to Kanban reads failures become new tickets. A faded dashed box notes dispatched sub-agents are a separate layer off the trigger surface. Three full-width foundation bars underneath read handoff, config and adoption, the layers the phase map never shows.</desc>
+
+  <defs>
+    <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#002452"/>
+    </marker>
+    <marker id="arrowG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a7d56"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+
+  <!-- ===== Title ===== -->
+  <text x="40" y="46" font-size="30" font-weight="800" fill="#002452">The kit that runs the loop</text>
+  <text x="40" y="74" font-size="19" fill="#1a1a1a">Each phase, the skill that runs it; underneath, the layers the phase map never shows</text>
+
+  <!-- ===== Phase nodes (one row) ===== -->
+  <!-- lefts: Idea 40, Research 215, Prototype 390, PRD 565, Kanban 740, Execution 915, QA 1090 (w=150, h=86, y=96) -->
+
+  <!-- 1 Idea -->
+  <g>
+    <rect x="40" y="96" width="150" height="86" rx="11" fill="#002452"/>
+    <circle cx="60" cy="116" r="11" fill="#ffffff"/><text x="60" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">1</text>
+    <text x="115" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">Idea</text>
+    <rect x="52" y="146" width="126" height="26" rx="7" fill="#ffffff"/>
+    <text x="115" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">grilling</text>
+  </g>
+
+  <!-- 2 Research (conditional) -->
+  <g>
+    <rect x="215" y="96" width="150" height="86" rx="11" fill="#f4eccb" stroke="#b08d2b" stroke-width="2.5"/>
+    <circle cx="235" cy="116" r="11" fill="#b08d2b"/><text x="235" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">2</text>
+    <text x="293" y="130" text-anchor="middle" font-size="19" font-weight="700" fill="#1a1a1a">Research</text>
+    <text x="290" y="166" text-anchor="middle" font-size="14" font-weight="600" font-style="italic" fill="#b08d2b">conditional</text>
+  </g>
+
+  <!-- 3 Prototype (conditional) -->
+  <g>
+    <rect x="390" y="96" width="150" height="86" rx="11" fill="#f4eccb" stroke="#b08d2b" stroke-width="2.5"/>
+    <circle cx="410" cy="116" r="11" fill="#b08d2b"/><text x="410" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">3</text>
+    <text x="468" y="130" text-anchor="middle" font-size="19" font-weight="700" fill="#1a1a1a">Prototype</text>
+    <text x="465" y="166" text-anchor="middle" font-size="14" font-weight="600" font-style="italic" fill="#b08d2b">conditional</text>
+  </g>
+
+  <!-- 4 PRD -->
+  <g>
+    <rect x="565" y="96" width="150" height="86" rx="11" fill="#002452"/>
+    <circle cx="585" cy="116" r="11" fill="#ffffff"/><text x="585" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">4</text>
+    <text x="640" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">PRD</text>
+    <rect x="577" y="146" width="126" height="26" rx="7" fill="#ffffff"/>
+    <text x="640" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">to-prd</text>
+  </g>
+
+  <!-- 5 Kanban -->
+  <g>
+    <rect x="740" y="96" width="150" height="86" rx="11" fill="#002452"/>
+    <circle cx="760" cy="116" r="11" fill="#ffffff"/><text x="760" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">5</text>
+    <text x="815" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">Kanban</text>
+    <rect x="752" y="146" width="126" height="26" rx="7" fill="#ffffff"/>
+    <text x="815" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="#002452">to-issues · triage</text>
+  </g>
+
+  <!-- 6 Execution -->
+  <g>
+    <rect x="915" y="96" width="150" height="86" rx="11" fill="#002452"/>
+    <circle cx="935" cy="116" r="11" fill="#ffffff"/><text x="935" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">6</text>
+    <text x="990" y="130" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">Execution</text>
+    <rect x="927" y="146" width="126" height="26" rx="7" fill="#ffffff"/>
+    <text x="990" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="#002452">tdd · Ralph loop</text>
+  </g>
+
+  <!-- 7 QA -->
+  <g>
+    <rect x="1090" y="96" width="150" height="86" rx="11" fill="#002452"/>
+    <circle cx="1110" cy="116" r="11" fill="#ffffff"/><text x="1110" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#002452">7</text>
+    <text x="1165" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">QA</text>
+    <rect x="1102" y="146" width="126" height="26" rx="7" fill="#ffffff"/>
+    <text x="1165" y="164" text-anchor="middle" font-size="13" font-weight="700" fill="#002452">physics gate</text>
+  </g>
+
+  <!-- ===== Forward flow arrows ===== -->
+  <line x1="192" y1="139" x2="213" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <line x1="367" y1="139" x2="388" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <line x1="542" y1="139" x2="563" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <line x1="717" y1="139" x2="738" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <line x1="892" y1="139" x2="913" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+  <line x1="1067" y1="139" x2="1088" y2="139" stroke="#002452" stroke-width="2.5" marker-end="url(#arrowB)"/>
+
+  <!-- ===== Green QA -> Kanban return loop ===== -->
+  <path d="M1165,182 L1165,208 L815,208 L815,184" fill="none" stroke="#5a7d56" stroke-width="3" marker-end="url(#arrowG)"/>
+  <rect x="872" y="195" width="236" height="26" rx="6" fill="#e7efe6"/>
+  <text x="990" y="213" text-anchor="middle" font-size="16" font-weight="600" font-style="italic" fill="#5a7d56">failures become new tickets</text>
+
+  <!-- ===== Faded seam: dispatched sub-agents are a separate layer ===== -->
+  <g opacity="0.6">
+    <rect x="740" y="238" width="500" height="34" rx="8" fill="#fbf8ee" stroke="#b08d2b" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="990" y="260" text-anchor="middle" font-size="14.5" font-style="italic" fill="#6b5a1f">dispatched sub-agents: off the trigger surface, a layer of their own</text>
+  </g>
+
+  <!-- ===== The layers underneath ===== -->
+  <text x="40" y="306" font-size="17" font-weight="700" fill="#b08d2b" letter-spacing="1.4">THE LAYERS UNDERNEATH THE LOOP</text>
+  <line x1="40" y1="316" x2="1240" y2="316" stroke="#c9c2ad" stroke-width="1.5"/>
+
+  <!-- handoff bar -->
+  <g>
+    <rect x="40" y="332" width="1200" height="64" rx="11" fill="#eaf0f6" stroke="#002452" stroke-width="2"/>
+    <text x="64" y="372" font-size="24" font-weight="800" fill="#002452">handoff</text>
+    <text x="232" y="372" font-size="19" fill="#1a1a1a">carries one task's slice across every fresh agent; spans all seven phases</text>
+  </g>
+
+  <!-- config bar -->
+  <g>
+    <rect x="40" y="408" width="1200" height="64" rx="11" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="2"/>
+    <text x="64" y="448" font-size="24" font-weight="800" fill="#002452">config</text>
+    <text x="200" y="448" font-size="19" fill="#1a1a1a">AGENTS.md (portable centre) + CLAUDE.md @import; one source of truth, symlinked into every worktree</text>
+  </g>
+
+  <!-- adoption bar -->
+  <g>
+    <rect x="40" y="484" width="1200" height="64" rx="11" fill="#f4eccb" stroke="#b08d2b" stroke-width="2"/>
+    <text x="64" y="524" font-size="24" font-weight="800" fill="#b08d2b">adoption</text>
+    <text x="232" y="524" font-size="19" fill="#1a1a1a">prompt-idea-scout, then skill-injection-audit: decides which skills exist at all</text>
+  </g>
+
+  <!-- caption -->
+  <text x="640" y="600" text-anchor="middle" font-size="18" font-style="italic" fill="#444">Skills run the loop on top. The layers below carry continuity, wiring, and what gets in.</text>
+
+</svg>
