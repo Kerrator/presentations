@@ -1,0 +1,106 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"
+     font-family="system-ui, -apple-system, Segoe UI, sans-serif"
+     style="--primary:#002452; --accent:#B90E31; --gold:#FABD0F; --ink:#1a1a1a; --muted:#5a5650; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --free:#dfeede; --free-stroke:#3f7a4c;">
+
+  <!-- ===== TITLE ===== -->
+  <text x="64" y="56" fill="var(--primary,#002452)" font-weight="700" font-size="33">Trigger surface: what you pay just by having it installed</text>
+  <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="21">A skill's description rides every session; a sub-agent costs nothing until you dispatch it</text>
+
+  <!-- ============================================================ -->
+  <!-- LEFT PANEL: skills, always on                                -->
+  <!-- ============================================================ -->
+  <rect x="64" y="118" width="556" height="476" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <rect x="88" y="140" width="232" height="38" rx="19" fill="var(--accent,#B90E31)"/>
+  <text x="204" y="166" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">SKILLS · always on</text>
+  <text x="332" y="166" font-size="17" fill="var(--muted,#5a5650)">loaded every session</text>
+
+  <!-- one session's context budget -->
+  <text x="112" y="210" font-size="17" font-weight="600" fill="var(--ink,#1a1a1a)">one session's context</text>
+  <rect x="112" y="222" width="172" height="346" rx="6" fill="var(--paper,#ffffff)" stroke="var(--ink,#1a1a1a)" stroke-width="2"/>
+
+  <!-- the always-on tax: stacked skill description blocks -->
+  <g>
+    <rect x="120" y="230" width="156" height="40" rx="4" fill="var(--accent,#B90E31)" opacity="0.85"/>
+    <text x="132" y="255" font-size="15" fill="#ffffff">skill desc · grilling</text>
+    <rect x="120" y="274" width="156" height="40" rx="4" fill="var(--accent,#B90E31)" opacity="0.85"/>
+    <text x="132" y="299" font-size="15" fill="#ffffff">skill desc · tdd</text>
+    <rect x="120" y="318" width="156" height="40" rx="4" fill="var(--accent,#B90E31)" opacity="0.85"/>
+    <text x="132" y="343" font-size="15" fill="#ffffff">skill desc · to-prd</text>
+    <rect x="120" y="362" width="156" height="40" rx="4" fill="var(--accent,#B90E31)" opacity="0.85"/>
+    <text x="132" y="387" font-size="15" fill="#ffffff">skill desc · ...</text>
+  </g>
+  <!-- free remainder -->
+  <rect x="120" y="406" width="156" height="154" rx="4" fill="var(--free,#dfeede)"/>
+  <text x="198" y="488" font-size="16" font-weight="600" fill="var(--free-stroke,#3f7a4c)" text-anchor="middle">usable</text>
+  <text x="198" y="508" font-size="16" font-weight="600" fill="var(--free-stroke,#3f7a4c)" text-anchor="middle">budget</text>
+
+  <!-- bracket over the tax -->
+  <path d="M 296 230 h 10 v 168 h -10" fill="none" stroke="var(--accent,#B90E31)" stroke-width="2"/>
+  <text x="318" y="300" font-size="16" font-weight="700" fill="var(--accent,#B90E31)">trigger</text>
+  <text x="318" y="320" font-size="16" font-weight="700" fill="var(--accent,#B90E31)">surface</text>
+  <text x="318" y="346" font-size="14" fill="var(--ink,#1a1a1a)">grows with</text>
+  <text x="318" y="364" font-size="14" fill="var(--ink,#1a1a1a)">every install</text>
+
+  <!-- cost note -->
+  <rect x="332" y="410" width="270" height="150" rx="10" fill="var(--paper,#ffffff)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <text x="348" y="438" font-size="16.5" font-weight="700" fill="var(--accent,#B90E31)">Even unused, each</text>
+  <text x="348" y="460" font-size="16.5" font-weight="700" fill="var(--accent,#B90E31)">description is in the prompt</text>
+  <text x="348" y="488" font-size="16" fill="var(--ink,#1a1a1a)">and nudges the agent to</text>
+  <text x="348" y="510" font-size="16" fill="var(--ink,#1a1a1a)">reach for a tool it should</text>
+  <text x="348" y="532" font-size="16" fill="var(--ink,#1a1a1a)">not have picked.</text>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT PANEL: sub-agents, free until called                   -->
+  <!-- ============================================================ -->
+  <rect x="660" y="118" width="556" height="476" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <rect x="684" y="140" width="318" height="38" rx="19" fill="var(--primary,#002452)"/>
+  <text x="843" y="166" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">SUB-AGENTS · free until called</text>
+
+  <!-- fresh-context bubble for the dispatched specialist -->
+  <rect x="760" y="206" width="356" height="150" rx="12" fill="var(--paper,#ffffff)" stroke="var(--primary,#002452)" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="780" y="236" font-size="18" font-weight="700" fill="var(--primary,#002452)">pykmc-htst</text>
+  <text x="780" y="260" font-size="16" fill="var(--ink,#1a1a1a)">runs in its own clean budget,</text>
+  <text x="780" y="282" font-size="16" fill="var(--ink,#1a1a1a)">fenced to one subsystem,</text>
+  <text x="780" y="304" font-size="16" fill="var(--ink,#1a1a1a)">then returns a compressed</text>
+  <text x="780" y="326" font-size="16" fill="var(--ink,#1a1a1a)">result.</text>
+  <!-- returned verdict chip -->
+  <rect x="1004" y="262" width="96" height="64" rx="8" fill="var(--gold,#FABD0F)"/>
+  <text x="1052" y="290" font-size="14" font-weight="700" fill="var(--primary,#002452)" text-anchor="middle">verdict</text>
+  <text x="1052" y="310" font-size="13" fill="var(--primary,#002452)" text-anchor="middle">~30 tokens</text>
+
+  <!-- dispatch + return arrows -->
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="var(--primary,#002452)"/>
+    </marker>
+    <marker id="ahg" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="var(--free-stroke,#3f7a4c)"/>
+    </marker>
+  </defs>
+  <path d="M 838 470 C 838 420, 838 400, 838 360" fill="none" stroke="var(--primary,#002452)" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="852" y="416" font-size="14" font-weight="700" fill="var(--primary,#002452)">dispatch</text>
+  <path d="M 1052 356 C 1052 400, 1052 420, 1052 462" fill="none" stroke="var(--free-stroke,#3f7a4c)" stroke-width="3" marker-end="url(#ahg)"/>
+  <text x="1066" y="416" font-size="14" font-weight="700" fill="var(--free-stroke,#3f7a4c)">return</text>
+
+  <!-- the library shelf -->
+  <text x="684" y="452" font-size="17" font-weight="600" fill="var(--ink,#1a1a1a)">a library of specialists · 0 tokens until dispatched</text>
+  <g>
+    <rect x="700" y="466" width="92" height="74" rx="8" fill="#e8e6df" stroke="var(--primary,#002452)" stroke-width="2.5"/>
+    <text x="746" y="508" font-size="14" font-weight="700" fill="var(--primary,#002452)" text-anchor="middle">htst</text>
+    <rect x="804" y="466" width="92" height="74" rx="8" fill="#e8e6df" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+    <text x="850" y="508" font-size="14" fill="var(--muted,#5a5650)" text-anchor="middle">core</text>
+    <rect x="908" y="466" width="92" height="74" rx="8" fill="#e8e6df" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+    <text x="954" y="508" font-size="14" fill="var(--muted,#5a5650)" text-anchor="middle">basins</text>
+    <rect x="1012" y="466" width="92" height="74" rx="8" fill="#e8e6df" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+    <text x="1058" y="500" font-size="13" fill="var(--muted,#5a5650)" text-anchor="middle">mpi</text>
+    <rect x="1116" y="466" width="84" height="74" rx="8" fill="#e8e6df" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+    <text x="1158" y="500" font-size="20" fill="var(--muted,#5a5650)" text-anchor="middle">...</text>
+  </g>
+  <text x="684" y="566" font-size="15" fill="var(--muted,#5a5650)">none of these is in the prompt until you call it</text>
+
+  <!-- ===== CAPTION STRIP ===== -->
+  <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#002452)"/>
+  <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#B90E31)"/>
+  <text x="92" y="660" font-size="22" font-weight="700" fill="#ffffff">Lever order: a one-paragraph rule, then a dispatched sub-agent, and only last a new always-on skill.</text>
+  <text x="92" y="683" font-size="20" fill="var(--neutral,#f3f1ea)">Keep the always-on trigger surface small; pay for capability only when you use it.</text>
+</svg>
