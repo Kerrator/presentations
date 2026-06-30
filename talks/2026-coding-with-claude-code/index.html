@@ -428,6 +428,150 @@ if nu0_coverage &lt; 1.0:
           </section>
         </section>
 
+        <!-- ================= The toolchain · the skills that run the loop ================= -->
+        <section>
+          <section>
+            <p class="kicker">The toolchain · the skills that run the loop · ~6 min</p>
+            <h2>The kit that runs the loop, and the kit I leave off</h2>
+            <div class="spine">
+            <ul>
+              <li class="fragment">The method is the abstract part; this is the concrete kit that runs it</li>
+              <li class="fragment">About a dozen skills carry the whole loop; most of what's installed I never trigger</li>
+              <li class="fragment">A skill is a reusable, always-on capability: it costs trigger surface every turn</li>
+              <li class="fragment">So the real question is when to make a skill, and when to reach for an agent, a rule, or a hook</li>
+              <li class="fragment">And: I pick what to install by evidence, then audit it before I trust it</li>
+            </ul>
+            </div>
+            <aside class="notes">You have seen the seven-phase method and the constraint theory under it. This short section grounds all of it in the concrete kit I actually run, and, just as important, names what I deliberately leave off. The headline number: roughly a dozen skills carry the entire loop, while the machine has well over a hundred skills installed, most of which I never trigger. That gap matters, because a skill is not free. A skill is a reusable capability whose always-on description the model reads every single turn: that is its trigger surface, and it competes for the same smart-zone attention the physics needs. So the interesting question is not which skills exist, it is when something earns being a skill at all, versus when it should be a dispatched agent, a one-line rule, or an enforced hook. Two things the phase map never showed sit underneath everything: how I decide what to install in the first place, and how the config is wired so the same kit reaches every worktree on every machine. Those are the genuinely new ideas here; the rest is the loop you already know, with its tools named. One framing for the whole section: I am not just listing my skills, I am showing the shape of a kit you could build, in a sanitized version of mine.</aside>
+          </section>
+          <section>
+            <p class="kicker">the picture</p>
+            <h3>The skills, mapped onto the seven-phase loop</h3>
+            <img class="fig wide" src="assets/skills_on_loop.svg" alt="The seven-phase loop with the skill that runs each phase: grilling at Idea, to-prd at PRD, to-issues and triage at Kanban, tdd and the Ralph loop at Execution, a physics gate at QA; Research and Prototype are conditional. A green return arrow from QA to Kanban reads failures become new tickets. A faded seam notes dispatched sub-agents are a separate layer off the trigger surface. Three full-width bars underneath read handoff, config and adoption: the layers the phase map never shows." />
+            <aside class="notes">Read this the way you read the seven-phase figure earlier, because it is the same loop. Each phase now carries the skill that runs it. Idea is where grilling lives, interrogating the design before any compute is spent; PRD is to-prd, turning the converged understanding into a study spec. Kanban is to-issues, which slices the spec into thin vertical tickets, and triage, which moves them through their states. Execution is tdd plus the Ralph loop you already run as run_overnight.sh under nohup. QA is not a skill at all, it is a runnable physics gate, the same point as the Phase 6 done-predicate slide: a green suite is not a pass. Research and Prototype stay conditional, with no dedicated skill. The faded dashed box is deliberate: dispatched sub-agents attach to this loop too, but they are off the trigger surface and they are a layer of their own, which I am treating as a separate piece of the talk, so the figure leaves them as a labelled seam rather than filling them in. The three bars underneath are the part the phase map hides. Handoff spans every phase, because a campaign that fans out across many fresh agents needs a courier doc. Config is the foundation everything rests on: one source-of-truth contract, wired into every worktree. And adoption sits under all of it, because it decides which skills are even on the machine.</aside>
+          </section>
+          <section>
+            <h3>Skill, agent, MCP, hook: when to use which</h3>
+            <ul>
+              <li class="fragment">Durable fact the agent must always know: a rule in AGENTS.md, not a skill</li>
+              <li class="fragment">Repeatable procedure you invoke often: a skill (it earns its trigger surface)</li>
+              <li class="fragment">Occasional, isolated, context-heavy pipeline: a dispatched sub-agent (zero standing cost)</li>
+              <li class="fragment">Hard invariant that must never break: a hook or CI (enforced, not suggested)</li>
+              <li class="fragment">MCP is a tool or data connector, not a procedure: it gives the agent a new capability</li>
+            </ul>
+            <p class="anchor">grilling is a skill (daily, every project). pyKMC engine internals are a dispatched agent (occasional, heavy context). 'No AI attribution on commits' is a rule in CLAUDE.md. 'Checks pass before push' is a hook. Same kind of need, four different homes.</p>
+            <aside class="notes">This is the groundwork slide, the one I most want you to take home, because the choice of mechanism is where most people go wrong: they make everything a skill. Four mechanisms, one decision rule. If something is a durable fact the agent must always know, the species are per-picosecond not hertz, push and never copy, it belongs as a one-paragraph rule in AGENTS.md, the contract the agent reads at the start of every session. If it is a repeatable, multi-step procedure you invoke often, then it earns being a skill, and pays its trigger surface honestly. If it is an occasional, isolated, or context-heavy pipeline, the right home is a dispatched sub-agent: it has zero standing cost because it loads only when you call it, and it runs in its own context window. If it is a hard invariant that must never be violated, it should be a hook or a CI check, enforced rather than politely suggested. And MCP is none of these: it is a connector that hands the agent a new tool or data source, not a procedure. The anchor makes it concrete: grilling is a skill because I use it daily on every project; the pyKMC engine internals are a dispatched agent because they are heavy and only sometimes relevant; no AI attribution on my commits is a rule in CLAUDE.md; the checks pass before you push is a hook. Same kind of need, four different correct homes. This distinction is exactly the groundwork the agents story builds on.</aside>
+          </section>
+          <section>
+            <h3>I choose what to install by evidence, then audit it before I trust it</h3>
+            <ul>
+              <li class="fragment">prompt-idea-scout: triage a candidate (adopt, watch, or reject) and keep a Watch queue</li>
+              <li class="fragment">Popularity is not corroboration is not safety: a viral 'top-10 skills' list had inflated stars, dead links, one fabricated repo</li>
+              <li class="fragment">skill-injection-audit: sweep installed skills for injection, exfiltration, hidden payloads, over-broad triggers</li>
+              <li class="fragment">A real sweep: 47 scanners, 46 clean, 1 to monitor, 0 unreadable, before adopting the engineering pack</li>
+              <li class="fragment">I run superpowers, and I actively govern its '1% chance, you MUST invoke' over-triggering</li>
+            </ul>
+            <p class="anchor">Adoption gate: scout to a Watch queue, then a security-intake checklist, then a benchmark (bare agent vs +instructions vs +candidate), then adopt. The audit report is committed beside the skills.</p>
+            <aside class="notes">Here is the layer under everything: how a skill gets onto the machine at all, because an installed skill runs with my permissions and reads my files, so this is a security decision, not a convenience one. The front door is a scout step: given a repo, a blog claim, or a top-skills list, I triage it to adopt, watch, or reject, and most things land in a Watch queue rather than getting installed. The reason for the discipline is a real example: a viral top-ten Claude-skills list, when I fact-checked it, had inflated star counts, dead or redirecting links, and one repo that did not exist. Popularity is not corroboration, and corroboration is not safety. Before I trust anything that does get installed, I run an injection audit across it: a sweep for prompt injection, data exfiltration, hidden payloads, dangerous auto-run, attribution injection, and over-broad triggers. On the engineering pack I adopted, that was 47 scanners, and the result, 46 clean, 1 to keep an eye on, 0 I could not read, is recorded in an audit report committed next to the skills. And the honest nuance: I do run a third-party meta-skill pack, superpowers, but I actively rein in its instruction that a one-percent chance a skill might apply means I must invoke it, because left alone that over-triggers and floods the smart zone. Using a tool and governing it are not in tension; they are the same discipline.</aside>
+          </section>
+          <section>
+            <h3>One config, one source of truth, wired into every worktree</h3>
+            <ul>
+              <li class="fragment">AGENTS.md is the portable centre; CLAUDE.md does @AGENTS.md and adds only Claude-specifics</li>
+              <li class="fragment">Keep the contracts thin (under ~150 lines); procedures live in skills, not the contract</li>
+              <li class="fragment">One private source-of-truth repo holds the real per-project config; worktrees hold symlinks</li>
+              <li class="fragment">A post-checkout git hook auto-wires every new worktree: zero-touch</li>
+              <li class="fragment">Personal config stays private; only project assets go public (this deck included)</li>
+            </ul>
+            <p class="anchor">A setup script symlinks AGENTS.md, CLAUDE.md, and .claude/{skills,agents} into a worktree and hides the links via .git/info/exclude; the post-checkout hook re-runs it on every git worktree add.</p>
+            <aside class="notes">Last layer: once you have a kit you trust, it has to reach the place you are actually working, and for me that is dozens of git worktrees across more than one machine. The architecture is one I keep coming back to. The contract is split: AGENTS.md is the portable, tool-neutral centre, what the project is, its invariants, its working rules, and CLAUDE.md simply imports it with an at-AGENTS.md line and adds only the Claude-specific authoring detail. Both stay deliberately thin, under about 150 lines, because a bloated contract is just more dumb-zone filler; anything procedural moves out into a skill. The real per-project files live once, in a single private source-of-truth repo, and every worktree holds symlinks back to that one canonical copy, so editing through any worktree edits the original and nothing drifts. A post-checkout git hook re-runs the wiring whenever I add a worktree, so a fresh checkout populates its own config with zero extra commands. The links are hidden from the host project's git through its exclude file, never a committed gitignore, so a public repo never accidentally tracks my private layer. That last rule is what lets me show you any of this: personal config stays in the private layer, only project assets are public, and this deck, on a public Pages site, is itself an instance of that boundary. If you build one thing from this slide, build the AGENTS.md and CLAUDE.md split: it is the portable centre everything else hangs off.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · grilling → handoff</p>
+            <h3>Grill a new feature into a plan, then hand it off to build</h3>
+            <ul>
+              <li class="fragment">grill-me or grill-with-docs: invoke it deliberately on a new feature, or a new research aim</li>
+              <li class="fragment">One question at a time, recommend an answer, explore the code instead of asking</li>
+              <li class="fragment">grill-with-docs records each decision as an ADR as the session runs: the plan writes itself</li>
+              <li class="fragment">The output is a written plan, not vibes: the destination, the decisions, what was deferred</li>
+              <li class="fragment">handoff then carries that plan to a fresh agent or the Ralph loop: point, do not copy</li>
+            </ul>
+            <p class="anchor">This section is the worked example: grill-with-docs interrogated audience, slot, size, scope, and the public/private line, one question at a time; nine decisions became ADRs; that plan is what a fresh agent builds from.</p>
+            <aside class="notes">This is the pair I lean on most, shown as one chain, and it is the chain that built the slide you are looking at. The front of it is grilling, and the variant matters: the plain skill auto-triggers, but I deliberately invoke grill-me, or grill-with-docs, when I want to plan a new feature or a new research aim. The mechanic is strict: the agent interviews me one question at a time, recommends an answer to each, and walks down every branch of the design tree, resolving dependencies in order, instead of emitting a confident plan immediately. When a question can be settled from the code, it reads the code rather than asking, so my attention is spent only on real decisions. Brooks is the why: when two parties build together what they share is a design concept, and the failure is that the two concepts silently diverge; the grill converges mine and the agent's before either of us spends compute, and for research the divergence is almost always in the method, not the code. The output is the point: a written plan, not a vibe, naming the destination, the decisions taken, and what was deferred. grill-with-docs goes one step further and records each decision as an ADR while the interview runs, so the plan is a byproduct of the conversation rather than a separate writing task. Then handoff, the skill from the previous section, carries that plan to a fresh agent or into the Ralph loop, by pointer not by copy, so a clean context executes against the decisions without inheriting the planning chatter. The honest proof is this section: it was grilled into nine decisions recorded as ADRs, and those ADRs are exactly what a fresh agent would build the slides from.</aside>
+          </section>
+          <section>
+            <p class="kicker">the code · anatomy of a skill</p>
+            <h3>What a skill is, in nine lines</h3>
+            <pre><code class="language-yaml" data-trim data-line-numbers="3-5">
+---
+name: grilling
+description: Interview the user relentlessly about a plan
+  or design. Use when stress-testing a plan before
+  building, or on any 'grill' trigger phrase.
+---
+
+Ask one question at a time. Recommend an answer to each.
+If a question can be answered from the codebase, explore
+it instead of asking. Continue until shared understanding.
+            </code></pre>
+            <aside class="notes">This is a whole skill, sanitized but real in shape. Two things matter. First, it is tiny: a skill is just a markdown file with a few lines of frontmatter and a short body of instructions, not a program. Second, and this is the lesson, look at the description. The description is not a summary of what the skill does; it is a statement of when to use it. That is the single most common mistake in skill authoring, writing this skill interviews the user instead of use this when stress-testing a plan before building. The model reads that description every turn to decide whether to trigger, so a when-description triggers correctly and a what-description either misfires or never fires. The body is the actual procedure. Keep both short: every word in the frontmatter is paid for on the trigger surface, every turn, forever.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · adoption &amp; security</p>
+            <h3>Adoption is evidence-gated; trust is audited</h3>
+            <ul>
+              <li class="fragment">Watch queue: a candidate waits until something corroborates it; it is not installed on hype</li>
+              <li class="fragment">Security-intake checklist: paid keys, global hooks, browser or cookie access, telemetry, manifest fragility</li>
+              <li class="fragment">Benchmark gate: bare agent vs +instructions vs +candidate, before a pack is adopted</li>
+              <li class="fragment">Audit dimensions: injection, exfiltration, hidden payloads, dangerous auto-run, attribution injection, over-broad triggers</li>
+              <li class="fragment">An installed skill runs with your permissions and reads your files: treat adoption as a supply-chain decision</li>
+            </ul>
+            <p class="anchor">The 'top-10 skills' dossier is the worked example: corrected star counts, flagged dead or redirecting URLs, caught one fabricated repo, and tagged each candidate's install caveats before anything was trusted.</p>
+            <aside class="notes">The deeper version of the adoption layer, because for a scientific-computing audience the supply-chain risk is the part worth dwelling on. An installed skill is not a passive document: it runs with my permissions, it can read my files, and a malicious or careless one can exfiltrate or quietly rewrite. So adoption is gated. New candidates go to a Watch queue and sit there until something independent corroborates the claim; nothing is installed because it trended. Anything that clears the queue goes through a security-intake checklist that asks the awkward questions: does it need a paid API key, does it install global hooks, does it want browser or cookie access, does it phone home, is its manifest fragile. If it is a capability pack, it also has to beat a benchmark: the bare agent, versus the agent plus a one-paragraph instruction, versus the agent plus the candidate, so I adopt only when the candidate actually earns its keep over the cheaper option. And the injection audit reads the installed files for prompt injection, data exfiltration, hidden payloads, dangerous auto-run, attribution injection, and over-broad triggers. The worked example is that top-ten list: the dossier corrected the inflated star counts, flagged the dead and redirecting links, caught the one fabricated repo, and tagged each survivor with its real install caveats. The point for you: treat adopting an agent skill exactly like adding a dependency to a published package, because that is what it is.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · config</p>
+            <h3>One config, symlinked into every worktree (build your own)</h3>
+            <ul>
+              <li class="fragment">Source of truth: one private repo mirrors each project root (AGENTS.md, CLAUDE.md, .claude/)</li>
+              <li class="fragment">Distribution: symlinks, never copies, so editing anywhere edits the one canonical file</li>
+              <li class="fragment">Hidden from the host repo via .git/info/exclude, never a committed .gitignore</li>
+              <li class="fragment">post-checkout hook re-runs the wiring on every git worktree add: zero-touch</li>
+              <li class="fragment">Decision rule, again: durable fact to AGENTS.md, procedure to a skill, pipeline to an agent, invariant to a hook</li>
+            </ul>
+            <p class="anchor">The pattern generalizes: you do not need my repo, you need the split (AGENTS.md as the portable centre) and a small wiring script. The hook just makes new worktrees self-populate.</p>
+            <aside class="notes">The deeper version of the config layer, framed as something you can build, not something only I have. The source of truth is one private repo whose folders mirror each real project root, holding the actual AGENTS.md, CLAUDE.md, and the dot-claude skills and agents. Distribution is by symlink, never by copy, which is the load-bearing choice: a symlink means editing the file through any worktree edits the single canonical copy, so nothing ever drifts out of sync across machines. The links are hidden from each host repo through its git exclude file rather than a committed gitignore, so a shared or public project never tracks my personal layer. A post-checkout git hook re-runs the wiring script on every git worktree add, so a brand-new worktree populates itself with no extra commands. And the decision rule from the spine slide is what decides what goes where: a durable fact becomes a rule in AGENTS.md, a repeatable procedure becomes a skill, an occasional heavy pipeline becomes a dispatched agent, and a hard invariant becomes a hook. You do not need to copy my repository; you need the split and a one-line wiring script.</aside>
+          </section>
+          <section>
+            <p class="kicker">the code · a thin CLAUDE.md</p>
+            <h3>The split, as a template you can copy</h3>
+            <pre><code class="language-markdown" data-trim data-line-numbers="3">
+# CLAUDE.md (the Claude adapter)
+
+@AGENTS.md
+
+## Claude-specific notes
+- Model: Opus by default; a cheaper model only for
+  pure transcription tasks.
+- Procedures live in skills, not here. Keep this short.
+</code></pre>
+            <aside class="notes">The whole architecture, as a template you could paste into any repository today. The portable contract, AGENTS.md, holds everything tool-neutral: what the project is, its invariants, its working rules. This file, CLAUDE.md, is the Claude adapter, and its first real line is the import, at-AGENTS.md, which pulls the entire portable contract in. Everything below the import is only the part that is specific to Claude Code: a model-selection note, a reminder that procedures belong in skills rather than here, and not much else. The reason to keep it this thin is the same dumb-zone argument as the rest of the talk: the contract is read at the top of every session, so every line you add is read forever, and a bloated CLAUDE.md spends attention you wanted for the physics. If a tool other than Claude reads the repo, it reads the same AGENTS.md and ignores this adapter. One portable centre, many thin adapters.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · trigger surface</p>
+            <h3>When NOT to make a skill: the trigger-surface cost</h3>
+            <ul>
+              <li class="fragment">Every always-on skill description is read every turn: it competes for smart-zone attention</li>
+              <li class="fragment">A description is a trigger ('use when ...'), not a summary ('this does ...')</li>
+              <li class="fragment">Too many skills, or over-broad ones, and the model misfires or drowns</li>
+              <li class="fragment">Prefer a one-paragraph rule, or a dispatched agent, over a new always-on skill</li>
+              <li class="fragment">superpowers' '1% chance, you MUST invoke' is exactly the over-trigger to govern</li>
+            </ul>
+            <p class="anchor">The dumb-zone argument applies to your own tooling: a skill you rarely use still spends attention every turn it is not used. Off the trigger surface (a dispatched agent) costs nothing until called.</p>
+            <aside class="notes">This is the deeper why behind the taxonomy slide, and it connects straight back to the foundations. Every skill you install carries an always-on description, and the model reads all of those descriptions every single turn to decide what might apply. That is the trigger surface, and it is not free: it is exactly the smart-zone attention the constraint-theory section said is scarce, so a wall of skills is self-inflicted dumb zone. Two consequences. First, the description is a trigger, not a summary: write use this when stress-testing a plan, not this skill interviews the user, because the model matches on when. Second, and this is the when-not-to rule, most candidate skills should not be skills: if it is a durable fact, make it a one-paragraph rule in the contract, which is read once at session start, not re-evaluated every turn; if it is an occasional heavy pipeline, make it a dispatched agent, which sits off the trigger surface and costs nothing until you call it. The worked example is the one I named earlier: the superpowers pack ships an instruction that a one-percent chance a skill might apply means you must invoke it, which is the textbook over-trigger, and governing it down is how you keep the surface honest. The rule of thumb: a skill you rarely use still taxes you every turn it sits unused, so the bar for an always-on skill is high.</aside>
+          </section>
+        </section>
+
         <!-- ================= Practice & honest limits · clusters, reproducibility, failure modes, objections ================= -->
         <section>
           <section>
