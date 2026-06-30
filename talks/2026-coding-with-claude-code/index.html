@@ -398,6 +398,147 @@ if nu0_coverage &lt; 1.0:
           </section>
         </section>
 
+        <!-- ================= Agents · dispatch a specialist, pay nothing until you call it ================= -->
+        <section>
+          <section>
+            <p class="kicker">Agents · dispatch a specialist · ~7 min</p>
+            <h2>When the dumb loop isn't the answer: dispatch a fenced specialist</h2>
+            <div class="spine">
+            <ul>
+              <li class="fragment">Ralph wins the unbounded grind; bounded, owned work wants a specialist</li>
+              <li class="fragment">A sub-agent runs in its own clean context, then returns a compressed verdict</li>
+              <li class="fragment">First the taxonomy: skill vs sub-agent vs MCP vs slash-command vs hook</li>
+              <li class="fragment">The economics: a skill is an always-on tax; a sub-agent costs zero until called</li>
+              <li class="fragment">My real roster: a specialist per subsystem, fenced by what it must NOT touch</li>
+            </ul>
+            </div>
+            <aside class="notes">Phase 6 left you with Ralph: a dumb loop that beats heavyweight orchestration for the long execution grind. But not all work is that grind. When a task is bounded and belongs to one subsystem, you don't want the generalist loop chewing through your whole context, you want a specialist with a clean window and a fence around what it may touch. That is a sub-agent, and this short section is about when to reach for one, what it costs, and how I actually wire mine. The order: first a taxonomy, because the words skill, sub-agent, MCP server, slash-command and hook get used interchangeably and they are not the same thing; then the one economic fact that decides everything, the trigger surface; then the dispatch-by-ownership discipline and the real roster from my two engines; then one agent in full, the model policy I set on every dispatch, and the honest failure mode. The thesis in one line: a skill you install is a standing tax on every session, a sub-agent you can dispatch is free until you call it, so push capability down into dispatched specialists and keep the always-on surface small.</aside>
+          </section>
+
+          <section>
+            <p class="kicker">reference · the layers</p>
+            <h3>Five ways to extend the agent, and what each costs</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:17%"/><col style="width:42%"/><col style="width:41%"/></colgroup>
+              <thead><tr><th>layer</th><th>what it is</th><th>when it fires / what it costs</th></tr></thead>
+              <tbody>
+                <tr><td>Skill</td><td>A reusable, auto-triggering capability (a runbook the model invokes when its description matches).</td><td>Always-on: its description rides every session whether used or not. The trigger surface (grilling, tdd).</td></tr>
+                <tr><td>Sub-agent</td><td>A scoped specialist you dispatch for one task, with its own fresh context.</td><td>Zero until you call it; then it runs in a separate budget and returns a compressed result (pykmc-htst).</td></tr>
+                <tr><td>MCP server</td><td>A connection exposing external tools or data to the agent.</td><td>A standing surface like a skill: its tool schemas load into context while it is connected.</td></tr>
+                <tr><td>Slash-command</td><td>A user-typed shortcut that injects a prompt or procedure on demand.</td><td>Zero standing cost: nothing is in the prompt until you type it.</td></tr>
+                <tr><td>Hook</td><td>A deterministic rule the harness fires on an event, with no model judgment.</td><td>Costs nothing in context and always fires: use it when a rule must be guaranteed (post-checkout worktree wiring).</td></tr>
+              </tbody>
+            </table>
+            <aside class="notes">Five layers, and the distinction is not pedantry, it is the whole cost model. A skill is an auto-triggering runbook: you install it and its description is loaded into every session so the model can decide to fire it; that description is the cost, paid whether or not you use it. A sub-agent is a specialist you dispatch by hand for one bounded task; it gets a fresh context, does the work, and returns a compressed answer, and crucially it costs nothing until you call it. An MCP server is a connection that exposes external tools or data, and it behaves like a skill for budget purposes: while it is connected its tool schemas sit in your context. A slash-command is a shortcut you type that injects a prompt on demand, so it has no standing cost. And a hook is the deterministic one: the harness fires it on an event with no model judgment at all, which is exactly why you reach for a hook, not prose, when a rule must always fire, my post-checkout hook auto-wires every new worktree and the host repo never sees it. Hold the contrast between the always-on layers (skills, MCP) and the called-on-demand layers (sub-agents, slash-commands, hooks); the next slide is about why that contrast matters.</aside>
+          </section>
+
+          <section>
+            <h3>Trigger surface: a skill taxes every session; a sub-agent is free until called</h3>
+            <ul>
+              <li class="fragment">Every installed skill's description is loaded every session, used or not</li>
+              <li class="fragment">A crowded trigger surface makes the agent reach for tools it shouldn't</li>
+              <li class="fragment">A sub-agent's description costs nothing until you dispatch it</li>
+              <li class="fragment">Dispatched work runs in its own budget, then returns a compressed result</li>
+              <li class="fragment">Lever order: a one-paragraph rule, then a sub-agent, and only last a new always-on skill</li>
+            </ul>
+            <p class="anchor">My nine domain agents are kept as dispatched sub-agents, not skills, precisely so their descriptions don't ride every session. The same instinct as 'feed a summary contract plus a file path, never the dump': pay for capability when you use it, not all day.</p>
+            <aside class="notes">Here is the one economic fact that drives the whole section. Everything you install as a skill carries an always-on description, and that description is in the prompt every single session, whether or not the skill ever fires. So a big skill library is not free convenience; it is a standing tax on your context budget, and worse, a crowded trigger surface actively degrades behaviour, because the more capabilities are advertised the more the agent reaches for one it did not need. A sub-agent inverts that. Its description costs nothing until you dispatch it; when you do, it runs in its own separate budget, does the disposable work, and hands back a compressed result, the same move as the handoff round trip from the last section. That gives you a clean lever order whenever you are tempted to add a capability: first ask whether a one-paragraph rule in your contract file will do, because instruction text is the cheapest and outranks plugin descriptions; if not, prefer a dispatched sub-agent, which is free until called; and only as a last resort add a new always-on skill that every future session will pay for. Concretely, I keep my nine domain agents as dispatched sub-agents rather than skills for exactly this reason: I want their capability available on demand without their descriptions sitting in every session I ever run.</aside>
+          </section>
+
+          <section>
+            <p class="kicker">the picture</p>
+            <h3>Trigger surface: a skill taxes every session; a sub-agent is free until called</h3>
+            <img class="fig wide" src="assets/trigger_surface.svg" alt="Two panels: on the left, skill descriptions stack into every session's context as an always-on trigger-surface tax that eats the usable budget; on the right, a shelf of sub-agents costs zero tokens until one (pykmc-htst) is dispatched into its own clean budget and returns a roughly 30-token verdict." />
+            <aside class="notes">The same idea in one picture. On the left, one session's context budget: every installed skill's description is stacked in at the top, the red band, and it is there every session whether or not you use it, so the usable budget below shrinks with every skill you add, and the trigger surface grows. On the right, the sub-agent model: a shelf of specialists that are not in your prompt at all until you call one; dispatch pykmc-htst and it spins up its own clean budget, does the work behind a fence, and returns a tiny compressed verdict, roughly thirty tokens, not the thirty thousand it read to get there. The caption is the rule to take home: a one-paragraph rule first, then a dispatched sub-agent, and only last a new always-on skill.</aside>
+          </section>
+
+          <section>
+            <h3>Dispatch by ownership: route by what the work owns, not by which file is named</h3>
+            <ul>
+              <li class="fragment">One sub-agent per subsystem; its description says what it owns AND what it must NOT touch</li>
+              <li class="fragment">Route by the work's product or domain, not by a filename that happens to appear</li>
+              <li class="fragment">The NOT-clause is the reliability mechanism: a fenced agent stays in its lane</li>
+              <li class="fragment">pyKMC (off-lattice): core / htst / basins / enginemanager-mpi</li>
+              <li class="fragment">pylatkmc (on-lattice): codegen-runtime / ingest-htst-bridge / cross-engine-validation</li>
+            </ul>
+            <p class="anchor">A real NOT-clause, from pykmc-core's description: 'Not for HTST Hessian internals, basin escape, or the MPI session pool.' The workspace root carries a domain-ownership table mapping each intent to the one agent that owns it, so dispatch is a lookup, not a guess.</p>
+            <aside class="notes">If a sub-agent is free until called, the design question becomes: how do you carve the work into agents? The discipline I use is dispatch by ownership. You write one sub-agent per subsystem, and its description does two jobs: it says what the agent is for, and, just as importantly, what it must NOT touch. You then route a task by what the work produces or which subsystem it belongs to, not by which filename happens to be mentioned in the request, because filenames are a shortcut that sends the agent wandering across boundaries. The NOT-clause is the part that makes this reliable: a sub-agent fenced out of the neighbouring subsystem stays in its lane instead of helpfully refactoring code it does not own. Off-lattice pyKMC decomposes into four owners: the core loop, the HTST prefactors, the basin acceleration, and the MPI engine pool. On-lattice pylatkmc has three: the codegen and runtime, the catalogue and ingest, and the cross-engine validation. At the workspace root there is a domain-ownership table that maps each kind of intent to the single agent that owns it, so when a task comes in, choosing the agent is a table lookup rather than a judgment call, and that determinism is the point.</aside>
+          </section>
+
+          <section>
+            <p class="kicker">reference · the roster · 1 of 2</p>
+            <h3>The roster: off-lattice pyKMC, four fenced owners</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:26%"/><col style="width:40%"/><col style="width:34%"/></colgroup>
+              <thead><tr><th>sub-agent</th><th>owns</th><th>must NOT touch</th></tr></thead>
+              <tbody>
+                <tr><td>pykmc-core</td><td>The main KMC loop, environment classification (CNA + nauty hash), the event catalogue + IRA dedup, pARTn search, BKL selection, reconstruction.</td><td>HTST Hessian internals, basin escape, the MPI pool.</td></tr>
+                <tr><td>pykmc-htst</td><td>Vineyard attempt frequency &#957;&#8320;, normal-mode analysis, the Hz&#8594;ps&#8315;&#185; prefactor boundary, eskm vs FD Hessian.</td><td>The main loop, basins, the MPI pool.</td></tr>
+                <tr><td>pykmc-basins</td><td>Super-basin detection, the state-connectivity table, absorbing-Markov exit times (FPTA). Experimental.</td><td>Rate internals, codegen.</td></tr>
+                <tr><td>pykmc-enginemanager-mpi</td><td>The pool of parallel LAMMPS instances, MPI rank/communicator splitting, sessions, deadlock diagnosis.</td><td>Physics and rate numerics.</td></tr>
+              </tbody>
+            </table>
+            <p class="anchor">A real NOT-clause, from pykmc-core's description: 'Not for HTST Hessian internals, basin escape, or the MPI session pool.' Every row's third column is a fence, not an afterthought: that is what keeps a dispatched agent in its lane.</p>
+            <aside class="notes">This is the actual roster checked into my off-lattice engine, and the shape is the lesson, not the names. pyKMC has four fenced owners. pykmc-core owns the per-step machinery: the main loop, environment classification by common-neighbour analysis and a nauty graph hash, the reference event catalogue and its IRA de-duplication, pARTn saddle search, rejection-free selection, reconstruction, and it is fenced out of the HTST internals, the basins, and the MPI pool. pykmc-htst owns the Vineyard prefactor and the units boundary, and is fenced out of the loop, the agent you just met. pykmc-basins owns the experimental super-basin acceleration, and I label it experimental on purpose because it is validated only on simple flat slabs, never on grain boundaries or ternary alloys. pykmc-enginemanager-mpi owns the parallel LAMMPS pool and the MPI plumbing, deadlocks, rank splitting, and it is fenced out of the physics. Notice every single row has a NOT column; that is the discipline, not an afterthought. The on-lattice engine and the research agents are on the next slide.</aside>
+          </section>
+
+          <section>
+            <p class="kicker">reference · the roster · 2 of 2</p>
+            <h3>The roster: on-lattice pylatkmc, and the research agents</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:26%"/><col style="width:40%"/><col style="width:34%"/></colgroup>
+              <thead><tr><th>sub-agent</th><th>owns</th><th>must NOT touch</th></tr></thead>
+              <tbody>
+                <tr><td>engine-codegen-runtime</td><td>pylatkmc: the spec&#8594;proclist codegen and the C+MPI runtime; Python&#8596;C enum sync.</td><td>The catalogue / &#957;&#8320;, MSD validation.</td></tr>
+                <tr><td>ingest-htst-bridge</td><td>pylatkmc: the curated FCC rate catalogue, HTST prefactors, FAMILY_REGISTRY, &#957;&#8320; recovery.</td><td>Codegen, the runtime.</td></tr>
+                <tr><td>cross-engine-validation</td><td>pylatkmc: MSD / diffusivity / Arrhenius cross-checks vs pyKMC, the regression gate.</td><td>Codegen, catalogue building.</td></tr>
+              </tbody>
+            </table>
+            <p class="anchor">Plus research-output agents kept out of the engine's way: atomsk and periodic_system_generator (structures / slabs), KMC Analysis (notebooks, MSD / basin stats), event_viewer (Dash audit UI), classify_lattice_events, blender_viewer (animations), schematic_viewer (diagrams).</p>
+            <aside class="notes">On-lattice pylatkmc has three fenced owners, each kept out of the other two: codegen-and-runtime owns the spec-to-proclist code generation and the C-plus-MPI runtime; ingest-htst-bridge owns the curated FCC rate catalogue and the prefactors; cross-engine-validation owns the comparison against the off-lattice reference. And below the engine agents are the research-output agents, deliberately separate so a request to make a figure or a structure never reaches into engine code: atomsk and the periodic system generator build slabs and alloys, the analysis agent builds notebooks and MSD or basin statistics, the event viewer is a Dash audit UI, plus the event classifier, the Blender renderer, and the schematic renderer. That is roughly a dozen dispatched specialists, none of them an always-on skill, none of them in any session until I call it. If time is short on the day, the two roster slides collapse to just the pyKMC four, or to the single deep-dive that follows.</aside>
+          </section>
+
+          <section>
+            <h3>One agent in full: pykmc-htst, and the gun it loads</h3>
+            <ul>
+              <li class="fragment">Owns the Vineyard attempt frequency &#957;&#8320; and the normal-mode analysis</li>
+              <li class="fragment">Load-bearing invariant: &#957;&#8320; is produced in Hz, converted to ps&#8315;&#185; exactly once, at the backend boundary</li>
+              <li class="fragment">Pinned by a test: tests/htst/test_rate_units_boundary.py (red by 10&#185;&#178; if the conversion is dropped)</li>
+              <li class="fragment">Fenced: not the main loop, not basins, not the MPI pool</li>
+              <li class="fragment">This is the agent whose one rule becomes the bug that lands the talk (Phase 7)</li>
+            </ul>
+            <p class="anchor">pykmc-htst's contract: '&#957;&#8320; produced in Hz (linear frequency); convert to ps&#8315;&#185; exactly once at the backend boundary via hz_to_per_ps().' The same boundary the units bug crossed unconverted. The agent's whole job is to defend it.</p>
+            <aside class="notes">Let me make one agent concrete, and pick the one that loads the talk's final gun. pykmc-htst owns the harmonic-TST prefactor: the Vineyard attempt frequency, the normal-mode analysis from a mass-weighted Hessian, the choice between the eskm and finite-difference Hessian, and one load-bearing invariant. The invariant is the whole point: the Vineyard formula produces nu-zero as a linear frequency in hertz, but the KMC clock and the rate layer consume it in per-picosecond, so the conversion from hertz to per-picosecond must happen exactly once, at the backend boundary, through a single function, hz_to_per_ps. The agent's description pins that convention in words, and a test, test_rate_units_boundary, pins it in code: drive a known prefactor through the real backend and it is red by a factor of ten-to-the-twelfth if the conversion is ever dropped. And the agent is fenced: it owns the prefactor and nothing else, not the main loop, not basins, not the MPI pool. I am showing you this agent on purpose, because its single invariant is exactly the boundary that the units bug crossed unconverted, the bug that is the climax of this whole talk in two slides' time. The agent exists to stand guard at that boundary. Keep it in mind: when QA fails in Phase 7, this is the agent whose contract it violated.</aside>
+          </section>
+
+          <section>
+            <h3>Set the model on every dispatch; bias up, not down</h3>
+            <ul>
+              <li class="fragment">Omitting the model silently inherits the session model: a dangerous default</li>
+              <li class="fragment">So set it explicitly on every Task / Agent / Workflow dispatch</li>
+              <li class="fragment">Simplest mechanical work (transcription, one-file edits): Sonnet at effort: max</li>
+              <li class="fragment">Anything with judgment (design, integration, debugging, verification, review): Opus</li>
+              <li class="fragment">Bias up toward Opus: the cost of a wrong number dwarfs the token cost</li>
+            </ul>
+            <p class="anchor">From the kmc umbrella CLAUDE.md model-selection policy. A dispatched sub-agent inherits nothing from your judgment except what you put in its contract; the model it runs on is part of that contract, so name it.</p>
+            <aside class="notes">One operational rule that rides on top of dispatching: choose the model deliberately, every time. The trap is that if you dispatch a sub-agent or a workflow step and do not name a model, it silently inherits whatever the parent session is on, which is a default you did not choose and will not notice. So my umbrella policy is to set the model explicitly on every Task, Agent, and Workflow dispatch. The split is simple: the simplest mechanical work, pure transcription, a single-file mechanical edit, goes to Sonnet at maximum effort, because it is cheaper and fast and the task has no judgment in it; everything else, anything involving design, integration, multi-file changes, debugging, hardening, verification, or code review, goes to Opus. And the bias is deliberately upward, toward Opus, not down, because in our world the cost of a confidently-wrong number is enormous and the token cost of the better model is trivial by comparison. A dispatched agent inherits none of your judgment except what you write into its contract, and the model it runs on is part of that contract, so name it.</aside>
+          </section>
+
+          <section>
+            <p class="kicker">honest limit</p>
+            <h3>The cost is real: skills that fire when they shouldn't</h3>
+            <ul>
+              <li class="fragment">A skill auto-triggers on description match, even on a 1% guess</li>
+              <li class="fragment">Superpowers' using-superpowers self-invokes aggressively: the chief over-reach</li>
+              <li class="fragment">Symptom: a heavy discipline runs on a routine one-line edit</li>
+              <li class="fragment">Taming lever: an instruction rule in AGENTS.md (instruction files outrank plugin descriptions)</li>
+              <li class="fragment">General rule: prefer a dispatched sub-agent or a one-paragraph rule over a new always-on skill</li>
+            </ul>
+            <p class="anchor">This is the same trigger-surface cost from earlier, seen from the failure side. The fix is not to uninstall everything, it is to gate the aggressive trigger with a rule the harness reads before the plugin's description.</p>
+            <aside class="notes">To be honest about the cost, here is the failure mode I actually hit. A skill triggers on a description match, and the most aggressive skill packs are tuned to fire on even a one-percent chance that they apply, which sounds safe and is not. The clearest offender in my setup is the Superpowers meta-skill that teaches the agent how to use skills; it self-invokes very eagerly, and it is the chief source of over-reaching. The symptom is unmistakable: you ask for a routine one-line edit and a heavy multi-step discipline spins up to handle it, burning budget and time on ceremony the task never needed. The taming lever is the cheap one from the lever order: an explicit instruction rule in your contract file, AGENTS.md, that says do not auto-invoke these disciplines on trivial work, and it wins because instruction files outrank plugin descriptions. The general lesson closes the section: a skill is a standing cost and a standing temptation to fire, so prefer a dispatched sub-agent or a one-paragraph rule, and add a new always-on skill only when you have decided every future session should pay for it. This is the same trigger-surface fact from the start of the section, just seen from the side where it bites.</aside>
+          </section>
+        </section>
+
         <!-- ================= Context & Handoff · surviving many fresh agents ================= -->
         <section>
           <section>
