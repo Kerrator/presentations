@@ -395,6 +395,75 @@ if nu0_coverage &lt; 1.0:
           </section>
         </section>
 
+        <!-- ================= Practice & honest limits · clusters, reproducibility, failure modes, objections ================= -->
+        <section>
+          <section>
+            <p class="kicker">Practice &amp; honest limits · descend or skip · ~8 min</p>
+            <h2>What the spine leaves out: clusters, reproducibility, failure modes, objections</h2>
+            <div class="spine">
+            <ul>
+              <li class="fragment">HPC reality: SLURM on the Alliance (DRAC), and the sandbox is the security boundary</li>
+              <li class="fragment">A reproducible artifact, not a reproducible agent (many AI projects don't even run)</li>
+              <li class="fragment">The units bug is one genre: a taxonomy of LLM failure modes</li>
+              <li class="fragment">The four objections you will get, answered</li>
+              <li class="fragment">All four are descend-or-skip depth; the seven-phase spine is the talk</li>
+            </ul>
+            </div>
+            <aside class="notes">The seven-phase spine and its constraint theory are the talk. This short section is the set of things a computational-materials audience will reasonably ask about that the spine does not cover: how this actually runs on a national cluster, how a stochastic agent run can possibly be reproducible, what the failure modes are beyond my one beautiful units bug, and the four objections I always get. These are deliberately vertical drill-downs: descend into the ones your audience cares about, skip the rest to protect the seminar slot. If time is tight, the HPC slide and the reproducibility slide are the two I would keep, because they are the two this audience lives with daily.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · HPC</p>
+            <h3>Running it for real: SLURM on the Alliance (DRAC)</h3>
+            <ul>
+              <li class="fragment">Submit and watch: sbatch, salloc, squeue/sq, sacct, scancel</li>
+              <li class="fragment">Always required: --time and --account (plus --mem / --mem-per-cpu, --gpus-per-node)</li>
+              <li class="fragment">$SLURM_TMPDIR is fast node-local scratch, deleted at job end; module load for the stack</li>
+              <li class="fragment">/home (small, backed up) vs /scratch (big, purged) vs /project (shared); Globus for big transfers; one array job, not 1000 sbatch calls</li>
+              <li class="fragment">Security: never an unattended Ralph with --dangerously-skip-permissions on a login node or with live credentials; the sandbox is the boundary</li>
+            </ul>
+            <p class="anchor">A study run = an array job over seeds/temps, each staging inputs into $SLURM_TMPDIR, launching pyKMC under srun, copying results back to /project before the node is wiped. The Ralph loop runs inside a container/VM, never with live cluster credentials.</p>
+            <aside class="notes">This audience runs on the Digital Research Alliance of Canada, so the workflow has to land on SLURM. The verbs: sbatch to submit a batch script, salloc for an interactive allocation, squeue or the Alliance shortcut sq to watch the queue, sacct for accounting on finished jobs, scancel to kill one. Two flags are non-negotiable on the Alliance: --time, because every job needs a wall-clock estimate, and --account, because compute is billed against an allocation; then --mem or --mem-per-cpu, and --gpus-per-node if you need a GPU. The filesystem distinction bites people: /home is small and backed up, /scratch is large but purged on a schedule, /project is shared and quota'd; and $SLURM_TMPDIR is node-local scratch that is fast and is deleted the instant the job ends, so you stage in, compute, and copy results out before exit. Use module load to bring up the toolchain, Globus for large transfers, and array jobs for parameter sweeps rather than a shell loop firing thousands of sbatch calls, which annoys the scheduler and your neighbours. The security line I will not soften: never run an unattended Ralph loop with --dangerously-skip-permissions on a login node, or anywhere it can touch live cluster or credential access. The security boundary is the sandbox, a container, a devcontainer, a fresh worktree, or a VM, not the agent's good behaviour.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · reproducibility</p>
+            <h3>The artifact is reproducible even though the agent is not</h3>
+            <ul>
+              <li class="fragment">Agent runs are non-deterministic; AI projects often don't even execute (~31.7% fail out of the box)</li>
+              <li class="fragment">The reproducible unit is NOT the agent transcript</li>
+              <li class="fragment">It is: committed code + pinned env (container/lockfile) + fixed RNG seed + the regression test</li>
+              <li class="fragment">Declared vs runtime dependencies drifted ~13.5x in that study: pin them</li>
+              <li class="fragment">Same discipline as any KMC study: fix the seed, archive the inputs, pin the physical contract</li>
+            </ul>
+            <p class="anchor">Reproducible study = fixed RNG seed for the BKL draws + pinned EAM potential + archived reference_table.pickle + the Ni(100) dE regression test. Rerunnable next year regardless of which agent wrote it. (arXiv:2512.22387)</p>
+            <aside class="notes">The single biggest gap a careful audience will name: how can a non-deterministic agent produce reproducible science? It can't, and you should say so plainly. An empirical study of Claude Code, Codex and Gemini across 300 projects (arXiv 2512.22387) found only about 68 percent executed out of the box; the remaining roughly 31.7 percent failed immediately, and declared-versus-runtime dependencies expanded by something like 13.5 times. So the reproducible unit is not the agent transcript, which you will never replay. It is the committed code, a pinned environment (a container image or a lockfile), a fixed RNG seed for the stochastic draws, and the regression test that pins the physical contract. That is exactly the discipline we already apply to a KMC campaign: fix the seed for the BKL clock, archive the EAM potential and the inputs, and keep the Ni(100) barrier regression test. Make 'the artifact is reproducible even though the agent is not' an explicit claim, because it converts a worry into a checklist.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · failure modes</p>
+            <h3>The units bug is one genre: a taxonomy</h3>
+            <ul>
+              <li class="fragment">Slopsquatting: ~19.7% of recommended packages don't exist (USENIX Security 2025); a fabricated import is a supply-chain hole</li>
+              <li class="fragment">Insecure code: ~45% of samples carried an OWASP Top-10 vulnerability (Veracode 2025)</li>
+              <li class="fragment">Higher defect density: AI pull requests ~1.7x the issues of human ones (CodeRabbit 2025)</li>
+              <li class="fragment">Domain silent killers: wrong constants, off-by-one lattice indexing, green-but-wrong tests</li>
+              <li class="fragment">The units bug is the last row; no linter catches it, only a human reading the physics</li>
+            </ul>
+            <p class="anchor">The Hz to ps⁻¹ bug is the 'green-but-wrong test' genre: it ran, the suite was green, the numbers were 10¹² off. The taxonomy says the units bug was not bad luck, it was a predictable category.</p>
+            <aside class="notes">My talk has one gorgeous bug; the audience needs the genre map so they don't think it was a freak. Four families. First, hallucinated packages, nicknamed slopsquatting: Spracklen and colleagues (USENIX Security 2025) found across 576,000 samples that roughly 19.7 percent of recommended packages did not exist, worse for open models; a fabricated import is a live supply-chain attack surface, because an attacker can register the hallucinated name. Second, insecure code: the Veracode 2025 GenAI report, across 100-plus models and 80 tasks, found about 45 percent of cases produced code with an OWASP Top-10 vulnerability, Java worst. Third, higher defect density: CodeRabbit's 2025 analysis of 470 pull requests found AI PRs averaged about 1.7 times the issues of human PRs. Fourth, and most relevant to us, the domain-specific silent killers: subtly wrong algorithms, incorrect physical constants, off-by-one in lattice indexing, and green-but-wrong tests. My Hz-to-per-picosecond bug is squarely in that last family. The lesson is that the units bug was not bad luck; it was a predictable category, and the defense for that category is a human who reads the physics, because no linter, type checker, or unit test sees it.</aside>
+          </section>
+          <section>
+            <p class="kicker">drill-down · objections</p>
+            <h3>Objections, answered</h3>
+            <ul>
+              <li class="fragment">"Won't this deskill students?" AI is the tactical programmer; the human stays the strategic designer, and reviews every diff</li>
+              <li class="fragment">"How do I trust code I didn't write?" You trust the regression tests that pin physical contracts, not the provenance</li>
+              <li class="fragment">"How is a stochastic run reproducible?" It isn't; the pinned artifact is</li>
+              <li class="fragment">"Does this fit open science / FAIR?" Yes: version prompts and CLAUDE.md, disclose AI use, share the artifact</li>
+              <li class="fragment">Disclosure is becoming a norm (Ten Simple Rules for AI-Assisted Coding in Science, arXiv:2510.22254)</li>
+            </ul>
+            <aside class="notes">The four objections I always get, with the answers I actually give. Deskilling: real risk, and the framing that holds is division of labour, AI as the tactical programmer that knows syntax and common patterns, the human as the strategic designer who owns system boundaries, the physics, and the definition of done; the antidote to erosion is keeping judgment human and reviewing every diff, not abstaining. Trust: you do not trust code because of who or what wrote it; you trust the regression tests that pin physical contracts, which is why those tests are the centre of gravity of the whole method. Reproducibility: I answer it head-on, the stochastic run is not reproducible, the pinned artifact is, see the previous slide. Open science and FAIR: yes, this fits, provided you version-control your prompts and your CLAUDE.md, disclose AI tool use in your methods, which is becoming an explicit norm (Ten Simple Rules for AI-Assisted Coding in Science, arXiv 2510.22254), and share the reproducible artifact. None of these is a dodge; each is a place where our existing scientific norms already tell us what to do.</aside>
+          </section>
+        </section>
+
         <!-- ================= QA, Takeaways & Attribution ================= -->
         <section>
           <section>
