@@ -4,7 +4,7 @@
   <defs>
     <style>
       svg{
-        --blue:#11335d; --gold:#b08d2b; --ink:#1a1a1a;
+        --blue:#002452; --gold:#b08d2b; --ink:#1a1a1a;
         --paper:#f3f1ea; --white:#ffffff; --stroke:#c9c2ad;
         --warn:#c0392b; --warnfill:#fbeceb; --muted:#5a6472;
       }
@@ -16,10 +16,10 @@
       .mono{font-family:"SFMono-Regular",Menlo,Consolas,monospace;}
     </style>
     <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#11335d"/>
+      <path d="M0 0 L10 5 L0 10 z" fill="#002452"/>
     </marker>
     <marker id="ahL" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#11335d" opacity="0.6"/>
+      <path d="M0 0 L10 5 L0 10 z" fill="#002452" opacity="0.6"/>
     </marker>
     <marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#b08d2b"/>
@@ -33,7 +33,7 @@
   <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
 
   <!-- ===================== HEADER ===================== -->
-  <text x="56" y="56" class="head" fill="#11335d">Same machine, twice over</text>
+  <text x="56" y="56" class="head" fill="#002452">Same machine, twice over</text>
   <text x="56" y="85" class="sub" fill="#5a6472">An LLM token pipeline laid directly on the pyKMC main loop &#8212; the units bug lives in <tspan font-weight="800" fill="#c0392b">DECODE</tspan></text>
 
   <!-- column header strip -->
@@ -48,7 +48,7 @@
   <rect x="802" y="132" width="236" height="456" rx="14" fill="none" stroke="#c0392b" stroke-width="7" opacity="0.16"/>
 
   <!-- ===================== TOP LANE : LLM ===================== -->
-  <rect x="44" y="150" width="148" height="120" rx="14" fill="#11335d"/>
+  <rect x="44" y="150" width="148" height="120" rx="14" fill="#002452"/>
   <text x="118" y="200" text-anchor="middle" class="lane-label" fill="#ffffff">LLM</text>
   <text x="118" y="225" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">tokens</text>
   <text x="118" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600" letter-spacing=".04em">in &#8594; out</text>
@@ -59,30 +59,30 @@
   <text x="243" y="226" text-anchor="middle" fill="#5a6472" font-size="12">text</text>
 
   <!-- LLM ENCODE -->
-  <rect x="300" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
-  <path d="M300 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <rect x="300" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#002452" stroke-width="2"/>
+  <path d="M300 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#002452"/>
   <text x="400" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">ENCODE</text>
   <text x="400" y="208" text-anchor="middle" class="body" fill="#1a1a1a">largest known tokens</text>
   <text x="400" y="233" text-anchor="middle" class="small" fill="#5a6472">greedy merge</text>
   <text x="400" y="258" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#b08d2b">&#8594; integer ids</text>
 
   <!-- LLM COMPUTE -->
-  <rect x="540" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
-  <path d="M540 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <rect x="540" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#002452" stroke-width="2"/>
+  <path d="M540 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#002452"/>
   <text x="640" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">COMPUTE</text>
   <text x="640" y="212" text-anchor="middle" class="body" fill="#1a1a1a">the model thinks</text>
   <text x="640" y="240" text-anchor="middle" class="small" fill="#5a6472">on pure numbers</text>
 
   <!-- LLM DECODE -->
-  <rect x="820" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#11335d" stroke-width="2"/>
-  <path d="M820 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#11335d"/>
+  <rect x="820" y="150" width="200" height="120" rx="12" fill="#ffffff" stroke="#002452" stroke-width="2"/>
+  <path d="M820 162 a12 12 0 0 1 12 -12 h176 a12 12 0 0 1 12 12 v18 h-200 z" fill="#002452"/>
   <text x="920" y="172" text-anchor="middle" class="stage-sub" fill="#ffffff">DECODE</text>
   <text x="920" y="208" text-anchor="middle" class="body" fill="#1a1a1a">ids &#8594; vocab lookup</text>
   <text x="920" y="233" text-anchor="middle" class="small" fill="#5a6472">table read</text>
   <text x="920" y="258" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#b08d2b">&#8594; text</text>
 
   <!-- top-lane horizontal arrows -->
-  <g stroke="#11335d" stroke-width="2.5" fill="none">
+  <g stroke="#002452" stroke-width="2.5" fill="none">
     <path d="M282 210 H297" marker-end="url(#ah)"/>
     <path d="M502 210 H537" marker-end="url(#ah)"/>
     <path d="M742 210 H817" marker-end="url(#ah)"/>
@@ -111,9 +111,9 @@
   <line x1="227" y1="500" x2="249" y2="494" stroke="#c9c2ad" stroke-width="1.5"/>
   <line x1="227" y1="500" x2="243" y2="514" stroke="#c9c2ad" stroke-width="1.5"/>
   <line x1="249" y1="494" x2="263" y2="508" stroke="#c9c2ad" stroke-width="1.5"/>
-  <circle cx="227" cy="500" r="5" fill="#11335d"/>
+  <circle cx="227" cy="500" r="5" fill="#002452"/>
   <circle cx="249" cy="494" r="5" fill="#b08d2b"/>
-  <circle cx="243" cy="514" r="5" fill="#11335d"/>
+  <circle cx="243" cy="514" r="5" fill="#002452"/>
   <circle cx="263" cy="508" r="5" fill="#b08d2b"/>
   <text x="243" y="540" text-anchor="middle" fill="#5a6472" font-size="12">config</text>
 
@@ -123,7 +123,7 @@
   <text x="400" y="472" text-anchor="middle" class="stage-sub" fill="#ffffff">ENCODE</text>
   <text x="400" y="507" text-anchor="middle" class="body" fill="#1a1a1a">atomic-env graphs</text>
   <text x="400" y="532" text-anchor="middle" class="small" fill="#5a6472">match catalog</text>
-  <text x="400" y="557" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#11335d">&#8594; Ref Event idx</text>
+  <text x="400" y="557" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#002452">&#8594; Ref Event idx</text>
 
   <!-- pyKMC COMPUTE -->
   <rect x="540" y="450" width="200" height="120" rx="12" fill="#ffffff" stroke="#b08d2b" stroke-width="2"/>
@@ -143,7 +143,7 @@
   <text x="920" y="472" text-anchor="middle" class="stage-sub" fill="#ffffff">DECODE</text>
   <text x="920" y="505" text-anchor="middle" class="body" fill="#1a1a1a">idx &#8594; displacement</text>
   <text x="920" y="530" text-anchor="middle" class="small" fill="#5a6472">apply move</text>
-  <text x="920" y="557" text-anchor="middle" class="mono" font-size="14" font-weight="700" fill="#11335d">&#8594; trajkmc.xyz frame</text>
+  <text x="920" y="557" text-anchor="middle" class="mono" font-size="14" font-weight="700" fill="#002452">&#8594; trajkmc.xyz frame</text>
 
   <!-- bottom-lane horizontal arrows -->
   <g stroke="#b08d2b" stroke-width="2.5" fill="none">
@@ -162,16 +162,16 @@
   <!-- ===================== SIDE GAUGE: hit / miss counter ===================== -->
   <g transform="translate(1098 150)">
     <rect x="0" y="0" width="158" height="438" rx="12" fill="#f3f1ea" stroke="#c9c2ad" stroke-width="1.5"/>
-    <text x="79" y="28" text-anchor="middle" fill="#11335d" font-size="15" font-weight="800" letter-spacing=".04em">CATALOG</text>
+    <text x="79" y="28" text-anchor="middle" fill="#002452" font-size="15" font-weight="800" letter-spacing=".04em">CATALOG</text>
     <text x="79" y="46" text-anchor="middle" fill="#5a6472" font-size="12">hit / miss counter</text>
     <line x1="16" y1="58" x2="142" y2="58" stroke="#c9c2ad" stroke-width="1.5"/>
 
     <!-- hit -->
-    <circle cx="24" cy="90" r="7" fill="#11335d"/>
+    <circle cx="24" cy="90" r="7" fill="#002452"/>
     <text x="40" y="87" fill="#1a1a1a" font-size="14" font-weight="800">n_current</text>
     <text x="40" y="106" fill="#5a6472" font-size="11.5">free lookup &#8212; hit</text>
     <rect x="16" y="118" width="126" height="14" rx="7" fill="#ffffff" stroke="#c9c2ad"/>
-    <rect x="16" y="118" width="106" height="14" rx="7" fill="#11335d"/>
+    <rect x="16" y="118" width="106" height="14" rx="7" fill="#002452"/>
 
     <line x1="16" y1="150" x2="142" y2="150" stroke="#c9c2ad" stroke-width="1" stroke-dasharray="3 3"/>
 
@@ -186,8 +186,8 @@
     <line x1="16" y1="266" x2="142" y2="266" stroke="#c9c2ad" stroke-width="1.5"/>
     <text x="79" y="290" text-anchor="middle" fill="#5a6472" font-size="11.5">a miss spawns a new</text>
     <text x="79" y="307" text-anchor="middle" fill="#5a6472" font-size="11.5">Ref Event, growing</text>
-    <text x="79" y="326" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#11335d">reference_table</text>
-    <text x="79" y="343" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#11335d">.pickle</text>
+    <text x="79" y="326" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#002452">reference_table</text>
+    <text x="79" y="343" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#002452">.pickle</text>
 
     <line x1="16" y1="360" x2="142" y2="360" stroke="#c9c2ad" stroke-width="1" stroke-dasharray="3 3"/>
     <text x="79" y="382" text-anchor="middle" fill="#5a6472" font-size="11">known token = hit;</text>
@@ -196,7 +196,7 @@
   </g>
 
   <!-- aligning-arrow ENCODE -> gauge -->
-  <path d="M500 168 C 700 112, 1010 112, 1130 240" fill="none" stroke="#11335d" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.4" marker-end="url(#ahL)"/>
+  <path d="M500 168 C 700 112, 1010 112, 1130 240" fill="none" stroke="#002452" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.4" marker-end="url(#ahL)"/>
 
   <!-- ===================== BOTTOM WARNING BANNER ===================== -->
   <g transform="translate(56 626)">

@@ -1,9 +1,9 @@
 <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"
      font-family="system-ui, -apple-system, Segoe UI, sans-serif"
-     style="--primary:#002452; --accent:#b08d2b; --ink:#1a1a1a; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --smart:#3f7a4c; --smart-fill:#dfeede; --dumb:#8c8478; --dumb-fill:#e8e6df; --muted:#5a5650; --alert:#9a342a; --alert-fill:#fbeaea; --alert-stroke:#c2604f;">
+     style="--primary:#002452; --accent:#B90E31; --ink:#1a1a1a; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --smart:#3f7a4c; --smart-fill:#dfeede; --dumb:#8c8478; --dumb-fill:#e8e6df; --muted:#5a5650; --alert:#9a342a; --alert-fill:#fbeaea; --alert-stroke:#c2604f;">
 
   <!-- ===== TITLE ===== -->
-  <text x="64" y="56" fill="var(--primary,#11335d)" font-weight="700" font-size="33">Usable attention degrades before the advertised window</text>
+  <text x="64" y="56" fill="var(--primary,#002452)" font-weight="700" font-size="33">Usable attention degrades before the advertised window</text>
   <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="21">Decision quality vs. context size: the smart zone is a correctness control, not a capacity number</text>
 
   <!-- ===== PLOT FRAME (plot area x 120..940, y 130..480) ===== -->
@@ -34,7 +34,7 @@
   <!-- ===== THE CURVE ===== -->
   <!-- smart-zone segment: flat-high plateau (drawn in primary blue) -->
   <path d="M 120 178 L 360 176 C 460 175, 520 178, 555 188"
-        fill="none" stroke="var(--primary,#11335d)" stroke-width="5.5" stroke-linecap="round"/>
+        fill="none" stroke="var(--primary,#002452)" stroke-width="5.5" stroke-linecap="round"/>
   <!-- dumb-zone segment: falling grey tail toward 1M -->
   <path d="M 555 188
            C 575 196, 585 224, 600 268
@@ -42,10 +42,10 @@
            C 790 458, 860 470, 930 474"
         fill="none" stroke="var(--dumb,#8c8478)" stroke-width="5.5" stroke-linecap="round"/>
   <!-- knee marker at the cliff -->
-  <circle cx="557" cy="187" r="6.5" fill="var(--accent,#b08d2b)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="557" cy="187" r="6.5" fill="var(--accent,#B90E31)" stroke="#ffffff" stroke-width="2"/>
 
   <!-- ===== CLIFF: vertical dashed line at ~100K (x=560) ===== -->
-  <line x1="560" y1="130" x2="560" y2="480" stroke="var(--accent,#b08d2b)" stroke-width="3" stroke-dasharray="9 7"/>
+  <line x1="560" y1="130" x2="560" y2="480" stroke="var(--accent,#B90E31)" stroke-width="3" stroke-dasharray="9 7"/>
   <!-- 100K tick -->
   <line x1="560" y1="480" x2="560" y2="491" stroke="var(--ink,#1a1a1a)" stroke-width="2"/>
   <text x="560" y="513" fill="var(--ink,#1a1a1a)" font-size="20" font-weight="700" text-anchor="middle">~100K</text>
@@ -55,9 +55,9 @@
   <text x="912" y="513" fill="var(--muted,#5a5650)" font-size="19" text-anchor="middle" opacity="0.75">1M</text>
 
   <!-- cliff callout -->
-  <line x1="560" y1="135" x2="606" y2="118" stroke="var(--accent,#b08d2b)" stroke-width="2"/>
-  <rect x="600" y="92" width="316" height="50" rx="8" fill="var(--paper,#ffffff)" stroke="var(--accent,#b08d2b)" stroke-width="1.5"/>
-  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#b08d2b)">A model-specific heuristic,</text>
+  <line x1="560" y1="135" x2="606" y2="118" stroke="var(--accent,#B90E31)" stroke-width="2"/>
+  <rect x="600" y="92" width="316" height="50" rx="8" fill="var(--paper,#ffffff)" stroke="var(--accent,#B90E31)" stroke-width="1.5"/>
+  <text x="616" y="113" font-size="18" font-weight="700" fill="var(--accent,#B90E31)">A model-specific heuristic,</text>
   <text x="616" y="134" font-size="18" fill="var(--ink,#1a1a1a)">not a measured constant.</text>
 
   <!-- ===== ZONE LABELS ===== -->
@@ -83,11 +83,11 @@
 
   <!-- ===== INSET: quadratic-attention motif ===== -->
   <rect x="982" y="130" width="266" height="370" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
-  <text x="1115" y="158" font-size="18" font-weight="700" fill="var(--primary,#11335d)" text-anchor="middle">a separate axis: cost</text>
+  <text x="1115" y="158" font-size="18" font-weight="700" fill="var(--primary,#002452)" text-anchor="middle">a separate axis: cost</text>
   <text x="1115" y="180" font-size="15" fill="var(--muted,#5a5650)" text-anchor="middle">attention is O(n²), not the cause</text>
 
   <!-- token relationship matrix: 4x4 existing block + new row + new column -->
-  <g fill="var(--primary,#11335d)">
+  <g fill="var(--primary,#002452)">
     <rect x="1016" y="200" width="34" height="34" rx="4"/>
     <rect x="1054" y="200" width="34" height="34" rx="4"/>
     <rect x="1092" y="200" width="34" height="34" rx="4"/>
@@ -109,14 +109,14 @@
     <rect x="1130" y="314" width="34" height="34" rx="4"/>
   </g>
   <!-- new token: added ROW (bottom) -->
-  <g fill="var(--accent,#b08d2b)">
+  <g fill="var(--accent,#B90E31)">
     <rect x="1016" y="352" width="34" height="34" rx="4"/>
     <rect x="1054" y="352" width="34" height="34" rx="4"/>
     <rect x="1092" y="352" width="34" height="34" rx="4"/>
     <rect x="1130" y="352" width="34" height="34" rx="4"/>
   </g>
   <!-- new token: added COLUMN (right) -->
-  <g fill="var(--accent,#b08d2b)">
+  <g fill="var(--accent,#B90E31)">
     <rect x="1168" y="200" width="34" height="34" rx="4"/>
     <rect x="1168" y="238" width="34" height="34" rx="4"/>
     <rect x="1168" y="276" width="34" height="34" rx="4"/>
@@ -124,17 +124,17 @@
     <rect x="1168" y="352" width="34" height="34" rx="4"/>
   </g>
   <!-- corner cell where new row meets new column -->
-  <rect x="1168" y="352" width="34" height="34" rx="4" fill="var(--accent,#b08d2b)" stroke="#ffffff" stroke-width="2"/>
+  <rect x="1168" y="352" width="34" height="34" rx="4" fill="var(--accent,#B90E31)" stroke="#ffffff" stroke-width="2"/>
 
   <!-- row / column annotations -->
-  <text x="1221" y="284" font-size="14" font-weight="700" fill="var(--accent,#b08d2b)" text-anchor="middle" transform="rotate(90 1221 284)">+1 column</text>
-  <text x="1090" y="406" font-size="14" font-weight="700" fill="var(--accent,#b08d2b)" text-anchor="middle">+1 row</text>
+  <text x="1221" y="284" font-size="14" font-weight="700" fill="var(--accent,#B90E31)" text-anchor="middle" transform="rotate(90 1221 284)">+1 column</text>
+  <text x="1090" y="406" font-size="14" font-weight="700" fill="var(--accent,#B90E31)" text-anchor="middle">+1 row</text>
 
   <text x="1115" y="438" font-size="15" fill="var(--ink,#1a1a1a)" text-anchor="middle">each token adds a row <tspan font-weight="700">and</tspan> a</text>
   <text x="1115" y="458" font-size="15" fill="var(--ink,#1a1a1a)" text-anchor="middle">column, pairs grow as</text>
 
   <!-- binom(n,2) expression: proper vertical (n over 2) stack -->
-  <g fill="var(--primary,#11335d)" font-weight="700">
+  <g fill="var(--primary,#002452)" font-weight="700">
     <!-- big parentheses -->
     <text x="1043" y="490" font-size="40" text-anchor="middle">(</text>
     <text x="1075" y="490" font-size="40" text-anchor="middle">)</text>
@@ -146,8 +146,8 @@
   </g>
 
   <!-- ===== CAPTION STRIP ===== -->
-  <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#11335d)"/>
-  <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#b08d2b)"/>
+  <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#002452)"/>
+  <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#B90E31)"/>
   <text x="92" y="660" font-size="22" font-weight="700" fill="#ffffff">Sizing a task to fit the smart zone is a correctness control.</text>
   <text x="92" y="683" font-size="20" fill="var(--neutral,#f3f1ea)">Clear, don't compact: start each unit of work from a fresh, small context.</text>
 </svg>
