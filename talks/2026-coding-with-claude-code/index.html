@@ -121,41 +121,68 @@
             <aside class="notes">Two more sections, fast. Artifacts: a research PRD specs the end state ('deliver the vacancy diffusivity for Ni at 500 K with a barrier validated against an EAM-NEB value, archive these output files') and crucially does NOT pin the implementation, because over-specified code rots against your fast-moving scripts. A research.md asset is a throwaway cache of method details, scoped to one campaign, allowed to go stale. Agents are memory-less between tasks, which is precisely why your method knowledge must be written into contracts and docs, not held in your head; the next agent starts blank by design. And a skill has a cost: its always-on description, carried every session, the trigger surface, so you minimize it, preferring a dispatched sub-agent or a one-paragraph rule. Finally, two pieces of product framing you must actively reject: 'ship fast, the user won't notice' (our failure mode is the exact opposite, code that runs and is silently wrong) and 'the PRD pins the implementation' (for us that rots; spec the end state and let the code move).</aside>
           </section>
           <section>
-            <p class="kicker">reference · descend or skip</p>
-            <h3>The dictionary: dev-speak ⇄ research</h3>
-            <div class="twocol">
-              <table class="kv">
-                <thead><tr><th>software dev…</th><th>…materials research</th></tr></thead>
-                <tbody>
-                  <tr><td>Deliverable = behaviour a user sees</td><td>A physical claim, or a reusable capability, that…</td></tr>
-                  <tr><td>PRD (product requirements document)</td><td>A study/method spec, a mini pre-registration…</td></tr>
-                  <tr><td>Ticket / Jira card</td><td>One scoped sub-task of a study or code change, for…</td></tr>
-                  <tr><td>Bug (wrong output / crash)</td><td>Wrong PHYSICS, often with no crash and a green…</td></tr>
-                  <tr><td>Feature (new user-visible behaviour)</td><td>A new physical capability or a measured quantity…</td></tr>
-                  <tr><td>Refactor</td><td>Restructure a solver/driver without changing the…</td></tr>
-                  <tr><td>Sprint</td><td>A simulation campaign or a focused push to land one…</td></tr>
-                  <tr><td>QA / click-testing a UI</td><td>Validating the physics: barrier vs NEB, detailed…</td></tr>
-                  <tr><td>TDD / regression test</td><td>A test that pins a PHYSICAL contract and must be…</td></tr>
-                  <tr><td>Vertical slice / tracer bullet</td><td>One end-to-end short run touching every pipeline…</td></tr>
-                </tbody>
-              </table>
-              <table class="kv">
-                <thead><tr><th>software dev…</th><th>…materials research</th></tr></thead>
-                <tbody>
-                  <tr><td>Kanban board</td><td>The dependency graph of a study, stages in series…</td></tr>
-                  <tr><td>Ralph loop / coding-agent execution…</td><td>An unattended execution loop over independent…</td></tr>
-                  <tr><td>Token</td><td>A metered second compute budget; structurally, one…</td></tr>
-                  <tr><td>Context budget / smart zone / dumb…</td><td>Finite (~100K usable, heuristic), degrading attention; the…</td></tr>
-                  <tr><td>Compaction vs handoff</td><td>Compaction buys continuity (lossy by omission you…</td></tr>
-                  <tr><td>Skill / trigger surface</td><td>A reusable auto-triggering capability whose…</td></tr>
-                  <tr><td>Memory-less agent</td><td>A fresh agent with no memory between tasks, which…</td></tr>
-                  <tr><td>research.md asset</td><td>A throwaway cache of method details scoped to one…</td></tr>
-                  <tr><td>Deep module / thin interface</td><td>The same design taste applied to solvers, the…</td></tr>
-                  <tr><td>Green and wrong</td><td>A passing suite that has encoded the physics error…</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <aside class="notes">This is the load-bearing artifact, the full translation table, split across two columns so it all fits. Every row is a consequence of the single substitution: the deliverable is a physical claim that survives scrutiny, not behaviour a user sees. You don't read this aloud; it's the backup/Q&amp;A reference and it prints into the PDF. Point at the rows that bite: Bug = wrong physics behind a green suite; PRD = pre-registration; QA = validating the physics. The fuller wording of each row is in my notes.</aside>
+            <p class="kicker">reference · dictionary · 1 of 4</p>
+            <h3>The dictionary: the unit of work</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:17%"/><col style="width:41%"/><col style="width:42%"/></colgroup>
+              <thead><tr><th>term</th><th>in software development</th><th>in materials research</th></tr></thead>
+              <tbody>
+                <tr><td>Deliverable</td><td>Behaviour a user sees: a shipped, working feature in the product.</td><td>A physical claim, or a reusable capability, that survives scrutiny.</td></tr>
+                <tr><td>Feature</td><td>New behaviour a user can see and use.</td><td>A new physical capability or a measured quantity (the Vineyard / HTST rate backend).</td></tr>
+                <tr><td>Bug</td><td>Code that crashes or returns visibly wrong output.</td><td>Wrong PHYSICS, often with no crash and a green test suite: the silent killer.</td></tr>
+                <tr><td>Refactor</td><td>Restructure code without changing its observable behaviour.</td><td>Restructure a solver or driver without changing the numbers it produces.</td></tr>
+                <tr><td>Sprint</td><td>A fixed-length iteration delivering a slice of the backlog.</td><td>A simulation campaign, or a focused push to land one capability (the ~23-commit HTST push).</td></tr>
+              </tbody>
+            </table>
+            <aside class="notes">The translation table in full, rebuilt as three columns so the software-development meaning sits next to the materials-research meaning with nothing cut off. Every row is a consequence of the single substitution: the deliverable is a physical claim that survives scrutiny, not behaviour a user sees. This first group is the unit of work. You don't read it aloud; it is the backup and Q&amp;A reference, and it prints into the PDF. The rows that bite hardest: Bug is wrong physics behind a green suite, and Feature is a measured quantity, not a screen.</aside>
+          </section>
+          <section>
+            <p class="kicker">reference · dictionary · 2 of 4</p>
+            <h3>The dictionary: plan and board</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:17%"/><col style="width:41%"/><col style="width:42%"/></colgroup>
+              <thead><tr><th>term</th><th>in software development</th><th>in materials research</th></tr></thead>
+              <tbody>
+                <tr><td>PRD (product requirements document)</td><td>The spec of what to build and why: problem, users, acceptance criteria.</td><td>A study or method spec, a mini pre-registration: system, conditions, the observable with acceptance bands, output files.</td></tr>
+                <tr><td>Ticket / Jira card</td><td>One scoped, trackable unit of work on a board.</td><td>One scoped sub-task of a study or code change ("minimize this slab", "add the units conversion").</td></tr>
+                <tr><td>Kanban board</td><td>Tickets flowing through columns: to-do, doing, done.</td><td>The dependency graph of a study: stages in series, seeds / temperatures / compositions in parallel.</td></tr>
+                <tr><td>Vertical slice / tracer bullet</td><td>One thin end-to-end path through every layer, working early.</td><td>One end-to-end short run touching every pipeline stage (build → minimize → search → select → analyze).</td></tr>
+                <tr><td>research.md asset</td><td>A scratch notes file for a task, allowed to go stale.</td><td>A throwaway cache of method details (parameters, units, citations) scoped to one campaign, allowed to rot.</td></tr>
+              </tbody>
+            </table>
+            <aside class="notes">Group two: how the work is planned and tracked. The PRD is the load-bearing row, a pre-registration rather than a product spec: it states what counts as done and correct, not the loop internals. A Kanban board is the study's dependency graph; the first ticket is always a tracer bullet, one thin vertical slice through every stage so the integration unknowns surface early. The research.md asset is deliberately disposable: cache the method details for one campaign and let them rot, because an over-kept research note becomes wrong-by-omission later.</aside>
+          </section>
+          <section>
+            <p class="kicker">reference · dictionary · 3 of 4</p>
+            <h3>The dictionary: the agent and its context</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:17%"/><col style="width:41%"/><col style="width:42%"/></colgroup>
+              <thead><tr><th>term</th><th>in software development</th><th>in materials research</th></tr></thead>
+              <tbody>
+                <tr><td>Token</td><td>The unit an LLM bills and "thinks" in: text encoded to integer ids.</td><td>A metered second compute budget; structurally, one catalog entry (a Reference Event index in pyKMC).</td></tr>
+                <tr><td>Context budget / smart zone / dumb zone</td><td>The model's usable working memory; quality degrades as it fills.</td><td>Effective context far shorter than the advertised window (~100K usable is a heuristic); the dumb zone manufactures silently-wrong physics.</td></tr>
+                <tr><td>Compaction vs handoff</td><td>Compaction summarizes the chat to continue; handoff starts a fresh session from a doc.</td><td>Compaction buys continuity (lossy by omission you don't control); handoff buys purity (a disposable pointer doc for one task).</td></tr>
+                <tr><td>Memory-less agent</td><td>A fresh agent with no memory between tasks; state must be re-read.</td><td>Why durable method knowledge lives in contracts and docs, not your head: the next agent starts blank by design.</td></tr>
+                <tr><td>Ralph loop / coding-agent execution loop</td><td>A dumb bash loop re-running one agent against a prompt and memory file until done (Geoffrey Huntley).</td><td>An unattended loop over independent runs (run_overnight.sh under nohup): one run per iteration, append-only memory, per-iteration commit.</td></tr>
+              </tbody>
+            </table>
+            <aside class="notes">Group three: the agent and the budget it thinks in. Tokens are a second metered budget on top of wall-clock, and structurally they mirror the pyKMC catalog: a token id is a Reference Event index. The smart-zone / dumb-zone row is the correctness control of the whole talk: effective context is far shorter than the advertised window, the ~100K figure is a model-specific heuristic, and the dumb zone is exactly where silently-wrong physics gets made. Compaction versus handoff: compaction is convenient but lossy by omission you cannot control; a handoff doc is the pure alternative for a campaign that fans out across many worktrees.</aside>
+          </section>
+          <section>
+            <p class="kicker">reference · dictionary · 4 of 4</p>
+            <h3>The dictionary: quality and design</h3>
+            <table class="kv tri">
+              <colgroup><col style="width:17%"/><col style="width:41%"/><col style="width:42%"/></colgroup>
+              <thead><tr><th>term</th><th>in software development</th><th>in materials research</th></tr></thead>
+              <tbody>
+                <tr><td>QA / click-testing a UI</td><td>Checking the product behaves: click the UI, run the tests.</td><td>Validating the physics: barrier vs NEB, detailed balance, MSD linearity, units, one imaginary mode.</td></tr>
+                <tr><td>TDD / regression test</td><td>Write a failing test first; keep tests green to guard behaviour.</td><td>A test that pins a PHYSICAL contract and must stay red until the physics is right (a correctness guarantee, not a design driver).</td></tr>
+                <tr><td>Green and wrong</td><td>A passing test suite that does not actually prove correctness.</td><td>A passing suite that has ENCODED the physics error and defends it (where the units bug lived).</td></tr>
+                <tr><td>Deep module / thin interface</td><td>A small interface over a large implementation (Ousterhout); the best modules are deep.</td><td>The same taste applied to solvers: the seam you wrap a test around, so deep modules lead to strong feedback loops.</td></tr>
+                <tr><td>Skill / trigger surface</td><td>A reusable, auto-triggering capability; its always-on description is a standing context cost.</td><td>Same idea: minimize the always-on description, preferring a dispatched sub-agent or a one-paragraph rule.</td></tr>
+              </tbody>
+            </table>
+            <aside class="notes">Group four: quality and design, where research diverges hardest from product work. QA for us is validating the physics, not click-testing a UI. The regression-test row is deliberately careful: it pins a physical contract, a correctness guarantee, which is a different and more defensible justification than the claim that TDD drives good design (Ousterhout, whose deep-modules idea sits two rows down, is publicly skeptical of strict TDD). Green and wrong is the genre the units bug belongs to: a suite that runs, passes, and is faithfully defending the error.</aside>
           </section>
         </section>
 

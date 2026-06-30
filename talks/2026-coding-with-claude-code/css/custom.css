@@ -172,6 +172,11 @@
 .reveal .twocol table.kv { font-size: 0.36em; }
 .reveal .twocol table.kv td:first-child { white-space: normal; }
 
+/* 3-column translation dictionary: term | software development | materials research */
+.reveal table.kv.tri { font-size: 0.5em; }
+.reveal table.kv.tri th, .reveal table.kv.tri td { padding: 0.22em 0.55em; vertical-align: top; line-height: 1.24; }
+.reveal table.kv.tri td:first-child { white-space: normal; }
+
 /* ---- Code blocks ---- */
 .reveal pre { width: 94%; max-width: 94%; box-shadow: none; margin: 0.3em 0; }
 .reveal pre code {
