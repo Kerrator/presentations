@@ -26,7 +26,10 @@ reveal doesn't auto-shrink, so measure every *leaf* slide against the configured
 the whole deck and returns the overflowing ones:
 
 ```js
-(() => {
+(async () => {
+  // Wait for images: an audit that races image loading reports phantom passes
+  // (an unloaded <img> measures 0 high and the slide "fits").
+  await Promise.all([...document.images].map(i => i.complete ? 1 : new Promise(r => { i.onload = i.onerror = r; })));
   Reveal.configure({ transition: 'none', fragments: false });   // show all fragments = worst case
   const H = Reveal.getConfig().height || 700;
   const stacks = document.querySelectorAll('.reveal .slides > section');

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coding with Claude Code · Stephen Kerr</title>
 
     <!-- reveal core (vendored, offline) -->
@@ -909,8 +909,8 @@ if alpha_f * kT > perturbation_safety:      # default 0.5
           <section>
             <p class="kicker">the picture · the threads, met</p>
             <h3>Where the two threads meet: dE pins the units regression</h3>
-            <img class="fig wide" src="assets/dE_convergence_trace.svg" alt="Data-path trace: Thread 1 (slab generation) measures the Ni(100) barrier dE = 0.63 eV and Thread 2 (the HTST backend) supplies the prefactor; both feed the regression test d6b921f, which computes the rate at that dE. Before the fix the prefactor is read in Hz as if per-picosecond and the suite is red by a factor of 10^12; after the one-line hz_to_per_ps fix (d705932) it is green, with the physics now correct. Pass/fail shown in Okabe-Ito vermillion and bluish-green with explicit FAIL/PASS labels." />
-            <p class="anchor">The whole talk on one axis of flow: the number the slabs measure is the number the rate code consumes. The test could tell red from green; only a human could tell Hz from ps⁻¹.</p>
+            <img class="fig wide" style="max-width: 750px" src="assets/dE_convergence_trace.svg" alt="Data-path trace: Thread 1 (slab generation) measures the Ni(100) barrier dE = 0.63 eV and Thread 2 (the HTST backend) supplies the prefactor; both feed the regression test d6b921f, which computes the rate at that dE. Before the fix the prefactor is read in Hz as if per-picosecond and the suite is red by a factor of 10^12; after the one-line hz_to_per_ps fix (d705932) it is green, with the physics now correct. Pass/fail shown in Okabe-Ito vermillion and bluish-green with explicit FAIL/PASS labels." />
+            <p class="anchor">The number the slabs measure is the number the rate code consumes. The test could tell red from green; only a human could tell Hz from ps⁻¹.</p>
             <aside class="notes">This is the slide I owed you from the very first section, the two threads actually meeting, drawn as the data path rather than promised in a bullet. On the left, the two threads: Thread one, the slab toolkit, measures the Ni(100) surface-hop barrier, about 0.63 electron-volts; Thread two, the Vineyard backend, supplies the attempt frequency, one to ten terahertz. They converge, literally, into the centre: the regression test d6b921f, which forms the rate k equals nu-zero times the Boltzmann factor at that committed barrier, through the real backend and the real KMC clock, not a mock. Then the split on the right is the whole moral in two cards. Before the fix, the prefactor is handed over in hertz and consumed as per-picosecond; every rate is ten-to-the-twelfth too large; the suite is red, off by twelve decades, and note the tests had pinned that error. After the one-line fix d705932, a single hz_to_per_ps conversion at the backend boundary, the suite is green and the rate is in physical per-picosecond. The point to land while this is up: the test could distinguish red from green, run versus not-run; it could never distinguish hertz from per-picosecond, right physics from wrong. That gap, the one no test status covers, is exactly the human's job, and it is why the same dE lives on both ends of this diagram.</aside>
           </section>
           <section>
@@ -930,6 +930,16 @@ Full credit. Structure and the foundational ideas: five Matt Pocock talks, refra
         </section>
 
       </div>
+    </div>
+
+    <!-- Touch entry to inking (an iPad has no C/B/DEL keys): pen annotates the
+         current slide, board opens the blank chalkboard, eraser wipes this
+         slide's ink. Icons come from the menu plugin's vendored Font Awesome;
+         hidden in print. -->
+    <div class="inkbar">
+      <button type="button" title="Annotate this slide (C)" onclick="RevealChalkboard.toggleNotesCanvas();"><i class="fas fa-pen"></i></button>
+      <button type="button" title="Open chalkboard (B)" onclick="RevealChalkboard.toggleChalkboard();"><i class="fas fa-chalkboard"></i></button>
+      <button type="button" title="Clear ink on this slide (DEL)" onclick="RevealChalkboard.clear();"><i class="fas fa-eraser"></i></button>
     </div>
 
     <!-- reveal core + plugins (vendored, offline) -->
@@ -962,7 +972,9 @@ Full credit. Structure and the foundational ideas: five Matt Pocock talks, refra
             { left: '\\[', right: '\\]', display: true }
           ]
         },
-        chalkboard: { boardmarkerWidth: 3 },
+        // storage: survive an accidental reload / Safari tab-eviction mid-talk
+        // (sessionStorage; still dies with the tab — the PDF is the durable copy).
+        chalkboard: { boardmarkerWidth: 3, storage: 'coding-claude-chalkboard' },
         menu: { themes: false, openButton: true, openSlideNumber: true },
         plugins: [
           RevealMarkdown, RevealHighlight, RevealNotes,

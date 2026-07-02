@@ -8,8 +8,8 @@ and iPadOS Safari behaviour (2026-07). Two modes exist — pick one before the t
 | Goal | Best path today |
 |---|---|
 | Present slides | Either mode; a standalone iPad navigates fully by touch |
-| Ink live with your palm on the glass | **Sidecar** (iPad as Mac display; the Pencil is the pointer) |
-| Serious annotation / markup | The landscape **PDF in GoodNotes/Notability** (native palm rejection) |
+| Ink live | Sidecar, or standalone Safari (the vendored plugin is patched stylus-only) |
+| Serious annotation / markup | The landscape **PDF in GoodNotes/Notability** (the durable copy) |
 | Presenter notes on stage | Sidecar (press **S** on the Mac), or the notes-included PDF on a second device |
 
 ## Mode 1 — connected to the Mac via Sidecar (recommended for live ink)
@@ -42,15 +42,17 @@ loaded tab does not survive going offline. Never bet a venue on it.
 jumps to any slide. No touch gesture exists for the ESC overview, pause/blackout, or fullscreen —
 plan around the menu instead.
 
-**Inking: limited until the planned patches land (see below).**
+**Inking: patched to be usable (2026-07); one honest limit remains.**
 
-- **No palm rejection** — finger, palm, and Pencil draw identically. Hover; don't rest the hand.
-- **No touch path into ink mode** — C/B are keyboard bindings, and this vendored build has no
-  on-screen toggle buttons (the `toggle*Button` config options are dead code; the buttons live in
-  the un-vendored `customcontrols` sibling plugin). Without a hardware keyboard you cannot start
-  annotating.
-- **D-download is unreliable** in iPadOS Safari (blob-URL download quirks) — export ink from the
-  Mac, or use the PDF path.
+- **Palm rejection is patched in**: the vendored plugin is stylus-only where the platform reports
+  `Touch.touchType` (iPadOS Safari), so the Pencil inks and a resting palm/finger does not.
+  `chalkboard: { stylusOnly: false }` restores finger drawing. Test once on the real iPad before a
+  talk — this is a local patch, not upstream behaviour.
+- **Touch entry exists**: the on-screen ink bar (bottom-left: pen / board / clear) replaces the
+  C/B/DEL keys. Colour and eraser are on the palette that appears while inking.
+- **D-download is still unreliable** in iPadOS Safari (blob-URL download quirks) — export ink from
+  the Mac, or use the PDF path. Ink survives a reload (per-talk `storage` key, sessionStorage) but
+  dies with the tab.
 
 **Presenter view: none.** **S** opens a popup that becomes a same-screen tab on iPadOS, and external
 displays mirror — so standalone notes = the notes-included PDF on a second device or on paper.
@@ -80,17 +82,21 @@ PDF export is desktop-Chrome-only; iPad "Chrome" is WebKit and cannot produce it
 - The index-rail CSS needs iPadOS 15.4+ (`:has()`); older iPads lose the rail cosmetically, nothing
   else breaks.
 
-## Planned fixes (agreed 2026-07, not yet applied)
+## The applied fixes (2026-07), and how they are maintained
 
-1. **Pencil-only patch** (< 10 lines, vendored): gate the chalkboard's `touchstart`/`touchmove` on
-   `touch.touchType === 'stylus'`, moving the unconditional `preventDefault` behind the gate so
-   finger swipes still navigate. Upstream master is still 2.3.3 with no stylus support — patch,
-   don't upgrade. Apply to the talk **and** `template/lib/`; re-apply after any `setup.sh` re-vendor.
-2. **Touch toggle buttons**: small fixed-position buttons calling the public
-   `RevealChalkboard.toggleNotesCanvas()` / `.toggleChalkboard()` API, added in `template/`.
-3. **`storage` on by default** in the template's chalkboard config.
-4. **Video guidance**: `<video data-autoplay muted playsinline controls src=...>` — iOS autoplay
-   policy rejects the first unmuted play (reveal auto-adds `playsinline` on iPad and retries muted,
-   but declaring both is the reliable form; Blender clips are silent anyway).
-5. **Drop the no-op viewport attributes** (`user-scalable=no`, `maximum-scale`) — iOS has ignored
-   them since iOS 10; they protect nothing during inking.
+1. **Stylus-only patch** (vendored, in the talk and `template/lib/`): an `inkingTouch()` helper
+   gates the chalkboard's `touchstart`/`touchmove`/`touchend` so only `touchType === 'stylus'` (or
+   platforms that report no `touchType` at all) inks; palm-lift mid-stroke does not cut the Pencil
+   line. Config: `chalkboard: { stylusOnly: false }` disables it. Upstream is still 2.3.3 with no
+   stylus support — the patch lives in `patches/chalkboard-stylus-only.patch` and **`setup.sh`
+   re-applies it after every re-vendor** (if it stops applying after a version bump, re-derive it
+   from this section and `git diff`).
+2. **Touch ink bar**: fixed-position pen / board / clear buttons (bottom-left) in the talk and
+   template `index.html`, calling the plugin's public `RevealChalkboard` API. Styled in
+   `custom.css` (`.inkbar`), hidden in print, icons from the menu plugin's vendored Font Awesome.
+3. **Per-talk ink `storage`**: the template config carries `storage: 'TALK_SLUG-chalkboard'` and
+   `new-talk.sh` substitutes the slug, so two talks served from the same origin never share ink.
+4. **Video pattern** is now `<video data-autoplay muted playsinline controls src=...>` in CLAUDE.md
+   and the template example (iOS autoplay policy rejects the first unmuted play).
+5. **Viewport meta** dropped the no-op `user-scalable=no` / `maximum-scale` attributes (ignored
+   since iOS 10).

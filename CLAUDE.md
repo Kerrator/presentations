@@ -34,7 +34,9 @@ clones, and the repo is fully functional without it. If present, read it.
   SVG (system fonts, no external `href`/`<image>`); a rich SVG can carry its own caption and is
   cleaner than a figure + a separate display-math line that tends to overflow.
 - **Blender animations:** keep the `.mp4` in `assets/`. Inline:
-  `<video data-autoplay controls src="assets/clip.mp4"></video>`. Full-bleed background:
+  `<video data-autoplay muted playsinline controls src="assets/clip.mp4"></video>` — `muted` +
+  `playsinline` are required for autoplay on iPad Safari (Blender clips are silent anyway).
+  Full-bleed background:
   `<section data-background-video="assets/anim.mp4" data-background-video-loop data-background-video-muted>`.
 - **Speaker notes:** `<aside class="notes"> full prose </aside>` inside a slide. Press **S** for the
   presenter view (notes + timer + next-slide preview). Slides stay terse; sentences live here.
@@ -42,12 +44,14 @@ clones, and the repo is fully functional without it. If present, read it.
 ## Live inking (Apple Pencil) — and its honest limit
 
 The chalkboard plugin is enabled: **C** annotates the current slide, **B** opens a blank chalkboard,
-**D** downloads drawings as JSON. It takes Pencil/touch input in iPad Safari/Chrome but **has no palm
-rejection**, and C/B/D are keyboard-only (no touch path in). For serious annotation, export the deck
-to PDF (below) and ink on it in GoodNotes/Notability — always carry that PDF anyway. The full iPad
-runbook — Sidecar vs standalone, serving on-device with a-Shell, the notes-included second PDF, and
-the planned chalkboard patches — is
-`.claude/skills/author-reveal-talk/references/ipad-delivery.md`.
+**D** downloads drawings as JSON; on touch devices the on-screen **ink bar** (bottom-left: pen /
+board / clear) covers the same actions. The vendored plugin carries a local **stylus-only patch**
+(`patches/chalkboard-stylus-only.patch`, re-applied by `setup.sh`): on iPad the Pencil inks and a
+resting palm/finger does not (`chalkboard: { stylusOnly: false }` restores finger drawing). Ink
+survives a reload via the per-talk `storage` key but dies with the tab — for durable annotation,
+export the deck to PDF (below) and ink on it in GoodNotes/Notability; always carry that PDF anyway.
+The full iPad runbook — Sidecar vs standalone, serving on-device with a-Shell, the notes-included
+second PDF — is `.claude/skills/author-reveal-talk/references/ipad-delivery.md`.
 
 ## Previewing
 
