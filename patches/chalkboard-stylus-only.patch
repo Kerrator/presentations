@@ -1,0 +1,84 @@
+diff --git a/template/lib/plugins/chalkboard/plugin.js b/template/lib/plugins/chalkboard/plugin.js
+index b3c181e..fca5c40 100644
+--- a/template/lib/plugins/chalkboard/plugin.js
++++ b/template/lib/plugins/chalkboard/plugin.js
+@@ -219,6 +219,11 @@ const initChalkboard = function ( Reveal ) {
+ 	var colorButtons = true;
+ 	var boardHandle = true;
+ 	var transition = 800;
++	// Local patch (stylus-only palm rejection): where the platform reports
++	// Touch.touchType (iPadOS Safari: 'stylus' = Apple Pencil, 'direct' =
++	// finger/palm), only the stylus inks. Platforms without touchType are
++	// unaffected. Disable with chalkboard: { stylusOnly: false }.
++	var stylusOnly = true;
+ 
+ 	var readOnly = false;
+ 	var messageType = 'broadcast';
+@@ -272,6 +277,7 @@ const initChalkboard = function ( Reveal ) {
+ 		if ( config.colorButtons != undefined ) colorButtons = config.colorButtons;
+ 		if ( config.boardHandle != undefined ) boardHandle = config.boardHandle;
+ 		if ( config.transition ) transition = config.transition;
++		if ( config.stylusOnly != undefined ) stylusOnly = config.stylusOnly;
+ 
+ 		if ( config.readOnly != undefined ) readOnly = config.readOnly;
+ 		if ( config.messageType ) messageType = config.messageType;
+@@ -1440,9 +1446,23 @@ const initChalkboard = function ( Reveal ) {
+  ** User interface
+  ******************************************************************/
+ 
++	// Local patch (stylus-only palm rejection): pick the touch allowed to ink
++	// from a TouchList. With stylusOnly, a touch inks only if the platform does
++	// not report touchType (non-Apple devices) or reports 'stylus' (the Pencil);
++	// 'direct' finger/palm contacts return null and are left to reveal.
++	function inkingTouch( touchList ) {
++		for ( var i = 0; i < touchList.length; i++ ) {
++			var t = touchList[ i ];
++			if ( !stylusOnly || t.touchType == undefined || t.touchType == 'stylus' ) return t;
++		}
++		return null;
++	}
++
+ 	function setupCanvasEvents( canvas ) {
+ // TODO: check all touchevents
+ 		canvas.addEventListener( 'touchstart', function ( evt ) {
++			var inkTouch = inkingTouch( evt.changedTouches );
++			if ( !inkTouch ) return; // palm/finger landed: not an ink event
+ 			evt.preventDefault();
+ //console.log("Touch start");
+ 			if ( !readOnly && evt.target.getAttribute( 'data-chalkboard' ) == mode ) {
+@@ -1450,7 +1470,7 @@ const initChalkboard = function ( Reveal ) {
+ 				var xOffset = drawingCanvas[ mode ].xOffset;
+ 				var yOffset = drawingCanvas[ mode ].yOffset;
+ 
+-				var touch = evt.touches[ 0 ];
++				var touch = inkTouch;
+ 				mouseX = touch.pageX;
+ 				mouseY = touch.pageY;
+         if ( color[ mode ]  < 0 ) {
+@@ -1465,6 +1485,8 @@ const initChalkboard = function ( Reveal ) {
+ 		} : false );
+ 
+ 		canvas.addEventListener( 'touchmove', function ( evt ) {
++			var inkTouch = inkingTouch( evt.touches );
++			if ( !inkTouch ) return; // only palm/finger on the glass
+ 			evt.preventDefault();
+ //console.log("Touch move");
+ 			if ( drawing || erasing ) {
+@@ -1472,7 +1494,7 @@ const initChalkboard = function ( Reveal ) {
+ 				var xOffset = drawingCanvas[ mode ].xOffset;
+ 				var yOffset = drawingCanvas[ mode ].yOffset;
+ 
+-				var touch = evt.touches[ 0 ];
++				var touch = inkTouch;
+ 				mouseX = touch.pageX;
+ 				mouseY = touch.pageY;
+ 
+@@ -1517,6 +1539,8 @@ const initChalkboard = function ( Reveal ) {
+ 
+ 
+ 		canvas.addEventListener( 'touchend', function ( evt ) {
++			// If a palm/finger lifted while the stylus is still down, keep the stroke.
++			if ( !inkingTouch( evt.changedTouches ) && inkingTouch( evt.touches ) ) return;
+ 			evt.preventDefault();
+ 			stopDrawing();
+ 			stopErasing();

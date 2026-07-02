@@ -24,6 +24,9 @@ if [ -e "$dest" ]; then
 fi
 
 cp -r "$ROOT/template" "$dest"
+# Give the chalkboard a per-talk storage key (two talks served from the same
+# origin+port would otherwise share ink in sessionStorage).
+sed -i '' "s/TALK_SLUG/$slug/g" "$dest/index.html"
 echo "Created talks/$slug"
 echo "Preview:  (cd talks/$slug && python3 -m http.server 8000)  ->  http://localhost:8000"
 echo "PDF:      http://localhost:8000/?print-pdf  ->  Print  ->  Save as PDF"

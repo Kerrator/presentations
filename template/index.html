@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Talk title — your name</title>
 
     <!-- reveal core (vendored, offline) -->
@@ -109,7 +109,7 @@ print(atoms.get_potential_energy())
         <!-- An inline Blender clip:
         <section>
           <h2>Mechanism</h2>
-          <video data-autoplay controls src="assets/clip.mp4" style="max-height:70vh;"></video>
+          <video data-autoplay muted playsinline controls src="assets/clip.mp4" style="max-height:560px;"></video>
         </section>
         -->
 
@@ -125,6 +125,16 @@ print(atoms.get_potential_energy())
         </section>
 
       </div>
+    </div>
+
+    <!-- Touch entry to inking (an iPad has no C/B/DEL keys): pen annotates the
+         current slide, board opens the blank chalkboard, eraser wipes this
+         slide's ink. Icons come from the menu plugin's vendored Font Awesome;
+         hidden in print. -->
+    <div class="inkbar">
+      <button type="button" title="Annotate this slide (C)" onclick="RevealChalkboard.toggleNotesCanvas();"><i class="fas fa-pen"></i></button>
+      <button type="button" title="Open chalkboard (B)" onclick="RevealChalkboard.toggleChalkboard();"><i class="fas fa-chalkboard"></i></button>
+      <button type="button" title="Clear ink on this slide (DEL)" onclick="RevealChalkboard.clear();"><i class="fas fa-eraser"></i></button>
     </div>
 
     <!-- reveal core + plugins (vendored, offline) -->
@@ -161,7 +171,10 @@ print(atoms.get_potential_energy())
 
         // --- live inking (Apple Pencil / mouse) ---
         // c = annotate current slide   b = chalkboard   d = download drawings (.json)
-        chalkboard: { boardmarkerWidth: 3 },
+        // (touch: the on-screen ink bar covers annotate/board/clear; the vendored
+        //  plugin is patched stylus-only so a resting palm doesn't draw on iPad)
+        // storage keeps ink across an accidental reload; TALK_SLUG is set by new-talk.sh
+        chalkboard: { boardmarkerWidth: 3, storage: 'TALK_SLUG-chalkboard' },
 
         // --- jump-anywhere menu (top-left), good for non-linear navigation ---
         menu: { themes: false, openButton: true, openSlideNumber: true },

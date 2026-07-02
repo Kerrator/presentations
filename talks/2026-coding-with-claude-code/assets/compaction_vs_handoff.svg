@@ -1,0 +1,130 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"
+     font-family="system-ui, -apple-system, Segoe UI, sans-serif"
+     style="--primary:#002452; --accent:#B90E31; --gold:#FABD0F; --ink:#1a1a1a; --muted:#5a5650; --neutral:#f3f1ea; --paper:#ffffff; --stroke:#c9c2ad; --line:#d3ccbd; --loss:#D55E00; --loss-fill:#fbe6d8; --good:#009E73; --good-fill:#eef7f3; --data:#0072B2; --funnel:#d7e2ef; --bar:#9a9182;">
+
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="var(--primary,#002452)"/>
+    </marker>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="var(--good,#009E73)"/>
+    </marker>
+    <marker id="al" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 z" fill="var(--loss,#D55E00)"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TITLE ===== -->
+  <text x="64" y="56" fill="var(--primary,#002452)" font-weight="700" font-size="33">Two ways to survive a filling context</text>
+  <text x="64" y="88" fill="var(--muted,#5a5650)" font-size="21">Compaction summarizes the same thread; a handoff doc seeds a fresh one</text>
+
+  <!-- ============================================================ -->
+  <!-- LEFT PANEL: COMPACTION                                        -->
+  <!-- ============================================================ -->
+  <rect x="64" y="118" width="556" height="394" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <rect x="88" y="134" width="306" height="36" rx="18" fill="var(--primary,#002452)"/>
+  <text x="241" y="158" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">COMPACTION · buys continuity</text>
+  <text x="406" y="158" font-size="14" fill="var(--muted,#5a5650)">one thread, continued</text>
+
+  <!-- long thread stack -->
+  <text x="100" y="190" font-size="14" font-weight="600" fill="var(--ink,#1a1a1a)">long thread</text>
+  <rect x="96" y="196" width="118" height="180" rx="8" fill="var(--paper,#ffffff)" stroke="var(--ink,#1a1a1a)" stroke-width="2"/>
+  <g fill="var(--line,#d3ccbd)">
+    <rect x="108" y="208" width="94" height="11" rx="2"/>
+    <rect x="108" y="224" width="94" height="11" rx="2"/>
+    <rect x="108" y="240" width="94" height="11" rx="2"/>
+    <rect x="108" y="256" width="94" height="11" rx="2"/>
+    <rect x="108" y="288" width="94" height="11" rx="2"/>
+    <rect x="108" y="304" width="94" height="11" rx="2"/>
+    <rect x="108" y="320" width="94" height="11" rx="2"/>
+    <rect x="108" y="336" width="94" height="11" rx="2"/>
+    <rect x="108" y="352" width="94" height="11" rx="2"/>
+  </g>
+  <!-- the load-bearing caveat, highlighted -->
+  <rect x="106" y="270" width="98" height="14" rx="2" fill="var(--loss,#D55E00)"/>
+
+  <!-- funnel: summarize -->
+  <text x="234" y="190" font-size="14" font-weight="700" fill="var(--primary,#002452)">summarize</text>
+  <path d="M220,206 L305,272 L305,300 L220,362 Z" fill="var(--funnel,#d7e2ef)" stroke="var(--primary,#002452)" stroke-width="2"/>
+  <path d="M307,286 L320,286" fill="none" stroke="var(--primary,#002452)" stroke-width="2.5" marker-end="url(#ah)"/>
+
+  <!-- shorter continued thread -->
+  <text x="322" y="244" font-size="14" font-weight="600" fill="var(--ink,#1a1a1a)">continues</text>
+  <rect x="322" y="250" width="96" height="104" rx="8" fill="var(--paper,#ffffff)" stroke="var(--ink,#1a1a1a)" stroke-width="2"/>
+  <g fill="var(--line,#d3ccbd)">
+    <rect x="332" y="262" width="76" height="11" rx="2"/>
+    <rect x="332" y="278" width="76" height="11" rx="2"/>
+    <rect x="332" y="294" width="76" height="11" rx="2"/>
+    <rect x="332" y="310" width="76" height="11" rx="2"/>
+    <rect x="332" y="326" width="76" height="11" rx="2"/>
+  </g>
+
+  <!-- the caveat drops out, routed around the funnel -->
+  <path d="M204,277 C 218,278 228,288 228,312 C 228,346 242,372 258,386"
+        fill="none" stroke="var(--loss,#D55E00)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#al)"/>
+
+  <!-- dropped chip -->
+  <rect x="232" y="388" width="300" height="52" rx="8" fill="var(--loss-fill,#fbe6d8)" stroke="var(--loss,#D55E00)" stroke-width="1.5"/>
+  <text x="250" y="414" font-size="18" font-weight="700" fill="var(--loss,#D55E00)">✕</text>
+  <text x="272" y="410" font-size="14" font-weight="700" fill="var(--loss,#D55E00)">dropped: nu0 is in Hz, not ps⁻¹</text>
+  <text x="272" y="430" font-size="13" fill="var(--muted,#5a5650)">the load-bearing caveat</text>
+
+  <!-- panel captions -->
+  <text x="96" y="468" font-size="15" fill="var(--ink,#1a1a1a)">lossy by omission you don't control</text>
+  <text x="96" y="490" font-size="15" fill="var(--muted,#5a5650)">the model keeps what LOOKS salient</text>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT PANEL: HANDOFF                                          -->
+  <!-- ============================================================ -->
+  <rect x="660" y="118" width="556" height="394" rx="12" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <rect x="684" y="134" width="272" height="36" rx="18" fill="var(--primary,#002452)"/>
+  <text x="820" y="158" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">HANDOFF · buys purity</text>
+  <text x="968" y="158" font-size="14" fill="var(--muted,#5a5650)">seed a fresh thread</text>
+
+  <!-- handoff.md document card -->
+  <rect x="684" y="196" width="250" height="180" rx="10" fill="var(--paper,#ffffff)" stroke="var(--primary,#002452)" stroke-width="2"/>
+  <text x="700" y="224" font-size="18" font-weight="700" fill="var(--primary,#002452)">handoff.md</text>
+  <text x="700" y="245" font-size="14" fill="var(--muted,#5a5650)">one task's slice</text>
+  <line x1="700" y1="256" x2="918" y2="256" stroke="var(--stroke,#c9c2ad)" stroke-width="1"/>
+  <text x="700" y="284" font-size="16" fill="var(--ink,#1a1a1a)"><tspan fill="var(--good,#009E73)" font-weight="700">→</tspan> the issue</text>
+  <text x="700" y="310" font-size="16" fill="var(--ink,#1a1a1a)"><tspan fill="var(--good,#009E73)" font-weight="700">→</tspan> the committed input</text>
+  <text x="700" y="336" font-size="16" fill="var(--ink,#1a1a1a)"><tspan fill="var(--good,#009E73)" font-weight="700">→</tspan> RESULTS.md</text>
+  <rect x="700" y="350" width="152" height="22" rx="11" fill="var(--good,#009E73)"/>
+  <text x="776" y="366" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">point, don't copy</text>
+
+  <!-- seed arrow to fresh context -->
+  <path d="M934,286 L974,286" fill="none" stroke="var(--good,#009E73)" stroke-width="2.5" marker-end="url(#ag)"/>
+  <text x="954" y="278" font-size="13" font-weight="700" fill="var(--good,#009E73)" text-anchor="middle">seed</text>
+
+  <!-- fresh clean context window -->
+  <rect x="980" y="214" width="204" height="150" rx="12" fill="var(--good-fill,#eef7f3)" stroke="var(--good,#009E73)" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="1082" y="286" font-size="17" font-weight="700" fill="var(--good,#009E73)" text-anchor="middle">fresh agent</text>
+  <text x="1082" y="310" font-size="15" fill="var(--muted,#5a5650)" text-anchor="middle">clean budget</text>
+
+  <!-- right captions -->
+  <rect x="684" y="400" width="500" height="44" rx="8" fill="var(--good-fill,#eef7f3)" stroke="var(--good,#009E73)" stroke-width="1.5"/>
+  <text x="702" y="428" font-size="16" font-weight="600" fill="var(--good,#009E73)">references stay correct as targets evolve</text>
+  <text x="684" y="470" font-size="15" fill="var(--muted,#5a5650)">nothing stale gets copied forward</text>
+
+  <!-- ============================================================ -->
+  <!-- PROPORTION STRIP: watch files, don't read them                -->
+  <!-- ============================================================ -->
+  <rect x="64" y="522" width="1152" height="82" rx="10" fill="var(--neutral,#f3f1ea)" stroke="var(--stroke,#c9c2ad)" stroke-width="1.5"/>
+  <text x="80" y="542" font-size="16" font-weight="700" fill="var(--primary,#002452)">Watch files, don't read them</text>
+
+  <!-- grep row: tiny green sliver -->
+  <text x="80" y="564" font-size="14" fill="var(--ink,#1a1a1a)">grep the convergence line</text>
+  <rect x="360" y="552" width="10" height="14" rx="2" fill="var(--good,#009E73)"/>
+  <text x="378" y="564" font-size="14" font-weight="700" fill="var(--good,#009E73)">≈ 30 tokens</text>
+
+  <!-- read row: long muted bar -->
+  <text x="80" y="589" font-size="14" fill="var(--ink,#1a1a1a)">read the log</text>
+  <rect x="360" y="577" width="740" height="14" rx="2" fill="var(--bar,#9a9182)"/>
+  <text x="1090" y="589" font-size="14" font-weight="700" fill="#ffffff" text-anchor="end">≈ 30,000 tokens</text>
+
+  <!-- ===== CAPTION STRIP ===== -->
+  <rect x="64" y="628" width="1152" height="62" rx="10" fill="var(--primary,#002452)"/>
+  <rect x="64" y="628" width="8" height="62" rx="4" fill="var(--accent,#B90E31)"/>
+  <text x="92" y="658" font-size="22" font-weight="700" fill="var(--gold,#FABD0F)">Compaction buys continuity; handoff buys purity.</text>
+  <text x="92" y="682" font-size="19" fill="#ffffff">For a campaign that fans out across many worktrees, purity is the property that scales.</text>
+</svg>

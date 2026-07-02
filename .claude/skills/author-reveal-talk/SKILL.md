@@ -15,6 +15,8 @@ description: >-
 The contract is in `AGENTS.md`; this is the procedure. Read
 [`references/workflow.md`](references/workflow.md) and
 [`references/verification.md`](references/verification.md) for the detail — don't inline them.
+For presenting or inking from an iPad (Sidecar vs standalone, on-device serving, chalkboard
+limits), read [`references/ipad-delivery.md`](references/ipad-delivery.md).
 
 ## The loop
 

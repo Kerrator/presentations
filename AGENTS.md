@@ -27,7 +27,8 @@ is wrong. This is the load-bearing rule; everything else is convenience.
 | `index.html` | The talks landing page (manual `<li>` list) | Served at the Pages root |
 | `fonts/` | Master copy of the handwriting font | Copied into a talk by `setup.sh` |
 | `new-talk.sh` | Scaffolds `talks/<slug>/` from `template/` | |
-| `setup.sh` | Re-vendors `template/lib/` from pinned versions in `package.json` | |
+| `setup.sh` | Re-vendors `template/lib/` from pinned versions in `package.json` | Re-applies `patches/` |
+| `patches/` | Local patches to vendored libs (chalkboard stylus-only palm rejection) | Applied by `setup.sh` |
 | `.claude/skills/author-reveal-talk/` | The talk-authoring skill (offline discipline, structure, build-from-source, verification) | Discovered automatically |
 
 A private, machine-local layer (personal workflow notes + critical-Claude reference) may be

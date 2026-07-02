@@ -90,7 +90,7 @@ ax.set_yticklabels(["surface 1NN\n(Ea 0.63 eV)", "subsurface 1NN\n(Ea 0.83 eV)"]
 ax.set_ylim(-0.7, 1.7)
 ax.set_xlim(4, 700)
 ax.set_xlabel(r"attempt frequency $\nu_0$  (THz, log scale)", color=INK, fontsize=13)
-ax.set_title("An attempt frequency that compiled clean -- and was 17x too high",
+ax.set_title("An attempt frequency that compiled clean, and was 17x too high",
              color=Q_BLUE, fontsize=14.5, fontweight="bold", pad=10)
 ax.tick_params(colors=MUTED)
 for s in ("top", "right", "left"):
@@ -108,10 +108,13 @@ leg = ax.legend(handles=handles, loc="lower right", frameon=True, fontsize=11)
 leg.get_frame().set_edgecolor(PANEL)
 leg.get_frame().set_facecolor("white")
 
-fig.text(0.012, -0.03,
-         "Real outputs (family_prefactors.csv). nu0 GREW as atoms were added -- the tell of a "
-         "soft-mode artefact, not physics. The recrossing kappa came back NaN, so the honest call was bare-Vineyard.",
-         color=MUTED, fontsize=10, ha="left")
+fig.text(0.012, -0.02,
+         "Real outputs (family_prefactors.csv). nu0 GREW as atoms were added: the tell of a "
+         "soft-mode artifact, not physics.",
+         color=MUTED, fontsize=14, ha="left")
+fig.text(0.012, -0.075,
+         "The recrossing kappa came back NaN, so the honest call was bare-Vineyard.",
+         color=MUTED, fontsize=14, ha="left")
 
 fig.tight_layout(rect=(0, 0.03, 1, 1))
 out = __file__.rsplit("/assets/", 1)[0] + "/assets/htst_prefactor_catch.svg"

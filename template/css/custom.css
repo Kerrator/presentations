@@ -40,6 +40,24 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* Touch ink bar (iPad has no C/B/DEL keys): pen / board / clear buttons.
+   Above the menu button, below the menu overlay (z 200), above the ink
+   canvases (z 24/26). Hidden in print. */
+.inkbar {
+  position: fixed; left: 9px; bottom: 76px; z-index: 30;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.inkbar button {
+  width: 38px; height: 38px; border: 0; border-radius: 7px;
+  background: transparent; color: #666;
+  font-size: 17px; line-height: 1; cursor: pointer; opacity: 0.35;
+  -webkit-tap-highlight-color: transparent;
+}
+.inkbar button:hover, .inkbar button:active {
+  opacity: 1; color: var(--accent); background: rgba(0,0,0,0.06);
+}
+@media print { .inkbar { display: none; } }
+
 /* OPTIONAL — push rendered equations toward your handwriting font.
    Affects letters/numbers; accents and operators can shift, so test your
    real equations first. Legibility usually beats novelty for scientific math.

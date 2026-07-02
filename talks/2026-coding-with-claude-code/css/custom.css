@@ -167,10 +167,9 @@
 .reveal table.kv td.num {
   width: 1.4em; text-align: center; font-weight: 700; color: var(--q-red);
 }
-.reveal .twocol { display: flex; gap: 0.7em; align-items: flex-start; }
-.reveal .twocol > table { flex: 1 1 0; min-width: 0; }
-.reveal .twocol table.kv { font-size: 0.36em; }
-.reveal .twocol table.kv td:first-child { white-space: normal; }
+/* The at-a-glance dictionary: narrated live and meant to be photographed,
+   so it renders larger than the skipped-live reference tables. */
+.reveal table.kv.glance { font-size: 0.54em; }
 
 /* 3-column translation dictionary: term | software development | materials research */
 .reveal table.kv.tri { font-size: 0.5em; }
@@ -180,15 +179,17 @@
 /* ---- Code blocks ---- */
 .reveal pre { width: 94%; max-width: 94%; box-shadow: none; margin: 0.3em 0; }
 .reveal pre code {
-  font-size: 0.62em; line-height: 1.34; max-height: 64vh;
+  font-size: 0.62em; line-height: 1.34; max-height: 512px; /* slide box is a fixed 960x700; vh caps vary with the device viewport (iPad!) */
   white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere;
   border-radius: 4px; border-left: 3px solid var(--q-blue);
 }
 
 /* ---- Figures: centred + bounded so they never overflow ---- */
 .reveal .fig { display: block; margin: 0.2em auto 0; max-width: 100%; }
-.reveal .fig.tall { max-height: 66vh; }
-.reveal .fig.wide { max-height: 60vh; }
+/* px, not vh: the slide box is always 960x700 (reveal scales the box), so vh
+   caps silently change per device and can clip on an iPad's taller viewport. */
+.reveal .fig.tall { max-height: 528px; }
+.reveal .fig.wide { max-height: 480px; }
 
 /* ---- KaTeX display guard ---- */
 .reveal .katex-display {
@@ -200,8 +201,15 @@
    Title slide
    ============================================================ */
 .reveal .titleslide {
-  display: flex; flex-direction: column; height: 100%;
   box-sizing: border-box;
+  height: 100%;
+  padding: 0;
+}
+/* reveal sets display:block inline on the visible section, which silently
+   kills flex on the section itself; an inner wrapper carries the layout. */
+.reveal .titleslide .titleflex {
+  display: flex; flex-direction: column;
+  height: 100%; box-sizing: border-box;
   padding: 40px 48px 44px;
 }
 .reveal .titleslide .titletop {
@@ -234,6 +242,23 @@
   background: transparent; color: var(--q-blue);
   font-family: 'IBM Plex Mono', monospace; font-size: 0.5em;
 }
+
+/* ---- Touch ink bar (iPad: no C/B/DEL keys). Above the menu button,
+       below the menu overlay (z 200), above the ink canvases (z 24/26). ---- */
+.inkbar {
+  position: fixed; left: 9px; bottom: 76px; z-index: 30;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.inkbar button {
+  width: 38px; height: 38px; border: 0; border-radius: 7px;
+  background: transparent; color: var(--muted);
+  font-size: 17px; line-height: 1; cursor: pointer; opacity: 0.35;
+  -webkit-tap-highlight-color: transparent;
+}
+.inkbar button:hover, .inkbar button:active {
+  opacity: 1; color: var(--q-blue); background: var(--panel);
+}
+@media print { .inkbar { display: none; } }
 
 /* ============================================================
    PDF export: landscape pages for the 16:9 slides.

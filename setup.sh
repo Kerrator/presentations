@@ -44,6 +44,11 @@ cp "$TMP/node_modules/reveal.js-plugins/chalkboard/plugin.js" "$LIB/plugins/chal
 cp "$TMP/node_modules/reveal.js-plugins/chalkboard/style.css" "$LIB/plugins/chalkboard/"
 cp -r "$TMP/node_modules/reveal.js-plugins/chalkboard/img"    "$LIB/plugins/chalkboard/img"
 
+# Re-apply the local stylus-only patch (Apple Pencil palm rejection; upstream
+# has no stylus support). If this fails after a version bump, re-derive the
+# patch: see .claude/skills/author-reveal-talk/references/ipad-delivery.md
+patch --silent "$LIB/plugins/chalkboard/plugin.js" "$ROOT/patches/chalkboard-stylus-only.patch"
+
 # --- slide menu plugin (denehyg): jump anywhere, helps non-linear navigation ---
 cp "$TMP/node_modules/reveal.js-menu/menu.js"       "$LIB/plugins/menu/"
 cp "$TMP/node_modules/reveal.js-menu/menu.css"      "$LIB/plugins/menu/"
