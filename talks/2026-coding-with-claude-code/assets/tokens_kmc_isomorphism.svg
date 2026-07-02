@@ -34,7 +34,7 @@
 
   <!-- ===================== HEADER ===================== -->
   <text x="56" y="56" class="head" fill="#002452">Same machine, twice over</text>
-  <text x="56" y="85" class="sub" fill="#5a6472">An LLM token pipeline laid directly on the pyKMC main loop &#8212; the units bug lives in <tspan font-weight="800" fill="#c0392b">DECODE</tspan></text>
+  <text x="56" y="85" class="sub" fill="#5a6472">An LLM token pipeline laid directly on the pyKMC main loop; the units bug lives in <tspan font-weight="800" fill="#c0392b">DECODE</tspan></text>
 
   <!-- column header strip -->
   <g fill="#5a6472" font-size="14" font-weight="700" letter-spacing=".12em">
@@ -169,7 +169,7 @@
     <!-- hit -->
     <circle cx="24" cy="90" r="7" fill="#002452"/>
     <text x="40" y="87" fill="#1a1a1a" font-size="14" font-weight="800">n_current</text>
-    <text x="40" y="106" fill="#5a6472" font-size="11.5">free lookup &#8212; hit</text>
+    <text x="40" y="106" fill="#5a6472" font-size="11.5">free lookup: hit</text>
     <rect x="16" y="118" width="126" height="14" rx="7" fill="#ffffff" stroke="#c9c2ad"/>
     <rect x="16" y="118" width="106" height="14" rx="7" fill="#002452"/>
 
@@ -178,7 +178,7 @@
     <!-- miss -->
     <circle cx="24" cy="178" r="7" fill="#b08d2b"/>
     <text x="40" y="175" fill="#1a1a1a" font-size="14" font-weight="800">n_new</text>
-    <text x="40" y="194" fill="#5a6472" font-size="11.5">miss &#8212; ARTn search</text>
+    <text x="40" y="194" fill="#5a6472" font-size="11.5">miss: ARTn search</text>
     <rect x="16" y="206" width="126" height="14" rx="7" fill="#ffffff" stroke="#c9c2ad"/>
     <rect x="16" y="206" width="28" height="14" rx="7" fill="#b08d2b"/>
     <text x="79" y="246" text-anchor="middle" class="mono" font-size="13" font-weight="700" fill="#b08d2b">nsearch = 20</text>
@@ -204,7 +204,7 @@
     <circle cx="38" cy="37" r="16" fill="#c0392b"/>
     <text x="38" y="44" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="900">!</text>
     <text x="70" y="31" fill="#c0392b" font-size="16" font-weight="800">DECODE is where the units bug lives</text>
-    <text x="70" y="56" fill="#1a1a1a" font-size="15.5">A <tspan class="mono" font-weight="700">Hz</tspan> token joined into a <tspan class="mono" font-weight="700">ps&#8315;&#185;</tspan> slot makes every rate <tspan font-weight="800">10&#185;&#178; too large</tspan> &#8212; <tspan fill="#c0392b" font-weight="800">nothing crashes.</tspan></text>
+    <text x="70" y="56" fill="#1a1a1a" font-size="15.5">A <tspan class="mono" font-weight="700">Hz</tspan> token joined into a <tspan class="mono" font-weight="700">ps&#8315;&#185;</tspan> slot makes every rate <tspan font-weight="800">10&#185;&#178; too large</tspan>: <tspan fill="#c0392b" font-weight="800">nothing crashes.</tspan></text>
   </g>
 
   <!-- connector decode column -> banner -->

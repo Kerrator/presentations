@@ -167,10 +167,9 @@
 .reveal table.kv td.num {
   width: 1.4em; text-align: center; font-weight: 700; color: var(--q-red);
 }
-.reveal .twocol { display: flex; gap: 0.7em; align-items: flex-start; }
-.reveal .twocol > table { flex: 1 1 0; min-width: 0; }
-.reveal .twocol table.kv { font-size: 0.36em; }
-.reveal .twocol table.kv td:first-child { white-space: normal; }
+/* The at-a-glance dictionary: narrated live and meant to be photographed,
+   so it renders larger than the skipped-live reference tables. */
+.reveal table.kv.glance { font-size: 0.54em; }
 
 /* 3-column translation dictionary: term | software development | materials research */
 .reveal table.kv.tri { font-size: 0.5em; }
@@ -200,8 +199,15 @@
    Title slide
    ============================================================ */
 .reveal .titleslide {
-  display: flex; flex-direction: column; height: 100%;
   box-sizing: border-box;
+  height: 100%;
+  padding: 0;
+}
+/* reveal sets display:block inline on the visible section, which silently
+   kills flex on the section itself; an inner wrapper carries the layout. */
+.reveal .titleslide .titleflex {
+  display: flex; flex-direction: column;
+  height: 100%; box-sizing: border-box;
   padding: 40px 48px 44px;
 }
 .reveal .titleslide .titletop {

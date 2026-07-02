@@ -71,5 +71,5 @@
   <rect x="64" y="630" width="1152" height="62" rx="10" fill="var(--primary,#002452)"/>
   <rect x="64" y="630" width="8" height="62" rx="4" fill="var(--accent,#B90E31)"/>
   <text x="92" y="660" font-size="22" font-weight="700" fill="#ffffff">The dE the slabs measure is the dE that pins the units regression.</text>
-  <text x="92" y="683" font-size="19" fill="var(--neutral,#f3f1ea)">Red by 10¹² before the one-line fix, green after. The physics never changed; only the unit at the boundary did, and only a human knew which was right.</text>
+  <text x="92" y="683" font-size="19" fill="var(--neutral,#f3f1ea)">Red by 10¹² before the fix, green after. Physics unchanged; only the unit changed, and only a human knew.</text>
 </svg>
