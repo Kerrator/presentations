@@ -43,8 +43,11 @@ clones, and the repo is fully functional without it. If present, read it.
 
 The chalkboard plugin is enabled: **C** annotates the current slide, **B** opens a blank chalkboard,
 **D** downloads drawings as JSON. It takes Pencil/touch input in iPad Safari/Chrome but **has no palm
-rejection**. For serious annotation, export the deck to PDF (below) and ink on it in
-GoodNotes/Notability — always carry that PDF anyway.
+rejection**, and C/B/D are keyboard-only (no touch path in). For serious annotation, export the deck
+to PDF (below) and ink on it in GoodNotes/Notability — always carry that PDF anyway. The full iPad
+runbook — Sidecar vs standalone, serving on-device with a-Shell, the notes-included second PDF, and
+the planned chalkboard patches — is
+`.claude/skills/author-reveal-talk/references/ipad-delivery.md`.
 
 ## Previewing
 
