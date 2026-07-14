@@ -107,7 +107,7 @@
               <tr><td>Claude Sonnet 5 Low</td><td>Walk.</td></tr>
               <tr><td>Claude Opus Low</td><td>Drive.</td></tr>
             </table>
-            <img class="shot fig" src="assets/carwash-model-label.png" alt="ChatGPT composer bar showing the 5.3 Instant model label" style="max-height:70px; margin-top:18px;" />
+            <img class="shot fig" src="assets/carwash-model-label.png" alt="ChatGPT composer bar showing the 5.3 Instant model label" style="max-height:70px; margin-top:2px;" />
             <p class="take">One correct answer to a familiar trap is <span class="gold">not evidence</span> the model will recover the hidden purpose of a novel request.</p>
             <aside class="notes">
               The outputs differ across models and modes; that much the screenshots establish. The
@@ -693,7 +693,7 @@ done
         <section>
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
           <h2>Vocabulary: the workflow</h2>
-          <table class="vocab">
+          <table class="vocab" style="font-size:0.53em;">
             <tr><th>Term</th><th>In this talk</th></tr>
             <tr><td class="term">design foundation</td><td>Durable Markdown distillation of the agreed design. A context start for future sessions.</td></tr>
             <tr><td class="term">implementation spec</td><td>The agreed end state packaged for execution. Study or method spec for simulation campaigns.</td></tr>
@@ -1218,6 +1218,7 @@ then record it. Stop when I can defend every choice.
         center: false,          // top-aligned reads better for dense technical slides
         slideNumber: 'c/t',
         transition: 'slide',
+        pdfSeparateFragments: false,   // print: one page per slide, not per fragment
 
         // --- KaTeX, fully offline ---
         katex: {

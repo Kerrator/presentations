@@ -1648,3 +1648,22 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     (opener, reproducer-first) carry none. The FOUNDATION.md slide states visibly that this
     presentation was built this way, without showing a path. Section 4 should harvest the chip
     motif. Locked in the 2026-07-14 section-3 interview.
+109. **Deliver from an unlisted Winter Atomics URL.** (2026-07-14, after all five section
+    interviews locked.) The finished deck is hosted verbatim on Stephen's personal site repo
+    (`Kerrator/WinterAtomics`, www.winteratomics.ca) at `talks/2026-coding-with-ai-v2/`, not
+    linked from any navigation, matching how the previous talk was hosted. The delivery URL is
+    the hosting outcome for this talk; the presentations-repo landing-page repoint in decision 82
+    stays parked until Stephen asks for it. The talk folder carries its own PDF backup
+    (54 pp landscape, fonts embedded) and a pixel-faithful PPTX (48 slides at the deck's true
+    1060 × 740 pt visual box, speaker notes attached), both regenerated from the merged deck.
+110. **Vendor the deck's declared fonts; note the tight-viewport caveat.** (2026-07-14.) The
+    first-draft CSS declared Open Sans Var and Plex Mono from `css/fonts/` but the woff2 files
+    were never copied in, so every section interview reviewed the deck in the system fallback
+    font. Stephen chose to vendor the three files from the v1 talk; two table slides were
+    re-tightened for the new metrics (six-model table image margin, workflow vocabulary table at
+    0.53 em) and the full overflow audit re-passed. Known caveat, deliberately not "fixed":
+    sections carry 10/20 px content-box padding outside reveal's 960 × 700 canvas, so a few long
+    lines paint up to ~40 canvas px past the nominal edge. Harmless on wide displays and in the
+    PDF/PPTX, but a near-4:3 fullscreen viewport (an iPad, some projectors) could clip those
+    glyph tails. Changing the box model would re-wrap locked slides, so it needs Stephen's
+    explicit decision; parked as a follow-up.
