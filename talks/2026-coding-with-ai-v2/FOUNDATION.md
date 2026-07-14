@@ -1202,6 +1202,34 @@ Stephen supplied an exact response set on 2026-07-13. The screenshots all use th
 - `codex-clipboard-0e231a05-4322-478c-a77d-39bd4de197ad.png`: **Claude Sonnet 5 Extra** recommends
   driving after a visible five-second thinking period.
 
+Slide-asset note (2026-07-14): the section-1 “Walk… unless” slide uses Stephen's dark-mode
+re-capture of the exception response (same response text verbatim as the 2026-07-13 light-theme
+logged-out capture; `assets/carwash-exception.png`). Stephen identified this response's model as
+**ChatGPT 5.5 Instant** (2026-07-14, from his account of the session; no model label is visible in
+either capture). Slide caption and drill-down table credit it accordingly.
+
+Added 2026-07-14 (section-1 interview): a ninth response, supplied by Stephen as a screenshot.
+**ChatGPT 5.5 Instant**, dark theme; the prompt wording is identical except it ends with a period
+rather than a question mark. The model answers "If it is literally 10 metres away, walk," then
+lists the reasons one would drive (the wash requires the vehicle to enter under its own power; the
+car must be moved onto the wash track) and gives the full practical sequence: walk to the car,
+drive it the short distance into the wash, walk home only if leaving it there. It closes with a
+10-minutes fallback. The trap's resolution arrives pre-packaged inside the exception structure.
+Stephen's speculation, recorded as speculation and never slide text: famous trap patterns may get
+special handling because a product that misses a simple question looks bad. The screenshot cannot
+establish that; the no-mechanism-inference boundary below applies unchanged. Slide use: none.
+Stephen decided (2026-07-14) the opening needs only two artifacts, the 5.3 Instant clean failure
+(live hook) and the unidentified-model exception response (drill-down); the 5.5 response stays in
+this record as evidence, without a slide.
+
+Added 2026-07-14 (section-1 interview): the drill-down table also lists three Claude rows.
+**Claude Haiku 4.5** (walk) and **Claude Sonnet 5 Low** (walk) are verified against the capture
+set above. **Claude Opus Low** (drive) is included on Stephen's attestation from his own session
+logs; no capture is held in this folder and Stephen explicitly waived verification to save tokens
+(2026-07-14). The table slide's speaker notes disclose the logs-not-screenshot provenance. The
+captured **Claude Sonnet 5 Extra** response (drive after visible thinking) is not in the table;
+Stephen chose Opus Low as the Claude drive example.
+
 Evidence boundary: the screenshots demonstrate different outputs across named model/mode/context
 conditions. They do **not** reveal whether a correct or partial answer came from fresh inference,
 post-training familiarity with a common puzzle, a system instruction, routing, or a curated
@@ -1344,6 +1372,29 @@ inside the epistemic loop**, with “outer space” retained in Stephen's speake
 draft closing line is **Delegate labour, not scientific judgement.** Its final cadence may be refined
 after rehearsing the first deck.
 
+### QE energy-extraction story — “I was the agent for the LLM”
+
+Stephen's account, from Lauren's computational materials course. Students (and Stephen) tried to use
+ChatGPT on course tasks and it failed often until the question was asked the right way. The example
+Stephen retells: processing Quantum ESPRESSO DFT output. The output files were huge, and ChatGPT at
+the time had no reliable way to extract the total energy. Even told explicitly that the energy was
+needed, it would at best grab a few energy values from somewhere in the pasted file. It produced the
+right answer only when Stephen specified the method: grep for the energy lines only (or he ran the
+grep himself), print that list, sort it, and verify the number of entries matched a direct grep
+count. His summary: “At the time I guess I was the agent for the LLM,” and he could only steer it to
+the right answer because he already knew how to get it. He then turned the working recipe into a
+prompt and script that made his own data processing faster.
+
+Lessons the story carries (in his words, paraphrased): models can recognize what kind of prompt they
+are given and answer that recognized pattern, so prompt care matters; extraction from large
+scientific outputs needs an explicit, verifiable method; and this is exactly what to think about
+when writing prompts for agents or Skills that process data.
+
+Placement (decision 85): NOT in section 1's live path. Candidate homes are section 3 (the human
+supplies the method; verification step mirrors the grep-count check) or section 4 (repeated prompt
+hardened into a script/Skill is the origin story of a Skill). The section 3 and 4 interviewers
+should decide where it lands; it should appear exactly once.
+
 ## Public implementation evidence ledger
 
 These links are candidates for slides or speaker notes. Inclusion in the ledger does not yet mean
@@ -1461,6 +1512,13 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     section block of `index.html` and commits when the section is locked. The 2026-07-13 draft
     (evidence and language audits passed) is starting material, not a commitment. The PDF export
     and the landing-page repoint (decision 82) wait until all five section interviews are done.
+85. **Section 1 stays the fast cold open; the QE energy-extraction story lands later in the talk.**
+    (2026-07-13 section-1 interview.) Stephen's stated goal for the opening: models are getting
+    better but can still fail silly cases, and that is still the case for science. Section 1 keeps
+    the car-wash hook in place and fast, planting at most a one-line foreshadow that science
+    examples follow later. His Quantum ESPRESSO energy-extraction story (see Stories → “QE
+    energy-extraction story”) must not be dropped from the talk: the section 3 and 4 interviewers
+    choose its single home (workflow verification vs. Skill origin).
 86. **Section 5 meets hesitancy first and lands on encouragement.** (2026-07-14 section-5
     interview.) The caution is the handshake, not the destination: the three failure stories
     validate the audience's earned hesitancy about AI in scientific code, the epistemic loop

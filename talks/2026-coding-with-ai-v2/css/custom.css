@@ -258,6 +258,13 @@
   @page { size: landscape; margin: 0; }
   .reveal-viewport { background: var(--bg); }
 }
+
+/* ---- §1 additions ------------------------------------------------------ */
+.reveal .ask {
+  font-size: 1.5em; line-height: 1.5;
+  margin-top: 2.1em; max-width: 17em;
+}
+
 /* ---- §5 additions ------------------------------------------------------ */
 .reveal .app-row {
   display: flex; justify-content: center; align-items: flex-start;

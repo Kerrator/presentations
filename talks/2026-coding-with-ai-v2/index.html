@@ -49,6 +49,17 @@
         <!-- ============ 1 · FROM CHAT TO AGENTIC CODING ============ -->
 
         <section>
+          <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
+          <p class="ask">“I need to wash my car, the carwash is 10&nbsp;m away should I walk or drive?”</p>
+          <aside class="notes">
+            This is the exact prompt, unedited, punctuation and all. Read it to the room, then ask
+            for hands: who walks? Who drives? Let people commit before anything resolves. Most of a
+            room picks walk; ten metres is nothing. Do not hint at the trap. The next slide shows
+            what one model did with it.
+          </aside>
+        </section>
+
+        <section>
           <section>
             <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
             <h2>Walk or drive?</h2>
@@ -70,22 +81,41 @@
             </aside>
           </section>
           <section>
+            <h3>Walk… unless</h3>
+            <img class="shot fig" src="assets/carwash-exception.png" alt="ChatGPT recommending walking, then adding the exception that the car must be driven into the wash" style="max-height:430px;" />
+            <p class="evidence">ChatGPT 5.5 Instant · 2026-07-13 · one observed response</p>
+            <aside class="notes">
+              Same prompt, same day, different session. Walk again, but this time the hidden goal
+              surfaces, and look where: inside the one exception. "If you mean you need to bring
+              the car to the car wash… you would, of course, drive." The purpose of the trip
+              appears as a footnote to the answer the model recognized.
+              I cannot tell you why this response recovered the goal: familiarity with a famous
+              puzzle, routing, a safeguard. The output alone does not say, and I will not guess
+              from a screenshot.
+              (Down: the summary of what the same question did across models and modes.)
+            </aside>
+          </section>
+          <section>
             <h3>Same prompt, different answers</h3>
-            <p class="lead">The same 10 m prompt, other models and modes (2026-07-13):</p>
+            <p class="lead">The same 10 m question, other models and modes (July 2026):</p>
             <table class="plain">
               <tr><th>Response</th><th>What it did</th></tr>
               <tr><td>ChatGPT 5.3 Instant</td><td>Walk. The purpose never surfaces. (shown live)</td></tr>
               <tr><td>ChatGPT 5.4 Pro</td><td>Drive: the car must reach the wash.</td></tr>
-              <tr><td>ChatGPT, unidentified model</td><td>Walk first, then an exception recognizing the car has to be brought in.</td></tr>
+              <tr><td>ChatGPT 5.5 Instant</td><td>Walk first, then the exception recognizing the car has to be brought in. (shown above)</td></tr>
+              <tr><td>Claude Haiku 4.5</td><td>Walk.</td></tr>
+              <tr><td>Claude Sonnet 5 Low</td><td>Walk.</td></tr>
+              <tr><td>Claude Opus Low</td><td>Drive.</td></tr>
             </table>
             <img class="shot fig" src="assets/carwash-model-label.png" alt="ChatGPT composer bar showing the 5.3 Instant model label" style="max-height:70px; margin-top:18px;" />
             <p class="take">One correct answer to a familiar trap is <span class="gold">not evidence</span> the model will recover the hidden purpose of a novel request.</p>
             <aside class="notes">
-              The outputs differ across models and modes; that much the screenshots establish. What
-              they do not establish is why: fresh inference, familiarity with a common puzzle,
-              routing, or a curated safeguard. I cannot infer the production mechanism from an
-              output, and neither can you. That uncertainty is the useful part: a right answer to a
-              famous trap tells me very little about a novel, underspecified coding request.
+              The outputs differ across models and modes; that much the screenshots establish. The
+              Opus Low run is from my own logs rather than a screenshot. What none of this
+              establishes is why: fresh inference, familiarity with a common puzzle, routing, or a
+              curated safeguard. I cannot infer the production mechanism from an output, and
+              neither can you. That uncertainty is the useful part: a right answer to a famous trap
+              tells me very little about a novel, underspecified coding request.
             </aside>
           </section>
         </section>
