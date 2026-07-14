@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1280 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Same token ID, different meaning: the token 'lead' enters two different sentences and leaves the transformer layers with two different contextual representations">
+<svg viewBox="0 0 1280 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Same token ID, different meaning: the token 'lead' enters a lead-shield sentence and a lead-nurse sentence and leaves the transformer layers with two different contextual representations; the token 'dose' flips between radiation and medication">
   <defs>
     <marker id="arrowBlue" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L9,4 L0,8 Z" fill="#8fb0dc"/>
@@ -28,13 +28,14 @@
     <rect x="562" y="90" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
     <text x="605" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
 
-    <rect x="664" y="90" width="108" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <rect x="664" y="90" width="108" height="52" rx="9" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
     <text x="718" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">dose</text>
 
-    <!-- token ID caption under top "lead" -->
+    <!-- token ID caption under top "lead"; meaning caption under top "dose" -->
     <text x="214" y="174" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">token ID 15224</text>
+    <text x="718" y="174" font-size="22" fill="#8fb0dc" text-anchor="middle">radiation</text>
 
-    <!-- ================= BOTTOM TRACK (authorship sentence) ================= -->
+    <!-- ================= BOTTOM TRACK (nurse sentence) ================= -->
     <!-- chips: y=420, height 52 -->
     <rect x="60"  y="420" width="86"  height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
     <text x="103" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
@@ -42,20 +43,21 @@
     <rect x="162" y="420" width="104" height="52" rx="9" fill="#002452" stroke="#FABD0F" stroke-width="2"/>
     <text x="214" y="454" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="600">lead</text>
 
-    <rect x="282" y="420" width="140" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
-    <text x="352" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">author</text>
+    <rect x="282" y="420" width="120" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="342" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">nurse</text>
 
-    <rect x="438" y="420" width="132" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
-    <text x="504" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">checks</text>
+    <rect x="418" y="420" width="132" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="484" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">checks</text>
 
-    <rect x="586" y="420" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
-    <text x="629" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
+    <rect x="566" y="420" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="609" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
 
-    <rect x="688" y="420" width="108" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
-    <text x="742" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">dose</text>
+    <rect x="668" y="420" width="108" height="52" rx="9" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+    <text x="722" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">dose</text>
 
-    <!-- token ID caption under bottom "lead" -->
+    <!-- token ID caption under bottom "lead"; meaning caption under bottom "dose" -->
     <text x="214" y="504" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">token ID 15224</text>
+    <text x="722" y="504" font-size="22" fill="#8fb0dc" text-anchor="middle">medication</text>
 
     <!-- ================= TRANSFORMER LAYER STACK (shared, centre-right) ================= -->
     <!-- stack spans both tracks vertically: x 850-960, four thin bars -->
@@ -87,10 +89,10 @@
           fill="none" stroke="#FABD0F" stroke-width="2.5" marker-end="url(#arrowGold)"/>
 
     <path d="M 103 420 C 120 392, 200 378, 330 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
-    <path d="M 352 420 C 366 392, 405 382, 455 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
-    <path d="M 504 420 C 518 394, 548 384, 588 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
-    <path d="M 629 420 C 644 396, 674 386, 704 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
-    <path d="M 742 420 C 758 398, 776 388, 792 382" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 342 420 C 356 392, 395 382, 445 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 484 420 C 498 394, 528 384, 568 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 609 420 C 624 396, 654 386, 684 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 722 420 C 738 398, 760 388, 780 382" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
 
     <!-- ================= OUTPUT VECTORS ================= -->
     <!-- top vector: 6 squares, gold at positions 2 and 5 -->
@@ -103,7 +105,7 @@
       <rect x="1210" y="100" width="30" height="30" rx="5" fill="#8fb0dc"/>
     </g>
     <text x="1135" y="166" font-size="22" fill="#9aa1ad" text-anchor="middle">contextual representation</text>
-    <text x="1135" y="194" font-size="22" fill="#9aa1ad" text-anchor="middle">· shielding</text>
+    <text x="1135" y="194" font-size="22" fill="#9aa1ad" text-anchor="middle">· lead, the metal</text>
 
     <!-- bottom vector: 6 squares, gold at positions 1 and 4 -->
     <g>
@@ -115,7 +117,7 @@
       <rect x="1210" y="430" width="30" height="30" rx="5" fill="#8fb0dc"/>
     </g>
     <text x="1135" y="496" font-size="22" fill="#9aa1ad" text-anchor="middle">contextual representation</text>
-    <text x="1135" y="524" font-size="22" fill="#9aa1ad" text-anchor="middle">· authorship</text>
+    <text x="1135" y="524" font-size="22" fill="#9aa1ad" text-anchor="middle">· lead, the role</text>
 
     <!-- ================= BOTTOM CAPTION ================= -->
     <text x="640" y="588" font-size="26" text-anchor="middle">

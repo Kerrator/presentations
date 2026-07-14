@@ -172,20 +172,40 @@
 
         <section>
           <p class="kicker"><span class="n">2</span> · Tokens and context</p>
+          <h2>What is a token?</h2>
+          <p class="lead">The smallest bit of information the model works with.</p>
+          <p class="lead fragment">A node connected to the other tokens in the window.</p>
+          <p class="goldline fragment">Its working meaning comes from those connections.</p>
+          <aside class="notes">
+            A token is the smallest unit the model actually reads and writes. Not a character, not
+            reliably a whole word: a chunk. I picture each token as a node carrying a vector. It
+            starts from a general representation, and its working meaning comes from the other
+            tokens it can attend to in the window. When I want the chunks to feel concrete I call
+            tokens objects instead of nodes; both are teaching metaphors, not literal claims about
+            the architecture.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
           <h2>Same token ID, different meaning</h2>
-          <img class="fig" src="assets/token-context.svg" alt="Two occurrences of the same token ID develop different contextual representations as transformer layers mix in context" style="max-height:430px;" />
+          <img class="fig" src="assets/token-context.svg" alt="Two occurrences of the same token ID, in a lead-shield sentence and a lead-nurse sentence, develop different contextual representations as transformer layers mix in context; the token dose flips meaning too" style="max-height:430px;" />
           <p class="take">The token ID is fixed. The representation carried at its position becomes <span class="gold">contextual</span>.</p>
           <aside class="notes">
-            I picture each token as a node carrying a vector. It starts from a general
-            representation, and as it passes through the transformer layers that representation is
-            repeatedly reshaped by the other positions it can attend to. The integer ID never
-            changes; the state carried at that position does. So context is not merely text sitting
-            near a token: it helps give that particular occurrence its working meaning.
-            The context window, then, is not just storage. What is in it shapes how every position
-            is represented and how the next token is predicted. That is why the rest of this talk
-            cares so much about what we let into it.
-            When I want the chunks to feel concrete I call tokens objects instead of nodes; both
-            are teaching metaphors, not literal claims about the architecture.
+            Follow one word through the stack. The same integer ID enters both sentences, and as it
+            passes through the transformer layers its representation is repeatedly reshaped by the
+            other positions it can attend to. By the output, lead means the metal in one sentence
+            and the senior role in the other. And notice the second flip: dose is a radiation dose
+            beside a shield and a medication dose beside a nurse. The neighbours decide.
+            Aside for this room: had I written Pb instead of lead, that is a different token ID
+            entirely, yet in this sentence it would converge to the same working meaning, the
+            metal. Same ID diverges; different IDs converge. The meaning lives in the contextual
+            representation, not in the integer.
+            The integer ID never changes; the state carried at that position does. So context is
+            not merely text sitting near a token: it helps give that particular occurrence its
+            working meaning. The context window, then, is not just storage. What is in it shapes
+            how every position is represented and how the next token is predicted. That is why the
+            rest of this talk cares so much about what we let into it.
           </aside>
         </section>
 
@@ -215,31 +235,61 @@
           <section>
             <p class="kicker"><span class="n">2</span> · Tokens and context</p>
             <h2>Keep context small and relevant</h2>
-            <div class="pair">
-              <div class="hot">
-                <p class="label">Adaptable</p>
-                <p>Focused and easy to steer as the evidence changes.</p>
-              </div>
-              <div>
-                <p class="label">Rigid</p>
-                <p>Crowded and set in its ways: abandoned ideas, stale assumptions, old tool output, directions I no longer want.</p>
-              </div>
-            </div>
+            <img class="fig" src="assets/context-zones.svg" alt="The context window as one region with two overlapping zones: a gold adaptable zone, focused and easy to steer, and a grey rigid zone, crowded and set in its ways, with an arrow showing the window filling toward capacity" style="max-height:430px;" />
             <p class="goldline fragment">A million-token window is capacity, not a target.</p>
             <aside class="notes">
               A fresh, focused coding chat is easy to steer. As it fills with abandoned ideas,
               stale assumptions, old tool output, and directions I no longer want, it starts to get
               set in its ways. That is what I mean by rigid.
+              On the figure: the zones overlap because there is no sharp line. As the window fills,
+              attention has to spread across everything present, so each token's influence thins
+              and new tokens are steered by a lot of stale context. Informally: the left is the
+              smart zone, the right is the dumb zone; the honest labels are adaptable and rigid.
               The spoken line: a million-token window is capacity, not a target. Just because
               Claude can hold that much does not mean I want every abandoned idea and stale
               decision following me through one coding chat.
               Qualifications: the million tokens is model-dependent and will date; this is a
               practical heuristic about session behaviour, not a claim that the weights change
-              mid-chat; and large, deliberately assembled contexts are genuinely valuable for
+              mid-chat; the zones are a cartoon, with no fixed fill fraction where behaviour
+              flips; and large, deliberately assembled contexts are genuinely valuable for
               reference and synthesis work. The advice is against accidental growth.
               Bridge to the next section: a fluent answer can satisfy the visible request while
               missing the goal behind it. So before implementation, we make the goal, constraints,
               assumptions, and definition of done explicit. That is the workflow.
+              (Down: watch the window fill, three stages; then vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>A fresh chat: small and targeted</h3>
+            <img class="fig" src="assets/context-grow-1.svg" alt="A nearly empty context window: six tokens in the gold adaptable band, the newest position attending strongly to each with a few bold lines" style="max-height:430px;" />
+            <aside class="notes">
+              Read this as a fresh chat. A handful of tokens, and the position writing the next
+              token can attend firmly to every one of them. The connections are few and strong.
+              This is the adaptable end: small and targeted, easy to steer.
+            </aside>
+          </section>
+          <section>
+            <h3>The chat grows</h3>
+            <img class="fig" src="assets/context-grow-2.svg" alt="The window half full: tokens reach the overlap between bands and the newest position's attention fans out thinner over many more tokens" style="max-height:430px;" />
+            <aside class="notes">
+              Same window, more turns: side questions, old tool output, ideas we abandoned. Every
+              new token attends over everything already present, so the web of connections grows
+              and each line starts to thin. We are in the overlap now: still workable, but
+              steering takes more effort.
+            </aside>
+          </section>
+          <section>
+            <h3>Near capacity: attention spread thin</h3>
+            <img class="fig" src="assets/context-grow-3.svg" alt="The window near capacity: tokens crowd deep into the rigid band and the newest position's attention is a wide, faint fan spread thin across the whole crowd" style="max-height:430px;" />
+            <p class="take fragment">A model's best work happens when the context is <span class="gold">small and targeted</span>.</p>
+            <aside class="notes">
+              Near capacity. The newest position's attention is spread across everything:
+              abandoned ideas, stale assumptions, dead ends. Each connection carries less, and the
+              next token is steered by a lot of history I no longer want. That is rigid.
+              The lesson: a model's best work happens when the context is small and targeted. So I
+              start new chats deliberately instead of letting one grow.
+              Cartoon, not mechanism: same hedges as the parent slide; there is no fixed fill
+              fraction where behaviour flips.
               (Down: vocabulary.)
             </aside>
           </section>
@@ -247,14 +297,80 @@
             <h3>Vocabulary: tokens and context</h3>
             <table class="vocab">
               <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">token</td><td>The smallest bit of information the model works with. A node whose working meaning comes from its connections.</td></tr>
               <tr><td class="term">token ID</td><td>The fixed integer produced by tokenization. It is not what changes.</td></tr>
               <tr><td class="term">contextual representation</td><td>The vector carried at a position after the layers mix in permitted context. Two identical IDs can diverge.</td></tr>
               <tr><td class="term">context window</td><td>The model's finite working set. Select what should shape the next answer; do not fill it.</td></tr>
               <tr><td class="term">adaptable / rigid</td><td>My labels for session quality: focused and steerable, versus crowded and set in its ways.</td></tr>
+              <tr><td class="term">/btw side question</td><td>A question answered beside the chat: it sees the conversation, but the answer never enters the window.</td></tr>
             </table>
             <aside class="notes">
               Contextual representation is the one technical takeaway I insist on: it explains why
               context management is not housekeeping but part of how the model computes.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">2</span> · Tokens and context</p>
+            <h2>Do not be afraid to start a new chat</h2>
+            <div class="pair">
+              <div class="hot">
+                <p class="label">New chat</p>
+                <p>A fresh, focused window. Steering is easiest before the crowd moves in.</p>
+              </div>
+              <div>
+                <p class="label">/btw side questions</p>
+                <p>Answered in an overlay: it sees the whole chat, but the answer never enters the window.</p>
+              </div>
+            </div>
+            <p class="goldline fragment">Carrying the thread into the new chat is a handoff. Section 3.</p>
+            <aside class="notes">
+              When the window gets crowded, I do not push through; I start a new chat. That sounds
+              wasteful until you remember the pictures we just saw: the best work happens when the
+              context is small and targeted. New chats are cheap; a crowded window is not.
+              The second tool: side questions. In Claude Code I type /btw and ask. The answer comes
+              back in an overlay. It can see the whole conversation, so the answer is grounded, but
+              it has no tools and the exchange never enters the conversation history, so it costs
+              the window nothing. If a side question grows into real work, one key turns it into its
+              own session.
+              How I use it: clarifying something we already did; brainstorming whether a repeated
+              prompt deserves to become a Skill; asking about the page I am hosting locally while
+              the main turn keeps running; and in an interview session, clarifying a recommendation
+              before I lock a decision. When I am about to write a document that will steer a lot of
+              budget, I want wording help with follow-up turns, so that one I fork into a fresh
+              session instead.
+              Bridge: what the new chat needs from the old one is the thread, meaning what we
+              decided and why. Moving that across deliberately is a handoff, and handoffs are
+              section 3.
+              (Down: setting up a workspace that keeps context small.)
+            </aside>
+          </section>
+          <section>
+            <h3>A workspace the agent can navigate</h3>
+            <div class="pair">
+              <div>
+                <p class="label">One of everything</p>
+                <p>A single script that does it all. Documentation in one huge file no window can hold.</p>
+              </div>
+              <div class="hot">
+                <p class="label">Navigable pieces</p>
+                <p>Small modules with clear docs. Documents link to documents; the agent loads only what the task needs.</p>
+              </div>
+            </div>
+            <p class="goldline fragment">Structure the workspace so any one task fits a small window.</p>
+            <aside class="notes">
+              Once agentic coding clicks, you start setting up your workspace for it. One huge
+              Python file that does everything is much less useful than a small module pulling in
+              pieces from others: the smaller chunks are easier for the agent to work on, as long
+              as the documentation is clear. The documentation matters just as much. Documents
+              should link to documents, so when the agent needs to know how one part of the code
+              works it follows the tree down to the right page instead of grepping through a
+              document larger than any context window.
+              This is also just good software practice for humans; the agent makes the payoff
+              immediate. Seed for later: section 4 applies the same discipline to prompts,
+              maintaining Skills as navigable, documented assets.
             </aside>
           </section>
         </section>

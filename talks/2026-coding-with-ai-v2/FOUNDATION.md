@@ -1592,3 +1592,29 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     placement question; section 3 must not duplicate it.) Told as the origin story of packaging:
     Stephen supplied the extraction method, was "the agent for the LLM", then hardened the recipe
     into a prompt and script. Notes only; the opener's visible content is unchanged.
+102. **The node metaphor is visible in section 2.** (Amends decision 9's notes-only scope.) A
+    lead-in slide, "What is a token?", carries the chain of words: the smallest bit of information
+    the model works with; a node connected to the other tokens in the window; its working meaning
+    comes from those connections. The object variant and the not-literal-architecture hedge stay
+    in the notes. The vocabulary table gains a matching "token" row.
+103. **The token figure's second sentence is the lead nurse.** "the lead author checks the dose"
+    becomes "the lead nurse checks the dose": both "lead" (metal versus role) and "dose"
+    (radiation versus medication) flip meaning, and the figure marks the dose flip in soft blue
+    with output labels "lead, the metal" / "lead, the role". Pb/lead convergence (different token
+    IDs arriving at the same working meaning) is a notes-only aside. The strawberry slide keeps
+    its single spaced reveal (confirms decision 12's presenter-led form).
+104. **The context slide is a zone diagram with a growth progression.** The Adaptable/Rigid cards
+    become one context-window figure with two overlapping zones (overlap = no sharp line),
+    uniform token density, and captions "attention concentrated on what matters" versus
+    "attention spread thin across the crowd". Three drill-downs show the window filling: the
+    attention fan from the next-token position grows wide and faint. Visible labels stay the
+    locked pair (decision 69); smart/dumb is spoken colour in the notes only. New locked speaker
+    line: "A model's best work happens when the context is small and targeted." All stages carry
+    the cartoon-not-mechanism hedge.
+105. **Section 2 closes on practice: new chats and /btw.** A main-path slide, "Do not be afraid
+    to start a new chat", pairs a fresh window against /btw side questions (mechanics verified
+    against the Claude Code interactive-mode documentation on 2026-07-14: overlay answer, sees
+    the conversation, no tools, never enters history) and bridges forward in gold: carrying the
+    thread into the new chat is a handoff (section 3). A drill-down, "A workspace the agent can
+    navigate", carries the small-modules and docs-link-to-docs discipline (one huge file versus
+    navigable pieces). The vocabulary table gains a "/btw side question" row.
