@@ -499,7 +499,7 @@ done
             <ul>
               <li>A discipline I repeat, preserved as a Skill</li>
               <li>Exposed only to the chats where it is relevant</li>
-              <li>Observed in use; revised or removed when it stops helping</li>
+              <li>Observed for drift; revised or removed when it stops helping</li>
               <li>Not only coding: one Skill adversarially reviews my statistical claims before I draft prose</li>
             </ul>
             <p class="take fragment">Not something to collect. <span class="gold">Something to maintain.</span></p>
@@ -509,39 +509,88 @@ done
               need recurs, the trigger is recognizable, the procedure is reusable, and I can tell
               whether it did the job. One-off advice and vague preferences do not clear that bar,
               even written down twice.
+              The origin story, from Lauren's computational materials course, before any of these
+              tools had agency: we tried ChatGPT on course tasks and it failed often until the
+              question was asked the right way. Quantum ESPRESSO output files are huge, and at the
+              time the model could not reliably extract the total energy from one; asked plainly,
+              it would grab a few energy values from somewhere in the pasted file. It produced the
+              right answer only when I specified the method: grep the energy lines, print that
+              list, sort it, and check the count against a direct grep. At the time, I guess I was
+              the agent for the LLM. I could only steer it because I already knew how to get the
+              answer. Then I turned the working recipe into a prompt and a script, and my own data
+              processing got faster. That is the life cycle this whole section is about: a method
+              that worked, repeated, hardened, packaged.
               Evaluation at our scale is proportional observation, not an A/B laboratory: does the
               agent follow the discipline more consistently, does the output get easier to verify,
               and what new friction appears? Revise, narrow, or remove accordingly.
+              And Skills drift. They are reusable prompts, and the arrangement that performed best
+              a few months ago is not guaranteed to be what performs best now, as the models and my
+              own practice change. That is why observation is part of owning one.
               The non-coding example: before I draft conclusions in a paper, a Skill walks my
               claims adversarially, estimation, assumptions, magnitude, uncertainty, causality,
               robustness, and the exact language the analysis licenses. Proof that a Skill can
               encode a way of thinking, not just store a canned prompt. Full tree in the
               drill-down.
-              (Down: the claim-review walk.)
+              (Down: the day the packaging paid for itself, then the Skill as written.)
             </aside>
           </section>
           <section>
-            <h3>Before the prose: adversarial review of my claims</h3>
-            <p class="lead">The one-question-at-a-time interview, pointed at a statistical interpretation tree:</p>
-            <ul class="small" style="font-size:0.66em;">
-              <li>How was each result estimated, and under which assumptions?</li>
-              <li>What does the magnitude mean, and what is its uncertainty?</li>
-              <li>Causality or association? How robust is it?</li>
-              <li>What is the exact language the analysis licenses?</li>
+            <h3>A recorded decision is a findable mistake</h3>
+            <p class="lead">HTST rates for pyKMC: the interview forced the consequential choices into the open.</p>
+            <ul>
+              <li>One question settled the time scale: I took the paper's convention, and the spec recorded it</li>
+              <li>Later, a computed rate landed orders of magnitude off an accepted value</li>
+              <li>Asking <em>why</em> did not need archaeology: the choice that went wrong was on the record</li>
             </ul>
-            <p class="take">Drafting begins only when I can state <span class="gold">the strongest claim the evidence actually supports</span>.</p>
+            <p class="take fragment">The Skill did not catch the bug. <span class="gold">It made the wrong decision findable.</span></p>
             <aside class="notes">
-              This is deliberately a paper-writing Skill, not a generic code or units reviewer. The
-              agent challenges; I retain ownership of the final claim. The stop condition: for each
-              result I can explain how it was produced, its assumptions and uncertainty, what it
-              substantively means, and the strongest claim it supports. Only then prose.
-              The same interview pattern generalizes: software design, statistical claims, and a
-              teaching adaptation that refuses to move on until the learner can explain the idea in
+              When I built HTST rates for pyKMC, the design interview earned its packaging. The
+              questions made me select the equations deliberately, and one of them settled the time
+              scale. I took the convention from the paper I was following, and that choice was
+              recorded in the spec. Later a computed rate came out orders of magnitude off an
+              accepted value from the literature. That mismatch is what made me distrust the
+              formula; I inspected it and found the inconsistency. The part that matters here: when
+              I asked why the wrong convention was in the code at all, the answer was waiting in a
+              recorded decision, not buried in an unexplained line. The Skill did not catch the
+              bug. My comparison against an expected value did. But because the interview had
+              forced the choice into the open, the mistake was a traceable decision instead of a
+              mystery. The full unit story, and what it says about passing tests, comes in the last
+              section.
+              One more habit this gives me: when the interview asks a clarifying question I cannot
+              answer, that is not friction. That is the signal to go read, or ask my group, before
+              the code moves.
+              (Down: the Skill, as written.)
+            </aside>
+          </section>
+          <section>
+            <h3>The Skill, as written</h3>
+            <p class="lead">No magic in the file: prose that tells the agent how to treat me.</p>
+            <pre style="font-size:0.62em;"><code class="language-markdown" data-trim>
+Interrogate me about each decision that is not
+already settled in the code base or foundation.
+One question at a time. Offer real options and
+say what each one changes. Wait for my decision,
+then record it. Stop when I can defend every choice.
+            </code></pre>
+            <p class="take fragment">It hunts the decisions <span class="gold">not yet on the record</span>.</p>
+            <aside class="notes">
+              Condensed from the Skill I actually run; the full file is longer, but this is its
+              heart, and the point is that there is no magic in it. A Skill is prose that tells the
+              agent how to treat me. The scope clause does the work: it does not re-ask what the
+              code base or the foundation already answers; it hunts the decisions that are not yet
+              on the record. That keeps me in the loop by construction. The agent cannot drift
+              quietly through consequential choices, because its instructions route every open one
+              to me.
+              I point the same pattern at other trees. At my statistical claims before I draft a
+              paper's conclusions: an adversarial walk through estimation, assumptions, magnitude,
+              uncertainty, causality, and the exact language the analysis licenses; prose begins
+              only when I can state the strongest claim the evidence actually supports. And at
+              teaching: a version that refuses to move on until the learner can explain the idea in
               their own words, apply it to an unfamiliar example, name its failure conditions, and
-              correct a plausible misconception. Fluent repetition is not understanding.
-              Honesty notes: this Skill did not catch the units bug you will see shortly, and I
-              make no claim it beats an unskilled frontier model; my evaluation of that was
-              inconclusive.
+              correct a plausible misconception.
+              Honesty notes: the claims version did not catch the units bug you will see in the
+              last section, and I make no claim a Skilled agent beats an unskilled frontier model;
+              my evaluation of that was inconclusive.
             </aside>
           </section>
         </section>
@@ -553,11 +602,15 @@ done
             <div class="pair">
               <div class="cold">
                 <p class="label">Study chat</p>
-                <p>Textbook read-aloud Skill: preserve the spoken text, skip figures, expand acronyms. Trusted, useful, and irrelevant to code.</p>
+                <p>Textbook read-aloud Skill: preserve the spoken text, skip figures, expand acronyms.</p>
+              </div>
+              <div class="cold">
+                <p class="label">Hobby chat</p>
+                <p>A hobby's own Skill shelf, just as carefully maintained. Nothing a repository needs.</p>
               </div>
               <div class="hot">
                 <p class="label">Coding chat</p>
-                <p>Debugging Skill: reproduce the exact failure before repairing it. The discipline this repository actually needs.</p>
+                <p>Debugging Skill: reproduce the exact failure before repairing it. What this repository needs.</p>
               </div>
             </div>
             <p class="take">Not good Skill versus bad Skill: <span class="gold">context this intern should see today</span>, versus context it should not.</p>
@@ -572,32 +625,15 @@ done
               and an agent is not guaranteed to use every visible tool. The point is that
               irrelevant capability inflates the context and the opportunity for unnecessary
               action.
-              Both example Skills are trusted and mine. The read-aloud one came from a prompt I
-              refined for studying; valuable there, a distraction in a coding repository. The
-              debugging one earns its place in every coding project I own. Small caveat: today my
-              debugging Skill is manual-only; the project instructions route to it, rather than it
-              firing by itself.
-              (Down: the specialist that sits on no desk at all.)
-            </aside>
-          </section>
-          <section>
-            <h3>Too specialized for any desk</h3>
-            <ul>
-              <li><code>curate-rate-catalogue</code>: a dispatched, domain-specific agent for rate-catalogue work</li>
-              <li>Carries event families, HTST prefactors, fallbacks, provenance</li>
-              <li>No always-on trigger: loaded only when I do that work</li>
-            </ul>
-            <p class="take">It can build a plausible pipeline. <span class="gold">The kinetics are still mine to defend.</span></p>
-            <aside class="notes">
-              Some reusable context is too specialized to show every chat. My rate-catalogue
-              workflow carries detailed lattice-KMC context: event families, harmonic
-              transition-state-theory prefactors, fallback rules, provenance. Valuable when I am
-              curating that catalogue; noise everywhere else. So it is a dispatched specialist, an
-              agent I send for, not a Skill sitting on the desk.
-              The ownership tie: the specialist can produce a working pipeline and a plausible
-              prefactor, and none of that validates the kinetics. Family definitions,
-              representative events, fallback justification, zero-mode conventions, physical
-              plausibility: mine.
+              All three example Skills are trusted and mine. The read-aloud one came from a prompt
+              I refined for studying; valuable there, a distraction in a coding repository. The
+              hobby shelf is real: my hobby projects have their own maintained Skills, and none of
+              them belong near a repository. The debugging one earns its place in every coding
+              project I own. Small caveat: today my debugging Skill is manual-only; the project
+              instructions route to it, rather than it firing by itself.
+              The wider point: my pyKMC Skills, the Skills that help build my paper figures, and my
+              hobby Skills are different desks entirely. One library, many shelves; each chat sees
+              only its own.
             </aside>
           </section>
         </section>
@@ -606,18 +642,27 @@ done
           <section>
             <p class="kicker"><span class="n">4</span> · Skills as maintained assets</p>
             <h2 style="font-size:1.15em;">Installing a Skill expands what the agent may <span class="gold">trust</span>, <span class="gold">trigger</span>, and <span class="gold">run</span></h2>
-            <p class="big" style="font-size:0.95em;">Inspect before you adopt. Keep the active set small.</p>
+            <p class="big" style="font-size:0.95em;">Agents are eager: give one a tool and it will look for a reason to use it.</p>
             <ul>
-              <li>Instructions entering the trust boundary; possibly scripts, hooks, network access</li>
-              <li>Each install widens the trigger surface: overlapping descriptions, procedures you did not need, extra tool activity</li>
+              <li>Listed in a CLAUDE.md or AGENTS.md file? Then every agent, and every subagent it spawns, has it on the desk</li>
+              <li>Instructions enter the trust boundary: possibly scripts, hooks, network access</li>
             </ul>
+            <p class="take fragment">Inspect before you adopt. Keep the active set small.</p>
             <aside class="notes">
-              A Skill is not just a clever prompt found online. It is a set of instructions I am
-              inviting into the agent's working environment, and it may bring scripts, hooks, and
-              very broad triggers with it. So I inspect the source before installing: what can it
-              instruct, what can it run, and when can it fire? Inspect in a sandbox the agent does
-              not discover, then test locally once the instructions and executable surface have
-              been reviewed. "Install to try" is the wrong default for untrusted material.
+              The behavioural frame first: models are eager to do work. Give an agent a tool and it
+              will look for reasons to use it; that is the same eager intern from the last slide.
+              Now count the interns. Every agent I run, and every subagent it spawns, reads the
+              same standing instructions. So exposure is not only what I install; it is where a
+              Skill is listed. If a Skill appears in a CLAUDE.md or AGENTS.md file, every session
+              that loads that file has it on the desk, and the trigger surface grows with each
+              place it is listed.
+              That is why intake matters. A Skill is not just a clever prompt found online. It is a
+              set of instructions I am inviting into the agent's working environment, and it may
+              bring scripts, hooks, and very broad triggers with it. So I inspect the source
+              before installing: what can it instruct, what can it run, and when can it fire?
+              Inspect in a sandbox the agent does not discover, then test locally once the
+              instructions and executable surface have been reviewed. "Install to try" is the
+              wrong default for untrusted material.
               The second trap is hoarding: each install expands the trigger surface. Overlapping
               descriptions and always-on hooks fill the context with procedures I do not need and
               inflate tool activity. More installed Skills is not a better workflow; I want the
@@ -631,11 +676,7 @@ done
           </section>
           <section>
             <h3>Two axes, one trigger surface</h3>
-            <table class="plain">
-              <tr><th></th><th>User-invoked</th><th>Automatically selected</th></tr>
-              <tr><td class="term" style="color:var(--blue-soft); font-weight:600;">Project-local</td><td>Specialized command used only here</td><td>Project-specific behaviour that may fire</td></tr>
-              <tr><td class="term" style="color:var(--blue-soft); font-weight:600;">Global availability</td><td>Repeated command relevant across projects</td><td>Broad cross-project trigger; greatest context exposure</td></tr>
-            </table>
+            <img class="fig" src="assets/skill-axes.svg" alt="Quadrant chart: invocation mode against installation scope; the global, automatically selected corner is marked in gold as the greatest context exposure" style="max-height:400px;" />
             <p class="take">Trust is a prerequisite at <span class="gold">any</span> scope. After that, placement is contextual relevance.</p>
             <aside class="notes">
               Two different decisions hide in the word "install". Invocation mode: does it run only
@@ -659,21 +700,47 @@ done
               <li>Different arrangements really do produce different results</li>
               <li>How we work now is not how we will work in a few years</li>
             </ul>
-            <p class="goldline fragment">Do not copy my configuration. Copy the habit of deciding what belongs in context, and change it as the tools change.</p>
+            <p class="goldline fragment">My configuration is a starting point, not a standard. Keep the habit: decide what belongs in context, and change it as the tools change.</p>
             <aside class="notes">
               Coding with AI is still the wild west. People do not agree on the right Skills, the
               right project instructions, or even the right shape for a Claude file. Friends at
               large technology companies tell me practice differs department to department. (If I
               name a company aloud, it is a personal anecdote from friends, not a statement of
               official practice.)
-              Housekeeping aside, since I use several computers: my maintained Skills live under
-              version control and each project sees only the relevant subset. The mechanics do not
-              matter here; the habit of a curated source of truth does.
+              The shelf itself hangs below this slide: I keep my maintained Skills in one
+              version-controlled repo, each project sees only the relevant subset, and I am making
+              that harness available to the group. Details in the drill-down.
               So: I am showing you how I think about the problem, not handing you a canonical
               configuration. If you understand context, trigger surface, intentional handoffs,
               evidence, and ownership, you can change tools without losing the reasoning. That
               sentence on the slide is the bridge to the last section: the part that must not
               change hands.
+              (Down: the maintained shelf, then vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>One shelf, under version control</h3>
+            <ul>
+              <li>Every Skill I maintain lives in one repo; each project checks out only its shelf</li>
+              <li>It helps generate new Skills tailored to a given project</li>
+              <li>It tracks which Skills are related, so an improvement to one is disseminated to the rest</li>
+            </ul>
+            <p class="take fragment">Being opened to the group: a jumping-off point for <span class="gold">a workflow of your own</span>.</p>
+            <aside class="notes">
+              This is the housekeeping behind everything in this section. I use several computers
+              and many projects, and I do not want six slowly diverging copies of the same prompt.
+              So the Skills I maintain live in one version-controlled repo, and each project
+              exposes only the relevant shelf. That is how a refinement made in one place becomes
+              available everywhere, without putting every Skill in front of every chat.
+              Two things the repo does beyond storage. It helps me generate a new Skill tailored to
+              a given project, rather than starting from a blank page. And it tracks which Skills
+              are related, so when I make one better, say the interview Skill, the improvement can
+              be disseminated to its relatives instead of stranding old copies at their old ways.
+              It currently lives in a private repo; I am moving it into a public one for the group
+              to use. The offer: take it as a jumping-off point. Fork it, keep the ideas that fit
+              the way you work, replace the ones that do not, and grow a workflow that is yours.
+              You will see how I think about maintaining Skills in there, and that is the part
+              worth taking.
               (Down: vocabulary.)
             </aside>
           </section>
@@ -681,10 +748,10 @@ done
             <h3>Vocabulary: Skills</h3>
             <table class="vocab">
               <tr><th>Term</th><th>In this talk</th></tr>
-              <tr><td class="term">Skill</td><td>A packaged, reusable procedure with an invocation mechanism. Maintained, not collected.</td></tr>
-              <tr><td class="term">trigger surface</td><td>Everything installed that can cause behaviour: descriptions, rules, hooks, integrations.</td></tr>
-              <tr><td class="term">invocation mode</td><td>Deliberately user-invoked, versus automatically selected from a description.</td></tr>
-              <tr><td class="term">installation scope</td><td>Project-local, versus available across my projects and machines. Not the same axis as invocation.</td></tr>
+              <tr><td class="term">Skill</td><td>A discipline I repeat, packaged so the next chat does not rediscover it. Maintained, not collected.</td></tr>
+              <tr><td class="term">trigger surface</td><td>Everything a chat can see that can cause behaviour. Every place a Skill is listed makes it larger.</td></tr>
+              <tr><td class="term">invocation mode</td><td>Runs when I ask, versus selected by the model from its description.</td></tr>
+              <tr><td class="term">installation scope</td><td>On one project's desk, or on every desk I own. A different axis from invocation.</td></tr>
             </table>
             <aside class="notes">
               Trigger surface is the load-bearing term: it is what turns "just install it" into a

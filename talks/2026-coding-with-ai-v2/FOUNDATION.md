@@ -1484,3 +1484,53 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     Stephen's spoken close uses the eager-interns metaphor and "stay connected to the work",
     deliberately echoing the section opener's disconnection language, and ends on learning along
     the way as tools change. No URL or contact pointer on the final slide.
+90. **Section 4 leads with Skills keeping the human in the loop.** (2026-07-14 section-4
+    interview.) Stephen's takeaway: a good Skill prompts reflection on direction, so each decision
+    is understood and direction errors are caught while they are cheap. Spoken corollary, kept in
+    notes: a clarifying question the researcher cannot answer is the signal to go read, or ask the
+    group, before the code moves. The design interview is the flagship example.
+91. **The HTST time-scale traceback is section 4's story.** New vertical under "A prompt earns its
+    packaging": during the pyKMC HTST design interview one question settled the time scale;
+    Stephen took the paper's convention and the spec recorded it; later a computed rate landed
+    orders of magnitude off an accepted literature value; the external mismatch, not the Skill,
+    triggered distrust, and the recorded decision made the "why" findable. Spoken as "orders of
+    magnitude", never a number; the 10^12 factor and the green-tests lesson stay in section 5. The
+    interview/spec provenance of the choice is Stephen's account.
+92. **The claims-walk drill-down is replaced by "The Skill, as written".** (Amends the depth half
+    of decision 36.) The slide renders the interview Skill's condensed core instruction
+    ("Interrogate me about each decision that is not already settled in the code base or
+    foundation..."); take line "It hunts the decisions not yet on the record."
+    `review-analysis-claims` keeps brief live visibility via the opener bullet; its stop
+    condition, the teaching adaptation, and the honesty guardrails move to speaker notes.
+93. **Drift is the stated reason for maintenance.** Opener bullet: "Observed for drift; revised or
+    removed when it stops helping." A Skill drifts from what performs best as models and practice
+    change; observation is part of owning one.
+94. **The intern's-desk contrast is three cards.** (Amends decision 45.) Study chat (textbook
+    read-aloud) / Hobby chat (deliberately generic: the audience is not told the hobby) / Coding
+    chat (debugging, the gold card). The relevance-not-quality takeaway is unchanged; the
+    pyKMC-versus-paper-figures-versus-hobby "different desks" line lives in the notes.
+95. **The `curate-rate-catalogue` specialist drill-down is cut.** (Exercises the optionality in
+    decision 53.) Section 4 has no specialist slide; the ownership tie stays in section 5.
+96. **The intake slide is framed eagerness-first.** Locked headline kept (decision 38). Lead:
+    "Agents are eager: give one a tool and it will look for a reason to use it." Exposure includes
+    every place a Skill is listed (CLAUDE.md and AGENTS.md standing files), read by every agent
+    and subagent; "Inspect before you adopt. Keep the active set small." is now the take line.
+    Decision 37's guardrails stay in the notes.
+97. **The two-axis table is a quadrant figure.** `assets/skill-axes.svg`, Invisible Variable
+    style; the global-and-automatic corner carries the slide's gold as "greatest context
+    exposure". Take line unchanged.
+98. **The maintained-Skills repo is a visible drill-down under the wild-west closer.** (Supersedes
+    decision 52's one-sentence cap; its no-paths rule stands.) One version-controlled repo,
+    per-project shelves; helps generate project-tailored Skills; tracks related Skills so an
+    improvement disseminates to relatives. Being made public for the group; unnamed on the slide
+    until it is public. Framing is an invitation: "a jumping-off point for a workflow of your own."
+99. **The wild-west closing line is reworded to invite.** (Amends decision 51's close and the
+    locked durable takeaway.) New goldline: "My configuration is a starting point, not a standard.
+    Keep the habit: decide what belongs in context, and change it as the tools change."
+100. **Section 4 vocabulary glosses are in spoken voice.** Terms unchanged; glosses reworded (e.g.
+    trigger surface: "Everything a chat can see that can cause behaviour. Every place a Skill is
+    listed makes it larger.").
+101. **The QE energy-extraction story lands in section 4's opener notes.** (Closes decision 85's
+    placement question; section 3 must not duplicate it.) Told as the origin story of packaging:
+    Stephen supplied the extraction method, was "the agent for the LLM", then hardened the recipe
+    into a prompt and script. Notes only; the opener's visible content is unchanged.
