@@ -1461,3 +1461,26 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     section block of `index.html` and commits when the section is locked. The 2026-07-13 draft
     (evidence and language audits passed) is starting material, not a commitment. The PDF export
     and the landing-page repoint (decision 82) wait until all five section interviews are done.
+86. **Section 5 meets hesitancy first and lands on encouragement.** (2026-07-14 section-5
+    interview.) The caution is the handshake, not the destination: the three failure stories
+    validate the audience's earned hesitancy about AI in scientific code, the epistemic loop
+    answers it, and the section ends on what the discipline unlocks. Amends the emotional reading
+    of decision 59's escalation without changing its content.
+87. **Section 5 opens with the MECH 479 story; the definition beat follows.** (2026-07-14
+    section-5 interview.) The story slide is retitled in Stephen's felt language ("Less connected
+    to their own writing"); red "outer space" appears in the progression line one slide before
+    "Stay inside the epistemic loop" defines it (example before abstraction). Decision 54's
+    visible heading is retained, one slide later. The dipole slide now carries an on-slide
+    epistemic caption ("the shape of the error, not the sentence"), and the HTST evidence table
+    is trimmed to the three units-story receipts (fix commit, regression commit, closed design
+    record).
+88. **A builds-montage "unlock" slide sits between the HTST drill-downs and the close.**
+    (2026-07-14 section-5 interview.) Headline: "Going from idea to implementation has never been
+    easier." Content: the looping Blender clip of a pyKMC event (Claude driving Blender over MCP)
+    plus four small app tiles: pylatkmc, to-do, Netrunner, lotusfield. The Netrunner glyph is
+    drawn in-house (click-inspired); no third-party artwork enters this public repo. Speaker
+    notes carry the five build stories.
+89. **The closing cadence is rehearsed and recorded.** (2026-07-14 section-5 interview.)
+    Stephen's spoken close uses the eager-interns metaphor and "stay connected to the work",
+    deliberately echoing the section opener's disconnection language, and ends on learning along
+    the way as tools change. No URL or contact pointer on the final slide.

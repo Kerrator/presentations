@@ -258,3 +258,17 @@
   @page { size: landscape; margin: 0; }
   .reveal-viewport { background: var(--bg); }
 }
+/* ---- §5 additions ------------------------------------------------------ */
+.reveal .app-row {
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: 60px; margin-top: 0.45em;
+}
+.reveal .app-row figure { margin: 0; text-align: center; }
+.reveal .app-row img {
+  height: 64px; width: 64px; margin: 0;
+  background: none; border: none; box-shadow: none;
+}
+.reveal .app-row figcaption {
+  font-family: 'Plex Mono', monospace; font-size: 0.42em;
+  color: var(--muted, #9aa1ad); margin-top: 9px; letter-spacing: 0.05em;
+}

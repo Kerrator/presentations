@@ -697,22 +697,7 @@ done
 
         <section>
           <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
-          <h2>Stay inside the epistemic loop</h2>
-          <p class="big">The point where I have delegated so many intermediate judgements that I can no longer audit, explain, or defend the result.</p>
-          <p class="goldline fragment">I call it outer space.</p>
-          <aside class="notes">
-            Last section, and the one I care most about. Everything so far was workflow; this is
-            why the workflow exists. "Outer space" is my own name for the failure: enough
-            intermediate judgement delegated that the human can no longer audit, explain, or defend
-            what came back. Three stories, escalating: a classroom, a paragraph, and a piece of
-            working code. Each artifact looks better than the last, and each one moved its author
-            further from the decisions that made it true or false.
-          </aside>
-        </section>
-
-        <section>
-          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
-          <h2>A polished artifact, without understanding</h2>
+          <h2>Less connected to their own writing</h2>
           <p class="lead">MECH 479, across course offerings:</p>
           <p style="font-size:0.8em;">AI as orientation → AI as critic → <span class="fragment">AI as end-to-end author → <span class="redtext">outer space</span></span></p>
           <ul class="fragment">
@@ -729,8 +714,7 @@ done
             the whole chain: finding papers, processing them, producing a rubric-shaped report.
             Fast, polished, and when I asked substantive questions about one of the cited papers,
             they could not answer well or judge which parts of their own report were correct. Not
-            one task delegated, but the chain of decisions that made the project theirs. That
-            accumulated loss is what I mean by outer space.
+            one task delegated, but the chain of decisions that made the project theirs.
             The lesson is not that the students were dishonest or that AI use is wrong. The
             assignment no longer guaranteed that a polished deliverable reflected understanding,
             so I have to rethink the checkpoints and the evidence of ownership in the course.
@@ -743,10 +727,26 @@ done
 
         <section>
           <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2>Stay inside the epistemic loop</h2>
+          <p class="big">The point where I have delegated so many intermediate judgements that I can no longer audit, explain, or defend the result.</p>
+          <p class="goldline fragment">I call it outer space.</p>
+          <aside class="notes">
+            That accumulated loss of decisions has a name in this talk. "Outer space" is my own
+            name for the failure: enough intermediate judgement delegated that the human can no
+            longer audit, explain, or defend what came back. The classroom was the first rung.
+            Two more stories, escalating: a paragraph of my own writing, and a piece of working
+            code. Each artifact looks better than the last, and each one moved its author further
+            from the decisions that made it true or false.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
           <h2>Better structure, wrong comparison</h2>
           <p>AI restructured my dipole paragraph. Genuinely better writing.</p>
-          <p class="big fragment" style="font-family:'Plex Mono',monospace;">A &gt; B &nbsp;<span class="redtext">became</span>&nbsp; A &lt; B</p>
-          <p class="take fragment">I kept the structure and repaired the science. Possible only because <span class="gold">I still knew what the sentence was supposed to say.</span></p>
+          <p class="big fragment" data-fragment-index="1" style="font-family:'Plex Mono',monospace;">A &gt; B &nbsp;<span class="redtext">became</span>&nbsp; A &lt; B</p>
+          <p class="evidence fragment" data-fragment-index="1">the shape of the error, not the sentence</p>
+          <p class="take fragment" data-fragment-index="2">I kept the structure and repaired the science. Possible only because <span class="gold">I still knew what the sentence was supposed to say.</span></p>
           <aside class="notes">
             My own warning example, from my own writing. An AI pass made a paragraph about dipoles
             much better structured, and somewhere in the rewrite it reversed a comparison:
@@ -794,9 +794,9 @@ done
             <h3>The unit boundary, in full</h3>
             <p style="font-size:0.85em;">$$\nu_0 \;=\; \frac{1}{2\pi\hbar}\,\frac{\prod_i \hbar\omega_i^{\mathrm{min}}}{\prod_j{}^{\prime} \hbar\omega_j^{\mathrm{saddle}}}$$</p>
             <ul class="small" style="font-size:0.6em;">
-              <li>The primed saddle product omits the imaginary mode: one energy dimension survives, so $\nu_0$ carries units (it is not a dimensionless ratio)</li>
-              <li>$k = \nu_0\, e^{-\Delta E / k_B T}$: the error multiplies every finite HTST and RPA rate; constant-style runs and the $k_0$ fallback were unaffected</li>
-              <li>The fix converts $\mathrm{Hz} \to \mathrm{ps}^{-1}$ exactly once, at the backend boundary; a regression pins a committed Ni(100) surface hop against a known 5 THz prefactor</li>
+              <li>The primed saddle product omits the imaginary mode: one energy dimension survives, so $\nu_0$ carries units</li>
+              <li>The error multiplies every finite HTST and RPA rate; constant-style runs and the $k_0$ fallback were unaffected</li>
+              <li>The fix converts $\mathrm{Hz} \to \mathrm{ps}^{-1}$ exactly once, at the backend boundary, pinned by a Ni(100) regression against a known 5 THz prefactor</li>
             </ul>
             <aside class="notes">
               For the record: the minimum has one more positive mode than the saddle, which is why
@@ -818,18 +818,15 @@ done
               <tr><th>Reference</th><th>What it shows</th></tr>
               <tr><td><code>d705932</code></td><td>Hz → ps⁻¹ converted exactly once, at the backend boundary</td></tr>
               <tr><td><code>d6b921f</code></td><td>Regression: rate, residence time, constant-versus-HTST equivalence at the same prefactor</td></tr>
-              <tr><td>PR 86</td><td>Reproduce first: focused failing regression, smallest seam, suite plus a short MPI run</td></tr>
-              <tr><td>PR 90 · PR 91</td><td>Two orthogonal vertical slices: colouring, and the coordination-number capability end to end</td></tr>
               <tr><td>PR 71</td><td>The historical HTST design record (a closed, unmerged draft)</td></tr>
             </table>
             <p class="take">The links verify the implementations. <span class="gold">The disposable handoffs between them are my account.</span></p>
             <aside class="notes">
               Everything on this slide resolves publicly as of today. What public history verifies:
-              the boundary fix, the regression, the reproduce-first pull request, the two slice
-              boundaries, and the closed draft design record (whose 48 passing tests belonged to
-              the pre-correction unit convention; do not read it as the final proof). What it does
-              not verify: the temporary handoffs, and who or what made the original implicit
-              choice. I keep those labelled as my account.
+              the boundary fix, the regression, and the closed draft design record (whose 48
+              passing tests belonged to the pre-correction unit convention; do not read it as the
+              final proof). What it does not verify: the temporary handoffs, and who or what made
+              the original implicit choice. I keep those labelled as my account.
             </aside>
           </section>
           <section>
@@ -851,6 +848,34 @@ done
 
         <section>
           <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2 style="font-size:1.1em;">Going from idea to implementation has never been easier</h2>
+          <video data-autoplay loop muted playsinline src="assets/blender-kmc-event.mp4" style="display:block; max-height:300px; margin:0.15em auto 0;"></video>
+          <div class="app-row">
+            <figure><img src="assets/app-pylatkmc.svg" alt="Lattice glyph for pylatkmc" /><figcaption>pylatkmc</figcaption></figure>
+            <figure><img src="assets/app-todo.svg" alt="Checklist glyph for the to-do app" /><figcaption>to-do</figcaption></figure>
+            <figure><img src="assets/app-netrunner.svg" alt="Click-inspired glyph for the card game opponent" /><figcaption>Netrunner</figcaption></figure>
+            <figure><img src="assets/app-lotusfield.svg" alt="Lotus icon for the lotusfield media server" /><figcaption>lotusfield</figcaption></figure>
+          </div>
+          <aside class="notes">
+            The turn. Everything so far in this section is the price of admission; this is what it
+            buys. Working this way, going from idea to implementation has never been easier, and
+            that is worth being excited about. The clip is Claude driving Blender over MCP: really
+            nice renders of a pyKMC event, quickly, instead of fighting a visualization package
+            into shape.
+            The icons are real, working software. pylatkmc: a fast lattice KMC that takes a Python
+            input and recompiles it in C. A to-do app that matches how I organize work, built in
+            one sitting; a YouTube video of that build is coming. An older card game brought back
+            to life, with an algorithmic opponent I used to train an ML player that genuinely
+            challenges me. And lotusfield, my own lean media streaming server, built because the
+            one I ran stopped fitting me.
+            The point of the whole section: the same loop that keeps the science honest is what
+            makes this speed safe to use. Stay inside it, and you can build nearly anything you
+            need.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
           <h2 class="goldline" style="font-size:1.5em;">Delegate labour,<br />not scientific judgement.</h2>
           <ul style="margin-top:0.8em;">
             <li>Explain the choices</li>
@@ -860,13 +885,16 @@ done
           </ul>
           <p class="small" style="margin-top:1.2em;">Thank you. Questions?</p>
           <aside class="notes">
-            The closing thought. The agent can carry an enormous amount of labour: searching,
-            drafting, wiring, testing, re-running. What it must not carry is the judgement that
-            makes the result science: I should still be able to explain the choices, trace the
-            evidence, challenge the output, and say what observation would show it is wrong. If I
-            can do those four things, I am inside the loop, whatever the tools become.
-            (Closing cadence to be refined after rehearsal. Chalkboard ready on B for Q&amp;A
-            sketches.)
+            The closing thought, rehearsed. With a workforce of eager interns you can carry out an
+            enormous amount of work: searching, drafting, wiring, testing, re-running. What you
+            want to make sure is that you stay connected to the work they are doing, so that your
+            scientific and engineering judgement and knowledge are used, and even expanded. I
+            should still be able to explain the choices, trace the evidence, challenge the output,
+            and say what observation would prove it wrong. If I can do those things, then I am
+            still in the loop, and I can learn along the way, even as the tools, and how the work
+            is done, change. Thank you.
+            ("Connected" deliberately echoes the section opener: the students' failure was
+            disconnection. Chalkboard ready on B for Q&amp;A sketches.)
           </aside>
         </section>
 
