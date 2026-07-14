@@ -1,0 +1,50 @@
+<svg viewBox="0 0 1280 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A long session's context window is full of goal, decisions, abandoned ideas, stale assumptions, and old tool output; a handoff curates only the task, the decisions that matter, and the evidence into a fresh, mostly empty window">
+  <!-- ============ window A: one long session ============ -->
+  <text x="60" y="44" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="650" fill="#e8eaee">one long session</text>
+  <text x="1220" y="44" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#9aa1ad">crowded and set in its ways</text>
+  <rect x="60" y="62" width="1160" height="168" rx="12" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+
+  <!-- segments: meaningful ones solid blue, noise dashed muted -->
+  <rect x="76" y="86" width="110" height="120" rx="8" fill="none" stroke="#8fb0dc" stroke-width="2"/>
+  <text x="131" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#e8eaee">goal</text>
+
+  <rect x="194" y="86" width="150" height="120" rx="8" fill="none" stroke="#8fb0dc" stroke-width="2"/>
+  <text x="269" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#e8eaee">decisions</text>
+
+  <rect x="352" y="86" width="200" height="120" rx="8" fill="none" stroke="#565b64" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="452" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">abandoned ideas</text>
+
+  <rect x="560" y="86" width="210" height="120" rx="8" fill="none" stroke="#565b64" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="665" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">stale assumptions</text>
+
+  <rect x="778" y="86" width="230" height="120" rx="8" fill="none" stroke="#565b64" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="893" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">old tool output</text>
+
+  <rect x="1016" y="86" width="120" height="120" rx="8" fill="none" stroke="#8fb0dc" stroke-width="2"/>
+  <text x="1076" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#e8eaee">the task</text>
+
+  <text x="1176" y="153" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" fill="#9aa1ad">…</text>
+
+  <!-- ============ handoff arrow ============ -->
+  <line x1="640" y1="242" x2="640" y2="304" stroke="#8fb0dc" stroke-width="2.5"/>
+  <polygon points="640,316 632,302 648,302" fill="#8fb0dc"/>
+  <text x="668" y="284" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#e8eaee">handoff: I choose what survives</text>
+
+  <!-- ============ window B: fresh session ============ -->
+  <text x="60" y="352" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="650" fill="#e8eaee">a fresh session</text>
+  <text x="1220" y="352" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#9aa1ad">focused and easy to steer</text>
+  <rect x="60" y="370" width="1160" height="168" rx="12" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+
+  <!-- curated survivors: gold -->
+  <rect x="76" y="394" width="130" height="120" rx="8" fill="none" stroke="#FABD0F" stroke-width="2.5"/>
+  <text x="141" y="461" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#FABD0F">the task</text>
+
+  <rect x="214" y="394" width="270" height="120" rx="8" fill="none" stroke="#FABD0F" stroke-width="2.5"/>
+  <text x="349" y="461" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#FABD0F">the decisions that matter</text>
+
+  <rect x="492" y="394" width="240" height="120" rx="8" fill="none" stroke="#FABD0F" stroke-width="2.5"/>
+  <text x="612" y="461" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#FABD0F">evidence + next move</text>
+
+  <rect x="740" y="394" width="464" height="120" rx="8" fill="none" stroke="#565b64" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="972" y="461" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">room to work</text>
+</svg>

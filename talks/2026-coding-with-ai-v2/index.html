@@ -233,6 +233,36 @@
 
         <section>
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>I was the context manager</h2>
+          <ul>
+            <li>A grad-course analysis, redone with an LLM: the output file swamped the chat</li>
+            <li>It worked only once I gave it a procedure:</li>
+          </ul>
+          <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+            grep the lines that matter → write them to a small file → analyse that → report back
+          </p>
+          <p class="goldline fragment">I was doing a subagent's job by hand.</p>
+          <aside class="notes">
+            Before agentic tools existed, I was the context manager. In a graduate computational
+            course, after I had done the data analysis myself, I tried to get ChatGPT to do the
+            same work. On its own it was terrible: the output file was enormous and it could not
+            parse it. It only worked once I gave it a procedure: grep for the lines that mattered,
+            write them into a new file, and then work on that small file to report the relevant
+            information. I was doing exactly what a subagent does now: go into a separate context,
+            extract the relevant part, and report a distillation back to the main conversation.
+            The same period taught me the other half. Before the CLI tools I copy-pasted
+            hand-picked context into chat windows, and when Projects arrived, uploading a pile of
+            files did not make the results better. You have to think about how information is
+            organized for a language model. Keeping a tidy space with good documentation is
+            critical if an LLM is going to do good work in your codebase.
+            The bridge into the rest of this section, spoken: this whole section is that same
+            discipline, with names and tools attached.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <p class="skillchip">Skill: interview-design-decisions</p>
           <h2>Expose the decisions</h2>
           <ul>
             <li>The first job is not to generate code</li>
@@ -256,6 +286,7 @@
 
         <section>
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <p class="skillchip">Skill: build-design-foundation</p>
           <h2>FOUNDATION.md: a context start</h2>
           <ul>
             <li>The distillation, not the transcript</li>
@@ -263,6 +294,7 @@
             <li>A new session loads the agreed design directly</li>
           </ul>
           <p class="take fragment">Do not depend on automatic compaction for durable design. <span class="gold">Commit the north star to a file.</span></p>
+          <p class="small fragment">This presentation was built exactly this way.</p>
           <aside class="notes">
             We have just done valuable work scoping the problem: a north star for an iterative
             coding agent, the decisions I made, the boundaries, and the evidence that will tell us
@@ -275,16 +307,22 @@
             and a stale foundation is not authoritative just because it was committed. My Skill for
             this updates the file as each decision lands and re-runs against an existing foundation
             to sharpen it rather than clobber it.
-            This deck was built exactly this way; the FOUNDATION.md for this talk is in the talk
-            folder of the public repository.
+            And the line on the slide is literal: this presentation was scoped and built exactly
+            this way, interview first, foundation committed, sections built against it. The
+            interview gave me space to type and think about each part. Having an LLM ask me what
+            the takeaways are, and what was impactful to me, helped me decide what I wanted this
+            to become as a presentation. The foundation file for this talk lives in its folder in
+            the public repository, if anyone wants to see the real thing.
           </aside>
         </section>
 
         <section>
           <section>
             <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+            <p class="skillchip">Skill: to-spec</p>
             <h2>Scale the process to the work</h2>
-            <img class="fig" src="assets/foundation-map.svg" alt="Design interview feeds FOUNDATION.md; a small change goes straight to an iterative loop; larger work goes through a specification and vertical slices into bounded loops" style="max-height:440px;" />
+            <img class="fig" src="assets/foundation-map.svg" alt="Design interview feeds FOUNDATION.md; a small change goes straight to an iterative loop; larger work goes through a specification and vertical slices into bounded loops" style="max-height:400px;" />
+            <p class="take">Every step hands the next agent a <span class="gold">smaller, sharper context</span>.</p>
             <aside class="notes">
               I do not create a procession of documents for every code edit. If the work is small
               and bounded, the foundation is enough to begin an iterative loop with the agent. If
@@ -314,14 +352,15 @@ while ! ./slices-done.sh; do
 done
             </code></pre>
             <ul>
-              <li>A fresh, eager intern every lap; the files are the memory</li>
+              <li>Every lap starts with an empty context: the files are the memory</li>
               <li>Only works because the artifacts exist: durable spec, bounded slices, observable checks</li>
             </ul>
             <p class="take"><span class="gold">Autonomy is earned by the artifacts</span>, not by the loop.</p>
             <aside class="notes">
               The community calls this pattern Ralph: the dumbest possible loop, re-dispatching a
-              fresh context against the same specification until the work is done. No orchestration
-              framework, no memory beyond the repository itself. I keep it here as the limiting
+              fresh context against the same specification until the work is done. Every lap is a
+              fresh, eager intern with no memory of the last lap. No orchestration framework, no
+              memory beyond the repository itself. I keep it here as the limiting
               case: everything this section teaches (a durable spec, independently verifiable
               slices, checks an agent can run) is exactly what lets something this blunt work at
               all. It is an experiment I run on bounded work, not doctrine.
@@ -345,7 +384,7 @@ done
             FCC(100) surface atom has eight; an atom beside a surface vacancy has seven. With the
             threshold at eight, ordinary surface stays crystal and the vacancy-adjacent
             environments get the new event searches.
-            Eight is not a coding number. It comes from my understanding of this surface, and it is
+            The threshold of eight comes from my understanding of this surface, and it is
             specific to this facet, not a universal law. The agent's job was to surface the choice,
             make it configurable, wire it through every construction site, and help test it. The
             deciding and the defending stayed with me.
@@ -363,7 +402,7 @@ done
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
           <h2>Do not fix what you cannot reproduce</h2>
           <ul>
-            <li>First: one command that <span class="redtext">fails</span> on the exact symptom</li>
+            <li>First: one command that fails on the exact symptom</li>
             <li>Minimise it; keep it as a regression test at the right seam</li>
             <li>Only then: the smallest fix, and the same evidence turns green</li>
             <li>Re-run the original scenario</li>
@@ -388,16 +427,73 @@ done
           <section>
             <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
             <h2>Handoff: compaction with intention</h2>
-            <p class="goldline">One bounded task, only the context needed to complete it.</p>
-            <ul>
-              <li>A pyKMC bug was already fixed, but on a heavily refactored branch</li>
-              <li>The fix could not be transplanted into <code>develop</code>: different seams</li>
-              <li class="fragment">The handoff carried: the bug, the reproducer requirement, clues from the other fix, and the constraint of a small native change</li>
-            </ul>
-            <p class="take fragment">Carry the problem, evidence, and clues across the boundary, <span class="gold">not an obsolete solution</span>.</p>
+            <img class="fig" src="assets/context-window-handoff.svg" alt="A long session's context window is crowded with abandoned ideas, stale assumptions, and old tool output around the goal and the task; a handoff curates the task, the decisions that matter, and the evidence into a fresh window with room to work" style="max-height:400px;" />
+            <p class="goldline fragment">One bounded task, only the context needed to complete it.</p>
             <aside class="notes">
               Handoff is compaction with intention. Both halves matter: I decide what survives into
               the next context, and what survives is shaped around one bounded direction of work.
+              Why the window itself matters: section two's point, replayed for coding. A long
+              session accumulates abandoned ideas, stale assumptions, and old tool output alongside
+              the goal and the decisions. The window gets crowded and set in its ways, and the task
+              competes with noise for attention. More space does not fix that; selection does.
+              A handoff lets me curate a context window for a new session: the task, the decisions
+              that matter, the evidence and the next move, and nothing else. The new window starts
+              focused and easy to steer, with room to work.
+              The contrast with the foundation file: FOUNDATION.md is durable and shared across
+              future work; a handoff is disposable, promoted into durable artifacts and then
+              thrown away.
+              (Down: automatic compaction vs handoff; one real handoff; what a handoff carries;
+              worktrees.)
+            </aside>
+          </section>
+          <section>
+            <h3>Automatic compaction vs handoff</h3>
+            <div class="pair">
+              <div class="cold">
+                <p class="label">automatic compaction</p>
+                fires when the window is already full<br />
+                a summary nobody curated<br />
+                can silently drop a locked decision<br />
+                what was lost is invisible
+              </div>
+              <div class="hot">
+                <p class="label">handoff</p>
+                happens when I choose<br />
+                carries what the next task needs<br />
+                decisions survive because I put them there<br />
+                a file I can read and audit
+              </div>
+            </div>
+            <p class="take fragment">Both compress the conversation. Only one is <span class="gold">intentional</span>.</p>
+            <aside class="notes">
+              Automatic compaction is a safety net, and an honest one: when the window fills, the
+              harness summarizes the conversation so work can continue. My problem is not that it
+              exists; it is that the summary is lossy in ways I do not control and cannot easily
+              audit. It fires at an arbitrary moment, it can drop a decision I locked or evidence
+              I need, and I only discover the loss later, when the agent stops acting like we ever
+              agreed on anything.
+              A handoff is the same compression done on purpose: I choose the moment, I choose
+              what survives, and the result is a file I can read before I spend it. The quieter
+              use: when a good conversation has grown large and stale, a curated handoff continues
+              the same work in a clean window instead of letting automatic compaction decide what
+              mattered. Same rule as the foundation file: do not depend on automatic compaction
+              for anything durable.
+            </aside>
+          </section>
+          <section>
+            <h3>One handoff, in practice: a diverged pyKMC bug</h3>
+            <ul>
+              <li>A pyKMC bug was already fixed, but on a heavily refactored branch</li>
+              <li>The fix could not be transplanted into <code>develop</code>: different seams</li>
+            </ul>
+            <p class="small fragment" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              carried: &nbsp;the bug, narrowly stated<br />
+              carried: &nbsp;produce a failing test first<br />
+              carried: &nbsp;clues from the branch fix<br />
+              carried: &nbsp;the constraint, a small native change
+            </p>
+            <p class="take fragment">Carry the problem, evidence, and clues across the boundary, <span class="gold">not an obsolete solution</span>.</p>
+            <aside class="notes">
               The story: the same first-step KeyError was first fixed on a refactored
               basin-hardening branch. That implementation could not simply be moved onto develop;
               the two branches migrate state at different seams. So I wrote a handoff for a fresh
@@ -408,28 +504,7 @@ done
               history verifies the two divergent fixes, the regression, and the merge (pyKMC pull
               request 86; commits d493f8a and 817524e; the earlier branch fix is 9dba577). The
               disposable handoff connecting them is my account; it was never committed.
-              Second, quieter use: when a good conversation has grown large and stale, the same
-              curated handoff continues the same work in a clean window. And the contrast with the
-              foundation: FOUNDATION.md is durable and shared across future work; a handoff is
-              disposable, promoted into durable artifacts and then thrown away.
-              (Down: pairing handoffs with worktrees; what a handoff carries.)
-            </aside>
-          </section>
-          <section>
-            <h3>Parallel work: handoffs + worktrees</h3>
-            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
-              same task: &nbsp;stale context → curated handoff → fresh chat, same code state<br />
-              one spec slice: &nbsp;to-spec → bounded handoff → fresh chat → verified result<br />
-              parallel: &nbsp;independent handoffs → separate worktrees → merge + integration checks
-            </p>
-            <p class="take">A handoff scopes the <span class="gold">context</span>; a worktree isolates the <span class="gold">code state</span>. Neither makes integration automatic.</p>
-            <aside class="notes">
-              A new chat gives me clean conversational context; a worktree gives me a separate
-              checkout with its own branch. They solve different problems. Continuing one
-              overloaded conversation may only need the handoff. Dispatching independent coding
-              work wants both: a bounded brief and an isolated branch. A handoff does not merge
-              code, a worktree does not transfer understanding, and neither makes integration
-              conflicts disappear.
+              (Down: what a handoff carries; worktrees.)
             </aside>
           </section>
           <section>
@@ -450,44 +525,42 @@ done
               relevant to its direction without being burdened by the whole parent conversation.
             </aside>
           </section>
+          <section>
+            <h3>Parallel work: handoffs + worktrees</h3>
+            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              same task: &nbsp;stale context → curated handoff → fresh chat, same code state<br />
+              one spec slice: &nbsp;to-spec → bounded handoff → fresh chat → verified result<br />
+              parallel: &nbsp;independent handoffs → separate worktrees → merge + integration checks
+            </p>
+            <p class="take">A handoff scopes the <span class="gold">context</span>; a worktree isolates the <span class="gold">code state</span>. Neither makes integration automatic.</p>
+            <aside class="notes">
+              A new chat gives me clean conversational context; a worktree gives me a separate
+              checkout with its own branch. They solve different problems. Continuing one
+              overloaded conversation may only need the handoff. Dispatching independent coding
+              work wants both: a bounded brief and an isolated branch. A handoff does not merge
+              code, a worktree does not transfer understanding, and neither makes integration
+              conflicts disappear.
+            </aside>
+          </section>
         </section>
 
         <section>
-          <section>
-            <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
-            <h2>An inner loop and an outer gate</h2>
-            <img class="fig" src="assets/verification-ladder.svg" alt="Four-rung verification ladder: local reproducer on every iteration, reduced integration case before commit, the original system at the phase boundary, the cluster when scale or environment matters" style="max-height:430px;" />
-            <p class="take">My laptop's constraints are <span class="gold">not</span> the constraints of the machine where the science runs.</p>
-            <aside class="notes">
-              I want the inner loop cheap enough that the agent can run it constantly, so I reduce
-              the system and use small fixtures locally. But that is not the finish line. Before
-              handoff or commit, a representative reduced case. At the phase boundary, the original
-              failing system or a canonical example, re-run. And when the behaviour depends on MPI
-              scale, hardware, scheduler, memory, or environment, validate on the cluster, because
-              my laptop's limitations are not production's.
-              One terminology guard: an example-system re-run is a regression test only when it
-              carries a pinned, machine-checkable expectation. Otherwise call it what it is, an
-              end-to-end validation run. Both can be required; they give different strengths of
-              evidence.
-              (Down: vocabulary.)
-            </aside>
-          </section>
-          <section>
-            <h3>Vocabulary: the workflow</h3>
-            <table class="vocab">
-              <tr><th>Term</th><th>In this talk</th></tr>
-              <tr><td class="term">design foundation</td><td>Durable Markdown distillation of the agreed design. A context start for future sessions.</td></tr>
-              <tr><td class="term">implementation spec</td><td>The agreed end state packaged for execution. Study or method spec for simulation campaigns.</td></tr>
-              <tr><td class="term">vertical slice</td><td>A narrow, complete capability, independently verifiable. A file or layer is not a slice.</td></tr>
-              <tr><td class="term">red-capable reproducer</td><td>One runnable command that fails on the exact reported symptom, then passes after the fix.</td></tr>
-              <tr><td class="term">handoff</td><td>Compaction with intention: one bounded task, only the context needed to complete it.</td></tr>
-              <tr><td class="term">worktree</td><td>An isolated checkout. Separates code state, not conversational context.</td></tr>
-            </table>
-            <aside class="notes">
-              Six words that carry this whole section. If you keep only one, keep handoff: it is
-              the one that changes daily behaviour first.
-            </aside>
-          </section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>Vocabulary: the workflow</h2>
+          <table class="vocab">
+            <tr><th>Term</th><th>In this talk</th></tr>
+            <tr><td class="term">design foundation</td><td>Durable Markdown distillation of the agreed design. A context start for future sessions.</td></tr>
+            <tr><td class="term">implementation spec</td><td>The agreed end state packaged for execution. Study or method spec for simulation campaigns.</td></tr>
+            <tr><td class="term">vertical slice</td><td>A narrow, complete capability, independently verifiable. A file or layer is not a slice.</td></tr>
+            <tr><td class="term">red-capable reproducer</td><td>One runnable command that fails on the exact reported symptom, then passes after the fix.</td></tr>
+            <tr><td class="term">handoff</td><td>Compaction with intention: one bounded task, only the context needed to complete it.</td></tr>
+            <tr><td class="term">automatic compaction</td><td>The safety net when the window fills: a summary nobody curated. Do not depend on it for durable design.</td></tr>
+            <tr><td class="term">worktree</td><td>An isolated checkout. Separates code state, not conversational context.</td></tr>
+          </table>
+          <aside class="notes">
+            Seven terms that carry this whole section. If you keep only one, keep handoff: it is
+            the one that changes daily behaviour first.
+          </aside>
         </section>
 
         <!-- ============ 4 · SKILLS AS MAINTAINED ASSETS ============ -->

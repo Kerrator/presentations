@@ -1461,3 +1461,33 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     section block of `index.html` and commits when the section is locked. The 2026-07-13 draft
     (evidence and language audits passed) is starting material, not a commitment. The PDF export
     and the landing-page repoint (decision 82) wait until all five section interviews are done.
+106. **Open handoff with context-window curation, not the example.** (Amends decision 33.) The
+    handoff slide leads with a simplified two-window figure: one long session's crowded context
+    (goal and decisions among abandoned ideas, stale assumptions, old tool output) versus a fresh
+    session started from a handoff (the task, the decisions that matter, evidence and next move,
+    room to work), reusing section 2's locked crowded/focused language. The first drill-down
+    contrasts automatic compaction with handoff (both compress; only one is intentional). The
+    diverged pyKMC bug story remains the primary concrete example but moves to the second
+    drill-down, followed by the what-a-handoff-carries table and worktrees. Locked in the
+    2026-07-14 section-3 interview.
+107. **Park the verification ladder for a pyKMC talk.** (Amends decisions 27 and, for section 3,
+    the vocabulary-placement half of 79.) The four-stage inner-loop/outer-gate ladder is pyKMC
+    design and verification guidance, not agent-workflow guidance, so it leaves this talk. The
+    ladder, the regression-versus-validation terminology guard, and the HTST diagonalization
+    story that motivates it (a laptop failing to diagonalize a huge system says nothing about the
+    cluster) are parked in `notes/pykmc-talk-ideas.md` at the repository root, with
+    `assets/verification-ladder.svg` kept for reuse. Reproducer-first (decision 26) still carries
+    the evidence discipline in section 3. The vocabulary table becomes section 3's closing
+    horizontal slide, with **automatic compaction** added as a seventh term beside handoff.
+    Locked in the 2026-07-14 section-3 interview.
+108. **Frame section 3 as context management, opened by the manual-subagent story.** Stephen's
+    declared takeaway for the section: how to manage context, with Skills doing repeatable things
+    well planted here and harvested in section 4. A new opening slide, "I was the context
+    manager," tells his grad-course story (an LLM could not parse a huge output file until he gave
+    it a procedure: grep the lines that matter, write them to a small file, analyse that, report
+    back), with the copy-paste era and the tidy-workspace lesson in its notes. Workflow stages
+    that are named Skills carry a small mono **skill chip** top-right (`interview-design-decisions`,
+    `build-design-foundation`, `to-spec`); chips mark named Skills only, so discipline slides
+    (opener, reproducer-first) carry none. The FOUNDATION.md slide states visibly that this
+    presentation was built this way, without showing a path. Section 4 should harvest the chip
+    motif. Locked in the 2026-07-14 section-3 interview.
