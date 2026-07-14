@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding with AI · Stephen Kerr</title>
+
+    <!-- reveal core (vendored, offline) -->
+    <link rel="stylesheet" href="lib/reveal/reset.css" />
+    <link rel="stylesheet" href="lib/reveal/reveal.css" />
+    <link rel="stylesheet" href="lib/reveal/theme/black.css" id="theme" />
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="lib/reveal/plugin/highlight/monokai.css" />
+    <!-- plugin styles -->
+    <link rel="stylesheet" href="lib/plugins/chalkboard/style.css" />
+    <link rel="stylesheet" href="lib/plugins/menu/menu.css" />
+    <!-- house style: "The Invisible Variable" (loaded LAST so it wins) -->
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- ===============================================================
+             Coding with AI (v2). Five conceptual sections over the
+             horizontal spine; drill-downs hang vertically under the slide
+             they extend. Source of truth: FOUNDATION.md in this folder.
+        ================================================================ -->
+
+        <!-- TITLE -->
+        <section>
+          <div class="title-block">
+            <h1>Coding with AI</h1>
+            <p class="subtitle">Context, workflow, and <span class="gold">scientific ownership</span></p>
+            <p class="who">Stephen Kerr<br />
+              <span class="aff">Computational Materials Science · Queen's University</span></p>
+          </div>
+          <aside class="notes">
+            Claude has just been rolled out to the group, so this talk is Claude-centred, but the
+            ideas are agentic-coding ideas: they should survive a change of tools. Three things I
+            want you to leave with, in priority order: how to manage an agentic coding workflow,
+            how to manage context inside that workflow, and why you, not the agent, must keep
+            ownership of the work and its scientific meaning.
+            (Subtitle is provisional; final wording after rehearsal, per FOUNDATION.md.)
+          </aside>
+        </section>
+
+        <!-- ============ 1 · FROM CHAT TO AGENTIC CODING ============ -->
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
+            <h2>Walk or drive?</h2>
+            <img class="shot fig" src="assets/carwash-exchange.png" alt="ChatGPT answering that walking 10 m to the car wash is the rational choice" style="max-height:330px;" />
+            <p class="evidence">ChatGPT 5.3 Instant · 2026-07-13 · one observed response</p>
+            <p class="goldline fragment">The car has to arrive at the wash.</p>
+            <aside class="notes">
+              Put yourself inside this question. The car wash is ten metres away. The model answers
+              the question it recognizes: a distance and transport question. Fluent, confident,
+              locally sensible. And it has dropped the entire purpose of the trip. (Let the room
+              say it before the reveal.)
+              This is one observed response from one model on one day, not a leaderboard and not a
+              claim that this model always fails.
+              The coding version of this prompt is "implement my new idea in this codebase": the
+              agent can hand back plausible code while silently inventing the architecture,
+              constraints, and definition of done that I never stated. Hold that thought; the whole
+              middle of this talk is about surfacing hidden intent before implementation.
+              (Down: what the same prompt did across other models and modes.)
+            </aside>
+          </section>
+          <section>
+            <h3>Same prompt, different answers</h3>
+            <p class="lead">The same 10 m prompt, other models and modes (2026-07-13):</p>
+            <table class="plain">
+              <tr><th>Response</th><th>What it did</th></tr>
+              <tr><td>ChatGPT 5.3 Instant</td><td>Walk. The purpose never surfaces. (shown live)</td></tr>
+              <tr><td>ChatGPT 5.4 Pro</td><td>Drive: the car must reach the wash.</td></tr>
+              <tr><td>ChatGPT, unidentified model</td><td>Walk first, then an exception recognizing the car has to be brought in.</td></tr>
+            </table>
+            <img class="shot fig" src="assets/carwash-model-label.png" alt="ChatGPT composer bar showing the 5.3 Instant model label" style="max-height:70px; margin-top:18px;" />
+            <p class="take">One correct answer to a familiar trap is <span class="gold">not evidence</span> the model will recover the hidden purpose of a novel request.</p>
+            <aside class="notes">
+              The outputs differ across models and modes; that much the screenshots establish. What
+              they do not establish is why: fresh inference, familiarity with a common puzzle,
+              routing, or a curated safeguard. I cannot infer the production mechanism from an
+              output, and neither can you. That uncertainty is the useful part: a right answer to a
+              famous trap tells me very little about a novel, underspecified coding request.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
+            <h2>Inside the codebase</h2>
+            <div class="pair">
+              <div class="cold">
+                <p class="label">Web chat</p>
+                <p>Works from the context I give it. It sees the fragments I paste or upload, and nothing else.</p>
+              </div>
+              <div class="hot">
+                <p class="label">Agentic coding</p>
+                <p>Works inside the codebase. It goes looking for the files and relationships the task needs, within the access it has been granted.</p>
+              </div>
+            </div>
+            <p class="take">An LLM working in my codebase, sussing out where things are for itself. CLI or app: <span class="gold">the interface is not what makes it agentic.</span></p>
+            <aside class="notes">
+              My working definition: agentic coding is when I have an LLM working inside my
+              codebase. It can look through the files and suss out where things are, instead of
+              only seeing what I upload to a web chat. It can live in a CLI or in an app; the
+              interface is not the point.
+              Two qualifications. "Within the access it has been granted": the agent does not have
+              unrestricted access to everything, and not every file lands in the context window at
+              once. It can go looking, rather than waiting for me to supply each file.
+              Inspect, act, observe, adapt is a fair description of how such an agent behaves once
+              it is in there, but it is behaviour, not the definitional test.
+              If Q&amp;A pushes on read-only products: Cursor's Ask mode and Copilot's Ask mode are
+              system configurations of the same idea, not a different kind of model. Not worth the
+              live path.
+              (Down: the section's vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>Vocabulary: agentic coding</h3>
+            <table class="vocab">
+              <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">agentic coding</td><td>An LLM working inside the codebase, finding relevant context for itself.</td></tr>
+              <tr><td class="term">situated access</td><td>The agent inspects the repository, bounded by the access it was granted.</td></tr>
+              <tr><td class="term">inspect · act · observe · adapt</td><td>How a coding agent behaves once it can see the work. A description, not the boundary.</td></tr>
+              <tr><td class="term">web chat</td><td>Works only from what you paste in. Capable, but context-blind.</td></tr>
+            </table>
+            <aside class="notes">
+              Each section ends with its working vocabulary, so we share words for Q&amp;A and for
+              your own reading afterward. These glosses are how I use the terms; the wider
+              community has not settled on definitions, which is a theme we will return to.
+            </aside>
+          </section>
+        </section>
+
+        <!-- ============ 2 · TOKENS AND CONTEXT ============ -->
+
+        <section>
+          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
+          <h2>Same token ID, different meaning</h2>
+          <img class="fig" src="assets/token-context.svg" alt="Two occurrences of the same token ID develop different contextual representations as transformer layers mix in context" style="max-height:430px;" />
+          <p class="take">The token ID is fixed. The representation carried at its position becomes <span class="gold">contextual</span>.</p>
+          <aside class="notes">
+            I picture each token as a node carrying a vector. It starts from a general
+            representation, and as it passes through the transformer layers that representation is
+            repeatedly reshaped by the other positions it can attend to. The integer ID never
+            changes; the state carried at that position does. So context is not merely text sitting
+            near a token: it helps give that particular occurrence its working meaning.
+            The context window, then, is not just storage. What is in it shapes how every position
+            is represented and how the next token is predicted. That is why the rest of this talk
+            cares so much about what we let into it.
+            When I want the chunks to feel concrete I call tokens objects instead of nodes; both
+            are teaching metaphors, not literal claims about the architecture.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
+          <h2>How many r's in strawberry?</h2>
+          <p class="big" style="font-family:'Plex Mono',monospace;">strawberry</p>
+          <p class="fragment">A direct count asks the model to work below its own units: it sees chunks, not letters.</p>
+          <p class="big fragment" style="font-family:'Plex Mono',monospace; letter-spacing:0.08em;">s t <span class="gold">r</span> a w b e <span class="gold">r</span> <span class="gold">r</span> y</p>
+          <p class="take fragment">When a model struggles: <span class="gold">change the representation</span>, expose intermediate steps, or give it a tool.</p>
+          <aside class="notes">
+            The point is not that the model cannot count letters. The direct question can ask it to
+            operate at an awkward representation level. If I first ask it to spell the word one
+            letter at a time, the characters become explicit intermediate state, and counting the
+            r's becomes easy to perform and easy to verify.
+            The general lesson: when a model struggles, do not just repeat the question louder.
+            Change the representation, expose the intermediate steps, or hand it a suitable tool.
+            Exact tokenization is tokenizer-dependent; I make no claim about how many tokens
+            "strawberry" is on any given model. Related aside if useful: a word and its plural
+            suffix can be separate objects, so "pencil" to "pencils" can be one object becoming
+            several. The split is not the lesson; the mismatch between model units and human units
+            is.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">2</span> · Tokens and context</p>
+            <h2>Keep context small and relevant</h2>
+            <div class="pair">
+              <div class="hot">
+                <p class="label">Adaptable</p>
+                <p>Focused and easy to steer as the evidence changes.</p>
+              </div>
+              <div>
+                <p class="label">Rigid</p>
+                <p>Crowded and set in its ways: abandoned ideas, stale assumptions, old tool output, directions I no longer want.</p>
+              </div>
+            </div>
+            <p class="goldline fragment">A million-token window is capacity, not a target.</p>
+            <aside class="notes">
+              A fresh, focused coding chat is easy to steer. As it fills with abandoned ideas,
+              stale assumptions, old tool output, and directions I no longer want, it starts to get
+              set in its ways. That is what I mean by rigid.
+              The spoken line: a million-token window is capacity, not a target. Just because
+              Claude can hold that much does not mean I want every abandoned idea and stale
+              decision following me through one coding chat.
+              Qualifications: the million tokens is model-dependent and will date; this is a
+              practical heuristic about session behaviour, not a claim that the weights change
+              mid-chat; and large, deliberately assembled contexts are genuinely valuable for
+              reference and synthesis work. The advice is against accidental growth.
+              Bridge to the next section: a fluent answer can satisfy the visible request while
+              missing the goal behind it. So before implementation, we make the goal, constraints,
+              assumptions, and definition of done explicit. That is the workflow.
+              (Down: vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>Vocabulary: tokens and context</h3>
+            <table class="vocab">
+              <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">token ID</td><td>The fixed integer produced by tokenization. It is not what changes.</td></tr>
+              <tr><td class="term">contextual representation</td><td>The vector carried at a position after the layers mix in permitted context. Two identical IDs can diverge.</td></tr>
+              <tr><td class="term">context window</td><td>The model's finite working set. Select what should shape the next answer; do not fill it.</td></tr>
+              <tr><td class="term">adaptable / rigid</td><td>My labels for session quality: focused and steerable, versus crowded and set in its ways.</td></tr>
+            </table>
+            <aside class="notes">
+              Contextual representation is the one technical takeaway I insist on: it explains why
+              context management is not housekeeping but part of how the model computes.
+            </aside>
+          </section>
+        </section>
+
+        <!-- ============ 3 · HOW I CODE WITH AN AGENT ============ -->
+
+        <section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>Expose the decisions</h2>
+          <ul>
+            <li>The first job is not to generate code</li>
+            <li>The agent interviews me: one consequential choice at a time</li>
+            <li>It proposes options and recommends one</li>
+            <li>I lock in the load-bearing decisions</li>
+          </ul>
+          <p class="goldline fragment">Surface the decisions the agent would otherwise guess.</p>
+          <aside class="notes">
+            I do not want the agent to make a chain of quiet design choices and hand me the
+            endpoint. I want it to interrogate me about the consequential choices, explain what
+            each option changes, and let me lock them in one at a time. Then the implementation
+            follows decisions I can still explain and defend.
+            The stop condition for this interview, spoken in full: we start implementation only
+            when I can explain the proposed path and its trade-offs, the agent can restate my goal
+            and constraints, the evidence and definition of done are testable, and every
+            load-bearing decision is one I knowingly made. Shared understanding, not a longer
+            prompt.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>FOUNDATION.md: a context start</h2>
+          <ul>
+            <li>The distillation, not the transcript</li>
+            <li>Goal · glossary · locked decisions and why · boundaries · evidence · definition of done</li>
+            <li>A new session loads the agreed design directly</li>
+          </ul>
+          <p class="take fragment">Do not depend on automatic compaction for durable design. <span class="gold">Commit the north star to a file.</span></p>
+          <aside class="notes">
+            We have just done valuable work scoping the problem: a north star for an iterative
+            coding agent, the decisions I made, the boundaries, and the evidence that will tell us
+            whether it worked. I do not want that value trapped in one context window. So I commit
+            the distillation, not the transcript, to a Markdown file. That file is a context start:
+            a new chat loads the agreed design directly instead of inheriting a lossy automatic
+            compaction of the conversation that produced it.
+            Qualifications: the file does not remove context limits or compaction; it removes the
+            dependence on compaction for durable knowledge. A future agent still has to load it,
+            and a stale foundation is not authoritative just because it was committed. My Skill for
+            this updates the file as each decision lands and re-runs against an existing foundation
+            to sharpen it rather than clobber it.
+            This deck was built exactly this way; the FOUNDATION.md for this talk is in the talk
+            folder of the public repository.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+            <h2>Scale the process to the work</h2>
+            <img class="fig" src="assets/foundation-map.svg" alt="Design interview feeds FOUNDATION.md; a small change goes straight to an iterative loop; larger work goes through a specification and vertical slices into bounded loops" style="max-height:440px;" />
+            <aside class="notes">
+              I do not create a procession of documents for every code edit. If the work is small
+              and bounded, the foundation is enough to begin an iterative loop with the agent. If
+              the work has several independent outcomes, I translate the foundation into an
+              implementation specification, and slice that into pieces that can each be built and
+              verified on their own. The amount of process should scale with the cost of getting
+              lost.
+              Naming: I inherited the name to-prd for the synthesis step, but I am not producing
+              product paperwork; I call it to-spec, and the artifact is an implementation
+              specification, or a study or method specification when the deliverable is a
+              simulation campaign. It packages decisions already made; it does not reopen the
+              interview.
+              Context narrows along the larger path: the foundation holds the durable design, the
+              spec describes the complete agreed end state, a handoff carries the exact context for
+              one bounded task, and one agent executes and verifies it.
+              (Down: the autonomous extreme of this path.)
+            </aside>
+          </section>
+          <section>
+            <h3>Ralph: the blunt end of the loop</h3>
+            <pre><code class="language-bash" data-trim>
+while ! ./slices-done.sh; do
+  claude -p "Read SPEC.md and PROGRESS.md.
+             Take the next unfinished slice.
+             Implement it, run its checks,
+             update PROGRESS.md."
+done
+            </code></pre>
+            <ul>
+              <li>A fresh, eager intern every lap; the files are the memory</li>
+              <li>Only works because the artifacts exist: durable spec, bounded slices, observable checks</li>
+            </ul>
+            <p class="take"><span class="gold">Autonomy is earned by the artifacts</span>, not by the loop.</p>
+            <aside class="notes">
+              The community calls this pattern Ralph: the dumbest possible loop, re-dispatching a
+              fresh context against the same specification until the work is done. No orchestration
+              framework, no memory beyond the repository itself. I keep it here as the limiting
+              case: everything this section teaches (a durable spec, independently verifiable
+              slices, checks an agent can run) is exactly what lets something this blunt work at
+              all. It is an experiment I run on bounded work, not doctrine.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>One slice, one owned decision</h2>
+          <img class="fig" src="assets/coordination-ladder.svg" alt="FCC coordination ladder: 12 neighbours in the bulk, 8 on an FCC(100) surface, 7 beside a surface vacancy, which is where event searches focus" style="max-height:400px;" />
+          <p class="take">A specification does not make the scientific decision. It <span class="gold">preserves</span> it, and turns it into explicit, testable behaviour.</p>
+          <aside class="notes">
+            A vertical slice is a narrow but complete capability: it crosses every layer it touches
+            and produces something I can verify on its own. Not "one issue for the data structure,
+            one for the algorithm, one for the tests"; the thinnest complete path through the
+            scientific behaviour.
+            The real example: for a surface problem I cared about the surface, not the bulk, so I
+            wanted pyKMC's event searches to focus on the environments that mattered. Coordination
+            number gave me the handle. An FCC bulk atom has twelve nearest neighbours; an ordinary
+            FCC(100) surface atom has eight; an atom beside a surface vacancy has seven. With the
+            threshold at eight, ordinary surface stays crystal and the vacancy-adjacent
+            environments get the new event searches.
+            Eight is not a coding number. It comes from my understanding of this surface, and it is
+            specific to this facet, not a universal law. The agent's job was to surface the choice,
+            make it configurable, wire it through every construction site, and help test it. The
+            deciding and the defending stayed with me.
+            This feature is public: pyKMC pull request 91, one complete slice from configuration
+            through classification, dispatch, tests, and documentation, with colouring deliberately
+            left to the companion pull request 90. On a 9,679-atom Ni95Cr5 slab, threshold 12
+            reproduced CNA's 971 non-crystalline atoms exactly; threshold 8 selected a strict
+            four-atom subset. The slab input itself is not public, so the public checks are the
+            reproducible part. And to be honest about history: this predates my to-spec Skill; it
+            is the example I now map onto that workflow, not a product of it.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+          <h2>Do not fix what you cannot reproduce</h2>
+          <ul>
+            <li>First: one command that <span class="redtext">fails</span> on the exact symptom</li>
+            <li>Minimise it; keep it as a regression test at the right seam</li>
+            <li>Only then: the smallest fix, and the same evidence turns green</li>
+            <li>Re-run the original scenario</li>
+          </ul>
+          <p class="goldline fragment">The agent must prove it sees the same bug I see.</p>
+          <aside class="notes">
+            I do not begin by telling the LLM to fix the bug. First I make it prove that it can see
+            the same bug I can see. We build a command or test that fails for the right reason,
+            reduce it until the failure is clear, and keep that case as a regression test. Only
+            then do we change the implementation and watch the same evidence go from red to green.
+            Otherwise the agent can produce a plausible change without proving it touched the
+            problem I reported. A nearby failing test that demonstrates a different failure does
+            not count; the agent should not form a confident theory before it has executable
+            evidence.
+            Slices and reproducers are cousins: a slice bounds new work by a verifiable capability,
+            a reproducer bounds bug work by an executable failure. Both keep the agent from working
+            against an unobservable goal.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+            <h2>Handoff: compaction with intention</h2>
+            <p class="goldline">One bounded task, only the context needed to complete it.</p>
+            <ul>
+              <li>A pyKMC bug was already fixed, but on a heavily refactored branch</li>
+              <li>The fix could not be transplanted into <code>develop</code>: different seams</li>
+              <li class="fragment">The handoff carried: the bug, the reproducer requirement, clues from the other fix, and the constraint of a small native change</li>
+            </ul>
+            <p class="take fragment">Carry the problem, evidence, and clues across the boundary, <span class="gold">not an obsolete solution</span>.</p>
+            <aside class="notes">
+              Handoff is compaction with intention. Both halves matter: I decide what survives into
+              the next context, and what survives is shaped around one bounded direction of work.
+              The story: the same first-step KeyError was first fixed on a refactored
+              basin-hardening branch. That implementation could not simply be moved onto develop;
+              the two branches migrate state at different seams. So I wrote a handoff for a fresh
+              session against develop carrying the narrowly stated bug, the requirement to produce
+              a failing test first, clues from the refactored-branch solution, and the constraint
+              that develop needed a small native fix, not the larger refactor. The receiving
+              session produced the native fix, the focused regression, and the merge. Public
+              history verifies the two divergent fixes, the regression, and the merge (pyKMC pull
+              request 86; commits d493f8a and 817524e; the earlier branch fix is 9dba577). The
+              disposable handoff connecting them is my account; it was never committed.
+              Second, quieter use: when a good conversation has grown large and stale, the same
+              curated handoff continues the same work in a clean window. And the contrast with the
+              foundation: FOUNDATION.md is durable and shared across future work; a handoff is
+              disposable, promoted into durable artifacts and then thrown away.
+              (Down: pairing handoffs with worktrees; what a handoff carries.)
+            </aside>
+          </section>
+          <section>
+            <h3>Parallel work: handoffs + worktrees</h3>
+            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              same task: &nbsp;stale context → curated handoff → fresh chat, same code state<br />
+              one spec slice: &nbsp;to-spec → bounded handoff → fresh chat → verified result<br />
+              parallel: &nbsp;independent handoffs → separate worktrees → merge + integration checks
+            </p>
+            <p class="take">A handoff scopes the <span class="gold">context</span>; a worktree isolates the <span class="gold">code state</span>. Neither makes integration automatic.</p>
+            <aside class="notes">
+              A new chat gives me clean conversational context; a worktree gives me a separate
+              checkout with its own branch. They solve different problems. Continuing one
+              overloaded conversation may only need the handoff. Dispatching independent coding
+              work wants both: a bounded brief and an isolated branch. A handoff does not merge
+              code, a worktree does not transfer understanding, and neither makes integration
+              conflicts disappear.
+            </aside>
+          </section>
+          <section>
+            <h3>What a handoff carries depends on where it is going</h3>
+            <table class="plain">
+              <tr><th>Direction</th><th>Might carry</th></tr>
+              <tr><td>Continue the same work</td><td>current state · settled decisions · useful evidence · next move</td></tr>
+              <tr><td>Break in a new direction</td><td>relevant premise · divergence point · local boundary · open question</td></tr>
+              <tr><td>Execute one spec slice</td><td>pointer to the spec · slice scope · starting state · verification target</td></tr>
+              <tr><td>Separate worktree</td><td>branch pointer · integration boundary · relevant checks</td></tr>
+            </table>
+            <p class="take"><span class="gold">Examples, not required boxes.</span> I choose what the next context needs.</p>
+            <aside class="notes">
+              I do not want the handoff to carry the whole idea just because the previous chat
+              needed it; I want it to carry what is relevant to the direction I am breaking into.
+              Sometimes a goal and a next action, sometimes a pointer to a spec, a failing test, a
+              decision, an observed result. The stable criterion: the receiver gets the context
+              relevant to its direction without being burdened by the whole parent conversation.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
+            <h2>An inner loop and an outer gate</h2>
+            <img class="fig" src="assets/verification-ladder.svg" alt="Four-rung verification ladder: local reproducer on every iteration, reduced integration case before commit, the original system at the phase boundary, the cluster when scale or environment matters" style="max-height:430px;" />
+            <p class="take">My laptop's constraints are <span class="gold">not</span> the constraints of the machine where the science runs.</p>
+            <aside class="notes">
+              I want the inner loop cheap enough that the agent can run it constantly, so I reduce
+              the system and use small fixtures locally. But that is not the finish line. Before
+              handoff or commit, a representative reduced case. At the phase boundary, the original
+              failing system or a canonical example, re-run. And when the behaviour depends on MPI
+              scale, hardware, scheduler, memory, or environment, validate on the cluster, because
+              my laptop's limitations are not production's.
+              One terminology guard: an example-system re-run is a regression test only when it
+              carries a pinned, machine-checkable expectation. Otherwise call it what it is, an
+              end-to-end validation run. Both can be required; they give different strengths of
+              evidence.
+              (Down: vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>Vocabulary: the workflow</h3>
+            <table class="vocab">
+              <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">design foundation</td><td>Durable Markdown distillation of the agreed design. A context start for future sessions.</td></tr>
+              <tr><td class="term">implementation spec</td><td>The agreed end state packaged for execution. Study or method spec for simulation campaigns.</td></tr>
+              <tr><td class="term">vertical slice</td><td>A narrow, complete capability, independently verifiable. A file or layer is not a slice.</td></tr>
+              <tr><td class="term">red-capable reproducer</td><td>One runnable command that fails on the exact reported symptom, then passes after the fix.</td></tr>
+              <tr><td class="term">handoff</td><td>Compaction with intention: one bounded task, only the context needed to complete it.</td></tr>
+              <tr><td class="term">worktree</td><td>An isolated checkout. Separates code state, not conversational context.</td></tr>
+            </table>
+            <aside class="notes">
+              Six words that carry this whole section. If you keep only one, keep handoff: it is
+              the one that changes daily behaviour first.
+            </aside>
+          </section>
+        </section>
+
+        <!-- ============ 4 · SKILLS AS MAINTAINED ASSETS ============ -->
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">4</span> · Skills as maintained assets</p>
+            <h2>A prompt earns its packaging</h2>
+            <ul>
+              <li>A discipline I repeat, preserved as a Skill</li>
+              <li>Exposed only to the chats where it is relevant</li>
+              <li>Observed in use; revised or removed when it stops helping</li>
+              <li>Not only coding: one Skill adversarially reviews my statistical claims before I draft prose</li>
+            </ul>
+            <p class="take fragment">Not something to collect. <span class="gold">Something to maintain.</span></p>
+            <aside class="notes">
+              A Skill is a packaged, reusable procedure with an invocation mechanism. Mine mostly
+              began as prompts I kept refining until they stabilized. The bar before packaging: the
+              need recurs, the trigger is recognizable, the procedure is reusable, and I can tell
+              whether it did the job. One-off advice and vague preferences do not clear that bar,
+              even written down twice.
+              Evaluation at our scale is proportional observation, not an A/B laboratory: does the
+              agent follow the discipline more consistently, does the output get easier to verify,
+              and what new friction appears? Revise, narrow, or remove accordingly.
+              The non-coding example: before I draft conclusions in a paper, a Skill walks my
+              claims adversarially, estimation, assumptions, magnitude, uncertainty, causality,
+              robustness, and the exact language the analysis licenses. Proof that a Skill can
+              encode a way of thinking, not just store a canned prompt. Full tree in the
+              drill-down.
+              (Down: the claim-review walk.)
+            </aside>
+          </section>
+          <section>
+            <h3>Before the prose: adversarial review of my claims</h3>
+            <p class="lead">The one-question-at-a-time interview, pointed at a statistical interpretation tree:</p>
+            <ul class="small" style="font-size:0.66em;">
+              <li>How was each result estimated, and under which assumptions?</li>
+              <li>What does the magnitude mean, and what is its uncertainty?</li>
+              <li>Causality or association? How robust is it?</li>
+              <li>What is the exact language the analysis licenses?</li>
+            </ul>
+            <p class="take">Drafting begins only when I can state <span class="gold">the strongest claim the evidence actually supports</span>.</p>
+            <aside class="notes">
+              This is deliberately a paper-writing Skill, not a generic code or units reviewer. The
+              agent challenges; I retain ownership of the final claim. The stop condition: for each
+              result I can explain how it was produced, its assumptions and uncertainty, what it
+              substantively means, and the strongest claim it supports. Only then prose.
+              The same interview pattern generalizes: software design, statistical claims, and a
+              teaching adaptation that refuses to move on until the learner can explain the idea in
+              their own words, apply it to an unfamiliar example, name its failure conditions, and
+              correct a plausible misconception. Fluent repetition is not understanding.
+              Honesty notes: this Skill did not catch the units bug you will see shortly, and I
+              make no claim it beats an unskilled frontier model; my evaluation of that was
+              inconclusive.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">4</span> · Skills as maintained assets</p>
+            <h2>What does this intern need today?</h2>
+            <div class="pair">
+              <div class="cold">
+                <p class="label">Study chat</p>
+                <p>Textbook read-aloud Skill: preserve the spoken text, skip figures, expand acronyms. Trusted, useful, and irrelevant to code.</p>
+              </div>
+              <div class="hot">
+                <p class="label">Coding chat</p>
+                <p>Debugging Skill: reproduce the exact failure before repairing it. The discipline this repository actually needs.</p>
+              </div>
+            </div>
+            <p class="take">Not good Skill versus bad Skill: <span class="gold">context this intern should see today</span>, versus context it should not.</p>
+            <aside class="notes">
+              I think of a chat as a very eager intern who lasts exactly one conversation. Put ten
+              tools on its desk and it may find reasons to touch all ten, so I am careful what that
+              intern sees on a given day. And when I start a new chat, it is the Neuralyzer from
+              Men in Black: the path we took through the last conversation is gone, unless I
+              deliberately carried it forward in a file, a foundation, or a handoff.
+              Qualifications so the metaphor stays honest: a fresh session is not literally empty
+              (system instructions, project files, Skill metadata, product memory can all load),
+              and an agent is not guaranteed to use every visible tool. The point is that
+              irrelevant capability inflates the context and the opportunity for unnecessary
+              action.
+              Both example Skills are trusted and mine. The read-aloud one came from a prompt I
+              refined for studying; valuable there, a distraction in a coding repository. The
+              debugging one earns its place in every coding project I own. Small caveat: today my
+              debugging Skill is manual-only; the project instructions route to it, rather than it
+              firing by itself.
+              (Down: the specialist that sits on no desk at all.)
+            </aside>
+          </section>
+          <section>
+            <h3>Too specialized for any desk</h3>
+            <ul>
+              <li><code>curate-rate-catalogue</code>: a dispatched, domain-specific agent for rate-catalogue work</li>
+              <li>Carries event families, HTST prefactors, fallbacks, provenance</li>
+              <li>No always-on trigger: loaded only when I do that work</li>
+            </ul>
+            <p class="take">It can build a plausible pipeline. <span class="gold">The kinetics are still mine to defend.</span></p>
+            <aside class="notes">
+              Some reusable context is too specialized to show every chat. My rate-catalogue
+              workflow carries detailed lattice-KMC context: event families, harmonic
+              transition-state-theory prefactors, fallback rules, provenance. Valuable when I am
+              curating that catalogue; noise everywhere else. So it is a dispatched specialist, an
+              agent I send for, not a Skill sitting on the desk.
+              The ownership tie: the specialist can produce a working pipeline and a plausible
+              prefactor, and none of that validates the kinetics. Family definitions,
+              representative events, fallback justification, zero-mode conventions, physical
+              plausibility: mine.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">4</span> · Skills as maintained assets</p>
+            <h2 style="font-size:1.15em;">Installing a Skill expands what the agent may <span class="gold">trust</span>, <span class="gold">trigger</span>, and <span class="gold">run</span></h2>
+            <p class="big" style="font-size:0.95em;">Inspect before you adopt. Keep the active set small.</p>
+            <ul>
+              <li>Instructions entering the trust boundary; possibly scripts, hooks, network access</li>
+              <li>Each install widens the trigger surface: overlapping descriptions, procedures you did not need, extra tool activity</li>
+            </ul>
+            <aside class="notes">
+              A Skill is not just a clever prompt found online. It is a set of instructions I am
+              inviting into the agent's working environment, and it may bring scripts, hooks, and
+              very broad triggers with it. So I inspect the source before installing: what can it
+              instruct, what can it run, and when can it fire? Inspect in a sandbox the agent does
+              not discover, then test locally once the instructions and executable surface have
+              been reviewed. "Install to try" is the wrong default for untrusted material.
+              The second trap is hoarding: each install expands the trigger surface. Overlapping
+              descriptions and always-on hooks fill the context with procedures I do not need and
+              inflate tool activity. More installed Skills is not a better workflow; I want the
+              smallest set that earns its place.
+              Guardrails: not every installed Skill fires in every session; manual Skills cost
+              little until invoked. A plain Markdown Skill can still carry hostile or
+              scope-exceeding instructions. And intake review reduces and exposes risk; it does not
+              make prompt injection impossible.
+              (Down: the two axes people conflate.)
+            </aside>
+          </section>
+          <section>
+            <h3>Two axes, one trigger surface</h3>
+            <table class="plain">
+              <tr><th></th><th>User-invoked</th><th>Automatically selected</th></tr>
+              <tr><td class="term" style="color:var(--blue-soft); font-weight:600;">Project-local</td><td>Specialized command used only here</td><td>Project-specific behaviour that may fire</td></tr>
+              <tr><td class="term" style="color:var(--blue-soft); font-weight:600;">Global availability</td><td>Repeated command relevant across projects</td><td>Broad cross-project trigger; greatest context exposure</td></tr>
+            </table>
+            <p class="take">Trust is a prerequisite at <span class="gold">any</span> scope. After that, placement is contextual relevance.</p>
+            <aside class="notes">
+              Two different decisions hide in the word "install". Invocation mode: does it run only
+              when I ask, or can the model select it from its description? Installation scope: this
+              project only, or available across my projects and machines? A manual Skill can be
+              global; an automatic Skill can be project-only. They are not opposites; they are two
+              axes of the trigger surface. An untrusted Skill is installed at no scope. Once trust
+              and provenance clear, the placement question is: should this kind of chat know this
+              Skill exists, and is its likely value worth the context it adds? Global here means
+              available to me across projects; it does not mean group-shared or always running.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">4</span> · Skills as maintained assets</p>
+            <h2>Still the wild west</h2>
+            <ul>
+              <li>No settled practice: Skill sets, project instructions, file conventions all differ</li>
+              <li>Different arrangements really do produce different results</li>
+              <li>How we work now is not how we will work in a few years</li>
+            </ul>
+            <p class="goldline fragment">Do not copy my configuration. Copy the habit of deciding what belongs in context, and change it as the tools change.</p>
+            <aside class="notes">
+              Coding with AI is still the wild west. People do not agree on the right Skills, the
+              right project instructions, or even the right shape for a Claude file. Friends at
+              large technology companies tell me practice differs department to department. (If I
+              name a company aloud, it is a personal anecdote from friends, not a statement of
+              official practice.)
+              Housekeeping aside, since I use several computers: my maintained Skills live under
+              version control and each project sees only the relevant subset. The mechanics do not
+              matter here; the habit of a curated source of truth does.
+              So: I am showing you how I think about the problem, not handing you a canonical
+              configuration. If you understand context, trigger surface, intentional handoffs,
+              evidence, and ownership, you can change tools without losing the reasoning. That
+              sentence on the slide is the bridge to the last section: the part that must not
+              change hands.
+              (Down: vocabulary.)
+            </aside>
+          </section>
+          <section>
+            <h3>Vocabulary: Skills</h3>
+            <table class="vocab">
+              <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">Skill</td><td>A packaged, reusable procedure with an invocation mechanism. Maintained, not collected.</td></tr>
+              <tr><td class="term">trigger surface</td><td>Everything installed that can cause behaviour: descriptions, rules, hooks, integrations.</td></tr>
+              <tr><td class="term">invocation mode</td><td>Deliberately user-invoked, versus automatically selected from a description.</td></tr>
+              <tr><td class="term">installation scope</td><td>Project-local, versus available across my projects and machines. Not the same axis as invocation.</td></tr>
+            </table>
+            <aside class="notes">
+              Trigger surface is the load-bearing term: it is what turns "just install it" into a
+              real cost with real security implications.
+            </aside>
+          </section>
+        </section>
+
+        <!-- ============ 5 · OWNERSHIP AND VALIDATION ============ -->
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2>Stay inside the epistemic loop</h2>
+          <p class="big">The point where I have delegated so many intermediate judgements that I can no longer audit, explain, or defend the result.</p>
+          <p class="goldline fragment">I call it outer space.</p>
+          <aside class="notes">
+            Last section, and the one I care most about. Everything so far was workflow; this is
+            why the workflow exists. "Outer space" is my own name for the failure: enough
+            intermediate judgement delegated that the human can no longer audit, explain, or defend
+            what came back. Three stories, escalating: a classroom, a paragraph, and a piece of
+            working code. Each artifact looks better than the last, and each one moved its author
+            further from the decisions that made it true or false.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2>A polished artifact, without understanding</h2>
+          <p class="lead">MECH 479, across course offerings:</p>
+          <p style="font-size:0.8em;">AI as orientation → AI as critic → <span class="fragment">AI as end-to-end author → <span class="redtext">outer space</span></span></p>
+          <ul class="fragment">
+            <li>Rubric-shaped reports, produced very quickly</li>
+            <li>Weak answers to questions about their own cited sources</li>
+          </ul>
+          <p class="take fragment">The assignment stopped guaranteeing that a polished deliverable reflected understanding. <span class="gold">Redesign the checkpoints, not the blame.</span></p>
+          <aside class="notes">
+            In an earlier year of my nanomaterials course, students were quite honest about where
+            they were. If someone had no entry into a paper, I might suggest AI for a first
+            summary; if they had a draft and were stuck, AI could critique and polish, with the
+            warning that clearer prose can distort the science. Bounded help.
+            In the more recent offering the models were better, and some students had delegated
+            the whole chain: finding papers, processing them, producing a rubric-shaped report.
+            Fast, polished, and when I asked substantive questions about one of the cited papers,
+            they could not answer well or judge which parts of their own report were correct. Not
+            one task delegated, but the chain of decisions that made the project theirs. That
+            accumulated loss is what I mean by outer space.
+            The lesson is not that the students were dishonest or that AI use is wrong. The
+            assignment no longer guaranteed that a polished deliverable reflected understanding,
+            so I have to rethink the checkpoints and the evidence of ownership in the course.
+            Same bridge to us: a finished program is not evidence that the researcher owns the
+            chain of decisions that produced it.
+            (This is an aggregate pattern across interactions; no individual student, no
+            misconduct determination.)
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2>Better structure, wrong comparison</h2>
+          <p>AI restructured my dipole paragraph. Genuinely better writing.</p>
+          <p class="big fragment" style="font-family:'Plex Mono',monospace;">A &gt; B &nbsp;<span class="redtext">became</span>&nbsp; A &lt; B</p>
+          <p class="take fragment">I kept the structure and repaired the science. Possible only because <span class="gold">I still knew what the sentence was supposed to say.</span></p>
+          <aside class="notes">
+            My own warning example, from my own writing. An AI pass made a paragraph about dipoles
+            much better structured, and somewhere in the rewrite it reversed a comparison:
+            effectively a greater-than became a less-than, and the sentence became scientifically
+            wrong. I kept the improved structure and repaired the relationship. I could do that
+            only because I still knew what the science was supposed to say. Greater fluency, one
+            reversed relationship: that is the second rung of the escalation. (I have not recovered
+            the original sentence, so I show the shape of the error, not a reconstruction.)
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+            <h2>Green tests can agree on the wrong physics</h2>
+            <p class="big" style="text-align:center; margin-top:0.4em;">$5 \times 10^{12}\ \mathrm{Hz} \;=\; 5\ \mathrm{ps}^{-1}$</p>
+            <ul>
+              <li class="fragment">The Vineyard prefactor came out in $\mathrm{Hz}$; the rate layer consumed the number as $\mathrm{ps}^{-1}$</li>
+              <li class="fragment"><span class="redtext">Every finite HTST rate 10¹² too large; simulated time 10¹² too short</span></li>
+            </ul>
+            <p class="goldline fragment">The tests did not stop me. A value I already had reason to expect did.</p>
+            <aside class="notes">
+              The climax, from pyKMC. The Vineyard calculation produced the attempt frequency in
+              hertz. The rate layer and the KMC clock consume the prefactor in inverse picoseconds.
+              The initial backends passed the raw number straight through: five times ten to the
+              twelve hertz, consumed as five times ten to the twelve per picosecond. The prefactor
+              multiplies every finite HTST and RPA rate, so every rate was ten to the twelve too
+              large and simulated time ten to the twelve too short. Constant-style runs and the k0
+              fallback were untouched. The code ran smoothly.
+              And the tests were green, because they encoded the same mistaken contract: they
+              expected the raw hertz value as the resolved prefactor. Working code and green tests,
+              agreeing on the wrong physics.
+              What stopped me was none of that. I compared the result with a value I already had
+              reason to expect, and the discrepancy made me distrust the output. Following that
+              physical sanity check led us to the unit boundary. (I am deliberately not naming the
+              reference value or source.) Automated checks prove the contracts they encode; an
+              external scientific anchor can reveal that the encoded contract is itself wrong.
+              An honest history note: this work predates the design-interview Skill; it followed
+              parts of the practice, and it is the kind of hidden decision the current workflow is
+              built to surface, not proof the Skill would have prevented it.
+              (Down: the full unit boundary; the public evidence trail.)
+            </aside>
+          </section>
+          <section>
+            <h3>The unit boundary, in full</h3>
+            <p style="font-size:0.85em;">$$\nu_0 \;=\; \frac{1}{2\pi\hbar}\,\frac{\prod_i \hbar\omega_i^{\mathrm{min}}}{\prod_j{}^{\prime} \hbar\omega_j^{\mathrm{saddle}}}$$</p>
+            <ul class="small" style="font-size:0.6em;">
+              <li>The primed saddle product omits the imaginary mode: one energy dimension survives, so $\nu_0$ carries units (it is not a dimensionless ratio)</li>
+              <li>$k = \nu_0\, e^{-\Delta E / k_B T}$: the error multiplies every finite HTST and RPA rate; constant-style runs and the $k_0$ fallback were unaffected</li>
+              <li>The fix converts $\mathrm{Hz} \to \mathrm{ps}^{-1}$ exactly once, at the backend boundary; a regression pins a committed Ni(100) surface hop against a known 5 THz prefactor</li>
+            </ul>
+            <aside class="notes">
+              For the record: the minimum has one more positive mode than the saddle, which is why
+              the ratio keeps one energy dimension before division by two pi hbar. The recovered
+              contract became an explicit boundary helper, backend documentation, corrected test
+              expectations, and an end-to-end regression using the committed Ni(100) surface-hop
+              event, barrier about 0.597 eV, against the known 5 THz prefactor.
+              Cross-codebase caution: pylatkmc deliberately stores the prefactor in hertz,
+              evaluates rates in inverse seconds, and advances its clock in seconds. Converting
+              that prefactor to inverse picoseconds without changing its clock would introduce the
+              same factor-of-ten-to-the-twelve error in the opposite codebase. The lesson is the
+              explicit contract, not one particular unit.
+            </aside>
+          </section>
+          <section>
+            <h3>Public evidence trail</h3>
+            <p class="lead">github.com/hugomoison/pyKMC · verified 2026-07-13</p>
+            <table class="plain">
+              <tr><th>Reference</th><th>What it shows</th></tr>
+              <tr><td><code>d705932</code></td><td>Hz → ps⁻¹ converted exactly once, at the backend boundary</td></tr>
+              <tr><td><code>d6b921f</code></td><td>Regression: rate, residence time, constant-versus-HTST equivalence at the same prefactor</td></tr>
+              <tr><td>PR 86</td><td>Reproduce first: focused failing regression, smallest seam, suite plus a short MPI run</td></tr>
+              <tr><td>PR 90 · PR 91</td><td>Two orthogonal vertical slices: colouring, and the coordination-number capability end to end</td></tr>
+              <tr><td>PR 71</td><td>The historical HTST design record (a closed, unmerged draft)</td></tr>
+            </table>
+            <p class="take">The links verify the implementations. <span class="gold">The disposable handoffs between them are my account.</span></p>
+            <aside class="notes">
+              Everything on this slide resolves publicly as of today. What public history verifies:
+              the boundary fix, the regression, the reproduce-first pull request, the two slice
+              boundaries, and the closed draft design record (whose 48 passing tests belonged to
+              the pre-correction unit convention; do not read it as the final proof). What it does
+              not verify: the temporary handoffs, and who or what made the original implicit
+              choice. I keep those labelled as my account.
+            </aside>
+          </section>
+          <section>
+            <h3>Vocabulary: ownership</h3>
+            <table class="vocab">
+              <tr><th>Term</th><th>In this talk</th></tr>
+              <tr><td class="term">epistemic loop</td><td>The chain of judgements you can still audit, explain, and defend.</td></tr>
+              <tr><td class="term">outer space</td><td>My name for the far side: so much delegated that the result can no longer be defended.</td></tr>
+              <tr><td class="term">external anchor</td><td>A value you already had reason to expect. It can catch what green tests encode wrongly.</td></tr>
+              <tr><td class="term">regression vs validation</td><td>A pinned, machine-checkable expectation, versus an end-to-end confirmation run. Different strengths of evidence.</td></tr>
+            </table>
+            <aside class="notes">
+              These four terms are the ownership section in miniature: know where your loop ends,
+              name the far side, keep an anchor outside the code, and be precise about what kind of
+              evidence each check gives you.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">5</span> · Ownership and validation</p>
+          <h2 class="goldline" style="font-size:1.5em;">Delegate labour,<br />not scientific judgement.</h2>
+          <ul style="margin-top:0.8em;">
+            <li>Explain the choices</li>
+            <li>Trace the evidence</li>
+            <li>Challenge the output</li>
+            <li>Say what observation would prove it wrong</li>
+          </ul>
+          <p class="small" style="margin-top:1.2em;">Thank you. Questions?</p>
+          <aside class="notes">
+            The closing thought. The agent can carry an enormous amount of labour: searching,
+            drafting, wiring, testing, re-running. What it must not carry is the judgement that
+            makes the result science: I should still be able to explain the choices, trace the
+            evidence, challenge the output, and say what observation would show it is wrong. If I
+            can do those four things, I am inside the loop, whatever the tools become.
+            (Closing cadence to be refined after rehearsal. Chalkboard ready on B for Q&amp;A
+            sketches.)
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Touch entry to inking (an iPad has no C/B/DEL keys). -->
+    <div class="inkbar">
+      <button type="button" title="Annotate this slide (C)" onclick="RevealChalkboard.toggleNotesCanvas();"><i class="fas fa-pen"></i></button>
+      <button type="button" title="Open chalkboard (B)" onclick="RevealChalkboard.toggleChalkboard();"><i class="fas fa-chalkboard"></i></button>
+      <button type="button" title="Clear ink on this slide (DEL)" onclick="RevealChalkboard.clear();"><i class="fas fa-eraser"></i></button>
+    </div>
+
+    <!-- reveal core + plugins (vendored, offline) -->
+    <script src="lib/reveal/reveal.js"></script>
+    <script src="lib/reveal/plugin/markdown.js"></script>
+    <script src="lib/reveal/plugin/highlight.js"></script>
+    <script src="lib/reveal/plugin/notes.js"></script>
+    <script src="lib/reveal/plugin/math.js"></script>
+    <script src="lib/reveal/plugin/search.js"></script>
+    <script src="lib/reveal/plugin/zoom.js"></script>
+    <script src="lib/plugins/chalkboard/plugin.js"></script>
+    <script src="lib/plugins/menu/menu.js"></script>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: false,          // top-aligned reads better for dense technical slides
+        slideNumber: 'c/t',
+        transition: 'slide',
+
+        // --- KaTeX, fully offline ---
+        katex: {
+          local: 'lib/katex',
+          extensions: ['mhchem'],
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$',  right: '$',  display: false },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '\\[', right: '\\]', display: true }
+          ]
+        },
+
+        // --- live inking (Apple Pencil / mouse) ---
+        chalkboard: { boardmarkerWidth: 3, storage: '2026-coding-with-ai-v2-chalkboard' },
+
+        // --- jump-anywhere menu (top-left) ---
+        menu: { themes: false, openButton: true, openSlideNumber: true },
+
+        plugins: [
+          RevealMarkdown, RevealHighlight, RevealNotes,
+          RevealMath.KaTeX, RevealSearch, RevealZoom,
+          RevealChalkboard, RevealMenu
+        ]
+      });
+    </script>
+  </body>
+</html>

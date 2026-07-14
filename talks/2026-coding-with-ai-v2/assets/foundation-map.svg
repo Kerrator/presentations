@@ -1,0 +1,94 @@
+<svg viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ab" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L12 5 L0 10 z" fill="#8fb0dc"/>
+    </marker>
+    <marker id="abs" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L8 3.5 L0 7 z" fill="#8fb0dc"/>
+    </marker>
+  </defs>
+
+  <!-- design interview card -->
+  <rect x="32" y="272" width="260" height="100" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="162" y="312" font-size="30" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">design interview</text>
+  <text x="162" y="346" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">one decision at a time</text>
+
+  <!-- double-headed arrow -->
+  <line x1="304" y1="322" x2="334" y2="322" stroke="#8fb0dc" stroke-width="2.5"/>
+  <polygon points="296,322 306,317 306,327" fill="#8fb0dc"/>
+  <polygon points="342,322 332,317 332,327" fill="#8fb0dc"/>
+
+  <!-- FOUNDATION.md anchor card -->
+  <rect x="346" y="232" width="302" height="180" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <line x1="351" y1="246" x2="351" y2="398" stroke="#FABD0F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M479 292 v-44 h24 l12 12 v32 z" fill="#002452" stroke="#8fb0dc" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M503 248 v12 h12" fill="none" stroke="#8fb0dc" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="487" y1="270" x2="507" y2="270" stroke="#8fb0dc" stroke-width="2"/>
+  <line x1="487" y1="280" x2="501" y2="280" stroke="#8fb0dc" stroke-width="2"/>
+  <text x="497" y="326" font-size="32" font-weight="600" fill="#FABD0F" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">FOUNDATION.md</text>
+  <text x="497" y="360" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">the distillation,</text>
+  <text x="497" y="388" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">not the transcript</text>
+
+  <!-- TOP branch: small, bounded change -->
+  <line x1="652" y1="286" x2="802" y2="197" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <text x="700" y="118" font-size="26" fill="#8fb0dc" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">small, bounded change</text>
+
+  <!-- iterative loop glyph -->
+  <path d="M821 162 A30 30 0 0 1 879 162" fill="none" stroke="#8fb0dc" stroke-width="3" marker-end="url(#ab)"/>
+  <path d="M879 178 A30 30 0 0 1 821 178" fill="none" stroke="#8fb0dc" stroke-width="3" marker-end="url(#ab)"/>
+  <text x="850" y="240" font-size="24" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">iterative loop</text>
+  <text x="850" y="268" font-size="24" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">with the agent</text>
+
+  <line x1="892" y1="170" x2="994" y2="170" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+
+  <!-- verified change card -->
+  <rect x="1002" y="138" width="222" height="64" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1113" y="178" font-size="26" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">verified change</text>
+
+  <!-- BOTTOM branch: larger work -->
+  <line x1="652" y1="358" x2="700" y2="440" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <text x="724" y="428" font-size="26" fill="#8fb0dc" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">larger work</text>
+
+  <!-- to-spec card -->
+  <rect x="676" y="448" width="204" height="128" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="778" y="486" font-size="26" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">to-spec &#8594;</text>
+  <text x="778" y="518" font-size="26" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">implementation</text>
+  <text x="778" y="550" font-size="26" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">specification</text>
+
+  <!-- fan arrows to slices -->
+  <line x1="886" y1="510" x2="918" y2="464" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <line x1="886" y1="512" x2="914" y2="512" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <line x1="886" y1="514" x2="918" y2="560" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+
+  <!-- tiny loop glyphs beside slices -->
+  <path d="M923 448.5 A11.5 11.5 0 0 1 945 448.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+  <path d="M945 455.5 A11.5 11.5 0 0 1 923 455.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+  <path d="M923 508.5 A11.5 11.5 0 0 1 945 508.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+  <path d="M945 515.5 A11.5 11.5 0 0 1 923 515.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+  <path d="M923 568.5 A11.5 11.5 0 0 1 945 568.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+  <path d="M945 575.5 A11.5 11.5 0 0 1 923 575.5" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#abs)"/>
+
+  <!-- slice cards -->
+  <rect x="958" y="432" width="108" height="40" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1012" y="460" font-size="24" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">slice 1</text>
+  <rect x="958" y="492" width="108" height="40" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1012" y="520" font-size="24" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">slice 2</text>
+  <rect x="958" y="552" width="108" height="40" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1012" y="580" font-size="24" fill="#e8eaee" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">slice 3</text>
+
+  <text x="1006" y="412" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">one bounded loop per slice</text>
+
+  <!-- converge arrows -->
+  <line x1="1070" y1="452" x2="1096" y2="498" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <line x1="1070" y1="512" x2="1096" y2="512" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+  <line x1="1070" y1="572" x2="1096" y2="526" stroke="#8fb0dc" stroke-width="2.5" marker-end="url(#ab)"/>
+
+  <!-- integrate + validate card -->
+  <rect x="1104" y="470" width="152" height="84" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1180" y="504" font-size="24" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">integrate +</text>
+  <text x="1180" y="534" font-size="24" fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">validate</text>
+
+  <!-- optional handoffs note -->
+  <line x1="700" y1="580" x2="700" y2="594" stroke="#3a3d44" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="80" y="610" font-size="22" fill="#9aa1ad" text-anchor="start" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">optional: independent handoffs &#8594; separate worktrees &#8594; merge + integration checks</text>
+</svg>
