@@ -279,3 +279,20 @@
   font-family: 'Plex Mono', monospace; font-size: 0.42em;
   color: var(--muted, #9aa1ad); margin-top: 9px; letter-spacing: 0.05em;
 }
+
+/* ---- §3 additions ------------------------------------------------------ */
+/* Skill chip: tags a workflow stage with the Skill that automates it.
+   Soft blue, never gold: the chip is machinery, not the reveal. */
+.reveal .skillchip {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  margin: 0;
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.4em;
+  color: var(--blue-soft);
+  border: 1px solid rgba(143, 176, 220, 0.4);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  letter-spacing: 0.04em;
+}
