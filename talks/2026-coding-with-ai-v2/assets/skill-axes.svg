@@ -1,0 +1,39 @@
+<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">
+  <!-- axis separators -->
+  <line x1="465" y1="36" x2="465" y2="414" stroke="#3a4150" stroke-width="1.5"/>
+  <line x1="78" y1="225" x2="852" y2="225" stroke="#3a4150" stroke-width="1.5"/>
+
+  <!-- quadrant panels -->
+  <!-- top-left: global x user-invoked -->
+  <rect x="85" y="48" width="350" height="145" rx="10" fill="#002452" stroke="#2e3644" stroke-width="1.5"/>
+  <!-- top-right: global x automatic (the exposure corner) -->
+  <rect x="495" y="48" width="350" height="145" rx="10" fill="#002452" stroke="#FABD0F" stroke-width="2.5"/>
+  <!-- bottom-left: project-local x user-invoked -->
+  <rect x="85" y="257" width="350" height="145" rx="10" fill="#002452" stroke="#2e3644" stroke-width="1.5"/>
+  <!-- bottom-right: project-local x automatic -->
+  <rect x="495" y="257" width="350" height="145" rx="10" fill="#002452" stroke="#2e3644" stroke-width="1.5"/>
+
+  <!-- top-left text -->
+  <text x="260" y="112" text-anchor="middle" font-size="23" font-weight="600" fill="#ffffff">Repeated command</text>
+  <text x="260" y="144" text-anchor="middle" font-size="20" fill="#e8eaee">relevant across projects</text>
+
+  <!-- top-right text (gold payoff) -->
+  <text x="670" y="112" text-anchor="middle" font-size="23" font-weight="600" fill="#ffffff">Broad cross-project trigger:</text>
+  <text x="670" y="144" text-anchor="middle" font-size="21" font-weight="650" fill="#FABD0F">greatest context exposure</text>
+
+  <!-- bottom-left text -->
+  <text x="260" y="321" text-anchor="middle" font-size="23" font-weight="600" fill="#ffffff">Specialized command</text>
+  <text x="260" y="353" text-anchor="middle" font-size="20" fill="#e8eaee">used only in this project</text>
+
+  <!-- bottom-right text -->
+  <text x="670" y="321" text-anchor="middle" font-size="23" font-weight="600" fill="#ffffff">Project-specific behaviour</text>
+  <text x="670" y="353" text-anchor="middle" font-size="20" fill="#e8eaee">that may fire on its own</text>
+
+  <!-- column labels (invocation mode) -->
+  <text x="260" y="447" text-anchor="middle" font-size="20" font-weight="600" fill="#8fb0dc">User-invoked</text>
+  <text x="670" y="447" text-anchor="middle" font-size="20" font-weight="600" fill="#8fb0dc">Automatically selected</text>
+
+  <!-- row labels (installation scope) -->
+  <text x="30" y="120" text-anchor="middle" font-size="20" font-weight="600" fill="#8fb0dc" transform="rotate(-90 30 120)">Global availability</text>
+  <text x="30" y="330" text-anchor="middle" font-size="20" font-weight="600" fill="#8fb0dc" transform="rotate(-90 30 330)">Project-local</text>
+</svg>

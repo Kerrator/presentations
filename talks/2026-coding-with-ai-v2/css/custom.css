@@ -1,0 +1,356 @@
+/* custom.css — "The Invisible Variable" system for Coding with AI (v2).
+   A dark scientific keynote: the missing goal, context, or physical reference
+   is revealed in gold. Palette per FOUNDATION.md decision 80:
+   deep blue #002452 · gold #FABD0F · red #B90E31 · white · near-black #212121.
+   Loaded AFTER the base theme (black.css), so these rules win. */
+
+/* Vendored fonts (template ships these; no network). */
+@font-face {
+  font-family: 'Open Sans Var';
+  src: url('fonts/open-sans-var-latin.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('fonts/ibm-plex-mono-400-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('fonts/ibm-plex-mono-500-latin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg:        #212121;
+  --panel:     #2a2c31;
+  --ink:       #e8eaee;
+  --muted:     #9aa1ad;
+  --blue:      #002452;
+  --blue-soft: #8fb0dc;   /* readable blue for text on the dark canvas */
+  --gold:      #fabd0f;
+  --red:       #b90e31;
+  --red-soft:  #e0566d;   /* readable red for text on the dark canvas */
+  --rule:      #3a3d44;
+}
+
+.reveal-viewport { background: var(--bg); }
+
+.reveal {
+  font-family: 'Open Sans Var', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.reveal .slides section { text-align: left; }
+.reveal .slides section,
+.reveal .slides section > section { padding: 10px 20px; }
+
+/* ---- headings ------------------------------------------------------- */
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Open Sans Var', system-ui, sans-serif;
+  color: #ffffff;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-weight: 650;
+  line-height: 1.15;
+}
+.reveal h1 { font-size: 2.1em; }
+.reveal h2 { font-size: 1.35em; margin-bottom: 0.55em; }
+.reveal h3 { font-size: 1.0em;  margin-bottom: 0.5em; }
+
+/* Section kicker: small caps label above the heading. */
+.reveal .kicker {
+  font-size: 0.52em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-soft);
+  margin: 0 0 0.9em 0;
+}
+.reveal .kicker .n { color: var(--gold); }
+
+/* ---- the system's signature gestures -------------------------------- */
+/* Gold: the invisible variable, revealed. Use sparingly. */
+.reveal .gold { color: var(--gold); font-weight: 600; }
+.reveal .goldline {
+  color: var(--gold);
+  font-weight: 650;
+  font-size: 1.05em;
+  line-height: 1.3;
+}
+/* Red: wrong science. A quiet strike, not a decoration. */
+.reveal .wrong {
+  color: var(--red-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 3px;
+}
+.reveal .redtext { color: var(--red-soft); font-weight: 600; }
+
+/* Takeaway: the one sentence a slide exists for. */
+.reveal .take {
+  border-left: 4px solid var(--gold);
+  padding: 0.15em 0 0.15em 0.6em;
+  margin: 0.9em 0 0 0;
+  font-size: 0.82em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.reveal .take .gold { font-weight: 650; }
+
+/* Quiet lead-in / context line. */
+.reveal .lead { color: var(--muted); font-size: 0.72em; margin-bottom: 0.6em; }
+
+/* ---- text scale utilities ------------------------------------------- */
+.reveal .big   { font-size: 1.25em; line-height: 1.35; }
+.reveal .small { font-size: 0.62em; line-height: 1.4; color: var(--muted); }
+
+.reveal p { margin: 0.45em 0; line-height: 1.4; }
+.reveal ul, .reveal ol { margin: 0.3em 0 0.3em 1em; }
+.reveal li { margin: 0.32em 0; line-height: 1.35; font-size: 0.86em; }
+.reveal li li { font-size: 0.92em; }
+
+/* ---- contrast pair (adaptable vs rigid, chat vs agent) --------------- */
+.reveal .pair {
+  display: flex; gap: 26px; margin-top: 0.5em;
+}
+.reveal .pair > div {
+  flex: 1;
+  background: var(--panel);
+  border-top: 4px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.55em 0.7em;
+  font-size: 0.78em;
+  line-height: 1.4;
+}
+.reveal .pair > div.hot  { border-top-color: var(--gold); }
+.reveal .pair > div.cold { border-top-color: var(--blue-soft); }
+.reveal .pair > div.bad  { border-top-color: var(--red); }
+.reveal .pair .label {
+  font-weight: 650; font-size: 1.0em; margin-bottom: 0.25em; color: #fff;
+}
+.reveal .pair > div.hot .label { color: var(--gold); }
+.reveal .pair > div.bad .label { color: var(--red-soft); }
+
+/* ---- evidence (screenshots, quoted output) --------------------------- */
+.reveal img { border: none; box-shadow: none; background: transparent; }
+.reveal img.shot {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: #000;
+}
+.reveal .evidence {
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.42em;
+  color: var(--muted);
+  margin-top: 0.5em;
+}
+
+/* ---- code ------------------------------------------------------------ */
+.reveal pre, .reveal code {
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.reveal pre {
+  width: 100%;
+  font-size: 0.5em;
+  line-height: 1.35;
+  box-shadow: none;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.reveal pre code { padding: 14px 16px; max-height: 520px; white-space: pre-wrap; }
+.reveal :not(pre) > code {
+  background: var(--panel);
+  border-radius: 4px;
+  padding: 0.05em 0.3em;
+  font-size: 0.9em;
+  color: var(--blue-soft);
+}
+
+/* ---- vocabulary tables (one per section, last vertical) -------------- */
+.reveal table.vocab {
+  font-size: 0.55em;
+  line-height: 1.35;
+  border-collapse: collapse;
+  margin-top: 0.4em;
+  width: 100%;
+}
+.reveal table.vocab th {
+  text-align: left;
+  font-weight: 650;
+  color: var(--blue-soft);
+  border-bottom: 2px solid var(--rule);
+  padding: 0.3em 0.8em 0.3em 0;
+}
+.reveal table.vocab td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.42em 0.8em 0.42em 0;
+  vertical-align: top;
+}
+.reveal table.vocab td.term {
+  white-space: nowrap;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* generic small table (drill-downs) */
+.reveal table.plain {
+  font-size: 0.55em; line-height: 1.35; border-collapse: collapse; width: 100%;
+}
+.reveal table.plain th {
+  text-align: left; color: var(--blue-soft); font-weight: 650;
+  border-bottom: 2px solid var(--rule); padding: 0.3em 0.8em 0.3em 0;
+}
+.reveal table.plain td {
+  border-bottom: 1px solid var(--rule); padding: 0.4em 0.8em 0.4em 0; vertical-align: top;
+}
+
+/* ---- figures ---------------------------------------------------------- */
+.reveal .fig { display: block; margin: 0.2em auto 0 auto; max-width: 100%; }
+
+/* ---- links (rare; evidence drill-downs use plain refs) ---------------- */
+.reveal a { color: var(--blue-soft); text-decoration: none; border-bottom: 1px dotted var(--blue-soft); }
+
+/* ---- fragments: the gold reveal -------------------------------------- */
+.reveal .fragment.gold-reveal { transition: all 0.4s ease; }
+
+/* ---- title slide ------------------------------------------------------ */
+.reveal .title-block { margin-top: 1.4em; }
+.reveal .title-block h1 { margin-bottom: 0.15em; }
+.reveal .title-block .subtitle {
+  color: var(--muted); font-size: 0.8em; margin: 0.2em 0 1.6em 0;
+}
+.reveal .title-block .subtitle .gold { font-weight: 600; }
+.reveal .title-block .who { font-size: 0.62em; color: var(--ink); line-height: 1.5; }
+.reveal .title-block .who .aff { color: var(--muted); }
+
+/* ---- reveal chrome ---------------------------------------------------- */
+.reveal .progress { color: var(--gold); }
+.reveal .controls { color: var(--muted); }
+.reveal .slide-number { background: transparent; color: var(--muted); font-size: 14px; }
+
+/* ---- touch ink bar (iPad: pen / board / clear) ------------------------ */
+.inkbar {
+  position: fixed; left: 9px; bottom: 76px; z-index: 30;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.inkbar button {
+  width: 38px; height: 38px; border: 0; border-radius: 7px;
+  background: transparent; color: #888;
+  font-size: 17px; line-height: 1; cursor: pointer; opacity: 0.35;
+  -webkit-tap-highlight-color: transparent;
+}
+.inkbar button:hover, .inkbar button:active {
+  opacity: 1; color: var(--gold); background: rgba(255,255,255,0.08);
+}
+@media print { .inkbar { display: none; } }
+
+/* ---- print / PDF export ----------------------------------------------- */
+/* Keyword size only: a fixed-px @page collapses reveal's pagination. */
+@media print {
+  @page { size: landscape; margin: 0; }
+  .reveal-viewport { background: var(--bg); }
+}
+
+/* ---- §1 additions ------------------------------------------------------ */
+.reveal .ask {
+  font-size: 1.5em; line-height: 1.5;
+  margin-top: 2.1em; max-width: 17em;
+}
+
+/* ---- §5 additions ------------------------------------------------------ */
+.reveal .app-row {
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: 60px; margin-top: 0.45em;
+}
+.reveal .app-row figure { margin: 0; text-align: center; }
+.reveal .app-row img {
+  height: 64px; width: 64px; margin: 0;
+  background: none; border: none; box-shadow: none;
+}
+.reveal .app-row figcaption {
+  font-family: 'Plex Mono', monospace; font-size: 0.42em;
+  color: var(--muted, #9aa1ad); margin-top: 9px; letter-spacing: 0.05em;
+}
+
+/* ---- guideposts: outline slide + section tracking bar ------------------ */
+/* The outline slide's five-row map (numbers echo the gold kicker numbers). */
+.reveal ol.outline { list-style: none; margin: 0.55em 0 0 0; padding: 0; }
+.reveal ol.outline li {
+  display: flex; align-items: baseline; gap: 0.6em;
+  margin: 0.62em 0; font-size: 0.95em; line-height: 1.3;
+}
+.reveal ol.outline .n { color: var(--gold); font-weight: 650; min-width: 1em; text-align: right; }
+.reveal ol.outline .name { color: #ffffff; font-weight: 650; white-space: nowrap; }
+.reveal ol.outline .gloss { color: var(--muted); font-size: 0.62em; }
+
+/* The bar: fixed chrome living in the letterbox under the canvas (reveal's
+   default margin leaves ~2% of the screen height free there), so it never
+   sits on slide content that stays inside the 700-unit canvas. */
+.guidebar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; gap: 10px; align-items: flex-end;
+  padding: 0 12px 3px 12px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.guidebar.gp-hidden { opacity: 0; }
+.gp-seg { flex: 1 1 0; min-width: 0; }
+.gp-label {
+  display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: 'Open Sans Var', system-ui, sans-serif;
+  font-size: clamp(9px, 1.3vh, 13px); line-height: 1.45;
+  color: var(--muted); opacity: 0.45; letter-spacing: 0.02em;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+.gp-n { font-weight: 650; }
+.gp-track {
+  height: 3px; border-radius: 2px; overflow: hidden;
+  background: rgba(255, 255, 255, 0.10);
+}
+.gp-fill {
+  height: 100%; width: 0;
+  background: var(--muted); opacity: 0.55;
+  transition: width 0.35s ease;
+}
+.gp-seg.is-done .gp-label { opacity: 0.62; }
+.gp-seg.is-current .gp-label { opacity: 1; color: #ffffff; }
+.gp-seg.is-current .gp-n { color: var(--gold); }
+.gp-seg.is-current .gp-fill { background: var(--gold); opacity: 1; }
+
+/* Reveal's corner chrome sits above the bar now. */
+.reveal .controls { bottom: 24px; }
+.reveal .slide-number { bottom: 22px; }
+
+/* Print: the fixed bar dies with the viewport; each .pdf-page gets a static
+   copy injected at its foot instead (see the guidepost script). */
+@media print { .guidebar { display: none; } }
+.pdf-page { position: relative; }
+.pdf-page .guidebar-print {
+  position: absolute; left: 0; right: 0; bottom: 5px;
+  display: flex; gap: 10px; align-items: flex-end; padding: 0 12px;
+}
+
+/* ---- §3 additions ------------------------------------------------------ */
+/* Skill chip: tags a workflow stage with the Skill that automates it.
+   Soft blue, never gold: the chip is machinery, not the reveal. */
+.reveal .skillchip {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  margin: 0;
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.4em;
+  color: var(--blue-soft);
+  border: 1px solid rgba(143, 176, 220, 0.4);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  letter-spacing: 0.04em;
+}

@@ -1,0 +1,127 @@
+<svg viewBox="0 0 1280 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Same token ID, different meaning: the token 'lead' enters a lead-shield sentence and a lead-nurse sentence and leaves the transformer layers with two different contextual representations; the token 'dose' flips between radiation and medication">
+  <defs>
+    <marker id="arrowBlue" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#8fb0dc"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#FABD0F"/>
+    </marker>
+  </defs>
+
+  <!-- ================= TOP TRACK (shielding sentence) ================= -->
+  <!-- chips: y=90, height 52 -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+
+    <!-- top sentence chips -->
+    <rect x="60"  y="90" width="86"  height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="103" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
+
+    <rect x="162" y="90" width="104" height="52" rx="9" fill="#002452" stroke="#FABD0F" stroke-width="2"/>
+    <text x="214" y="124" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="600">lead</text>
+
+    <rect x="282" y="90" width="128" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="346" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">shield</text>
+
+    <rect x="426" y="90" width="120" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="486" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">stops</text>
+
+    <rect x="562" y="90" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="605" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
+
+    <rect x="664" y="90" width="108" height="52" rx="9" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+    <text x="718" y="124" font-size="28" fill="#e8eaee" text-anchor="middle">dose</text>
+
+    <!-- token ID caption under top "lead"; meaning caption under top "dose" -->
+    <text x="214" y="174" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">token ID 15224</text>
+    <text x="718" y="174" font-size="22" fill="#8fb0dc" text-anchor="middle">radiation</text>
+
+    <!-- ================= BOTTOM TRACK (nurse sentence) ================= -->
+    <!-- chips: y=420, height 52 -->
+    <rect x="60"  y="420" width="86"  height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="103" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
+
+    <rect x="162" y="420" width="104" height="52" rx="9" fill="#002452" stroke="#FABD0F" stroke-width="2"/>
+    <text x="214" y="454" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="600">lead</text>
+
+    <rect x="282" y="420" width="120" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="342" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">nurse</text>
+
+    <rect x="418" y="420" width="132" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="484" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">checks</text>
+
+    <rect x="566" y="420" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="609" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">the</text>
+
+    <rect x="668" y="420" width="108" height="52" rx="9" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+    <text x="722" y="454" font-size="28" fill="#e8eaee" text-anchor="middle">dose</text>
+
+    <!-- token ID caption under bottom "lead"; meaning caption under bottom "dose" -->
+    <text x="214" y="504" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">token ID 15224</text>
+    <text x="722" y="504" font-size="22" fill="#8fb0dc" text-anchor="middle">medication</text>
+
+    <!-- ================= TRANSFORMER LAYER STACK (shared, centre-right) ================= -->
+    <!-- stack spans both tracks vertically: x 850-960, four thin bars -->
+    <rect x="832" y="88" width="146" height="400" rx="12" fill="#2a2c31" opacity="0.45" stroke="#3a3d44" stroke-width="2"/>
+    <g>
+      <rect x="850" y="140" width="110" height="14" rx="7" fill="#8fb0dc" opacity="0.55"/>
+      <rect x="850" y="210" width="110" height="14" rx="7" fill="#8fb0dc" opacity="0.7"/>
+      <rect x="850" y="352" width="110" height="14" rx="7" fill="#8fb0dc" opacity="0.85"/>
+      <rect x="850" y="422" width="110" height="14" rx="7" fill="#8fb0dc"/>
+    </g>
+    <text x="905" y="278" font-size="24" fill="#9aa1ad" text-anchor="middle">transformer</text>
+    <text x="905" y="306" font-size="24" fill="#9aa1ad" text-anchor="middle">layers</text>
+
+    <!-- ================= TOP TRACK: lead path + context mixing ================= -->
+    <!-- gold lead path: leaves the "lead" chip, rides a rail above the sentence,
+         then drops through the layer stack to the output vector -->
+    <path d="M 266 116 C 310 116, 300 50, 360 50 H 775 C 845 50, 855 115, 905 115 H 1008"
+          fill="none" stroke="#FABD0F" stroke-width="2.5" marker-end="url(#arrowGold)"/>
+
+    <!-- neighbour context lines rising from the chips onto the rail -->
+    <path d="M 103 90 C 120 60, 200 48, 330 50" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 346 90 C 360 62, 400 52, 450 50" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 486 90 C 500 64, 530 54, 570 50" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 605 90 C 620 66, 650 56, 680 50" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 718 90 C 735 68, 755 58, 775 52" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- ================= BOTTOM TRACK: lead path + context mixing ================= -->
+    <path d="M 266 446 C 310 446, 300 380, 360 380 H 775 C 845 380, 855 445, 905 445 H 1008"
+          fill="none" stroke="#FABD0F" stroke-width="2.5" marker-end="url(#arrowGold)"/>
+
+    <path d="M 103 420 C 120 392, 200 378, 330 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 342 420 C 356 392, 395 382, 445 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 484 420 C 498 394, 528 384, 568 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 609 420 C 624 396, 654 386, 684 380" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+    <path d="M 722 420 C 738 398, 760 388, 780 382" fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- ================= OUTPUT VECTORS ================= -->
+    <!-- top vector: 6 squares, gold at positions 2 and 5 -->
+    <g>
+      <rect x="1030" y="100" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1066" y="100" width="30" height="30" rx="5" fill="#FABD0F"/>
+      <rect x="1102" y="100" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1138" y="100" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1174" y="100" width="30" height="30" rx="5" fill="#FABD0F"/>
+      <rect x="1210" y="100" width="30" height="30" rx="5" fill="#8fb0dc"/>
+    </g>
+    <text x="1135" y="166" font-size="22" fill="#9aa1ad" text-anchor="middle">contextual representation</text>
+    <text x="1135" y="194" font-size="22" fill="#9aa1ad" text-anchor="middle">· lead, the metal</text>
+
+    <!-- bottom vector: 6 squares, gold at positions 1 and 4 -->
+    <g>
+      <rect x="1030" y="430" width="30" height="30" rx="5" fill="#FABD0F"/>
+      <rect x="1066" y="430" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1102" y="430" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1138" y="430" width="30" height="30" rx="5" fill="#FABD0F"/>
+      <rect x="1174" y="430" width="30" height="30" rx="5" fill="#8fb0dc"/>
+      <rect x="1210" y="430" width="30" height="30" rx="5" fill="#8fb0dc"/>
+    </g>
+    <text x="1135" y="496" font-size="22" fill="#9aa1ad" text-anchor="middle">contextual representation</text>
+    <text x="1135" y="524" font-size="22" fill="#9aa1ad" text-anchor="middle">· lead, the role</text>
+
+    <!-- ================= BOTTOM CAPTION ================= -->
+    <text x="640" y="588" font-size="26" text-anchor="middle">
+      <tspan fill="#e8eaee">Same ID in. </tspan><tspan fill="#FABD0F">Different working meaning</tspan><tspan fill="#e8eaee"> out.</tspan>
+    </text>
+  </g>
+</svg>

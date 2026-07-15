@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1280 556" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FCC(100) coordination ladder: bulk 12, surface 8, beside a vacancy 7">
+  <!-- top line: the threshold -->
+  <text x="640" y="52" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" fill="#e8eaee" letter-spacing="2.5">coordination_threshold = <tspan fill="#ffffff" font-weight="700" font-size="30">8</tspan></text>
+
+  <!-- ================= panel 1: FCC bulk ================= -->
+  <rect x="36" y="84" width="384" height="452" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="228" y="126" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#ffffff">FCC bulk</text>
+
+  <!-- second-layer atoms (four-fold hollow sites), faint -->
+  <g fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.4">
+    <circle cx="156" cy="203" r="7"/><circle cx="204" cy="203" r="7"/><circle cx="252" cy="203" r="7"/><circle cx="300" cy="203" r="7"/>
+    <circle cx="156" cy="251" r="7"/><circle cx="204" cy="251" r="7"/><circle cx="252" cy="251" r="7"/><circle cx="300" cy="251" r="7"/>
+    <circle cx="156" cy="299" r="7"/><circle cx="204" cy="299" r="7"/><circle cx="252" cy="299" r="7"/><circle cx="300" cy="299" r="7"/>
+    <circle cx="156" cy="347" r="7"/><circle cx="204" cy="347" r="7"/><circle cx="252" cy="347" r="7"/><circle cx="300" cy="347" r="7"/>
+  </g>
+
+  <!-- top-layer atoms, 5 x 5 -->
+  <g fill="#2a2c31" stroke="#8fb0dc" stroke-width="2">
+    <circle cx="132" cy="179" r="16"/><circle cx="180" cy="179" r="16"/><circle cx="228" cy="179" r="16"/><circle cx="276" cy="179" r="16"/><circle cx="324" cy="179" r="16"/>
+    <circle cx="132" cy="227" r="16"/><circle cx="180" cy="227" r="16"/><circle cx="228" cy="227" r="16"/><circle cx="276" cy="227" r="16"/><circle cx="324" cy="227" r="16"/>
+    <circle cx="132" cy="275" r="16"/><circle cx="180" cy="275" r="16"/><circle cx="276" cy="275" r="16"/><circle cx="324" cy="275" r="16"/>
+    <circle cx="132" cy="323" r="16"/><circle cx="180" cy="323" r="16"/><circle cx="228" cy="323" r="16"/><circle cx="276" cy="323" r="16"/><circle cx="324" cy="323" r="16"/>
+    <circle cx="132" cy="371" r="16"/><circle cx="180" cy="371" r="16"/><circle cx="228" cy="371" r="16"/><circle cx="276" cy="371" r="16"/><circle cx="324" cy="371" r="16"/>
+  </g>
+  <!-- central bulk atom -->
+  <circle cx="228" cy="275" r="16" fill="#ffffff" stroke="#8fb0dc" stroke-width="2"/>
+
+  <text x="228" y="446" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#ffffff">12</text>
+  <text x="228" y="486" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">nearest neighbours</text>
+
+  <!-- ============ panel 2: ordinary FCC(100) surface ============ -->
+  <rect x="448" y="84" width="384" height="452" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="640" y="126" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#ffffff">ordinary FCC(100) surface</text>
+
+  <text x="480" y="172" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" fill="#9aa1ad">vacuum</text>
+  <line x1="476" y1="202" x2="804" y2="202" stroke="#8fb0dc" stroke-width="2" opacity="0.8"/>
+
+  <!-- second layer (hollow sites) below the surface -->
+  <g fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.4">
+    <circle cx="568" cy="251" r="7"/><circle cx="616" cy="251" r="7"/><circle cx="664" cy="251" r="7"/><circle cx="712" cy="251" r="7"/>
+    <circle cx="568" cy="299" r="7"/><circle cx="616" cy="299" r="7"/><circle cx="664" cy="299" r="7"/><circle cx="712" cy="299" r="7"/>
+    <circle cx="568" cy="347" r="7"/><circle cx="616" cy="347" r="7"/><circle cx="664" cy="347" r="7"/><circle cx="712" cy="347" r="7"/>
+  </g>
+
+  <!-- crystal: 4 rows, top rows removed (vacuum above) -->
+  <g fill="#2a2c31" stroke="#8fb0dc" stroke-width="2">
+    <circle cx="544" cy="227" r="16"/><circle cx="592" cy="227" r="16"/><circle cx="688" cy="227" r="16"/><circle cx="736" cy="227" r="16"/>
+    <circle cx="544" cy="275" r="16"/><circle cx="592" cy="275" r="16"/><circle cx="640" cy="275" r="16"/><circle cx="688" cy="275" r="16"/><circle cx="736" cy="275" r="16"/>
+    <circle cx="544" cy="323" r="16"/><circle cx="592" cy="323" r="16"/><circle cx="640" cy="323" r="16"/><circle cx="688" cy="323" r="16"/><circle cx="736" cy="323" r="16"/>
+    <circle cx="544" cy="371" r="16"/><circle cx="592" cy="371" r="16"/><circle cx="640" cy="371" r="16"/><circle cx="688" cy="371" r="16"/><circle cx="736" cy="371" r="16"/>
+  </g>
+  <!-- central atom in the surface layer -->
+  <circle cx="640" cy="227" r="16" fill="#ffffff" stroke="#8fb0dc" stroke-width="2"/>
+
+  <text x="640" y="446" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#ffffff">8</text>
+  <text x="640" y="486" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#9aa1ad">still crystal at threshold 8</text>
+
+  <!-- ============ panel 3: beside a surface vacancy ============ -->
+  <rect x="860" y="84" width="384" height="452" rx="10" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+  <text x="1052" y="126" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#ffffff">beside a surface vacancy</text>
+
+  <text x="892" y="172" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" fill="#9aa1ad">vacuum</text>
+  <line x1="888" y1="202" x2="1216" y2="202" stroke="#8fb0dc" stroke-width="2" opacity="0.8"/>
+
+  <!-- second layer (hollow sites) below the surface -->
+  <g fill="none" stroke="#8fb0dc" stroke-width="1.5" opacity="0.4">
+    <circle cx="980" cy="251" r="7"/><circle cx="1028" cy="251" r="7"/><circle cx="1076" cy="251" r="7"/><circle cx="1124" cy="251" r="7"/>
+    <circle cx="980" cy="299" r="7"/><circle cx="1028" cy="299" r="7"/><circle cx="1076" cy="299" r="7"/><circle cx="1124" cy="299" r="7"/>
+    <circle cx="980" cy="347" r="7"/><circle cx="1028" cy="347" r="7"/><circle cx="1076" cy="347" r="7"/><circle cx="1124" cy="347" r="7"/>
+  </g>
+
+  <!-- crystal: same surface, one surface atom missing -->
+  <g fill="#2a2c31" stroke="#8fb0dc" stroke-width="2">
+    <circle cx="956" cy="227" r="16"/><circle cx="1004" cy="227" r="16"/><circle cx="1148" cy="227" r="16"/>
+    <circle cx="956" cy="275" r="16"/><circle cx="1004" cy="275" r="16"/><circle cx="1052" cy="275" r="16"/><circle cx="1100" cy="275" r="16"/><circle cx="1148" cy="275" r="16"/>
+    <circle cx="956" cy="323" r="16"/><circle cx="1004" cy="323" r="16"/><circle cx="1052" cy="323" r="16"/><circle cx="1100" cy="323" r="16"/><circle cx="1148" cy="323" r="16"/>
+    <circle cx="956" cy="371" r="16"/><circle cx="1004" cy="371" r="16"/><circle cx="1052" cy="371" r="16"/><circle cx="1100" cy="371" r="16"/><circle cx="1148" cy="371" r="16"/>
+  </g>
+  <!-- the vacancy: dashed empty site -->
+  <circle cx="1100" cy="227" r="16" fill="none" stroke="#3a3d44" stroke-width="2" stroke-dasharray="5 5"/>
+  <!-- the decisive atom: gold -->
+  <circle cx="1052" cy="227" r="16" fill="#FABD0F"/>
+
+  <text x="1052" y="446" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#FABD0F">7</text>
+  <text x="1052" y="484" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#FABD0F">below threshold &#8594;</text>
+  <text x="1052" y="512" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#FABD0F">search events here</text>
+
+</svg>
