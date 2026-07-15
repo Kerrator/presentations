@@ -1667,3 +1667,18 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     PDF/PPTX, but a near-4:3 fullscreen viewport (an iPad, some projectors) could clip those
     glyph tails. Changing the box model would re-wrap locked slides, so it needs Stephen's
     explicit decision; parked as a follow-up.
+111. **Guideposts: an outline slide plus a section tracking bar.** (2026-07-15, Stephen's request;
+    style locked by interview: labeled segments, outline directly after the title.) A new "The
+    plan" slide (h = 1) maps the five sections, gold numbers echoing the kickers, one muted gloss
+    phrase each. A fixed **guidepost bar** lives in the letterbox below the canvas on every slide
+    except the title: five equal segments labeled "N · section name", the current section's label
+    lit (gold number, white text) with a gold fill showing progress through that section's
+    horizontal stacks; finished sections keep a dim filled track. Implementation derives the
+    section map from the kickers already on each stack (no duplicate bookkeeping), replaces
+    reveal's plain progress strip, and nudges the corner chrome up clear of the bar. The PDF
+    export gets a static copy of the bar injected at the foot of every printed page, so the
+    backup keeps the guideposts. Export note recorded with the decision: reveal 6's true print
+    view emits exactly one page per leaf at the deck's own aspect (749 × 546 pt landscape); the
+    earlier 792 × 612 letter export turned out to be the scroll-view fallback winning a race,
+    which is also why per-page chrome could never appear in it. The PDF is now 49 pages, one per
+    leaf, bars included; the PPTX captures include the bar pinned to the crop region.

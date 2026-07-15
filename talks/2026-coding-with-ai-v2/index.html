@@ -46,6 +46,30 @@
           </aside>
         </section>
 
+        <!-- OUTLINE · the five guideposts (data-gp="0": bar visible, nothing lit) -->
+        <section data-gp="0">
+          <h2>The plan</h2>
+          <ol class="outline">
+            <li><span class="n">1</span><span class="name">From chat to agentic coding</span><span class="gloss">the agent finds its own context</span></li>
+            <li><span class="n">2</span><span class="name">Tokens and context</span><span class="gloss">why the window shapes the answer</span></li>
+            <li><span class="n">3</span><span class="name">How I code with an agent</span><span class="gloss">interview · foundation · slices · evidence</span></li>
+            <li><span class="n">4</span><span class="name">Skills as maintained assets</span><span class="gloss">package the disciplines you repeat</span></li>
+            <li><span class="n">5</span><span class="name">Ownership and validation</span><span class="gloss">the judgement that stays human</span></li>
+          </ol>
+          <aside class="notes">
+            The route, five sections. First, what agentic coding even is: an LLM working inside
+            the codebase rather than behind a paste box. Second, the machinery that makes context
+            management matter: tokens, contextual representations, and the finite window. Third,
+            the heart of the talk: how I actually run a coding session, from design interview to
+            durable foundation to bounded, verifiable slices. Fourth, packaging the disciplines
+            that repeat into maintained Skills. Fifth, the part that must not change hands:
+            ownership and validation.
+            Point at the bar along the bottom of the screen: it tracks these five sections for
+            the rest of the talk. The lit segment is where we are, and its gold fill shows how
+            much of the section remains, so nobody has to wonder how deep the rabbit hole goes.
+          </aside>
+        </section>
+
         <!-- ============ 1 · FROM CHAT TO AGENTIC CODING ============ -->
 
         <section>
@@ -1211,10 +1235,46 @@ then record it. Stop when I can defend every choice.
     <script src="lib/plugins/menu/menu.js"></script>
 
     <script>
+      // Guideposts, pass 1: derive each top-level stack's section number from
+      // the kicker it already carries, and stamp it (plus position-in-section)
+      // onto the stack and its vertical children. Must run BEFORE initialize:
+      // the ?print-pdf layout re-parents sections into .pdf-page wrappers.
+      (function () {
+        const tops = Array.from(document.querySelectorAll('.reveal .slides > section'));
+        const bySection = {};
+        tops.forEach((sec) => {
+          if (sec.dataset.gp !== undefined) return;          // outline: explicit "0"
+          const n = sec.querySelector('.kicker .n');
+          if (!n) return;                                    // title: no bar
+          sec.dataset.gp = n.textContent.trim();
+        });
+        tops.forEach((sec) => {
+          const gp = sec.dataset.gp;
+          if (gp === undefined || gp === '0') return;
+          (bySection[gp] = bySection[gp] || []).push(sec);
+        });
+        Object.values(bySection).forEach((list) => {
+          list.forEach((sec, i) => {
+            sec.dataset.gpIdx = i;
+            sec.dataset.gpCount = list.length;
+            sec.querySelectorAll('section').forEach((child) => {
+              child.dataset.gp = sec.dataset.gp;
+              child.dataset.gpIdx = i;
+              child.dataset.gpCount = list.length;
+            });
+          });
+        });
+        // Section names for the bar, from each section's first kicker.
+        window.GP_NAMES = Object.keys(bySection).sort().map((k) => {
+          const kick = bySection[k][0].querySelector('.kicker');
+          return kick.textContent.replace(/^\s*\d+\s*·\s*/, '').trim();
+        });
+      })();
+
       Reveal.initialize({
         hash: true,
         controls: true,
-        progress: true,
+        progress: false,        // replaced by the section guidepost bar below
         center: false,          // top-aligned reads better for dense technical slides
         slideNumber: 'c/t',
         transition: 'slide',
@@ -1244,6 +1304,68 @@ then record it. Stop when I can defend every choice.
           RevealChalkboard, RevealMenu
         ]
       });
+
+      // Guideposts, pass 2: the tracking bar. Five labeled segments along the
+      // bottom letterbox; the current section's segment lights up and fills in
+      // gold as its slides advance. Live mode gets one fixed bar; ?print-pdf
+      // gets a static copy injected at the foot of every printed page.
+      (function () {
+        function buildBar(root) {
+          const segs = [];
+          window.GP_NAMES.forEach((name, i) => {
+            const seg = document.createElement('div');
+            seg.className = 'gp-seg';
+            seg.innerHTML = '<span class="gp-label"><span class="gp-n">' + (i + 1) +
+              '</span> · <span class="gp-name"></span></span>' +
+              '<div class="gp-track"><div class="gp-fill"></div></div>';
+            seg.querySelector('.gp-name').textContent = name;
+            root.appendChild(seg);
+            segs.push(seg);
+          });
+          return segs;
+        }
+        function renderBar(segs, gp, idx, count) {
+          segs.forEach((seg, i) => {
+            const s = i + 1;
+            let frac = 0;
+            if (s < gp) frac = 1;
+            else if (s === gp) frac = (idx + 1) / count;
+            seg.classList.toggle('is-current', s === gp);
+            seg.classList.toggle('is-done', s < gp);
+            seg.querySelector('.gp-fill').style.width = (frac * 100) + '%';
+          });
+        }
+        if (/print-pdf/gi.test(window.location.search)) {
+          const inject = function () {
+            document.querySelectorAll('.reveal .slides .pdf-page').forEach(function (page) {
+              if (page.querySelector('.guidebar-print')) return;
+              const sec = page.querySelector('section');
+              if (!sec || sec.dataset.gp === undefined) return;   // title page: none
+              const bar = document.createElement('div');
+              bar.className = 'guidebar-print';
+              renderBar(buildBar(bar), +sec.dataset.gp,
+                        +(sec.dataset.gpIdx || 0), +(sec.dataset.gpCount || 1));
+              page.appendChild(bar);
+            });
+          };
+          Reveal.on('pdf-ready', inject);
+          Reveal.on('ready', function () { setTimeout(inject, 1500); });  // fallback; idempotent
+        } else {
+          const bar = document.createElement('div');
+          bar.className = 'guidebar gp-hidden';
+          bar.setAttribute('aria-hidden', 'true');
+          document.body.appendChild(bar);
+          const segs = buildBar(bar);
+          const update = function () {
+            const sec = Reveal.getHorizontalSlides()[Reveal.getIndices().h];
+            bar.classList.toggle('gp-hidden', sec.dataset.gp === undefined);
+            renderBar(segs, +(sec.dataset.gp || 0),
+                      +(sec.dataset.gpIdx || 0), +(sec.dataset.gpCount || 1));
+          };
+          Reveal.on('ready', update);
+          Reveal.on('slidechanged', update);
+        }
+      })();
     </script>
   </body>
 </html>
