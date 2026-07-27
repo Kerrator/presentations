@@ -1682,3 +1682,111 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     earlier 792 × 612 letter export turned out to be the scroll-view fallback winning a race,
     which is also why per-page chrome could never appear in it. The PDF is now 49 pages, one per
     leaf, bars included; the PPTX captures include the bar pinned to the crop region.
+112. **Reorder the spine: tokens and context becomes section 1; from chat to agentic coding becomes
+    section 2.** (2026-07-27, after Stephen rehearsed the talk aloud several times.) This amends the
+    "Locked live spine" block, the authoritative deck-drafting brief, and decisions 72, 73 and 85,
+    all of which fixed agentic coding as the opener and the car-wash prompt as the cold open. His
+    reason is delivery, not content: rehearsing it, the machinery has to be in the room before the
+    agentic-coding definition means anything. Consequences carried out: the outline slide's rows and
+    its spoken roadmap swap; eight kickers renumber in one pass; the title-slide notes now read the
+    three takeaways "in the order we walk them" rather than in priority order, since the priority
+    order (workflow first) no longer matches the running order recorded at "Priority of ideas".
+    Decision 72's prohibition ("strawberry belongs later in the token/context section, not in the
+    cold open") is knowingly overridden by this decision together with decision 113: strawberry now
+    lands in the talk's first three minutes. Stephen accepted that in rehearsal; the hook is now the
+    tokenization surprise rather than the car wash.
+113. **Strawberry precedes the lead figure inside the token section.** (2026-07-27, rehearsal.) Pure
+    position swap; the primary token takeaway (contextual representation, decisions 7 and 8) stays
+    on the lead figure, which keeps its `take` line. Because "change the representation" is now
+    spoken before "contextual representation" is defined, the strawberry notes gained an explicit
+    gloss separating the two senses of the word, and the lead-figure notes gained a one-clause
+    re-entry into the node picture.
+114. **Handoff closes section 1 and is the first Skill named in the talk.** (2026-07-27, rehearsal;
+    Stephen chose this placement over opening section 3 with it.) The whole handoff run (parent plus
+    four drill-downs) moves out of section 3 to sit after "Do not be afraid to start a new chat",
+    which already bridged into it in gold. That on-slide bridge loses its "Section 3." pointer and
+    becomes an immediate lead-in. This amends decisions 105, 107 and the "Context narrowing" chain
+    (FOUNDATION 612-621), where handoff was the LAST narrowing step, defined by contrast with
+    FOUNDATION.md and to-spec. Since handoff now precedes both, its slides were rewritten to stand
+    on their own: the FOUNDATION.md contrast became a forward pointer, the "same rule as the
+    foundation file" echo became the first statement of the rule, and two on-screen forward
+    references to artifacts not yet introduced were reworded ("Execute one spec slice" → "Execute
+    one piece of a larger plan"; the mono line `one spec slice: to-spec → …` → `one planned piece:
+    written plan → …`). Section 3's "Scale the process" notes now refer back to handoff instead of
+    introducing it.
+    **A `Skill: handoff` chip was added and then removed the same day; see decision 120.**
+115. **Vocabulary tables follow the material.** (2026-07-27.) Section 1's table was promoted from a
+    drill-down under "Keep context small" to its own closing horizontal stack, so the section still
+    ends on its vocabulary, and gained **handoff**, **automatic compaction** and **worktree** from
+    section 3's table. It runs at 0.45 em with three glosses shortened; the audit re-passed. Section
+    3's table drops to four terms, all of them artifacts, and returns to the default size; its
+    closing note no longer says "keep handoff" (which presumed handoff closed that section) and now
+    points at vertical slice, with a pointer back to section 1 for the three moved rows. This amends
+    decisions 79 and 107 on table membership, not the one-table-per-section rule.
+116. **The two "I was the agent" tellings merge into one slide on section 2's spine.** (2026-07-27,
+    rehearsal; Stephen chose "both, merged".) This resolves a real conflict in the record: decision
+    101 filed the Quantum ESPRESSO story in section 4's opener notes and forbade section 3 from
+    duplicating it, but decision 108 later created "I was the context manager" as section 3's opener
+    telling the same grep-the-output-file episode. The story now appears **exactly once**, as
+    required at FOUNDATION 1396: retitled "I was the agent", it is the last spine stack of section
+    2, with both courses on the slide (the QE total energy and the grad-course analysis) and the
+    shared procedure line beneath. The agentic-coding vocabulary moved to be its drill-down, so the
+    section still closes on vocabulary. Section 4's opener notes keep only a one-line callback plus
+    the life-cycle sentence, so nothing is told twice. The gold payoff, "I was doing a subagent's job
+    by hand", now lands one slide after the sub-worker clause in decision 117 instead of 25 slides
+    later, which also mitigates decision 53 (no Skill-versus-subagent distinction on the core spine):
+    the word arrives with its story attached.
+117. **Reword the agentic-coding gloss and the title subtitle.** (2026-07-27, rehearsal, Stephen's
+    exact wording.) The vocabulary row becomes "An LLM working inside the codebase, having
+    sub-workers find relevant context for itself." The co-located pair panel and `take` line on
+    "Inside the codebase" were deliberately left alone: the definition gains its sub-worker clause in
+    one authoritative place, and the story slide immediately after supplies the payoff. The title
+    subtitle's gold span changes from "scientific ownership" to **"using AI in science"**, settling
+    the wording FOUNDATION 1452 left open until after a rendered draft existed; the stale
+    "(Subtitle is provisional…)" marker was deleted from the title notes. Section 5 keeps its name,
+    "Ownership and validation".
+118. **The design interview moves into section 4 as the flagship Skill.** (2026-07-27, rehearsal.)
+    "Expose the decisions" leaves section 3 and becomes the first drill-down under "A prompt earns
+    its packaging", ahead of the HTST payoff slide and "The Skill, as written" (which were already
+    entirely about this Skill and previously had no antecedent). It is demoted to `h3`, its kicker
+    stripped so it cannot hijack the parent stack's section number, and it keeps its
+    `interview-design-decisions` chip. Its first bullet, an ordinal claim ("The first job is not to
+    generate code"), became "The discipline: no code until the decisions are on the record", since
+    the deck has by then already walked handoff, foundation and slices. This amends the locked
+    section-3 takeaways (FOUNDATION 581-597), which filed the interview takeaway and stop condition
+    under section 3; it is supported by decisions 90 and 92, which already named the interview
+    section 4's flagship example. Section 3 now opens on FOUNDATION.md, whose notes previously began
+    "We have just done valuable work scoping the problem" with no antecedent; they now introduce the
+    interview in two spoken sentences and point forward to section 4. Section 3 retains five stacks
+    (foundation, spec + Ralph, slices, reproducer, vocabulary); the outline gloss changed from
+    "interview · foundation · slices · evidence" to "foundation · spec · slices · evidence".
+119. **Deck geometry after the restructure.** (2026-07-27.) 28 horizontal stacks and 49 leaves, both
+    unchanged; section stack counts are 7 / 4 / 5 / 4 / 6. Verified in the browser: zero leaves
+    overflow the 960 × 700 canvas (worst 704, within the audit's tolerance and unchanged from the
+    pre-edit deck), all 49 leaves carry speaker notes, all figures load, KaTeX renders, and the
+    guidepost bar reports the five sections in the new order with correct fills. The content-box
+    padding caveat in decision 110 is untouched and still parked. Two delivery notes: the persisted
+    chalkboard key `2026-coding-with-ai-v2-chalkboard` must be cleared, because rehearsal ink is
+    keyed to slide indices that have all moved, and every `#/h/v` deep link into this deck is now
+    stale.
+120. **No chip on handoff: it stays a discipline, and the private Skill's stance is rejected.**
+    (2026-07-27, Stephen, same session as decision 114.) The `Skill: handoff` chip added earlier that
+    day is removed, restoring decision 108's rule that chips mark named Skills only and returning the
+    roster to three (`interview-design-decisions`, `build-design-foundation`, `to-spec`). His stated
+    reason is substantive, not cosmetic: **"I do not think you should hit compaction often if ever."**
+    The private `handoff` Skill file recorded at FOUNDATION 671 says the opposite, that continuous
+    work should let automatic compaction run instead of writing a handoff. Rather than put that
+    file's name on a public slide, the deck keeps the discipline unnamed and keeps its own line,
+    "do not depend on automatic compaction for anything durable" (section 1's handoff run and the
+    FOUNDATION.md take line in section 3), which matches what he actually practises. The caveat
+    raised under decision 114 is therefore closed by removing the claim, not by editing the Skill;
+    correcting the private `handoff` Skill remains open work outside this talk, and this decision
+    does not authorize it. Two spoken lines that framed handoff as a Skill were also reverted: the
+    new-chat bridge no longer promises "the first Skill I will show you", and the handoff notes now
+    say "the first discipline in the talk that I run often enough to have packaged".
+121. **Rotate the chalkboard storage key to orphan rehearsal ink.** (2026-07-27.) The persisted
+    chalkboard key becomes `2026-coding-with-ai-v2-chalkboard-r2`. Ink is keyed to slide h/v/f
+    indices, all of which moved in decisions 112-118, so the rehearsal drawings would have
+    reattached to the wrong slides. Rotating the key in `index.html` clears it on every device he
+    presents from, including the iPad, which no browser-side clearing from a desktop session could
+    reach. Rotate it again after any future reorder.
