@@ -32,17 +32,17 @@
         <section>
           <div class="title-block">
             <h1>Coding with AI</h1>
-            <p class="subtitle">Context, workflow, and <span class="gold">scientific ownership</span></p>
+            <p class="subtitle">Context, workflow, and <span class="gold">using AI in science</span></p>
             <p class="who">Stephen Kerr<br />
               <span class="aff">Computational Materials Science · Queen's University</span></p>
           </div>
           <aside class="notes">
             Claude has just been rolled out to the group, so this talk is Claude-centred, but the
             ideas are agentic-coding ideas: they should survive a change of tools. Three things I
-            want you to leave with, in priority order: how to manage an agentic coding workflow,
-            how to manage context inside that workflow, and why you, not the agent, must keep
-            ownership of the work and its scientific meaning.
-            (Subtitle is provisional; final wording after rehearsal, per FOUNDATION.md.)
+            want you to leave with, in the order we walk them: how to manage context, how to run an
+            agentic coding workflow around it, and why you, not the agent, must keep ownership of
+            the work and its scientific meaning. The workflow is the one I care most about; context
+            comes first because it is the machinery the workflow is built on.
           </aside>
         </section>
 
@@ -50,42 +50,389 @@
         <section data-gp="0">
           <h2>The plan</h2>
           <ol class="outline">
-            <li><span class="n">1</span><span class="name">From chat to agentic coding</span><span class="gloss">the agent finds its own context</span></li>
-            <li><span class="n">2</span><span class="name">Tokens and context</span><span class="gloss">why the window shapes the answer</span></li>
-            <li><span class="n">3</span><span class="name">How I code with an agent</span><span class="gloss">interview · foundation · slices · evidence</span></li>
+            <li><span class="n">1</span><span class="name">Tokens and context</span><span class="gloss">the window, and the handoff that curates it</span></li>
+            <li><span class="n">2</span><span class="name">From chat to agentic coding</span><span class="gloss">the agent finds its own context</span></li>
+            <li><span class="n">3</span><span class="name">How I code with an agent</span><span class="gloss">foundation · spec · slices · evidence</span></li>
             <li><span class="n">4</span><span class="name">Skills as maintained assets</span><span class="gloss">package the disciplines you repeat</span></li>
             <li><span class="n">5</span><span class="name">Ownership and validation</span><span class="gloss">the judgement that stays human</span></li>
           </ol>
           <aside class="notes">
-            The route, five sections. First, what agentic coding even is: an LLM working inside
-            the codebase rather than behind a paste box. Second, the machinery that makes context
-            management matter: tokens, contextual representations, and the finite window. Third,
-            the heart of the talk: how I actually run a coding session, from design interview to
-            durable foundation to bounded, verifiable slices. Fourth, packaging the disciplines
-            that repeat into maintained Skills. Fifth, the part that must not change hands:
-            ownership and validation.
+            The route, five sections. First, the machinery that makes context management matter:
+            tokens, contextual representations, the finite window, and the handoff that curates it.
+            Second, what agentic coding even is: an LLM working inside the codebase rather than
+            behind a paste box. Third, the heart of the talk: how I actually run a coding session,
+            from a durable foundation through a specification to bounded, verifiable slices.
+            Fourth, packaging the disciplines that repeat into maintained Skills. Fifth, the part
+            that must not change hands: ownership and validation.
             Point at the bar along the bottom of the screen: it tracks these five sections for
             the rest of the talk. The lit segment is where we are, and its gold fill shows how
             much of the section remains, so nobody has to wonder how deep the rabbit hole goes.
           </aside>
         </section>
 
-        <!-- ============ 1 · FROM CHAT TO AGENTIC CODING ============ -->
+        <!-- ============ 1 · TOKENS AND CONTEXT ============ -->
 
         <section>
-          <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
-          <p class="ask">“I need to wash my car, the carwash is 10&nbsp;m away should I walk or drive?”</p>
+          <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+          <h2>What is a token?</h2>
+          <p class="lead">The smallest bit of information the model works with.</p>
+          <p class="lead fragment">A node connected to the other tokens in the window.</p>
+          <p class="goldline fragment">Its working meaning comes from those connections.</p>
           <aside class="notes">
-            This is the exact prompt, unedited, punctuation and all. Read it to the room, then ask
-            for hands: who walks? Who drives? Let people commit before anything resolves. Most of a
-            room picks walk; ten metres is nothing. Do not hint at the trap. The next slide shows
-            what one model did with it.
+            A token is the smallest unit the model actually reads and writes. Not a character, not
+            reliably a whole word: a chunk. I picture each token as a node carrying a vector. It
+            starts from a general representation, and its working meaning comes from the other
+            tokens it can attend to in the window. When I want the chunks to feel concrete I call
+            tokens objects instead of nodes; both are teaching metaphors, not literal claims about
+            the architecture.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+          <h2>How many r's in strawberry?</h2>
+          <p class="big" style="font-family:'Plex Mono',monospace;">strawberry</p>
+          <p class="fragment">A direct count asks the model to work below its own units: it sees chunks, not letters.</p>
+          <p class="big fragment" style="font-family:'Plex Mono',monospace; letter-spacing:0.08em;">s t <span class="gold">r</span> a w b e <span class="gold">r</span> <span class="gold">r</span> y</p>
+          <p class="take fragment">When a model struggles: <span class="gold">change the representation</span>, expose intermediate steps, or give it a tool.</p>
+          <aside class="notes">
+            The point is not that the model cannot count letters. The direct question can ask it to
+            operate at an awkward representation level. If I first ask it to spell the word one
+            letter at a time, the characters become explicit intermediate state, and counting the
+            r's becomes easy to perform and easy to verify.
+            The general lesson: when a model struggles, do not just repeat the question louder.
+            Change the representation, expose the intermediate steps, or hand it a suitable tool.
+            Say "representation" carefully here: on this slide it means how I present the problem,
+            the level the model is asked to work at. The next slide gives the word its technical
+            sense, the state a token carries once context has been mixed in. Same word, two jobs.
+            Exact tokenization is tokenizer-dependent; I make no claim about how many tokens
+            "strawberry" is on any given model. Related aside if useful: a word and its plural
+            suffix can be separate objects, so "pencil" to "pencils" can be one object becoming
+            several. The split is not the lesson; the mismatch between model units and human units
+            is.
+          </aside>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+          <h2>Same token ID, different meaning</h2>
+          <img class="fig" src="assets/token-context.svg" alt="Two occurrences of the same token ID, in a lead-shield sentence and a lead-nurse sentence, develop different contextual representations as transformer layers mix in context; the token dose flips meaning too" style="max-height:430px;" />
+          <p class="take">The token ID is fixed. The representation carried at its position becomes <span class="gold">contextual</span>.</p>
+          <aside class="notes">
+            Back to the node picture from the opening slide, and to the technical sense of the word
+            I just flagged. Follow one word through the stack. The same integer ID enters both
+            sentences, and as it
+            passes through the transformer layers its representation is repeatedly reshaped by the
+            other positions it can attend to. By the output, lead means the metal in one sentence
+            and the senior role in the other. And notice the second flip: dose is a radiation dose
+            beside a shield and a medication dose beside a nurse. The neighbours decide.
+            Aside for this room: had I written Pb instead of lead, that is a different token ID
+            entirely, yet in this sentence it would converge to the same working meaning, the
+            metal. Same ID diverges; different IDs converge. The meaning lives in the contextual
+            representation, not in the integer.
+            The integer ID never changes; the state carried at that position does. So context is
+            not merely text sitting near a token: it helps give that particular occurrence its
+            working meaning. The context window, then, is not just storage. What is in it shapes
+            how every position is represented and how the next token is predicted. That is why the
+            rest of this talk cares so much about what we let into it.
           </aside>
         </section>
 
         <section>
           <section>
-            <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
+            <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+            <h2>Keep context small and relevant</h2>
+            <img class="fig" src="assets/context-zones.svg" alt="The context window as one region with two overlapping zones: a gold adaptable zone, focused and easy to steer, and a grey rigid zone, crowded and set in its ways, with an arrow showing the window filling toward capacity" style="max-height:430px;" />
+            <p class="goldline fragment">A million-token window is capacity, not a target.</p>
+            <aside class="notes">
+              A fresh, focused coding chat is easy to steer. As it fills with abandoned ideas,
+              stale assumptions, old tool output, and directions I no longer want, it starts to get
+              set in its ways. That is what I mean by rigid.
+              On the figure: the zones overlap because there is no sharp line. As the window fills,
+              attention has to spread across everything present, so each token's influence thins
+              and new tokens are steered by a lot of stale context. Informally: the left is the
+              smart zone, the right is the dumb zone; the honest labels are adaptable and rigid.
+              The spoken line: a million-token window is capacity, not a target. Just because
+              Claude can hold that much does not mean I want every abandoned idea and stale
+              decision following me through one coding chat.
+              Qualifications: the million tokens is model-dependent and will date; this is a
+              practical heuristic about session behaviour, not a claim that the weights change
+              mid-chat; the zones are a cartoon, with no fixed fill fraction where behaviour
+              flips; and large, deliberately assembled contexts are genuinely valuable for
+              reference and synthesis work. The advice is against accidental growth.
+              Bridge onward: if a crowded window is the problem, the response is practical. Start
+              new chats deliberately, and when the thread has to survive the move, carry it across
+              on purpose. That is the rest of this section.
+              (Down: watch the window fill, three stages.)
+            </aside>
+          </section>
+          <section>
+            <h3>A fresh chat: small and targeted</h3>
+            <img class="fig" src="assets/context-grow-1.svg" alt="A nearly empty context window: six tokens in the gold adaptable band, the newest position attending strongly to each with a few bold lines" style="max-height:430px;" />
+            <aside class="notes">
+              Read this as a fresh chat. A handful of tokens, and the position writing the next
+              token can attend firmly to every one of them. The connections are few and strong.
+              This is the adaptable end: small and targeted, easy to steer.
+            </aside>
+          </section>
+          <section>
+            <h3>The chat grows</h3>
+            <img class="fig" src="assets/context-grow-2.svg" alt="The window half full: tokens reach the overlap between bands and the newest position's attention fans out thinner over many more tokens" style="max-height:430px;" />
+            <aside class="notes">
+              Same window, more turns: side questions, old tool output, ideas we abandoned. Every
+              new token attends over everything already present, so the web of connections grows
+              and each line starts to thin. We are in the overlap now: still workable, but
+              steering takes more effort.
+            </aside>
+          </section>
+          <section>
+            <h3>Near capacity: attention spread thin</h3>
+            <img class="fig" src="assets/context-grow-3.svg" alt="The window near capacity: tokens crowd deep into the rigid band and the newest position's attention is a wide, faint fan spread thin across the whole crowd" style="max-height:430px;" />
+            <p class="take fragment">A model's best work happens when the context is <span class="gold">small and targeted</span>.</p>
+            <aside class="notes">
+              Near capacity. The newest position's attention is spread across everything:
+              abandoned ideas, stale assumptions, dead ends. Each connection carries less, and the
+              next token is steered by a lot of history I no longer want. That is rigid.
+              The lesson: a model's best work happens when the context is small and targeted. So I
+              start new chats deliberately instead of letting one grow.
+              Cartoon, not mechanism: same hedges as the parent slide; there is no fixed fill
+              fraction where behaviour flips.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+            <h2>Do not be afraid to start a new chat</h2>
+            <div class="pair">
+              <div class="hot">
+                <p class="label">New chat</p>
+                <p>A fresh, focused window. Steering is easiest before the crowd moves in.</p>
+              </div>
+              <div>
+                <p class="label">/btw side questions</p>
+                <p>Answered in an overlay: it sees the whole chat, but the answer never enters the window.</p>
+              </div>
+            </div>
+            <p class="goldline fragment">Carrying the thread into the new chat is a handoff.</p>
+            <aside class="notes">
+              When the window gets crowded, I do not push through; I start a new chat. That sounds
+              wasteful until you remember the pictures we just saw: the best work happens when the
+              context is small and targeted. New chats are cheap; a crowded window is not.
+              The second tool: side questions. In Claude Code I type /btw and ask. The answer comes
+              back in an overlay. It can see the whole conversation, so the answer is grounded, but
+              it has no tools and the exchange never enters the conversation history, so it costs
+              the window nothing. If a side question grows into real work, one key turns it into its
+              own session.
+              How I use it: clarifying something we already did; brainstorming whether a repeated
+              prompt deserves to become a Skill; asking about the page I am hosting locally while
+              the main turn keeps running; and in an interview session, clarifying a recommendation
+              before I lock a decision. When I am about to write a document that will steer a lot of
+              budget, I want wording help with follow-up turns, so that one I fork into a fresh
+              session instead.
+              Bridge: what the new chat needs from the old one is the thread, meaning what we
+              decided and why. Moving that across deliberately is a handoff, and that is the next
+              thing in this section.
+              (Down: setting up a workspace that keeps context small.)
+            </aside>
+          </section>
+          <section>
+            <h3>A workspace the agent can navigate</h3>
+            <div class="pair">
+              <div>
+                <p class="label">One of everything</p>
+                <p>A single script that does it all. Documentation in one huge file no window can hold.</p>
+              </div>
+              <div class="hot">
+                <p class="label">Navigable pieces</p>
+                <p>Small modules with clear docs. Documents link to documents; the agent loads only what the task needs.</p>
+              </div>
+            </div>
+            <p class="goldline fragment">Structure the workspace so any one task fits a small window.</p>
+            <aside class="notes">
+              Once agentic coding clicks, you start setting up your workspace for it. One huge
+              Python file that does everything is much less useful than a small module pulling in
+              pieces from others: the smaller chunks are easier for the agent to work on, as long
+              as the documentation is clear. The documentation matters just as much. Documents
+              should link to documents, so when the agent needs to know how one part of the code
+              works it follows the tree down to the right page instead of grepping through a
+              document larger than any context window.
+              This is also just good software practice for humans; the agent makes the payoff
+              immediate. Seed for later: section 4 applies the same discipline to prompts,
+              maintaining Skills as navigable, documented assets.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+            <h2>Handoff: compaction with intention</h2>
+            <img class="fig" src="assets/context-window-handoff.svg" alt="A long session's context window is crowded with abandoned ideas, stale assumptions, and old tool output around the goal and the task; a handoff curates the task, the decisions that matter, and the evidence into a fresh window with room to work" style="max-height:400px;" />
+            <p class="goldline fragment">One bounded task, only the context needed to complete it.</p>
+            <aside class="notes">
+              Handoff is compaction with intention. Both halves matter: I decide what survives into
+              the next context, and what survives is shaped around one bounded direction of work.
+              Why the window itself matters: the point we just made, now with a procedure attached.
+              A long
+              session accumulates abandoned ideas, stale assumptions, and old tool output alongside
+              the goal and the decisions. The window gets crowded and set in its ways, and the task
+              competes with noise for attention. More space does not fix that; selection does.
+              A handoff lets me curate a context window for a new session: the task, the decisions
+              that matter, the evidence and the next move, and nothing else. The new window starts
+              focused and easy to steer, with room to work.
+              The property to state now, because section three leans on it: a handoff is
+              disposable. Whatever in it deserves to last gets promoted into a durable artifact,
+              and then the handoff itself is thrown away.
+              This is the first discipline in the talk that I run often enough to have packaged.
+              Section four is about the packaging; here it is just the discipline.
+              (Down: automatic compaction vs handoff; one real handoff; what a handoff carries;
+              worktrees.)
+            </aside>
+          </section>
+          <section>
+            <h3>Automatic compaction vs handoff</h3>
+            <div class="pair">
+              <div class="cold">
+                <p class="label">automatic compaction</p>
+                fires when the window is already full<br />
+                a summary nobody curated<br />
+                can silently drop a locked decision<br />
+                what was lost is invisible
+              </div>
+              <div class="hot">
+                <p class="label">handoff</p>
+                happens when I choose<br />
+                carries what the next task needs<br />
+                decisions survive because I put them there<br />
+                a file I can read and audit
+              </div>
+            </div>
+            <p class="take fragment">Both compress the conversation. Only one is <span class="gold">intentional</span>.</p>
+            <aside class="notes">
+              Automatic compaction is a safety net, and an honest one: when the window fills, the
+              harness summarizes the conversation so work can continue. My problem is not that it
+              exists; it is that the summary is lossy in ways I do not control and cannot easily
+              audit. It fires at an arbitrary moment, it can drop a decision I locked or evidence
+              I need, and I only discover the loss later, when the agent stops acting like we ever
+              agreed on anything.
+              A handoff is the same compression done on purpose: I choose the moment, I choose
+              what survives, and the result is a file I can read before I spend it. The quieter
+              use: when a good conversation has grown large and stale, a curated handoff continues
+              the same work in a clean window instead of letting automatic compaction decide what
+              mattered. The rule to carry out of this section: do not depend on automatic
+              compaction for anything durable. Section three applies the same rule to design
+              decisions and commits them to a file.
+            </aside>
+          </section>
+          <section>
+            <h3>One handoff, in practice: a diverged pyKMC bug</h3>
+            <ul>
+              <li>A pyKMC bug was already fixed, but on a heavily refactored branch</li>
+              <li>The fix could not be transplanted into <code>develop</code>: different seams</li>
+            </ul>
+            <p class="small fragment" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              carried: &nbsp;the bug, narrowly stated<br />
+              carried: &nbsp;produce a failing test first<br />
+              carried: &nbsp;clues from the branch fix<br />
+              carried: &nbsp;the constraint, a small native change
+            </p>
+            <p class="take fragment">Carry the problem, evidence, and clues across the boundary, <span class="gold">not an obsolete solution</span>.</p>
+            <aside class="notes">
+              The story: the same first-step KeyError was first fixed on a refactored
+              basin-hardening branch. That implementation could not simply be moved onto develop;
+              the two branches migrate state at different seams. So I wrote a handoff for a fresh
+              session against develop carrying the narrowly stated bug, the requirement to produce
+              a failing test first, clues from the refactored-branch solution, and the constraint
+              that develop needed a small native fix, not the larger refactor. The receiving
+              session produced the native fix, the focused regression, and the merge. Public
+              history verifies the two divergent fixes, the regression, and the merge (pyKMC pull
+              request 86; commits d493f8a and 817524e; the earlier branch fix is 9dba577). The
+              disposable handoff connecting them is my account; it was never committed.
+              (Down: what a handoff carries; worktrees.)
+            </aside>
+          </section>
+          <section>
+            <h3>What a handoff carries depends on where it is going</h3>
+            <table class="plain">
+              <tr><th>Direction</th><th>Might carry</th></tr>
+              <tr><td>Continue the same work</td><td>current state · settled decisions · useful evidence · next move</td></tr>
+              <tr><td>Break in a new direction</td><td>relevant premise · divergence point · local boundary · open question</td></tr>
+              <tr><td>Execute one piece of a larger plan</td><td>pointer to the plan · scope of the piece · starting state · verification target</td></tr>
+              <tr><td>Separate worktree</td><td>branch pointer · integration boundary · relevant checks</td></tr>
+            </table>
+            <p class="take"><span class="gold">Examples, not required boxes.</span> I choose what the next context needs.</p>
+            <aside class="notes">
+              Row three is where section three plugs in: the plan becomes a written specification
+              and the piece becomes a vertical slice, once those words exist.
+              I do not want the handoff to carry the whole idea just because the previous chat
+              needed it; I want it to carry what is relevant to the direction I am breaking into.
+              Sometimes a goal and a next action, sometimes a pointer to a spec, a failing test, a
+              decision, an observed result. The stable criterion: the receiver gets the context
+              relevant to its direction without being burdened by the whole parent conversation.
+            </aside>
+          </section>
+          <section>
+            <h3>Parallel work: handoffs + worktrees</h3>
+            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              same task: &nbsp;stale context → curated handoff → fresh chat, same code state<br />
+              one planned piece: &nbsp;written plan → bounded handoff → fresh chat → verified result<br />
+              parallel: &nbsp;independent handoffs → separate worktrees → merge + integration checks
+            </p>
+            <p class="take">A handoff scopes the <span class="gold">context</span>; a worktree isolates the <span class="gold">code state</span>. Neither makes integration automatic.</p>
+            <aside class="notes">
+              A new chat gives me clean conversational context; a worktree gives me a separate
+              checkout with its own branch. They solve different problems. Continuing one
+              overloaded conversation may only need the handoff. Dispatching independent coding
+              work wants both: a bounded brief and an isolated branch. A handoff does not merge
+              code, a worktree does not transfer understanding, and neither makes integration
+              conflicts disappear.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <p class="kicker"><span class="n">1</span> · Tokens and context</p>
+          <h2>Vocabulary: tokens and context</h2>
+          <table class="vocab" style="font-size:0.45em;">
+            <tr><th>Term</th><th>In this talk</th></tr>
+            <tr><td class="term">token</td><td>The smallest bit of information the model works with. A node whose meaning comes from its connections.</td></tr>
+            <tr><td class="term">token ID</td><td>The fixed integer produced by tokenization. It is not what changes.</td></tr>
+            <tr><td class="term">contextual representation</td><td>The vector carried at a position after the layers mix in context. Two identical IDs can diverge.</td></tr>
+            <tr><td class="term">context window</td><td>The model's finite working set. Select what should shape the next answer; do not fill it.</td></tr>
+            <tr><td class="term">adaptable / rigid</td><td>My labels for session quality: focused and steerable, versus crowded and set in its ways.</td></tr>
+            <tr><td class="term">/btw side question</td><td>Answered beside the chat: it sees the conversation, but never enters the window.</td></tr>
+            <tr><td class="term">handoff</td><td>Compaction with intention: one bounded task, only the context needed to complete it.</td></tr>
+            <tr><td class="term">automatic compaction</td><td>The safety net when the window fills: a summary nobody curated. Do not depend on it.</td></tr>
+            <tr><td class="term">worktree</td><td>An isolated checkout. Separates code state, not conversational context.</td></tr>
+          </table>
+          <aside class="notes">
+            Contextual representation is the one technical takeaway I insist on: it explains why
+            context management is not housekeeping but part of how the model computes. If you keep
+            only one practical term, keep handoff: it is the one that changes daily behaviour first.
+            Bridge into the next section: everything so far assumes I am the one deciding what goes
+            into the window. Next, what changes when the agent can go and find context for itself.
+          </aside>
+        </section>
+
+        <!-- ============ 2 · FROM CHAT TO AGENTIC CODING ============ -->
+
+        <section>
+          <p class="kicker"><span class="n">2</span> · From chat to agentic coding</p>
+          <p class="ask">“I need to wash my car, the carwash is 10&nbsp;m away should I walk or drive?”</p>
+          <aside class="notes">
+            Change of gear here: put the machinery down and try a question. This is the exact
+            prompt, unedited, punctuation and all. Read it to the room, then ask for hands: who
+            walks? Who drives? Let people commit before anything resolves. Most of a room picks
+            walk; ten metres is nothing. Do not hint at the trap. The next slide shows what one
+            model did with it.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">2</span> · From chat to agentic coding</p>
             <h2>Walk or drive?</h2>
             <img class="shot fig" src="assets/carwash-exchange.png" alt="ChatGPT answering that walking 10 m to the car wash is the rational choice" style="max-height:330px;" />
             <p class="evidence">ChatGPT 5.3 Instant · 2026-07-13 · one observed response</p>
@@ -99,8 +446,9 @@
               claim that this model always fails.
               The coding version of this prompt is "implement my new idea in this codebase": the
               agent can hand back plausible code while silently inventing the architecture,
-              constraints, and definition of done that I never stated. Hold that thought; the whole
-              middle of this talk is about surfacing hidden intent before implementation.
+              constraints, and definition of done that I never stated. Hold that thought; the rest
+              of this talk is about surfacing hidden intent before implementation, and section four
+              shows the Skill I use to force it into the open.
               (Down: what the same prompt did across other models and modes.)
             </aside>
           </section>
@@ -145,33 +493,74 @@
         </section>
 
         <section>
-          <section>
-            <p class="kicker"><span class="n">1</span> · From chat to agentic coding</p>
-            <h2>Inside the codebase</h2>
-            <div class="pair">
-              <div class="cold">
-                <p class="label">Web chat</p>
-                <p>Works from the context I give it. It sees the fragments I paste or upload, and nothing else.</p>
-              </div>
-              <div class="hot">
-                <p class="label">Agentic coding</p>
-                <p>Works inside the codebase. It goes looking for the files and relationships the task needs, within the access it has been granted.</p>
-              </div>
+          <p class="kicker"><span class="n">2</span> · From chat to agentic coding</p>
+          <h2>Inside the codebase</h2>
+          <div class="pair">
+            <div class="cold">
+              <p class="label">Web chat</p>
+              <p>Works from the context I give it. It sees the fragments I paste or upload, and nothing else.</p>
             </div>
-            <p class="take">An LLM working in my codebase, sussing out where things are for itself. CLI or app: <span class="gold">the interface is not what makes it agentic.</span></p>
+            <div class="hot">
+              <p class="label">Agentic coding</p>
+              <p>Works inside the codebase. It goes looking for the files and relationships the task needs, within the access it has been granted.</p>
+            </div>
+          </div>
+          <p class="take">An LLM working in my codebase, sussing out where things are for itself. CLI or app: <span class="gold">the interface is not what makes it agentic.</span></p>
+          <aside class="notes">
+            My working definition: agentic coding is when I have an LLM working inside my
+            codebase. It can look through the files and suss out where things are, instead of
+            only seeing what I upload to a web chat. It can live in a CLI or in an app; the
+            interface is not the point.
+            Two qualifications. "Within the access it has been granted": the agent does not have
+            unrestricted access to everything, and not every file lands in the context window at
+            once. It can go looking, rather than waiting for me to supply each file.
+            Inspect, act, observe, adapt is a fair description of how such an agent behaves once
+            it is in there, but it is behaviour, not the definitional test.
+            If Q&amp;A pushes on read-only products: Cursor's Ask mode and Copilot's Ask mode are
+            system configurations of the same idea, not a different kind of model. Not worth the
+            live path.
+            (Next: how I did that job by hand, before any of it existed.)
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <p class="kicker"><span class="n">2</span> · From chat to agentic coding</p>
+            <h2>I was the agent</h2>
+            <ul>
+              <li>Two courses, before any of these tools had agency</li>
+              <li>One total energy, buried in a huge Quantum ESPRESSO output</li>
+              <li>A grad-course analysis whose output file swamped the chat</li>
+              <li>Both worked only once I supplied the procedure:</li>
+            </ul>
+            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
+              grep the lines that matter → write them to a small file → analyse that → report back
+            </p>
+            <p class="goldline fragment">I was doing a subagent's job by hand.</p>
             <aside class="notes">
-              My working definition: agentic coding is when I have an LLM working inside my
-              codebase. It can look through the files and suss out where things are, instead of
-              only seeing what I upload to a web chat. It can live in a CLI or in an app; the
-              interface is not the point.
-              Two qualifications. "Within the access it has been granted": the agent does not have
-              unrestricted access to everything, and not every file lands in the context window at
-              once. It can go looking, rather than waiting for me to supply each file.
-              Inspect, act, observe, adapt is a fair description of how such an agent behaves once
-              it is in there, but it is behaviour, not the definitional test.
-              If Q&amp;A pushes on read-only products: Cursor's Ask mode and Copilot's Ask mode are
-              system configurations of the same idea, not a different kind of model. Not worth the
-              live path.
+              Before agentic tools existed, I was the agent. Two courses, same lesson.
+              In Lauren's computational materials course we tried ChatGPT on course tasks and it
+              failed often until the question was asked the right way. Quantum ESPRESSO output
+              files are huge, and at the time the model could not reliably extract the total energy
+              from one; asked plainly, it would grab a few energy values from somewhere in the
+              pasted file. It produced the right answer only when I specified the method: grep the
+              energy lines, print that list, sort it, and check the count against a direct grep.
+              Then a graduate computational course, where I had already done the data analysis
+              myself and tried to get ChatGPT to redo it. On its own it was terrible: the output
+              file was enormous and it could not parse it. Same fix: grep for the lines that
+              mattered, write them into a new file, work on that small file, report back.
+              I could only steer it because I already knew how to get the answer. And I was doing
+              exactly what a subagent does now: go into a separate context, extract the relevant
+              part, and report a distillation back to the main conversation. That is the sub-worker
+              clause on the vocabulary slide, made concrete. The difference today is that the agent
+              does it for itself.
+              The same period taught me the other half. Before the CLI tools I copy-pasted
+              hand-picked context into chat windows, and when Projects arrived, uploading a pile of
+              files did not make the results better. You have to think about how information is
+              organized for a language model. Keeping a tidy space with good documentation is
+              critical if an LLM is going to do good work in your codebase.
+              Seed for section four: the recipe I wrote down here is where my first Skills came
+              from.
               (Down: the section's vocabulary.)
             </aside>
           </section>
@@ -179,7 +568,7 @@
             <h3>Vocabulary: agentic coding</h3>
             <table class="vocab">
               <tr><th>Term</th><th>In this talk</th></tr>
-              <tr><td class="term">agentic coding</td><td>An LLM working inside the codebase, finding relevant context for itself.</td></tr>
+              <tr><td class="term">agentic coding</td><td>An LLM working inside the codebase, having sub-workers find relevant context for itself.</td></tr>
               <tr><td class="term">situated access</td><td>The agent inspects the repository, bounded by the access it was granted.</td></tr>
               <tr><td class="term">inspect · act · observe · adapt</td><td>How a coding agent behaves once it can see the work. A description, not the boundary.</td></tr>
               <tr><td class="term">web chat</td><td>Works only from what you paste in. Capable, but context-blind.</td></tr>
@@ -192,267 +581,7 @@
           </section>
         </section>
 
-        <!-- ============ 2 · TOKENS AND CONTEXT ============ -->
-
-        <section>
-          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
-          <h2>What is a token?</h2>
-          <p class="lead">The smallest bit of information the model works with.</p>
-          <p class="lead fragment">A node connected to the other tokens in the window.</p>
-          <p class="goldline fragment">Its working meaning comes from those connections.</p>
-          <aside class="notes">
-            A token is the smallest unit the model actually reads and writes. Not a character, not
-            reliably a whole word: a chunk. I picture each token as a node carrying a vector. It
-            starts from a general representation, and its working meaning comes from the other
-            tokens it can attend to in the window. When I want the chunks to feel concrete I call
-            tokens objects instead of nodes; both are teaching metaphors, not literal claims about
-            the architecture.
-          </aside>
-        </section>
-
-        <section>
-          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
-          <h2>Same token ID, different meaning</h2>
-          <img class="fig" src="assets/token-context.svg" alt="Two occurrences of the same token ID, in a lead-shield sentence and a lead-nurse sentence, develop different contextual representations as transformer layers mix in context; the token dose flips meaning too" style="max-height:430px;" />
-          <p class="take">The token ID is fixed. The representation carried at its position becomes <span class="gold">contextual</span>.</p>
-          <aside class="notes">
-            Follow one word through the stack. The same integer ID enters both sentences, and as it
-            passes through the transformer layers its representation is repeatedly reshaped by the
-            other positions it can attend to. By the output, lead means the metal in one sentence
-            and the senior role in the other. And notice the second flip: dose is a radiation dose
-            beside a shield and a medication dose beside a nurse. The neighbours decide.
-            Aside for this room: had I written Pb instead of lead, that is a different token ID
-            entirely, yet in this sentence it would converge to the same working meaning, the
-            metal. Same ID diverges; different IDs converge. The meaning lives in the contextual
-            representation, not in the integer.
-            The integer ID never changes; the state carried at that position does. So context is
-            not merely text sitting near a token: it helps give that particular occurrence its
-            working meaning. The context window, then, is not just storage. What is in it shapes
-            how every position is represented and how the next token is predicted. That is why the
-            rest of this talk cares so much about what we let into it.
-          </aside>
-        </section>
-
-        <section>
-          <p class="kicker"><span class="n">2</span> · Tokens and context</p>
-          <h2>How many r's in strawberry?</h2>
-          <p class="big" style="font-family:'Plex Mono',monospace;">strawberry</p>
-          <p class="fragment">A direct count asks the model to work below its own units: it sees chunks, not letters.</p>
-          <p class="big fragment" style="font-family:'Plex Mono',monospace; letter-spacing:0.08em;">s t <span class="gold">r</span> a w b e <span class="gold">r</span> <span class="gold">r</span> y</p>
-          <p class="take fragment">When a model struggles: <span class="gold">change the representation</span>, expose intermediate steps, or give it a tool.</p>
-          <aside class="notes">
-            The point is not that the model cannot count letters. The direct question can ask it to
-            operate at an awkward representation level. If I first ask it to spell the word one
-            letter at a time, the characters become explicit intermediate state, and counting the
-            r's becomes easy to perform and easy to verify.
-            The general lesson: when a model struggles, do not just repeat the question louder.
-            Change the representation, expose the intermediate steps, or hand it a suitable tool.
-            Exact tokenization is tokenizer-dependent; I make no claim about how many tokens
-            "strawberry" is on any given model. Related aside if useful: a word and its plural
-            suffix can be separate objects, so "pencil" to "pencils" can be one object becoming
-            several. The split is not the lesson; the mismatch between model units and human units
-            is.
-          </aside>
-        </section>
-
-        <section>
-          <section>
-            <p class="kicker"><span class="n">2</span> · Tokens and context</p>
-            <h2>Keep context small and relevant</h2>
-            <img class="fig" src="assets/context-zones.svg" alt="The context window as one region with two overlapping zones: a gold adaptable zone, focused and easy to steer, and a grey rigid zone, crowded and set in its ways, with an arrow showing the window filling toward capacity" style="max-height:430px;" />
-            <p class="goldline fragment">A million-token window is capacity, not a target.</p>
-            <aside class="notes">
-              A fresh, focused coding chat is easy to steer. As it fills with abandoned ideas,
-              stale assumptions, old tool output, and directions I no longer want, it starts to get
-              set in its ways. That is what I mean by rigid.
-              On the figure: the zones overlap because there is no sharp line. As the window fills,
-              attention has to spread across everything present, so each token's influence thins
-              and new tokens are steered by a lot of stale context. Informally: the left is the
-              smart zone, the right is the dumb zone; the honest labels are adaptable and rigid.
-              The spoken line: a million-token window is capacity, not a target. Just because
-              Claude can hold that much does not mean I want every abandoned idea and stale
-              decision following me through one coding chat.
-              Qualifications: the million tokens is model-dependent and will date; this is a
-              practical heuristic about session behaviour, not a claim that the weights change
-              mid-chat; the zones are a cartoon, with no fixed fill fraction where behaviour
-              flips; and large, deliberately assembled contexts are genuinely valuable for
-              reference and synthesis work. The advice is against accidental growth.
-              Bridge to the next section: a fluent answer can satisfy the visible request while
-              missing the goal behind it. So before implementation, we make the goal, constraints,
-              assumptions, and definition of done explicit. That is the workflow.
-              (Down: watch the window fill, three stages; then vocabulary.)
-            </aside>
-          </section>
-          <section>
-            <h3>A fresh chat: small and targeted</h3>
-            <img class="fig" src="assets/context-grow-1.svg" alt="A nearly empty context window: six tokens in the gold adaptable band, the newest position attending strongly to each with a few bold lines" style="max-height:430px;" />
-            <aside class="notes">
-              Read this as a fresh chat. A handful of tokens, and the position writing the next
-              token can attend firmly to every one of them. The connections are few and strong.
-              This is the adaptable end: small and targeted, easy to steer.
-            </aside>
-          </section>
-          <section>
-            <h3>The chat grows</h3>
-            <img class="fig" src="assets/context-grow-2.svg" alt="The window half full: tokens reach the overlap between bands and the newest position's attention fans out thinner over many more tokens" style="max-height:430px;" />
-            <aside class="notes">
-              Same window, more turns: side questions, old tool output, ideas we abandoned. Every
-              new token attends over everything already present, so the web of connections grows
-              and each line starts to thin. We are in the overlap now: still workable, but
-              steering takes more effort.
-            </aside>
-          </section>
-          <section>
-            <h3>Near capacity: attention spread thin</h3>
-            <img class="fig" src="assets/context-grow-3.svg" alt="The window near capacity: tokens crowd deep into the rigid band and the newest position's attention is a wide, faint fan spread thin across the whole crowd" style="max-height:430px;" />
-            <p class="take fragment">A model's best work happens when the context is <span class="gold">small and targeted</span>.</p>
-            <aside class="notes">
-              Near capacity. The newest position's attention is spread across everything:
-              abandoned ideas, stale assumptions, dead ends. Each connection carries less, and the
-              next token is steered by a lot of history I no longer want. That is rigid.
-              The lesson: a model's best work happens when the context is small and targeted. So I
-              start new chats deliberately instead of letting one grow.
-              Cartoon, not mechanism: same hedges as the parent slide; there is no fixed fill
-              fraction where behaviour flips.
-              (Down: vocabulary.)
-            </aside>
-          </section>
-          <section>
-            <h3>Vocabulary: tokens and context</h3>
-            <table class="vocab">
-              <tr><th>Term</th><th>In this talk</th></tr>
-              <tr><td class="term">token</td><td>The smallest bit of information the model works with. A node whose working meaning comes from its connections.</td></tr>
-              <tr><td class="term">token ID</td><td>The fixed integer produced by tokenization. It is not what changes.</td></tr>
-              <tr><td class="term">contextual representation</td><td>The vector carried at a position after the layers mix in permitted context. Two identical IDs can diverge.</td></tr>
-              <tr><td class="term">context window</td><td>The model's finite working set. Select what should shape the next answer; do not fill it.</td></tr>
-              <tr><td class="term">adaptable / rigid</td><td>My labels for session quality: focused and steerable, versus crowded and set in its ways.</td></tr>
-              <tr><td class="term">/btw side question</td><td>A question answered beside the chat: it sees the conversation, but the answer never enters the window.</td></tr>
-            </table>
-            <aside class="notes">
-              Contextual representation is the one technical takeaway I insist on: it explains why
-              context management is not housekeeping but part of how the model computes.
-            </aside>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <p class="kicker"><span class="n">2</span> · Tokens and context</p>
-            <h2>Do not be afraid to start a new chat</h2>
-            <div class="pair">
-              <div class="hot">
-                <p class="label">New chat</p>
-                <p>A fresh, focused window. Steering is easiest before the crowd moves in.</p>
-              </div>
-              <div>
-                <p class="label">/btw side questions</p>
-                <p>Answered in an overlay: it sees the whole chat, but the answer never enters the window.</p>
-              </div>
-            </div>
-            <p class="goldline fragment">Carrying the thread into the new chat is a handoff. Section 3.</p>
-            <aside class="notes">
-              When the window gets crowded, I do not push through; I start a new chat. That sounds
-              wasteful until you remember the pictures we just saw: the best work happens when the
-              context is small and targeted. New chats are cheap; a crowded window is not.
-              The second tool: side questions. In Claude Code I type /btw and ask. The answer comes
-              back in an overlay. It can see the whole conversation, so the answer is grounded, but
-              it has no tools and the exchange never enters the conversation history, so it costs
-              the window nothing. If a side question grows into real work, one key turns it into its
-              own session.
-              How I use it: clarifying something we already did; brainstorming whether a repeated
-              prompt deserves to become a Skill; asking about the page I am hosting locally while
-              the main turn keeps running; and in an interview session, clarifying a recommendation
-              before I lock a decision. When I am about to write a document that will steer a lot of
-              budget, I want wording help with follow-up turns, so that one I fork into a fresh
-              session instead.
-              Bridge: what the new chat needs from the old one is the thread, meaning what we
-              decided and why. Moving that across deliberately is a handoff, and handoffs are
-              section 3.
-              (Down: setting up a workspace that keeps context small.)
-            </aside>
-          </section>
-          <section>
-            <h3>A workspace the agent can navigate</h3>
-            <div class="pair">
-              <div>
-                <p class="label">One of everything</p>
-                <p>A single script that does it all. Documentation in one huge file no window can hold.</p>
-              </div>
-              <div class="hot">
-                <p class="label">Navigable pieces</p>
-                <p>Small modules with clear docs. Documents link to documents; the agent loads only what the task needs.</p>
-              </div>
-            </div>
-            <p class="goldline fragment">Structure the workspace so any one task fits a small window.</p>
-            <aside class="notes">
-              Once agentic coding clicks, you start setting up your workspace for it. One huge
-              Python file that does everything is much less useful than a small module pulling in
-              pieces from others: the smaller chunks are easier for the agent to work on, as long
-              as the documentation is clear. The documentation matters just as much. Documents
-              should link to documents, so when the agent needs to know how one part of the code
-              works it follows the tree down to the right page instead of grepping through a
-              document larger than any context window.
-              This is also just good software practice for humans; the agent makes the payoff
-              immediate. Seed for later: section 4 applies the same discipline to prompts,
-              maintaining Skills as navigable, documented assets.
-            </aside>
-          </section>
-        </section>
-
         <!-- ============ 3 · HOW I CODE WITH AN AGENT ============ -->
-
-        <section>
-          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
-          <h2>I was the context manager</h2>
-          <ul>
-            <li>A grad-course analysis, redone with an LLM: the output file swamped the chat</li>
-            <li>It worked only once I gave it a procedure:</li>
-          </ul>
-          <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
-            grep the lines that matter → write them to a small file → analyse that → report back
-          </p>
-          <p class="goldline fragment">I was doing a subagent's job by hand.</p>
-          <aside class="notes">
-            Before agentic tools existed, I was the context manager. In a graduate computational
-            course, after I had done the data analysis myself, I tried to get ChatGPT to do the
-            same work. On its own it was terrible: the output file was enormous and it could not
-            parse it. It only worked once I gave it a procedure: grep for the lines that mattered,
-            write them into a new file, and then work on that small file to report the relevant
-            information. I was doing exactly what a subagent does now: go into a separate context,
-            extract the relevant part, and report a distillation back to the main conversation.
-            The same period taught me the other half. Before the CLI tools I copy-pasted
-            hand-picked context into chat windows, and when Projects arrived, uploading a pile of
-            files did not make the results better. You have to think about how information is
-            organized for a language model. Keeping a tidy space with good documentation is
-            critical if an LLM is going to do good work in your codebase.
-            The bridge into the rest of this section, spoken: this whole section is that same
-            discipline, with names and tools attached.
-          </aside>
-        </section>
-
-        <section>
-          <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
-          <p class="skillchip">Skill: interview-design-decisions</p>
-          <h2>Expose the decisions</h2>
-          <ul>
-            <li>The first job is not to generate code</li>
-            <li>The agent interviews me: one consequential choice at a time</li>
-            <li>It proposes options and recommends one</li>
-            <li>I lock in the load-bearing decisions</li>
-          </ul>
-          <p class="goldline fragment">Surface the decisions the agent would otherwise guess.</p>
-          <aside class="notes">
-            I do not want the agent to make a chain of quiet design choices and hand me the
-            endpoint. I want it to interrogate me about the consequential choices, explain what
-            each option changes, and let me lock them in one at a time. Then the implementation
-            follows decisions I can still explain and defend.
-            The stop condition for this interview, spoken in full: we start implementation only
-            when I can explain the proposed path and its trade-offs, the agent can restate my goal
-            and constraints, the evidence and definition of done are testable, and every
-            load-bearing decision is one I knowingly made. Shared understanding, not a longer
-            prompt.
-          </aside>
-        </section>
 
         <section>
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
@@ -466,7 +595,11 @@
           <p class="take fragment">Do not depend on automatic compaction for durable design. <span class="gold">Commit the north star to a file.</span></p>
           <p class="small fragment">This presentation was built exactly this way.</p>
           <aside class="notes">
-            We have just done valuable work scoping the problem: a north star for an iterative
+            How a coding session actually starts. Before a line of code, the agent interviews me:
+            one consequential choice at a time, options on the table, and I lock the load-bearing
+            decisions. Section four shows that Skill in full, because it is my best example of what
+            a Skill is; here I care about what it leaves behind.
+            What it leaves behind is valuable: a north star for an iterative
             coding agent, the decisions I made, the boundaries, and the evidence that will tell us
             whether it worked. I do not want that value trapped in one context window. So I commit
             the distillation, not the transcript, to a Markdown file. That file is a context start:
@@ -478,7 +611,8 @@
             this updates the file as each decision lands and re-runs against an existing foundation
             to sharpen it rather than clobber it.
             And the line on the slide is literal: this presentation was scoped and built exactly
-            this way, interview first, foundation committed, sections built against it. The
+            this way, interview first, foundation committed, sections built against it, handed
+            between sessions on handoffs like the one you just saw. The
             interview gave me space to type and think about each part. Having an LLM ask me what
             the takeaways are, and what was impactful to me, helped me decide what I wanted this
             to become as a presentation. The foundation file for this talk lives in its folder in
@@ -506,8 +640,9 @@
               simulation campaign. It packages decisions already made; it does not reopen the
               interview.
               Context narrows along the larger path: the foundation holds the durable design, the
-              spec describes the complete agreed end state, a handoff carries the exact context for
-              one bounded task, and one agent executes and verifies it.
+              spec describes the complete agreed end state, and then the handoff from section one
+              does its job, carrying the exact context for one bounded task to one agent that
+              executes and verifies it. That is where the two halves of the talk meet.
               (Down: the autonomous extreme of this path.)
             </aside>
           </section>
@@ -531,9 +666,10 @@ done
               fresh context against the same specification until the work is done. Every lap is a
               fresh, eager intern with no memory of the last lap. No orchestration framework, no
               memory beyond the repository itself. I keep it here as the limiting
-              case: everything this section teaches (a durable spec, independently verifiable
-              slices, checks an agent can run) is exactly what lets something this blunt work at
-              all. It is an experiment I run on bounded work, not doctrine.
+              case: everything this section teaches (a durable foundation, a written spec,
+              independently verifiable slices, checks an agent can run) is exactly what lets
+              something this blunt work at all. It is an experiment I run on bounded work, not
+              doctrine.
             </aside>
           </section>
         </section>
@@ -594,142 +730,21 @@ done
         </section>
 
         <section>
-          <section>
-            <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
-            <h2>Handoff: compaction with intention</h2>
-            <img class="fig" src="assets/context-window-handoff.svg" alt="A long session's context window is crowded with abandoned ideas, stale assumptions, and old tool output around the goal and the task; a handoff curates the task, the decisions that matter, and the evidence into a fresh window with room to work" style="max-height:400px;" />
-            <p class="goldline fragment">One bounded task, only the context needed to complete it.</p>
-            <aside class="notes">
-              Handoff is compaction with intention. Both halves matter: I decide what survives into
-              the next context, and what survives is shaped around one bounded direction of work.
-              Why the window itself matters: section two's point, replayed for coding. A long
-              session accumulates abandoned ideas, stale assumptions, and old tool output alongside
-              the goal and the decisions. The window gets crowded and set in its ways, and the task
-              competes with noise for attention. More space does not fix that; selection does.
-              A handoff lets me curate a context window for a new session: the task, the decisions
-              that matter, the evidence and the next move, and nothing else. The new window starts
-              focused and easy to steer, with room to work.
-              The contrast with the foundation file: FOUNDATION.md is durable and shared across
-              future work; a handoff is disposable, promoted into durable artifacts and then
-              thrown away.
-              (Down: automatic compaction vs handoff; one real handoff; what a handoff carries;
-              worktrees.)
-            </aside>
-          </section>
-          <section>
-            <h3>Automatic compaction vs handoff</h3>
-            <div class="pair">
-              <div class="cold">
-                <p class="label">automatic compaction</p>
-                fires when the window is already full<br />
-                a summary nobody curated<br />
-                can silently drop a locked decision<br />
-                what was lost is invisible
-              </div>
-              <div class="hot">
-                <p class="label">handoff</p>
-                happens when I choose<br />
-                carries what the next task needs<br />
-                decisions survive because I put them there<br />
-                a file I can read and audit
-              </div>
-            </div>
-            <p class="take fragment">Both compress the conversation. Only one is <span class="gold">intentional</span>.</p>
-            <aside class="notes">
-              Automatic compaction is a safety net, and an honest one: when the window fills, the
-              harness summarizes the conversation so work can continue. My problem is not that it
-              exists; it is that the summary is lossy in ways I do not control and cannot easily
-              audit. It fires at an arbitrary moment, it can drop a decision I locked or evidence
-              I need, and I only discover the loss later, when the agent stops acting like we ever
-              agreed on anything.
-              A handoff is the same compression done on purpose: I choose the moment, I choose
-              what survives, and the result is a file I can read before I spend it. The quieter
-              use: when a good conversation has grown large and stale, a curated handoff continues
-              the same work in a clean window instead of letting automatic compaction decide what
-              mattered. Same rule as the foundation file: do not depend on automatic compaction
-              for anything durable.
-            </aside>
-          </section>
-          <section>
-            <h3>One handoff, in practice: a diverged pyKMC bug</h3>
-            <ul>
-              <li>A pyKMC bug was already fixed, but on a heavily refactored branch</li>
-              <li>The fix could not be transplanted into <code>develop</code>: different seams</li>
-            </ul>
-            <p class="small fragment" style="font-family:'Plex Mono',monospace; line-height:1.9;">
-              carried: &nbsp;the bug, narrowly stated<br />
-              carried: &nbsp;produce a failing test first<br />
-              carried: &nbsp;clues from the branch fix<br />
-              carried: &nbsp;the constraint, a small native change
-            </p>
-            <p class="take fragment">Carry the problem, evidence, and clues across the boundary, <span class="gold">not an obsolete solution</span>.</p>
-            <aside class="notes">
-              The story: the same first-step KeyError was first fixed on a refactored
-              basin-hardening branch. That implementation could not simply be moved onto develop;
-              the two branches migrate state at different seams. So I wrote a handoff for a fresh
-              session against develop carrying the narrowly stated bug, the requirement to produce
-              a failing test first, clues from the refactored-branch solution, and the constraint
-              that develop needed a small native fix, not the larger refactor. The receiving
-              session produced the native fix, the focused regression, and the merge. Public
-              history verifies the two divergent fixes, the regression, and the merge (pyKMC pull
-              request 86; commits d493f8a and 817524e; the earlier branch fix is 9dba577). The
-              disposable handoff connecting them is my account; it was never committed.
-              (Down: what a handoff carries; worktrees.)
-            </aside>
-          </section>
-          <section>
-            <h3>What a handoff carries depends on where it is going</h3>
-            <table class="plain">
-              <tr><th>Direction</th><th>Might carry</th></tr>
-              <tr><td>Continue the same work</td><td>current state · settled decisions · useful evidence · next move</td></tr>
-              <tr><td>Break in a new direction</td><td>relevant premise · divergence point · local boundary · open question</td></tr>
-              <tr><td>Execute one spec slice</td><td>pointer to the spec · slice scope · starting state · verification target</td></tr>
-              <tr><td>Separate worktree</td><td>branch pointer · integration boundary · relevant checks</td></tr>
-            </table>
-            <p class="take"><span class="gold">Examples, not required boxes.</span> I choose what the next context needs.</p>
-            <aside class="notes">
-              I do not want the handoff to carry the whole idea just because the previous chat
-              needed it; I want it to carry what is relevant to the direction I am breaking into.
-              Sometimes a goal and a next action, sometimes a pointer to a spec, a failing test, a
-              decision, an observed result. The stable criterion: the receiver gets the context
-              relevant to its direction without being burdened by the whole parent conversation.
-            </aside>
-          </section>
-          <section>
-            <h3>Parallel work: handoffs + worktrees</h3>
-            <p class="small" style="font-family:'Plex Mono',monospace; line-height:1.9;">
-              same task: &nbsp;stale context → curated handoff → fresh chat, same code state<br />
-              one spec slice: &nbsp;to-spec → bounded handoff → fresh chat → verified result<br />
-              parallel: &nbsp;independent handoffs → separate worktrees → merge + integration checks
-            </p>
-            <p class="take">A handoff scopes the <span class="gold">context</span>; a worktree isolates the <span class="gold">code state</span>. Neither makes integration automatic.</p>
-            <aside class="notes">
-              A new chat gives me clean conversational context; a worktree gives me a separate
-              checkout with its own branch. They solve different problems. Continuing one
-              overloaded conversation may only need the handoff. Dispatching independent coding
-              work wants both: a bounded brief and an isolated branch. A handoff does not merge
-              code, a worktree does not transfer understanding, and neither makes integration
-              conflicts disappear.
-            </aside>
-          </section>
-        </section>
-
-        <section>
           <p class="kicker"><span class="n">3</span> · How I code with an agent</p>
           <h2>Vocabulary: the workflow</h2>
-          <table class="vocab" style="font-size:0.53em;">
+          <table class="vocab">
             <tr><th>Term</th><th>In this talk</th></tr>
             <tr><td class="term">design foundation</td><td>Durable Markdown distillation of the agreed design. A context start for future sessions.</td></tr>
             <tr><td class="term">implementation spec</td><td>The agreed end state packaged for execution. Study or method spec for simulation campaigns.</td></tr>
             <tr><td class="term">vertical slice</td><td>A narrow, complete capability, independently verifiable. A file or layer is not a slice.</td></tr>
             <tr><td class="term">red-capable reproducer</td><td>One runnable command that fails on the exact reported symptom, then passes after the fix.</td></tr>
-            <tr><td class="term">handoff</td><td>Compaction with intention: one bounded task, only the context needed to complete it.</td></tr>
-            <tr><td class="term">automatic compaction</td><td>The safety net when the window fills: a summary nobody curated. Do not depend on it for durable design.</td></tr>
-            <tr><td class="term">worktree</td><td>An isolated checkout. Separates code state, not conversational context.</td></tr>
           </table>
           <aside class="notes">
-            Seven terms that carry this whole section. If you keep only one, keep handoff: it is
-            the one that changes daily behaviour first.
+            Four terms, and they are all artifacts: something written down that the next agent can
+            load. That is the whole section in one line. Handoff, automatic compaction and worktree
+            belong to section one's table; if a question lands on them, page back there.
+            If you keep only one from here, keep vertical slice: it is what stops an agent working
+            against a goal nobody can observe.
           </aside>
         </section>
 
@@ -752,17 +767,11 @@ done
               need recurs, the trigger is recognizable, the procedure is reusable, and I can tell
               whether it did the job. One-off advice and vague preferences do not clear that bar,
               even written down twice.
-              The origin story, from Lauren's computational materials course, before any of these
-              tools had agency: we tried ChatGPT on course tasks and it failed often until the
-              question was asked the right way. Quantum ESPRESSO output files are huge, and at the
-              time the model could not reliably extract the total energy from one; asked plainly,
-              it would grab a few energy values from somewhere in the pasted file. It produced the
-              right answer only when I specified the method: grep the energy lines, print that
-              list, sort it, and check the count against a direct grep. At the time, I guess I was
-              the agent for the LLM. I could only steer it because I already knew how to get the
-              answer. Then I turned the working recipe into a prompt and a script, and my own data
-              processing got faster. That is the life cycle this whole section is about: a method
-              that worked, repeated, hardened, packaged.
+              Callback, one line, do not retell it: the Quantum ESPRESSO recipe from section two,
+              grep the energy lines and check the count, is where this started. I turned that
+              working recipe into a prompt and a script, and my own data processing got faster.
+              That is the life cycle this whole section is about: a method that worked, repeated,
+              hardened, packaged.
               Evaluation at our scale is proportional observation, not an A/B laboratory: does the
               agent follow the discipline more consistently, does the output get easier to verify,
               and what new friction appears? Revise, narrow, or remove accordingly.
@@ -774,7 +783,32 @@ done
               robustness, and the exact language the analysis licenses. Proof that a Skill can
               encode a way of thinking, not just store a canned prompt. Full tree in the
               drill-down.
-              (Down: the day the packaging paid for itself, then the Skill as written.)
+              (Down: the flagship Skill, the day it paid for itself, then the Skill as written.)
+            </aside>
+          </section>
+          <section>
+            <p class="skillchip">Skill: interview-design-decisions</p>
+            <h3>Expose the decisions</h3>
+            <ul>
+              <li>The discipline: no code until the decisions are on the record</li>
+              <li>The agent interviews me: one consequential choice at a time</li>
+              <li>It proposes options and recommends one</li>
+              <li>I lock in the load-bearing decisions</li>
+            </ul>
+            <p class="goldline fragment">Surface the decisions the agent would otherwise guess.</p>
+            <aside class="notes">
+              My flagship Skill, and the one that produced the FOUNDATION.md you saw in the last
+              section. It earns its place here because it is the clearest case of a discipline
+              worth packaging.
+              I do not want the agent to make a chain of quiet design choices and hand me the
+              endpoint. I want it to interrogate me about the consequential choices, explain what
+              each option changes, and let me lock them in one at a time. Then the implementation
+              follows decisions I can still explain and defend.
+              The stop condition for this interview, spoken in full: we start implementation only
+              when I can explain the proposed path and its trade-offs, the agent can restate my goal
+              and constraints, the evidence and definition of done are testable, and every
+              load-bearing decision is one I knowingly made. Shared understanding, not a longer
+              prompt.
             </aside>
           </section>
           <section>
@@ -1293,7 +1327,7 @@ then record it. Stop when I can defend every choice.
         },
 
         // --- live inking (Apple Pencil / mouse) ---
-        chalkboard: { boardmarkerWidth: 3, storage: '2026-coding-with-ai-v2-chalkboard' },
+        chalkboard: { boardmarkerWidth: 3, storage: '2026-coding-with-ai-v2-chalkboard-r2' },
 
         // --- jump-anywhere menu (top-left) ---
         menu: { themes: false, openButton: true, openSlideNumber: true },
