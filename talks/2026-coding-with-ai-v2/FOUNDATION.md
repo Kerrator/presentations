@@ -1790,3 +1790,21 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     reattached to the wrong slides. Rotating the key in `index.html` clears it on every device he
     presents from, including the iPad, which no browser-side clearing from a desktop session could
     reach. Rotate it again after any future reorder.
+122. **The public Skills repo goes on the shelf slide, and the private-repo line is retired.**
+    (2026-07-27.) `github.com/Kerrator/skills` is live and public (five Skills, initial commit
+    `d8760f2`), so the promise the deck was already making is now true. On "One shelf, under version
+    control" (h21/v1, leaf 38): a locally generated QR (`assets/qr-skills.svg`, `qrencode -t SVG -m 4`,
+    quiet zone to spec, generator comment stripped) sits to the **right of the bullets**, not below
+    them, so it spends horizontal space the slide had spare; the URL is a full-width right-aligned
+    line under it. A first attempt put the URL in a `<figcaption>` under the QR and it clipped
+    mid-word at a 132px column, so it was moved out. The take line loses its future tense
+    ("Being opened to the group" → "Open to the group"), and the speaker note that said "It currently
+    lives in a private repo; I am moving it into a public one" now speaks the address and flags that
+    three of the five are adapted from someone else's openly licensed set, matching the repo's own
+    Origin column. No new slides, no spine reflow, no guidepost change.
+    Measured against `main` with an identical script over all 49 leaves: exactly one value moved,
+    this slide, **479 → 542** against the 700 canvas (158px headroom). The deck's only >700 leaf is
+    still "Same prompt, different answers" at 719, pre-existing and untouched. Offline verified by
+    request log: every request localhost, no external host. The horizontal figure the audit reports
+    (~980) fires on every leaf including untouched ones and is the decision-110 padding artifact, not
+    a regression.

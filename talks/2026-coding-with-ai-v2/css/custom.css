@@ -354,3 +354,19 @@
   padding: 0.25em 0.9em;
   letter-spacing: 0.04em;
 }
+
+/* ---- §4: the public shelf (QR beside the bullets, not below them) ------ */
+.reveal .shelf-row {
+  display: flex; align-items: flex-start; gap: 34px;
+}
+.reveal .shelf-row ul { flex: 1 1 auto; margin-top: 0; }
+.reveal img.shelf-qr {
+  flex: 0 0 auto; width: 132px; height: 132px;
+  display: block; margin: 0.15em 6px 0 0;
+  border: none; box-shadow: none; background: #fff;
+}
+.reveal .shelf-url {
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.46em; color: var(--blue-soft);
+  margin: 0.3em 6px 0 0; text-align: right; letter-spacing: 0.02em;
+}
