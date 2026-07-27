@@ -1802,9 +1802,27 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     lives in a private repo; I am moving it into a public one" now speaks the address and flags that
     three of the five are adapted from someone else's openly licensed set, matching the repo's own
     Origin column. No new slides, no spine reflow, no guidepost change.
-    Measured against `main` with an identical script over all 49 leaves: exactly one value moved,
-    this slide, **479 → 542** against the 700 canvas (158px headroom). The deck's only >700 leaf is
-    still "Same prompt, different answers" at 719, pre-existing and untouched. Offline verified by
-    request log: every request localhost, no external host. The horizontal figure the audit reports
-    (~980) fires on every leaf including untouched ones and is the decision-110 padding artifact, not
-    a regression.
+    **Decision 110's parked caveat stopped being theoretical, and is now partly mitigated.** The
+    first cut placed the QR and URL flush right, and the PPTX capture came back with the QR sliced
+    and the URL reading "github.com/Kerrator/skil". Measured: the section's content box paints past
+    the viewport by 59px at the 1060 × 740 capture aspect and more at 4:3, and flush-right content
+    sat **32px outside at 1060 × 740 and 54px outside at 4:3** while the widest bullet was 112px
+    inside. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
+    `margin-right`), chosen to clear the 4:3 worst case with room to spare: it now lands 39px inside
+    at the capture aspect and 16px inside at 4:3. The inset is commented in `custom.css` as
+    load-bearing so a future tidy-up does not remove it. This does **not** fix decision 110 in
+    general (other slides' long lines still overhang); it keeps this slide's new content out of the
+    unsafe zone, which also protects the iPad.
+    Measured against `main` with an identical script and settle procedure at 1060 × 740 over all 49
+    leaves: three values move, this slide **479 → 586** (114px headroom) plus 1px and 2px rounding
+    wobbles on two others. The deck's only >700 leaf is still "Same prompt, different answers" at
+    719, pre-existing and untouched. An earlier reading that showed a second leaf at 704 was noise
+    from measuring before fonts settled; it does not reproduce. Offline verified by request log:
+    every request localhost, no external host.
+    **Artifacts rebuilt** from the corrected deck: PDF 49 pages at 749.04 × 546 pt (the true print
+    box, not the letter-size scroll-view fallback), guidepost bar present on all 49 pages, QR URL
+    extractable from the text layer; `pdftotext` diff against the previous PDF shows changes on the
+    shelf page only. PPTX 49 slides at 13462000 × 9398000 EMU (1060 × 740 pt), 49 notes slides none
+    empty, one full-bleed 2119 × 1479 PNG each. Both built with a stdlib-only CDP client that waits
+    for reveal's `.pdf-page` wrappers before printing, because the `--print-to-pdf` CLI route races
+    that layout and silently emits the letter-size fallback.
