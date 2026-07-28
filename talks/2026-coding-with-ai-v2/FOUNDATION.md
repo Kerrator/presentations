@@ -1872,3 +1872,50 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     three artifacts across two public repos, so it is a decision, not a correction.
     **Still unverified, and honestly so.** No physical device has scanned the QR off a projector or
     the iPad, and repository visibility is not observable offline.
+    *Superseded the same day by decision 124:* both items left alone above were acted on, and the
+    PPTX crop turned out to be a symptom of a live-deck defect rather than an exporter bug.
+
+124. **The deck was clipping sentences off the right edge on 22 of 49 leaves at 4:3, and the cause was
+    one CSS rule.** (2026-07-27.) Chasing decision 123's PPTX crop upstream found it in the deck
+    itself, not the exporter. Measuring the **rendered text extents** (`Range.getClientRects()` over
+    every text node, not element boxes) against the viewport: **22 of 49 leaves at 1024 × 768 and at
+    960 × 700, 15 of 49 at 1060 × 740, none at 1280 × 800 or wider**, worst case 59.6px of sentence
+    outside the frame. So the deck was correct on the laptop it was written on and wrong on a 4:3
+    projector and on the iPad. "Quantum ESPRESSO out|put" and "→ analyse t|hat" were being cut on
+    leaf 23 alone.
+    **Cause.** `custom.css` set `padding: 10px 20px` on `.reveal .slides section`, which matches the
+    **stack** as well as the leaf. reveal makes every section `position: absolute`, so a nested
+    section's `width: 100%` resolves against the *stack's padding box*: each leaf inherited the
+    stack's padding as extra width, then added its own, and the box ran up to 100 units past the
+    960-unit canvas. reveal's own print stylesheet zeroes exactly this
+    (`html.reveal-print .reveal .slides section { padding: 0; box-sizing: border-box }`), which is why
+    the PDF was always correct and only the screen and the PPTX were not.
+    **Fix:** `.reveal .slides > section.stack { padding: 0 }`. A stack is a container, not a slide.
+    Re-audited at ten aspects from iPad portrait 768 × 1024 through 900 × 760, 960 × 700, 1000 × 800,
+    1024 × 768, 1060 × 740, 1280 × 800, 1366 × 768, 1920 × 1080 to 2560 × 1440: **0 clipped and 0 over
+    the canvas at every one**. This closes decision 110, which decision 122 could only mitigate for a
+    single slide.
+    **Cost, paid honestly:** the leaves are now ~40 units wider, so line breaks move on 11 of 49. One
+    leaf, "Same prompt, different answers" (h10/v2), went to **729**. Trimming its wordiest table cell
+    ("the exception recognizing the car has to be brought in" → "the exception: the car has to be
+    brought in") let the first column stop wrapping, which collapsed three two-line rows to one line
+    each: **729 → 644**. No other wording changed.
+    **The 76px inset is retired.** It only ever existed to hold the QR clear of the overhang; with the
+    overhang gone it left the QR stranded 78px inside. Now **20px**, matching the section's own
+    20-unit side padding, so the QR and URL line up with the right margin of the body text.
+    **QR regenerated at ECC M.** Level M encodes the same 34-byte payload at the same **version 3,
+    29 × 29 modules, 37 including the quiet zone**, so the extra error correction is free in geometry.
+    Verified by an **independent decoder** (format bits → mask → zig-zag data region → byte mode),
+    not by an encoder round-trip, from the SVG source *and* from actual rendered pixels: 1024 × 768 at
+    3.68 px/module, 1920 × 1080 at 5.30, the PPTX 2× capture at 7.24. Payload
+    `https://github.com/Kerrator/skills`, mask 3, every time. Level Q was rejected: it bumps the symbol
+    to version 4 (33 × 33), which *shrinks* the modules at a fixed render size.
+    **Artifacts rebuilt.** PDF: 49 pages, MediaBox `0 0 749.03998 546` on all 49, one distinct value in
+    the file, guidepost bar on 48 of 49 (the title card correctly carries none). PPTX: 49 slides, 49
+    notes none empty, slide 39's note still carries "not the whole shelf"; images are now **2120 ×
+    1480**, an exact 2× of the 1060 × 740 box (was 2119 × 1479). The edge audit that found the crop
+    now reads **0**: images with ink in the final pixel column went **20 → 0**, and the 19 with
+    clipped glyph runs went to 0. The PPTX is a faithful export again. It also grew 8.7 → 12.3 MB,
+    because these captures are lossless RGB PNGs; quantizing them to a 256-colour palette would take
+    it to 5.3 MB but puts visible error on antialiased text, so the size was accepted rather than
+    traded for quality in a correctness fix.
