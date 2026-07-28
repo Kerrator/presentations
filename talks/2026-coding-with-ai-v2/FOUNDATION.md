@@ -1803,21 +1803,27 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     three of the five are adapted from someone else's openly licensed set, matching the repo's own
     Origin column. No new slides, no spine reflow, no guidepost change.
     **Decision 110's parked caveat stopped being theoretical, and is now partly mitigated.** The
-    first cut placed the QR and URL flush right, and the PPTX capture came back with the QR sliced
-    and the URL reading "github.com/Kerrator/skil". Measured: the section's content box paints past
-    the viewport by 59px at the 1060 × 740 capture aspect and more at 4:3, and flush-right content
-    sat **32px outside at 1060 × 740 and 54px outside at 4:3** while the widest bullet was 112px
-    inside. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
+    first cut left the QR and URL 6px off the content edge, and the PPTX capture came back with the
+    QR sliced and the URL reading "github.com/Kerrator/skil". Measured: the section box paints past
+    the viewport by 59px at the 1060 × 740 capture aspect (its content box by 38px) and more at 4:3,
+    and that near-flush content sat **32px outside at 1060 × 740 and 54px outside at 4:3** while the
+    widest bullet was 112px inside. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
     `margin-right`), chosen to clear the 4:3 worst case with room to spare: it now lands 39px inside
     at the capture aspect and 16px inside at 4:3. The inset is commented in `custom.css` as
     load-bearing so a future tidy-up does not remove it. This does **not** fix decision 110 in
     general (other slides' long lines still overhang); it keeps this slide's new content out of the
     unsafe zone, which also protects the iPad.
-    Measured against `main` with an identical script and settle procedure at 1060 × 740 over all 49
-    leaves: three values move, this slide **479 → 586** (114px headroom) plus 1px and 2px rounding
-    wobbles on two others. The deck's only >700 leaf is still "Same prompt, different answers" at
-    719, pre-existing and untouched. An earlier reading that showed a second leaf at 704 was noise
-    from measuring before fonts settled; it does not reproduce. Offline verified by request log:
+    Measured against `main` using each slide's rendered `scrollHeight`: one value moves, this slide,
+    **489 → 596** against the 700 canvas (104px headroom). The deck's worst leaves are unchanged
+    from `main` and **tie at 704** (694 of content plus the 10px content-box pad): "Same token ID,
+    different meaning" (h4) and "Same prompt, different answers" (h10/v2). That agrees with decision
+    119's recorded worst of 704.
+    *Correction, same day:* an earlier draft of this decision claimed a single 719px leaf and
+    dismissed the second 704 as font-settling noise. Both claims were wrong. They came from
+    measuring leaves force-flattened to `position: static`, which inflates the figure and does not
+    reproduce against the rendered slide; the flattened pass was still valid for the
+    branch-vs-`main` comparison, since both sides used it, but its absolute numbers were not, and it
+    should not have been written into the record over decision 119. Offline verified by request log:
     every request localhost, no external host.
     **Artifacts rebuilt** from the corrected deck: PDF 49 pages at 749.04 × 546 pt (the true print
     box, not the letter-size scroll-view fallback), guidepost bar present on all 49 pages, QR URL

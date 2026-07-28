@@ -108,6 +108,10 @@ Correct any of these on read; they are not interview-locked.
    `review-analysis-claims` gap: the talk twice offers a claims-review Skill as its "not only
    coding" example (`index.html:761` and the `:843` notes), and that Skill is not shipping. No slide
    change is proposed for it.
+   > **Missed, then fixed, 2026-07-27.** The built README initially said only "Five Claude Code
+   > Skills I actually run", never marking them as a subset, so this assumption was silently
+   > dropped. Caught by the final cross-repo audit. The opening line now reads "Five of the Claude
+   > Code Skills I maintain … A selection from a larger private shelf, not the whole of it."
 4. The QR encodes `https://github.com/Kerrator/skills`, generated offline with the already-installed
    `qrencode -t SVG`. No new dependency, no CDN, invariant intact.
 5. `diagnosing-bugs` keeps `scripts/hitl-loop.template.sh`; it is self-contained and referenced only
