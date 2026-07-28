@@ -51,6 +51,14 @@
 .reveal .slides section { text-align: left; }
 .reveal .slides section,
 .reveal .slides section > section { padding: 10px 20px; }
+/* A stack is a container, not a slide, so it must not be padded. reveal makes
+   every section `position: absolute`, so a nested section's `width: 100%`
+   resolves against the stack's PADDING box: pad the stack and each leaf inside
+   it inherits that padding as extra width, then adds its own, and paints up to
+   100 units outside the 960-unit canvas. That clipped real sentences off the
+   right edge on 22 of 49 leaves at 4:3 and 15 at the PPTX aspect (decision 124,
+   the cure for decision 110). Do not give .stack padding back. */
+.reveal .slides > section.stack { padding: 0; }
 
 /* ---- headings ------------------------------------------------------- */
 .reveal h1, .reveal h2, .reveal h3 {
@@ -360,21 +368,20 @@
   display: flex; align-items: flex-start; gap: 34px;
 }
 .reveal .shelf-row ul { flex: 1 1 auto; margin-top: 0; }
-/* The 76px right inset is load-bearing, not taste. Sections carry content-box
-   padding outside reveal's 960-unit canvas (FOUNDATION decision 110), so the
-   section's content box paints past the viewport by exactly 60 units at every
-   aspect at or below the deck's own 1.371 (960x700, 1024x768, 1000x800, 900x760
-   all measured at 60.0), and by 37.8 units at the PPTX's 1060x740 capture box.
-   Anything flush right there is clipped. 76 clears the 60-unit worst case with
-   16 units to spare; do not drop below about 64. Measured on the rendered slide,
-   not a flattened one (FOUNDATION decisions 122 and 123). */
+/* The right inset was 76px while decision 110's overhang was live: it was the
+   only thing keeping the QR and URL out of the clipped zone. Decision 124 cured
+   the overhang at its source (the .stack padding above), so the inset is no
+   longer load-bearing and 76 left the QR stranded 78px in from an edge that no
+   longer overhangs. 20 matches the section's own 20-unit side padding, so the QR
+   and URL line up with the right margin of the body text. Measured on the
+   rendered slide at 960x700, 1024x768, 1060x740: nothing clips at any of them. */
 .reveal img.shelf-qr {
   flex: 0 0 auto; width: 132px; height: 132px;
-  display: block; margin: 0.15em 76px 0 0;
+  display: block; margin: 0.15em 20px 0 0;
   border: none; box-shadow: none; background: #fff;
 }
 .reveal .shelf-url {
   font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.46em; color: var(--blue-soft);
-  margin: 0.3em 76px 0 0; text-align: right; letter-spacing: 0.02em;
+  margin: 0.3em 20px 0 0; text-align: right; letter-spacing: 0.02em;
 }
