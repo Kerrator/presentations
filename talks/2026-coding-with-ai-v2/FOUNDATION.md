@@ -1790,3 +1790,45 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     reattached to the wrong slides. Rotating the key in `index.html` clears it on every device he
     presents from, including the iPad, which no browser-side clearing from a desktop session could
     reach. Rotate it again after any future reorder.
+122. **The public Skills repo goes on the shelf slide, and the private-repo line is retired.**
+    (2026-07-27.) `github.com/Kerrator/skills` is live and public (five Skills, initial commit
+    `d8760f2`), so the promise the deck was already making is now true. On "One shelf, under version
+    control" (h21/v1, leaf 38): a locally generated QR (`assets/qr-skills.svg`, `qrencode -t SVG -m 4`,
+    quiet zone to spec, generator comment stripped) sits to the **right of the bullets**, not below
+    them, so it spends horizontal space the slide had spare; the URL is a full-width right-aligned
+    line under it. A first attempt put the URL in a `<figcaption>` under the QR and it clipped
+    mid-word at a 132px column, so it was moved out. The take line loses its future tense
+    ("Being opened to the group" → "Open to the group"), and the speaker note that said "It currently
+    lives in a private repo; I am moving it into a public one" now speaks the address and flags that
+    three of the five are adapted from someone else's openly licensed set, matching the repo's own
+    Origin column. No new slides, no spine reflow, no guidepost change.
+    **Decision 110's parked caveat stopped being theoretical, and is now partly mitigated.** The
+    first cut left the QR and URL 6px off the content edge, and the PPTX capture came back with the
+    QR sliced and the URL reading "github.com/Kerrator/skil". Measured: the section box paints past
+    the viewport by 59px at the 1060 × 740 capture aspect (its content box by 38px) and more at 4:3,
+    and that near-flush content sat **32px outside at 1060 × 740 and 54px outside at 4:3** while the
+    widest bullet was 112px inside. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
+    `margin-right`), chosen to clear the 4:3 worst case with room to spare: it now lands 39px inside
+    at the capture aspect and 16px inside at 4:3. The inset is commented in `custom.css` as
+    load-bearing so a future tidy-up does not remove it. This does **not** fix decision 110 in
+    general (other slides' long lines still overhang); it keeps this slide's new content out of the
+    unsafe zone, which also protects the iPad.
+    Measured against `main` using each slide's rendered `scrollHeight`: one value moves, this slide,
+    **489 → 596** against the 700 canvas (104px headroom). The deck's worst leaves are unchanged
+    from `main` and **tie at 704** (694 of content plus the 10px content-box pad): "Same token ID,
+    different meaning" (h4) and "Same prompt, different answers" (h10/v2). That agrees with decision
+    119's recorded worst of 704.
+    *Correction, same day:* an earlier draft of this decision claimed a single 719px leaf and
+    dismissed the second 704 as font-settling noise. Both claims were wrong. They came from
+    measuring leaves force-flattened to `position: static`, which inflates the figure and does not
+    reproduce against the rendered slide; the flattened pass was still valid for the
+    branch-vs-`main` comparison, since both sides used it, but its absolute numbers were not, and it
+    should not have been written into the record over decision 119. Offline verified by request log:
+    every request localhost, no external host.
+    **Artifacts rebuilt** from the corrected deck: PDF 49 pages at 749.04 × 546 pt (the true print
+    box, not the letter-size scroll-view fallback), guidepost bar present on all 49 pages, QR URL
+    extractable from the text layer; `pdftotext` diff against the previous PDF shows changes on the
+    shelf page only. PPTX 49 slides at 13462000 × 9398000 EMU (1060 × 740 pt), 49 notes slides none
+    empty, one full-bleed 2119 × 1479 PNG each. Both built with a stdlib-only CDP client that waits
+    for reveal's `.pdf-page` wrappers before printing, because the `--print-to-pdf` CLI route races
+    that layout and silently emits the letter-size fallback.

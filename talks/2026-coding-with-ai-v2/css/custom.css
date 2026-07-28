@@ -354,3 +354,24 @@
   padding: 0.25em 0.9em;
   letter-spacing: 0.04em;
 }
+
+/* ---- §4: the public shelf (QR beside the bullets, not below them) ------ */
+.reveal .shelf-row {
+  display: flex; align-items: flex-start; gap: 34px;
+}
+.reveal .shelf-row ul { flex: 1 1 auto; margin-top: 0; }
+/* The 76px right inset is load-bearing, not taste. Sections carry content-box
+   padding outside reveal's 960-unit canvas (FOUNDATION decision 110), so the
+   right edge of the box paints past the viewport on narrow aspects: 32px at the
+   PPTX's 1060x740 capture box and 54px at 4:3 (iPad, some projectors). Anything
+   flush right there is clipped. Keep this inset ahead of the worst case. */
+.reveal img.shelf-qr {
+  flex: 0 0 auto; width: 132px; height: 132px;
+  display: block; margin: 0.15em 76px 0 0;
+  border: none; box-shadow: none; background: #fff;
+}
+.reveal .shelf-url {
+  font-family: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.46em; color: var(--blue-soft);
+  margin: 0.3em 76px 0 0; text-align: right; letter-spacing: 0.02em;
+}
