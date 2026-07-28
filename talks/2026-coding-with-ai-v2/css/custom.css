@@ -362,9 +362,12 @@
 .reveal .shelf-row ul { flex: 1 1 auto; margin-top: 0; }
 /* The 76px right inset is load-bearing, not taste. Sections carry content-box
    padding outside reveal's 960-unit canvas (FOUNDATION decision 110), so the
-   right edge of the box paints past the viewport on narrow aspects: 32px at the
-   PPTX's 1060x740 capture box and 54px at 4:3 (iPad, some projectors). Anything
-   flush right there is clipped. Keep this inset ahead of the worst case. */
+   section's content box paints past the viewport by exactly 60 units at every
+   aspect at or below the deck's own 1.371 (960x700, 1024x768, 1000x800, 900x760
+   all measured at 60.0), and by 37.8 units at the PPTX's 1060x740 capture box.
+   Anything flush right there is clipped. 76 clears the 60-unit worst case with
+   16 units to spare; do not drop below about 64. Measured on the rendered slide,
+   not a flattened one (FOUNDATION decisions 122 and 123). */
 .reveal img.shelf-qr {
   flex: 0 0 auto; width: 132px; height: 132px;
   display: block; margin: 0.15em 76px 0 0;

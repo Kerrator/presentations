@@ -1806,8 +1806,8 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     first cut left the QR and URL 6px off the content edge, and the PPTX capture came back with the
     QR sliced and the URL reading "github.com/Kerrator/skil". Measured: the section box paints past
     the viewport by 59px at the 1060 × 740 capture aspect (its content box by 38px) and more at 4:3,
-    and that near-flush content sat **32px outside at 1060 × 740 and 54px outside at 4:3** while the
-    widest bullet was 112px inside. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
+    and that near-flush content sat **32px outside at 1060 × 740 and 54 units outside at 4:3** while
+    the widest bullet was 122px inside at 960 × 700. The right column therefore carries a **76px inset** (`.shelf-qr` / `.shelf-url`
     `margin-right`), chosen to clear the 4:3 worst case with room to spare: it now lands 39px inside
     at the capture aspect and 16px inside at 4:3. The inset is commented in `custom.css` as
     load-bearing so a future tidy-up does not remove it. This does **not** fix decision 110 in
@@ -1815,7 +1815,8 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     unsafe zone, which also protects the iPad.
     Measured against `main` using each slide's rendered `scrollHeight`: one value moves, this slide,
     **489 → 596** against the 700 canvas (104px headroom). The deck's worst leaves are unchanged
-    from `main` and **tie at 704** (694 of content plus the 10px content-box pad): "Same token ID,
+    from `main` and **tie at 704** (684 of content plus the 20px content-box pad, 10 top and 10
+    bottom): "Same token ID,
     different meaning" (h4) and "Same prompt, different answers" (h10/v2). That agrees with decision
     119's recorded worst of 704.
     *Correction, same day:* an earlier draft of this decision claimed a single 719px leaf and
@@ -1826,9 +1827,48 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     should not have been written into the record over decision 119. Offline verified by request log:
     every request localhost, no external host.
     **Artifacts rebuilt** from the corrected deck: PDF 49 pages at 749.04 × 546 pt (the true print
-    box, not the letter-size scroll-view fallback), guidepost bar present on all 49 pages, QR URL
+    box, not the letter-size scroll-view fallback), guidepost bar present on 48 of 49 pages (the
+    title card carries none, as it should), QR URL
     extractable from the text layer; `pdftotext` diff against the previous PDF shows changes on the
     shelf page only. PPTX 49 slides at 13462000 × 9398000 EMU (1060 × 740 pt), 49 notes slides none
     empty, one full-bleed 2119 × 1479 PNG each. Both built with a stdlib-only CDP client that waits
     for reveal's `.pdf-page` wrappers before printing, because the `--print-to-pdf` CLI route races
     that layout and silently emits the letter-size fallback.
+
+123. **Decision 122 was re-derived end to end by a session that did not build it; three of its numbers
+    were wrong and are corrected above.** (2026-07-27.) An independent challenge review re-measured
+    every claim from the artifacts rather than reading the record, under stated conditions: macOS
+    25.5.0, headless Chrome over a stdlib CDP client, rendered slides via `Reveal.getCurrentSlide()`
+    and never force-flattened, fonts and images awaited, reveal canvas 960 × 700.
+    **Held on re-derivation.** The worst leaves still tie at **704** at h4 and h10/v2, agreeing with
+    decision 119; the shelf slide measures **596**; the QR and URL land **38.8px inside** at
+    1060 × 740 and **16.4px inside** at true 4:3, so the 76px inset does its job at every aspect
+    tested. PDF: 49 pages, MediaBox `0 0 749.03998 546` on all 49 with no second value anywhere in the
+    file. PPTX: 49 slides, 49 non-empty notes, 2119 × 1479 each, `sldSz` 13462000 × 9398000 EMU.
+    Slide 39's notes carry the corrected "not the whole shelf" wording. The QR decodes to
+    `https://github.com/Kerrator/skills` from the SVG source, from the rendered slide pixels, and
+    from the PPTX raster, with no near-miss in scheme, owner, or trailing slash.
+    **Corrected.** (a) The 704 decomposition was arithmetic nonsense: the leaves carry **684** of
+    content plus a **20px** pad (10 top, 10 bottom), not 694 plus 10. Line 1665 of this file already
+    said 10/20 correctly, so the document contradicted itself. (b) "The widest bullet was 112px
+    inside" is not reproducible at any aspect: it is **122px** at 960 × 700, 130px at true 4:3, 152px
+    at the capture box. (c) The guidepost bar is on **48** of 49 PDF pages, not 49; the title card
+    has none, correctly. The `custom.css` comment was also rewritten: it attached 32 and 54 to "the
+    right edge of the box", when those are the overhang of the *old* 6px-inset content, and it mixed
+    px with reveal units. The invariant worth keeping is that the content box overhangs by exactly
+    **60 units at every aspect at or below 1.371** and 37.8 units at 1.432.
+    **New, and out of this change set's scope: the PPTX raster clips text.** The `.pptx` images are a
+    viewport-width capture, so decision 110's overhang paints outside the frame and is cropped. On 19
+    of the 49 images, ink runs terminate exactly at the final column; on several, words are sliced
+    mid-glyph ("simulated time 10¹² to**o**" on slide 44; "Quantum ESPRESSO outpu**t**" and
+    "→ analyse tha**t**" on slide 23). The PDF is unaffected and carries the full text at those pages,
+    and the HTML deck is what gets presented, so nothing a room sees is wrong. This is pre-existing
+    (the same crop geometry is in the two earlier builds), belongs to decision 110 rather than to the
+    shelf slide, and wants a decision about the fix (widen the capture, or cure the overhang globally)
+    before anyone rebuilds. **Do not treat the `.pptx` as a faithful export until then.**
+    **Left alone, deliberately.** The QR stays at ECC **L**. Level M encodes the same 34-byte payload
+    at the same version 3, 29 × 29, 3.57 units per module, so the upgrade would be free in geometry
+    and would roughly double the correctable budget; it is a real improvement and a real rebuild of
+    three artifacts across two public repos, so it is a decision, not a correction.
+    **Still unverified, and honestly so.** No physical device has scanned the QR off a projector or
+    the iPad, and repository visibility is not observable offline.
