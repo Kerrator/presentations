@@ -1919,3 +1919,16 @@ interview after the first (Codex-built) rendered draft was reviewed and rejected
     because these captures are lossless RGB PNGs; quantizing them to a 256-colour palette would take
     it to 5.3 MB but puts visible error on antialiased text, so the size was accepted rather than
     traded for quality in a correctness fix.
+
+125. **The workspace drill-down names what a workspace is, and the montage's first tile is
+    captioned "blender".** (2026-07-28, rehearsal follow-up; amends decisions 105 and 88.) The
+    "A workspace the agent can navigate" leaf (h6/v1) gains a lead line, "Your workspace: a
+    Project in the web app, or a codebase on disk", and its contrast panels now carry Stephen's
+    textbook example: one huge file no window can hold, versus a file per chapter section that
+    the agent parses and loads selectively. The small-modules and docs-link-to-docs discipline
+    moved intact into the speaker notes; the goldline takeaway is unchanged. On the builds
+    montage (h26/v0) the first tile's visible caption changed from "pylatkmc" to "blender" at
+    Stephen's request; the lattice glyph, the asset filename, and the speaker-note description
+    of the software behind it (pylatkmc) are unchanged. Artifacts rebuilt with the recipe of
+    decision 124 (PDF 49 pp at 749.04 x 546 pt; PPTX 49 slides, 2120 x 1480 captures, notes on
+    all 49); audits re-passed: 0 overflow at 960 x 700, offline-clean.

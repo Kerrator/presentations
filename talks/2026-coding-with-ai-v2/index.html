@@ -239,25 +239,30 @@
           </section>
           <section>
             <h3>A workspace the agent can navigate</h3>
+            <p class="lead">Your workspace: a Project in the web app, or a codebase on disk.</p>
             <div class="pair">
               <div>
-                <p class="label">One of everything</p>
-                <p>A single script that does it all. Documentation in one huge file no window can hold.</p>
+                <p class="label">One huge file</p>
+                <p>The whole textbook in a single document. No window can hold it.</p>
               </div>
               <div class="hot">
-                <p class="label">Navigable pieces</p>
-                <p>Small modules with clear docs. Documents link to documents; the agent loads only what the task needs.</p>
+                <p class="label">Navigable chunks</p>
+                <p>A file per chapter section. The agent parses the structure, then loads only what the task needs.</p>
               </div>
             </div>
             <p class="goldline fragment">Structure the workspace so any one task fits a small window.</p>
             <aside class="notes">
-              Once agentic coding clicks, you start setting up your workspace for it. One huge
-              Python file that does everything is much less useful than a small module pulling in
-              pieces from others: the smaller chunks are easier for the agent to work on, as long
-              as the documentation is clear. The documentation matters just as much. Documents
-              should link to documents, so when the agent needs to know how one part of the code
-              works it follows the tree down to the right page instead of grepping through a
-              document larger than any context window.
+              A workspace is wherever you set the agent up to work: a Project in the web app, with
+              the files you upload to it, or a codebase on disk in agentic coding. The same
+              discipline governs both. Suppose you hand a Project a textbook. As one enormous file
+              it is nearly useless: no context window can hold it, and every question drags the
+              whole book along. Break it into a file per chapter section and the agent can read
+              the structure, follow it down, and pull in only the section the task needs.
+              Code works the same way. One huge Python file that does everything is much less
+              useful than a small module pulling in pieces from others, as long as the
+              documentation is clear. Documents should link to documents, so when the agent needs
+              to know how one part works it follows the tree down to the right page instead of
+              grepping through a document larger than any context window.
               This is also just good software practice for humans; the agent makes the payoff
               immediate. Seed for later: section 4 applies the same discipline to prompts,
               maintaining Skills as navigable, documented assets.
@@ -1206,7 +1211,7 @@ then record it. Stop when I can defend every choice.
           <h2 style="font-size:1.1em;">Going from idea to implementation has never been easier</h2>
           <video data-autoplay loop muted playsinline src="assets/blender-kmc-event.mp4" style="display:block; max-height:300px; margin:0.15em auto 0;"></video>
           <div class="app-row">
-            <figure><img src="assets/app-pylatkmc.svg" alt="Lattice glyph for pylatkmc" /><figcaption>pylatkmc</figcaption></figure>
+            <figure><img src="assets/app-pylatkmc.svg" alt="Lattice glyph for blender" /><figcaption>blender</figcaption></figure>
             <figure><img src="assets/app-todo.svg" alt="Checklist glyph for the to-do app" /><figcaption>to-do</figcaption></figure>
             <figure><img src="assets/app-netrunner.svg" alt="Click-inspired glyph for the card game opponent" /><figcaption>Netrunner</figcaption></figure>
             <figure><img src="assets/app-lotusfield.svg" alt="Lotus icon for the lotusfield media server" /><figcaption>lotusfield</figcaption></figure>
