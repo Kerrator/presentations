@@ -1,0 +1,21 @@
+<svg viewBox="0 0 1280 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The context window as a bar: a thin slice is always loaded, skill descriptions, the root wiki and rules, and it points to what is read only when needed: skill steps, deeper wikis, papers, code and data. The rest of the window is room for the work.">
+<defs><marker id="a-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FABD0F"/></marker><marker id="a-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa1ad"/></marker><marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb0dc"/></marker></defs>
+<g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" transform="translate(0,0)">
+<text x="40" y="48" font-size="24" fill="#9aa1ad" text-anchor="start">the context window</text>
+<rect x="40" y="66" width="150" height="92" fill="#FABD0F"/>
+<rect x="190" y="66" width="1050" height="92" fill="#4a4e57"/>
+<text x="715" y="104" font-size="28" fill="#e8eaee" text-anchor="middle">room for the work</text>
+<text x="715" y="138" font-size="22" fill="#e8eaee" text-anchor="middle">your question, the files it opens, its answer</text>
+<path d="M 115 158 L 115 214" stroke="#FABD0F" stroke-width="3" fill="none"/>
+<rect x="40" y="214" width="520" height="176" rx="10" fill="#2a2c31" stroke="#FABD0F" stroke-width="3"/>
+<text x="300" y="262" font-size="30" fill="#FABD0F" text-anchor="middle" font-weight="700">Always loaded</text>
+<text x="300" y="308" font-size="24" fill="#e8eaee" text-anchor="middle">skill descriptions · root wiki · rules</text>
+<text x="300" y="352" font-size="24" fill="#FABD0F" text-anchor="middle">1.1k tokens for the demo folder</text>
+<line x1="568" y1="302" x2="712" y2="302" stroke="#FABD0F" stroke-width="4" marker-end="url(#a-gold)"/>
+<text x="640" y="284" font-size="22" fill="#FABD0F" text-anchor="middle">points to</text>
+<rect x="720" y="214" width="520" height="176" rx="10" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2" stroke-dasharray="9 7"/>
+<text x="980" y="262" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">Read only when needed</text>
+<text x="980" y="308" font-size="24" fill="#e8eaee" text-anchor="middle">skill steps · deeper wikis</text>
+<text x="980" y="352" font-size="24" fill="#9aa1ad" text-anchor="middle">papers · code · data</text>
+</g>
+</svg>

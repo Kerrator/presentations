@@ -1,0 +1,149 @@
+<svg viewBox="0 0 1280 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four tokens, melt, at, a, lower, each become a vector; inside one layer, attention links carry information from earlier positions into later ones, with the links into the last position in gold, then a feed-forward block transforms each position on its own; after many such layers the last position's vector becomes the next-token ranking">
+  <defs>
+    <marker id="arrowBlue" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L11,5 L0,10 Z" fill="#8fb0dc"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L11,5 L0,10 Z" fill="#FABD0F"/>
+    </marker>
+  </defs>
+
+  <!-- positions (columns): x = 170, 370, 570, 770 -->
+
+  <!-- ================= TOKEN CHIPS ================= -->
+  <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="28" fill="#e8eaee" text-anchor="middle">
+    <rect x="118" y="40" width="104" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="170" y="74">melt</text>
+    <rect x="327" y="40" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="370" y="74">at</text>
+    <rect x="527" y="40" width="86" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="570" y="74">a</text>
+    <rect x="708" y="40" width="124" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+    <text x="770" y="74">lower</text>
+    <text x="92" y="74" fill="#9aa1ad">…</text>
+  </g>
+
+  <!-- embedding: chip -> vector -->
+  <g stroke="#8fb0dc" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M 170 94 V 113" marker-end="url(#arrowBlue)"/>
+    <path d="M 370 94 V 113" marker-end="url(#arrowBlue)"/>
+    <path d="M 570 94 V 113" marker-end="url(#arrowBlue)"/>
+    <path d="M 770 94 V 113" marker-end="url(#arrowBlue)"/>
+  </g>
+
+  <!-- ================= INPUT VECTORS (y 118-142) ================= -->
+  <g fill="#8fb0dc">
+    <rect x="100" y="118" width="24" height="24" rx="4"/>
+    <rect x="129" y="118" width="24" height="24" rx="4" opacity="0.45"/>
+    <rect x="158" y="118" width="24" height="24" rx="4" opacity="0.8"/>
+    <rect x="187" y="118" width="24" height="24" rx="4" opacity="0.35"/>
+    <rect x="216" y="118" width="24" height="24" rx="4" opacity="0.65"/>
+    <rect x="300" y="118" width="24" height="24" rx="4" opacity="0.4"/>
+    <rect x="329" y="118" width="24" height="24" rx="4" opacity="0.9"/>
+    <rect x="358" y="118" width="24" height="24" rx="4" opacity="0.55"/>
+    <rect x="387" y="118" width="24" height="24" rx="4"/>
+    <rect x="416" y="118" width="24" height="24" rx="4" opacity="0.35"/>
+    <rect x="500" y="118" width="24" height="24" rx="4" opacity="0.7"/>
+    <rect x="529" y="118" width="24" height="24" rx="4" opacity="0.35"/>
+    <rect x="558" y="118" width="24" height="24" rx="4"/>
+    <rect x="587" y="118" width="24" height="24" rx="4" opacity="0.5"/>
+    <rect x="616" y="118" width="24" height="24" rx="4" opacity="0.85"/>
+    <rect x="700" y="118" width="24" height="24" rx="4" opacity="0.5"/>
+    <rect x="729" y="118" width="24" height="24" rx="4"/>
+    <rect x="758" y="118" width="24" height="24" rx="4" opacity="0.35"/>
+    <rect x="787" y="118" width="24" height="24" rx="4" opacity="0.75"/>
+    <rect x="816" y="118" width="24" height="24" rx="4" opacity="0.45"/>
+  </g>
+
+  <!-- ================= ONE LAYER (panel y 166-402) ================= -->
+  <rect x="70" y="166" width="800" height="236" rx="12" fill="#2a2c31" fill-opacity="0.45" stroke="#3a3d44" stroke-width="2"/>
+
+  <!-- position tracks: each vector runs straight down through the layer and the later layers -->
+  <g stroke="#8fb0dc" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M 170 144 V 418 M 170 432 V 439 M 170 453 V 460"/>
+    <path d="M 170 474 V 513" marker-end="url(#arrowBlue)"/>
+    <path d="M 370 144 V 418 M 370 432 V 439 M 370 453 V 460"/>
+    <path d="M 370 474 V 513" marker-end="url(#arrowBlue)"/>
+    <path d="M 570 144 V 418 M 570 432 V 439 M 570 453 V 460"/>
+    <path d="M 570 474 V 513" marker-end="url(#arrowBlue)"/>
+    <path d="M 770 144 V 272"/>
+  </g>
+
+  <!-- attention among the earlier positions: earlier -> later only -->
+  <g stroke="#8fb0dc" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M 170 190 C 170 209, 370 205, 370 224"/>
+    <path d="M 370 190 C 370 209, 570 205, 570 224"/>
+    <path d="M 170 190 C 170 209, 570 202, 570 252"/>
+  </g>
+
+  <!-- THE REVEAL: attention into the last position, then its track down to the ranking -->
+  <g stroke="#FABD0F" stroke-width="2.5" fill="none">
+    <path d="M 570 190 C 570 256, 770 247, 770 272"/>
+    <path d="M 370 190 C 370 271, 770 261, 770 291"/>
+    <path d="M 170 190 C 170 286, 770 274, 770 310"/>
+    <path d="M 770 272 V 418 M 770 432 V 439 M 770 453 V 460"/>
+    <path d="M 770 474 V 513" marker-end="url(#arrowGold)"/>
+    <path d="M 848 530 H 902" marker-end="url(#arrowGold)"/>
+  </g>
+
+  <!-- feed-forward: one block per position, no links between positions -->
+  <g fill="#2a2c31">
+    <rect x="120" y="336" width="100" height="38" rx="8"/>
+    <rect x="320" y="336" width="100" height="38" rx="8"/>
+    <rect x="520" y="336" width="100" height="38" rx="8"/>
+    <rect x="720" y="336" width="100" height="38" rx="8"/>
+  </g>
+  <g fill="#8fb0dc" fill-opacity="0.16" stroke="#8fb0dc" stroke-width="2">
+    <rect x="120" y="336" width="100" height="38" rx="8"/>
+    <rect x="320" y="336" width="100" height="38" rx="8"/>
+    <rect x="520" y="336" width="100" height="38" rx="8"/>
+    <rect x="720" y="336" width="100" height="38" rx="8"/>
+  </g>
+
+  <!-- ================= MORE LAYERS ================= -->
+  <g fill="#8fb0dc">
+    <rect x="70" y="418" width="800" height="14" rx="7" opacity="0.45"/>
+    <rect x="70" y="439" width="800" height="14" rx="7" opacity="0.32"/>
+    <rect x="70" y="460" width="800" height="14" rx="7" opacity="0.2"/>
+  </g>
+
+  <!-- ================= OUTPUT VECTORS (y 518-542) ================= -->
+  <g fill="#8fb0dc" opacity="0.4">
+    <rect x="100" y="518" width="24" height="24" rx="4" opacity="0.5"/>
+    <rect x="129" y="518" width="24" height="24" rx="4"/>
+    <rect x="158" y="518" width="24" height="24" rx="4" opacity="0.4"/>
+    <rect x="187" y="518" width="24" height="24" rx="4" opacity="0.8"/>
+    <rect x="216" y="518" width="24" height="24" rx="4" opacity="0.6"/>
+    <rect x="300" y="518" width="24" height="24" rx="4" opacity="0.85"/>
+    <rect x="329" y="518" width="24" height="24" rx="4" opacity="0.45"/>
+    <rect x="358" y="518" width="24" height="24" rx="4"/>
+    <rect x="387" y="518" width="24" height="24" rx="4" opacity="0.5"/>
+    <rect x="416" y="518" width="24" height="24" rx="4" opacity="0.7"/>
+    <rect x="500" y="518" width="24" height="24" rx="4" opacity="0.45"/>
+    <rect x="529" y="518" width="24" height="24" rx="4" opacity="0.8"/>
+    <rect x="558" y="518" width="24" height="24" rx="4" opacity="0.55"/>
+    <rect x="587" y="518" width="24" height="24" rx="4"/>
+    <rect x="616" y="518" width="24" height="24" rx="4" opacity="0.4"/>
+  </g>
+  <g fill="#FABD0F">
+    <rect x="700" y="518" width="24" height="24" rx="4"/>
+    <rect x="729" y="518" width="24" height="24" rx="4" opacity="0.55"/>
+    <rect x="758" y="518" width="24" height="24" rx="4" opacity="0.85"/>
+    <rect x="787" y="518" width="24" height="24" rx="4" opacity="0.45"/>
+    <rect x="816" y="518" width="24" height="24" rx="4" opacity="0.7"/>
+  </g>
+
+  <!-- ================= LABELS (right column, x = 910) ================= -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <text x="910" y="98" font-size="26" font-weight="600" fill="#e8eaee">embedding</text>
+    <text x="910" y="128" font-size="22" fill="#9aa1ad">each token becomes a vector</text>
+    <text x="910" y="245" font-size="26" font-weight="600" fill="#e8eaee">attention</text>
+    <text x="910" y="275" font-size="22" fill="#9aa1ad">tokens share information</text>
+    <text x="910" y="350" font-size="26" font-weight="600" fill="#e8eaee">feed-forward</text>
+    <text x="910" y="380" font-size="22" fill="#9aa1ad">each position is transformed</text>
+    <text x="910" y="441" font-size="26" font-weight="600" fill="#e8eaee">many layers</text>
+    <text x="910" y="471" font-size="22" fill="#9aa1ad">the same two steps, repeated</text>
+    <rect x="910" y="504" width="270" height="52" rx="9" fill="#2a2c31" stroke="#FABD0F" stroke-width="2"/>
+    <text x="1045" y="538" font-size="24" font-weight="600" fill="#e8eaee" text-anchor="middle">next-token ranking</text>
+  </g>
+</svg>

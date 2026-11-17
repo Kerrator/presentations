@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1280 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three steps: you add a repo, folder or note; it gets a slim entry in the wiki; a script checks the links.">
+<defs><marker id="a-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FABD0F"/></marker><marker id="a-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa1ad"/></marker><marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb0dc"/></marker></defs>
+<g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" transform="translate(0,0)">
+<rect x="30" y="40" width="360" height="220" rx="10" fill="#2a2c31" stroke="#8fb0dc" stroke-width="3"/>
+<text x="210" y="100" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">You add</text>
+<text x="210" y="160" font-size="25" fill="#9aa1ad" text-anchor="middle">a repo, a folder</text>
+<text x="210" y="200" font-size="25" fill="#9aa1ad" text-anchor="middle">or a note</text>
+<line x1="398" y1="150" x2="452" y2="150" stroke="#9aa1ad" stroke-width="4" marker-end="url(#a-muted)"/>
+<rect x="460" y="40" width="360" height="220" rx="10" fill="#2a2c31" stroke="#FABD0F" stroke-width="3"/>
+<text x="640" y="100" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">Slim entry in the wiki</text>
+<text x="640" y="160" font-size="25" fill="#9aa1ad" text-anchor="middle">what it is,</text>
+<text x="640" y="200" font-size="25" fill="#9aa1ad" text-anchor="middle">and a link to it</text>
+<line x1="828" y1="150" x2="882" y2="150" stroke="#9aa1ad" stroke-width="4" marker-end="url(#a-muted)"/>
+<rect x="890" y="40" width="360" height="220" rx="10" fill="#2a2c31" stroke="#FABD0F" stroke-width="3"/>
+<text x="1070" y="100" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">A script checks</text>
+<text x="1070" y="160" font-size="25" fill="#9aa1ad" text-anchor="middle">that every link</text>
+<text x="1070" y="200" font-size="25" fill="#9aa1ad" text-anchor="middle">still works</text>
+</g>
+</svg>

@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1280 568" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A row of token chips, Gold nanoparticles melt at a lower, feeds a closed box labelled transformer, which outputs a ranked list of possible next tokens; one of them, temperature, is picked and appended to the row in gold, and a loop arrow sends the longer row through again">
+  <defs>
+    <!-- refX=3: the line stops inside the head, so no stroke pokes past the tip; the tip sits 11 units beyond the path end -->
+    <marker id="arrowBlue" markerWidth="14" markerHeight="12" refX="3" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,6 L0,12 Z" fill="#8fb0dc"/>
+    </marker>
+    <marker id="arrowGold" markerWidth="14" markerHeight="12" refX="3" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,6 L0,12 Z" fill="#FABD0F"/>
+    </marker>
+  </defs>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+
+    <!-- ================= LOOP: from the new token back to the start ================= -->
+    <path d="M 938 130 V 98 Q 938 82 922 82 H 116 Q 100 82 100 98 V 113"
+          fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <text x="906" y="64" font-size="26" fill="#e8eaee" text-anchor="end">append, then run again</text>
+
+    <!-- ================= TOKEN ROW (the text so far; one word per chip is a cartoon) ================= -->
+    <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="28" text-anchor="middle">
+      <rect x="48"  y="132" width="104" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="100" y="166" fill="#e8eaee">Gold</text>
+
+      <rect x="164" y="132" width="258" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="293" y="166" fill="#e8eaee">nanoparticles</text>
+
+      <rect x="434" y="132" width="104" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="486" y="166" fill="#e8eaee">melt</text>
+
+      <rect x="550" y="132" width="68" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="584" y="166" fill="#e8eaee">at</text>
+
+      <rect x="630" y="132" width="52" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="656" y="166" fill="#e8eaee">a</text>
+
+      <rect x="694" y="132" width="120" height="52" rx="9" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="754" y="166" fill="#e8eaee">lower</text>
+
+      <!-- the appended token: the reveal -->
+      <rect x="826" y="132" width="224" height="52" rx="9" fill="#002452" stroke="#FABD0F" stroke-width="2.5"/>
+      <text x="938" y="166" fill="#FABD0F" font-weight="600">temperature</text>
+    </g>
+
+    <!-- ================= EVERYTHING SO FAR GOES IN ================= -->
+    <path d="M 48 196 V 202 Q 48 210 56 210 H 806 Q 814 210 814 202 V 196"
+          fill="none" stroke="#8fb0dc" stroke-width="2"/>
+    <path d="M 431 210 V 286" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <text x="453" y="263" font-size="26" fill="#e8eaee">everything so far goes in</text>
+
+    <!-- ================= TRANSFORMER (closed box; the next slide opens it) ================= -->
+    <rect x="191" y="304" width="480" height="150" rx="14" fill="#8fb0dc" fill-opacity="0.2" stroke="#8fb0dc" stroke-width="2"/>
+    <text x="431" y="390" font-size="32" font-weight="600" fill="#e8eaee" text-anchor="middle">transformer</text>
+
+    <!-- box -> the whole ranked list -->
+    <path d="M 679 379 H 799" fill="none" stroke="#8fb0dc" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <path d="M 830 305 H 824 Q 816 305 816 313 V 445 Q 816 453 824 453 H 830"
+          fill="none" stroke="#8fb0dc" stroke-width="2"/>
+
+    <!-- ================= RANKED CANDIDATES ================= -->
+    <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="24" text-anchor="middle">
+      <rect x="842" y="305" width="192" height="44" rx="8" fill="#002452" stroke="#FABD0F" stroke-width="2.5"/>
+      <text x="938" y="335" fill="#FABD0F" font-weight="600">temperature</text>
+
+      <rect x="842" y="357" width="192" height="44" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="938" y="387" fill="#e8eaee">point</text>
+
+      <rect x="842" y="409" width="192" height="44" rx="8" fill="#2a2c31" stroke="#3a3d44" stroke-width="2"/>
+      <text x="938" y="439" fill="#e8eaee">rate</text>
+    </g>
+    <!-- the list goes on: every token in the vocabulary gets a score -->
+    <g fill="#9aa1ad">
+      <circle cx="938" cy="467" r="3"/>
+      <circle cx="938" cy="477" r="3"/>
+      <circle cx="938" cy="487" r="3"/>
+    </g>
+
+    <!-- likelihood bars: lengths only, no numbers -->
+    <rect x="1050" y="317" width="190" height="20" rx="4" fill="#8fb0dc"/>
+    <rect x="1050" y="369" width="106" height="20" rx="4" fill="#8fb0dc"/>
+    <rect x="1050" y="421" width="56"  height="20" rx="4" fill="#8fb0dc"/>
+
+    <text x="1041" y="522" font-size="26" fill="#e8eaee" text-anchor="middle">how likely each next token is</text>
+
+    <!-- ================= THE PICK: leaves the list, joins the row ================= -->
+    <path d="M 938 299 V 205" fill="none" stroke="#FABD0F" stroke-width="2.5" marker-end="url(#arrowGold)"/>
+    <text x="958" y="256" font-size="26" fill="#FABD0F">pick one</text>
+  </g>
+</svg>

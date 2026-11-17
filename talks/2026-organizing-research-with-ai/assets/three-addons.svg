@@ -1,0 +1,29 @@
+<svg viewBox="0 0 1280 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The agent in the centre with three add-ons: a skill feeds it written steps, a subagent takes a task and returns a summary, and a tool server is a program it can call.">
+<defs><marker id="a-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FABD0F"/></marker><marker id="a-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa1ad"/></marker><marker id="a-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8fb0dc"/></marker></defs>
+<g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" transform="translate(0,-140)">
+<rect x="450" y="170" width="380" height="150" rx="10" fill="#2a2c31" stroke="#FABD0F" stroke-width="3"/>
+<text x="640" y="236" font-size="32" fill="#FABD0F" text-anchor="middle" font-weight="700">the agent</text>
+<text x="640" y="276" font-size="22" fill="#9aa1ad" text-anchor="middle">what it is reading now</text>
+<rect x="40" y="185" width="300" height="120" rx="10" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+<text x="190" y="236" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">Skill</text>
+<text x="190" y="274" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">find-paper</text>
+<line x1="346" y1="245" x2="444" y2="245" stroke="#8fb0dc" stroke-width="3" marker-end="url(#a-blue)"/>
+<text x="190" y="346" font-size="22" fill="#e8eaee" text-anchor="middle">written steps, read</text>
+<text x="190" y="376" font-size="22" fill="#e8eaee" text-anchor="middle">when the task needs them</text>
+<rect x="940" y="185" width="300" height="120" rx="10" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+<text x="1090" y="236" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">Subagent</text>
+<text x="1090" y="274" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">paper-reader</text>
+<line x1="836" y1="222" x2="934" y2="222" stroke="#8fb0dc" stroke-width="3" marker-end="url(#a-blue)"/>
+<text x="885" y="208" font-size="20" fill="#9aa1ad" text-anchor="middle">a task</text>
+<line x1="934" y1="272" x2="836" y2="272" stroke="#FABD0F" stroke-width="3" marker-end="url(#a-gold)"/>
+<text x="885" y="300" font-size="20" fill="#FABD0F" text-anchor="middle">a summary</text>
+<text x="1090" y="346" font-size="22" fill="#e8eaee" text-anchor="middle">a second agent that reads</text>
+<text x="1090" y="376" font-size="22" fill="#e8eaee" text-anchor="middle">on its own and reports back</text>
+<rect x="450" y="420" width="380" height="110" rx="10" fill="#2a2c31" stroke="#8fb0dc" stroke-width="2"/>
+<text x="640" y="466" font-size="30" fill="#e8eaee" text-anchor="middle" font-weight="700">Tool server (MCP)</text>
+<text x="640" y="504" font-size="22" fill="#9aa1ad" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">blender</text>
+<line x1="640" y1="326" x2="640" y2="414" stroke="#8fb0dc" stroke-width="3" marker-end="url(#a-blue)" marker-start="url(#a-blue)"/>
+<text x="860" y="466" font-size="22" fill="#e8eaee" text-anchor="start">a program the agent can call:</text>
+<text x="860" y="496" font-size="22" fill="#e8eaee" text-anchor="start">here, Blender, to make animations</text>
+</g>
+</svg>
